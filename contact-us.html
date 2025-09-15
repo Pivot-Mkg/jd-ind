@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About James Douglas India</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <style>
+        .section-divider {
+            margin-top: 5px;
+            margin-bottom: 16px;
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3" id="mainNavbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/images/JD-logo.png" alt="James Douglas Logo" height="44" class="me-2" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link d-flex align-items-center" href="#" id="servicesDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Services <i class="bi bi-chevron-down ms-1"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="services/banking-financial-services.html">Banking &
+                                    Financial Services</a></li>
+                            <li><a class="dropdown-item" href="services/family-business-private-enterprise.html">Family
+                                    Business & Private Enterprise</a></li>
+                            <li><a class="dropdown-item"
+                                    href="services/nationalization-emiratization-saudization.html">Nationalization/Emiratization/Saudization</a>
+                            </li>
+                            <li><a class="dropdown-item" href="services/technology-digital.html">Technology &
+                                    Digital</a></li>
+                            <li><a class="dropdown-item" href="services/industrial-logistics.html">Industrial
+                                    Logistics</a></li>
+                        </ul>
+                    </li> -->
+                    <li>
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="company.html">For Company</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="leaders.html">For Leaders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="insights-hub.html">Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Sentinel (used to detect when the original navbar leaves the viewport) -->
+    <div id="navSentinel" aria-hidden="true"></div>
+
+    <!-- Sticky clone will be injected here by JS -->
+    <div id="stickyNavbarContainer" aria-hidden="true"></div>
+
+    <!-- Banner -->
+    <section class="banner" id="contact-banner">
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <h1>
+                    <span class="hero-corner"> Let’s Create Value
+                    </span><br>
+                    Together.
+                </h1>
+                <p>
+                    We work with organizations, leaders, and colleagues who believe in building something meaningful.
+                    Reach out to start a conversation about how we can create value through people.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Banner end -->
+
+    <!-- contact form  -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-xl-11">
+                    <!-- Contact Form -->
+                    <div class="contact-form-container">
+                        <div class="text-center mb-5">
+                            <h2 class="section-heading">Contact Us</h2>
+                            <div class="section-divider"></div>
+                            <p class="mt-4 text-muted" style="font-size: 1.1rem;">
+                                For all Business related enquiries, please share your details below
+                            </p>
+                        </div>
+                        <form class="contact-form" id="contactForm">
+                            <div class="row g-4">
+                                <!-- Full Name -->
+                                <div class="col-6 col-md-4">
+                                    <div class="form-group">
+                                        <label for="fullName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control contact-input" id="fullName"
+                                            placeholder="Enter your name" required>
+                                    </div>
+                                </div>
+
+                                <!-- Email Address -->
+                                <div class="col-6 col-md-4">
+                                    <div class="form-group">
+                                        <label for="emailAddress" class="form-label">Email Address</label>
+                                        <input type="email" class="form-control contact-input" id="emailAddress"
+                                            placeholder="Enter your email" required>
+                                    </div>
+                                </div>
+
+                                <!-- Contact Number -->
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="contactNumber" class="form-label">Contact Number</label>
+                                        <input type="tel" class="form-control contact-input" id="contactNumber"
+                                            placeholder="Enter your contact number" required>
+                                    </div>
+                                </div>
+
+                                <!-- Note -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="note" class="form-label">Note</label>
+                                        <textarea class="form-control contact-textarea" id="note" rows="6"
+                                            placeholder="Enter your note" required></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-submit btn-warning-custom">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- contact form end -->
+
+    <section class="map-address bg-light pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Map Column -->
+                <div class="col-lg-6">
+                    <div class="map-container rounded-3 overflow-hidden" style="height: 100%; min-height: 400px;">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.388107360295!2d77.2065!3d28.6139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2daa9eb4d0b%3A0x717971125923e5d!2sIndia%20Gate%2C%20New%20Delhi%2C%20Delhi%20110021!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- Address Column -->
+                <div class="col-lg-6">
+                    <div class="contact-info p-4 p-lg-5 h-100">
+                        <h2 class="section-heading">Corporate Office</h2>
+                        <div class="section-divider"></div>
+
+                        <div class="d-flex mb-4">
+                            <!-- <div class="me-3">
+                                <i class="fas fa-map-marker-alt text-primary"></i>
+                            </div> -->
+                            <div>
+                                <!-- <h6 class="mb-1 fw-semibold">Address</h6> -->
+                                <p class="mb-0">James Douglas Professional Search India Private Limited 204, The Summit
+                                    Business Bay, Western Express Highway Vile Parle East, Mumbai 400057</p>
+                            </div>
+                        </div>
+
+                        <h2 class="section-heading">Contact Details</h2>
+                        <div class="section-divider"></div>
+                        <div class="d-flex mb-4">
+                            <div class="me-3">
+                                <i class="fas fa-phone-alt text-primary"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1 fw-semibold">Phone</h6>
+                                <p class="mb-0">+91 22 3500 8804</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex mb-4">
+                            <div class="me-3">
+                                <i class="fas fa-envelope text-primary"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-1 fw-semibold">Email</h6>
+                                <p class="mb-0">enquiry@jamesdouglas.co.in</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+ <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-lg-5 col-md-6 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="assets/images/JD-logo-reverse.png" alt="James Douglas Logo" height="32">
+                    </div>
+                    <p class="text-white mb-4" style="opacity: 0.8; line-height: 1.6;">
+                        At James Douglas, we connect exceptional leadership talent with forward-thinking companies
+                        through
+                        tailored executive search solutions driven by insight, precision, and impact.
+                    </p>
+                    <!-- Social Media Icons -->
+                    <div class="d-flex gap-2">
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-linkedin"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-twitter"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-globe"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Our Services -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="about-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">About Us</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Leadership
+                                Career</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="contact-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">Contact US</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Management Team</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Industries -->
+                <!-- <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-info fw-semibold mb-3">Industries</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Financial
+                                Services</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Technology</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Healthcare</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Manufacturing</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Consumer Goods</a>
+                        </li>
+                    </ul>
+                </div> -->
+
+                <!-- Get in Touch -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-info fw-semibold mb-3">Get in Touch</h5>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="bi bi-geo-alt-fill text-white me-2 mt-1" style="opacity: 0.7;"></i>
+                            <div>
+                                <p class="text-white mb-0" style="opacity: 0.8;">Mumbai, India</p>
+                                <p class="text-white mb-0" style="opacity: 0.8;">Business District</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-telephone-fill text-white me-2" style="opacity: 0.7;"></i>
+                            <p class="text-white mb-0" style="opacity: 0.8;">+91 (0) 22 1234 5678</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-envelope-fill text-white me-2" style="opacity: 0.7;"></i>
+                            <p class="text-white mb-0" style="opacity: 0.8;">info@jamesdouglas.co.in</p>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-warning-custom px-4 py-2 fw-semibold">
+                        Start a Conversation
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-white mb-0" style="opacity: 0.6;"> 2024 James Douglas. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="d-flex flex-wrap justify-content-md-end gap-3">
+                        <a href="privacy-policy.html" class="text-white text-decoration-none" style="opacity: 0.6;">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="text-white text-decoration-none" style="opacity: 0.6;">Terms of Service</a>
+                        <a href="cookie-policy.html" class="text-white text-decoration-none" style="opacity: 0.6;">Cookie Policy</a>
+                    </div>
+                </div>
+                 
+            </div>
+        </div>
+    </footer>
+    <!-- Footer end -->
+     <script src="./assets/js/main.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form values
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('emailAddress').value;
+            const phone = document.getElementById('contactNumber').value;
+            const note = document.getElementById('note').value;
+
+            // Basic validation
+            if (!fullName || !email || !phone || !note) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Phone validation (basic)
+            const phoneRegex = /^[+]?[\d\s-()]+$/;
+            if (!phoneRegex.test(phone)) {
+                alert('Please enter a valid phone number');
+                return;
+            }
+
+            // Show success message (in a real application, you would send this to a server)
+            alert('Thank you for your message! We will get back to you soon.');
+
+            // Reset form
+            this.reset();
+        });
+    </script>
+
+</body>
+
+</html>

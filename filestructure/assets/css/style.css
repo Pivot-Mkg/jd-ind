@@ -1,0 +1,79 @@
+/* James Douglas Website Styles */
+
+.navbar-brand img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-link {
+    font-size: 14px;
+}
+
+/* Smooth slide/opacity for navbar dropdowns (desktop) */
+@media (min-width: 992px) {
+    .navbar .dropdown-menu {
+        display: block;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-6px);
+        pointer-events: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: opacity .18s ease, transform .18s ease, max-height .22s ease;
+    }
+
+    .navbar .dropdown.show>.dropdown-menu,
+    .navbar .dropdown-menu.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        max-height: 600px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .navbar .dropdown-menu {
+            transition: none;
+            transform: none;
+        }
+    }
+}
+
+/* Form Styles */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.alert {
+    margin-bottom: 1rem;
+}
+
+/* Page Content */
+main {
+    min-height: 60vh;
+    padding: 2rem 0;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.content-section {
+    padding: 3rem 0;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}

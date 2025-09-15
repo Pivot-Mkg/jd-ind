@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services | James Douglas India</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        :root {
+            --mouse-w: 26px;
+            --mouse-h: 44px;
+            --mouse-border: 2px;
+            --mouse-radius: 16px;
+            --dot-w: 3px;
+            --dot-h: 10px;
+            --pad: 6px;
+            --color: rgba(255, 255, 255, 0.95);
+            --shadow: rgba(0, 0, 0, .25);
+            --z: 10;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+            display: inline-grid;
+            place-items: center;
+            gap: .4rem;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            z-index: var(--z);
+        }
+
+        .scroll-indicator .mouse {
+            width: var(--mouse-w);
+            height: var(--mouse-h);
+            border: var(--mouse-border) solid var(--color);
+            border-radius: var(--mouse-radius);
+            position: relative;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        .scroll-indicator .dot {
+            position: absolute;
+            left: 50%;
+            width: var(--dot-w);
+            height: var(--dot-h);
+            margin-left: calc(var(--dot-w) / -2);
+            background: var(--color);
+            border-radius: 2px;
+            top: var(--pad);
+            animation: slide 3s ease-in-out infinite;
+        }
+
+        @keyframes slide {
+            0% { top: var(--pad); opacity: 1; }
+            55% { top: calc(var(--mouse-h) - var(--pad) - var(--dot-h)); opacity: 1; }
+            70% { top: var(--pad); opacity: 1; }
+            88% { top: var(--pad); opacity: 1; }
+            92% { opacity: .7; }
+            100% { opacity: 1; }
+        }
+        
+        .service-card {
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: #00aeef;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            color: #2b3a67;
+        }
+        
+        /* Button Styles */
+        .btn {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            padding: 0.75rem 1.5rem;
+        }
+        
+        .btn-light {
+            background-color: #fff;
+            color: #2b3a67;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-light:hover {
+            background-color: #f8f9fa;
+            color: #1a2a57;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-light:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #00aeef 0%, #2b3a67 100%);
+            border: none;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2b3a67 0%, #00aeef 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Learn More Link */
+        .btn-link {
+            position: relative;
+            text-decoration: none;
+            font-weight: 500;
+            color: #00aeef !important;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-link:hover {
+            color: #2b3a67 !important;
+        }
+        
+        .btn-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #2b3a67;
+            transition: width 0.3s ease;
+        }
+        
+        .btn-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-link i {
+            transition: transform 0.3s ease;
+        }
+        
+        .btn-link:hover i {
+            transform: translateX(3px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3" id="mainNavbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/images/JD-logo.png" alt="James Douglas Logo" height="44" class="me-2" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="company.html">For Company</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="leaders.html">For Leaders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="insights-hub.html">Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+     
+     <!-- Sentinel (used to detect when the original navbar leaves the viewport) -->
+    <div id="navSentinel" aria-hidden="true"></div>
+
+    <!-- Sticky clone will be injected here by JS -->
+    <div id="stickyNavbarContainer" aria-hidden="true"></div>
+
+    <!-- Banner -->
+    <section class="banner" id="services-banner">
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <h1>
+                    <span class="hero-corner">Expert Solutions</span><br>
+                    For Your Talent Needs
+                </h1>
+            </div>
+        </div>
+        <div class="scroll-indicator" role="button" aria-label="Scroll down" data-offset="300" data-target="#our-services">
+            <div class="mouse" aria-hidden="true">
+                <div class="dot"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner end -->
+
+    <!-- Services Section -->
+    <section class="py-5 bg-white" id="our-services">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">Our Services</h2>
+                <div class="section-divider"></div>
+                <p class="mt-4 section-subtitle">
+                    Comprehensive talent solutions designed to meet your organization's unique needs and challenges.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Executive Search -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card p-4 h-100">
+                        <div class="service-icon">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Executive Search</h3>
+                        <p class="text-muted">Identifying and attracting top-tier executive talent to drive your organization's success with our proven search methodology and extensive industry network.</p>
+                        <a href="#" class="btn btn-link text-primary p-0">Learn More <i class="bi bi-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- Leadership Hiring -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card p-4 h-100">
+                        <div class="service-icon">
+                            <i class="bi bi-briefcase-fill"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Leadership Hiring</h3>
+                        <p class="text-muted">Securing visionary leaders who can navigate complexity and drive sustainable growth for your business through our comprehensive assessment process.</p>
+                        <a href="#" class="btn btn-link text-primary p-0">Learn More <i class="bi bi-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+
+                <!-- Industry Specialization -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-card p-4 h-100">
+                        <div class="service-icon">
+                            <i class="bi bi-building-fill"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Industry Specialization</h3>
+                        <p class="text-muted">Leveraging deep sector expertise across multiple industries to understand and address your unique talent requirements and challenges.</p>
+                        <a href="#" class="btn btn-link text-primary p-0">Learn More <i class="bi bi-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h2 class="mb-4">Why Choose James Douglas?</h2>
+                    <p class="lead">With years of experience in executive search and talent acquisition, we bring unparalleled expertise to every engagement.</p>
+                    <div class="mt-4">
+                        <div class="d-flex mb-3">
+                            <div class="me-3">
+                                <i class="bi bi-check-circle-fill text-primary" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div>
+                                <h4 class="h5 mb-1">Proven Methodology</h4>
+                                <p class="mb-0 text-muted">Rigorous assessment and selection process that identifies the best talent.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="me-3">
+                                <i class="bi bi-check-circle-fill text-primary" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div>
+                                <h4 class="h5 mb-1">Extensive Network</h4>
+                                <p class="mb-0 text-muted">Access to passive candidates and industry leaders across sectors.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="me-3">
+                                <i class="bi bi-check-circle-fill text-primary" style="font-size: 1.5rem;"></i>
+                            </div>
+                            <div>
+                                <h4 class="h5 mb-1">Market Intelligence</h4>
+                                <p class="mb-0 text-muted">In-depth knowledge of industry trends and compensation benchmarks.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="assets/images/team-meeting.jpg" alt="Our Team" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5" style="background: linear-gradient(135deg, #00aeef 0%, #2b3a67 100%);">
+        <div class="container text-center text-white">
+            <h2 class="mb-4">Ready to Transform Your Talent Strategy?</h2>
+            <p class="lead mb-4">Let's discuss how we can help you build a world-class leadership team.</p>
+            <a href="contact-us.html" class="btn btn-light btn-lg px-4">Contact Us Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+     <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-lg-5 col-md-6 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="assets/images/JD-logo-reverse.png" alt="James Douglas Logo" height="32">
+                    </div>
+                    <p class="text-white mb-4" style="opacity: 0.8; line-height: 1.6;">
+                        At James Douglas, we connect exceptional leadership talent with forward-thinking companies
+                        through
+                        tailored executive search solutions driven by insight, precision, and impact.
+                    </p>
+                    <!-- Social Media Icons -->
+                    <div class="d-flex gap-2">
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-linkedin"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-twitter"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-globe"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Our Services -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="about-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">About Us</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Leadership
+                                Career</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="contact-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">Contact US</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Management Team</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Industries -->
+                <!-- <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-info fw-semibold mb-3">Industries</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Financial
+                                Services</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Technology</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Healthcare</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Manufacturing</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Consumer Goods</a>
+                        </li>
+                    </ul>
+                </div> -->
+
+                <!-- Get in Touch -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-info fw-semibold mb-3">Get in Touch</h5>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="bi bi-geo-alt-fill text-white me-2 mt-1" style="opacity: 0.7;"></i>
+                            <div>
+                                <p class="text-white mb-0" style="opacity: 0.8;">Mumbai, India</p>
+                                <p class="text-white mb-0" style="opacity: 0.8;">Business District</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-telephone-fill text-white me-2" style="opacity: 0.7;"></i>
+                            <p class="text-white mb-0" style="opacity: 0.8;">+91 (0) 22 1234 5678</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-envelope-fill text-white me-2" style="opacity: 0.7;"></i>
+                            <p class="text-white mb-0" style="opacity: 0.8;">info@jamesdouglas.co.in</p>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-warning-custom px-4 py-2 fw-semibold">
+                        Start a Conversation
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-white mb-0" style="opacity: 0.6;"> 2024 James Douglas. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="d-flex flex-wrap justify-content-md-end gap-3">
+                        <a href="privacy-policy.html" class="text-white text-decoration-none" style="opacity: 0.6;">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="text-white text-decoration-none" style="opacity: 0.6;">Terms of Service</a>
+                        <a href="cookie-policy.html" class="text-white text-decoration-none" style="opacity: 0.6;">Cookie Policy</a>
+                    </div>
+                </div>
+                 
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/main.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Scroll indicator functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        const offset = parseInt(this.getAttribute('data-offset')) || 0;
+                        const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - offset;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

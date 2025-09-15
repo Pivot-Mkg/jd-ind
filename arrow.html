@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Scroll Indicator</title>
+    <style>
+        :root {
+            --mouse-w: 26px;
+            /* outer mouse width */
+            --mouse-h: 44px;
+            /* outer mouse height */
+            --mouse-border: 2px;
+            /* border thickness */
+            --mouse-radius: 16px;
+            /* outer radius */
+            --dot-w: 3px;
+            /* inner line width */
+            --dot-h: 10px;
+            /* inner line height */
+            --pad: 6px;
+            /* top/bottom padding inside mouse */
+            --color: rgba(255, 255, 255, 0.95);
+            --shadow: rgba(0, 0, 0, .25);
+            --z: 10;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+            background: radial-gradient(1200px 800px at 70% 10%, #2b2e4a 0%, #1f2235 55%, #14162a 100%);
+            color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        /* Demo sections */
+        section {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 2rem;
+        }
+
+        section:nth-child(odd) {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .12) 100%);
+        }
+
+        /* Container for the indicator */
+        .scroll-indicator {
+            position: absolute;
+            left: 50%;
+            bottom: 32px;
+            transform: translateX(-50%);
+            display: inline-grid;
+            place-items: center;
+            gap: .4rem;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            z-index: var(--z);
+        }
+
+        .scroll-indicator .mouse {
+            width: var(--mouse-w);
+            height: var(--mouse-h);
+            border: var(--mouse-border) solid var(--color);
+            border-radius: var(--mouse-radius);
+            position: relative;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        /* The animated center line */
+        .scroll-indicator .dot {
+            position: absolute;
+            left: 50%;
+            width: var(--dot-w);
+            height: var(--dot-h);
+            margin-left: calc(var(--dot-w) / -2);
+            background: var(--color);
+            border-radius: 2px;
+            /* Start near the top */
+            top: var(--pad);
+            /* Animation: slow down, quick up, hold at top */
+            animation: slide 3s ease-in-out infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                top: var(--pad);
+                opacity: 1;
+            }
+
+            55% {
+                top: calc(var(--mouse-h) - var(--pad) - var(--dot-h));
+                opacity: 1;
+            }
+
+            70% {
+                top: var(--pad);
+                opacity: 1;
+            }
+
+            88% {
+                top: var(--pad);
+                opacity: 1;
+            }
+
+            92% {
+                opacity: .7;
+            }
+
+            100% {
+                top: var(--pad);
+                opacity: 1;
+            }
+        }
+
+        .scroll-indicator .hint {
+            font-size: .75rem;
+            letter-spacing: .08em;
+            opacity: .9;
+        }
+
+        .scroll-indicator .hint svg {
+            vertical-align: -2px;
+        }
+
+        .scroll-indicator:hover .mouse {
+            box-shadow: 0 0 0 5px rgba(255, 255, 255, .08), 0 4px 10px var(--shadow);
+        }
+
+        #hero {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="hero">
+        <h1>Hero Section</h1>
+
+        <div class="scroll-indicator" role="button" aria-label="Scroll down" data-offset="300" data-target="#features">
+            <div class="mouse" aria-hidden="true">
+                <div class="dot"></div>
+            </div>
+            <div class="hint">Scroll</div>
+        </div>
+    </section>
+
+    <section id="features">
+        <h2>Next Section</h2>
+    </section>
+
+    <section id="more">
+        <h2>More Content</h2>
+    </section>
+
+    <script>
+        function findNextSection(el) {
+            const sel = el.dataset.target;
+            if (sel) {
+                const t = document.querySelector(sel);
+                if (t) return t;
+            }
+
+            const currentSection = el.closest('section');
+            if (currentSection) {
+                let sib = currentSection.nextElementSibling;
+                while (sib && sib.tagName.toLowerCase() !== 'section') {
+                    sib = sib.nextElementSibling;
+                }
+                if (sib) return sib;
+            }
+
+            return null;
+        }
+
+        function setupScrollIndicators() {
+            const indicators = document.querySelectorAll('.scroll-indicator');
+            indicators.forEach(ind => {
+                ind.addEventListener('click', () => {
+                    const target = findNextSection(ind);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        const offset = parseInt(ind.dataset.offset || '300', 10);
+                        window.scrollBy({ top: offset, left: 0, behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', setupScrollIndicators);
+    </script>
+</body>
+
+</html>

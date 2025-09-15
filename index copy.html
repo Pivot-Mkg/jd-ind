@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>James Douglas India</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top " id="mainNavbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="assets/images/JD-logo.png" alt="James Douglas Logo" height="32" class="me-2" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="insights.html">Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Sentinel (used to detect when the original navbar leaves the viewport) -->
+    <div id="navSentinel" aria-hidden="true"></div>
+
+    <!-- Sticky clone will be injected here by JS -->
+    <div id="stickyNavbarContainer" aria-hidden="true"></div>
+
+    <!-- Banner -->
+    <section class="banner">
+        <div class="swiper bannerSwiper">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide">
+                    <section class="banner">
+                        <div class="banner-overlay">
+                            <div class="banner-content">
+                                <h1>
+                                    <span class="hero-corner">Your Gateway to</span> <br>
+                                    Future-ready Leadership
+                                </h1>
+                            </div>
+                    </section>
+                </div>
+                <!-- Slide 2 - Duplicate with different text -->
+                <div class="swiper-slide">
+                    <section class="banner">
+                        <div class="banner-overlay">
+                            <div class="banner-content">
+                                <h1>
+                                    <span class="hero-corner">Global Reach.</span><br>
+                                    Local Expertise.
+                                </h1>
+                            </div>
+                    </section>
+                </div>
+                <!-- Slide 3 - Duplicate with different text -->
+                <div class="swiper-slide">
+                    <section class="banner">
+                        <div class="banner-overlay">
+                            <div class="banner-content">
+                                <h1>
+                                    <span class="hero-corner">Your Success.</span><br>
+                                    Our Mission.
+                                </h1>
+                            </div>
+                    </section>
+                </div>
+            </div>
+            <!-- Add pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add navigation buttons -->
+            <!-- <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div> -->
+        </div>
+
+        <div class="scroll-indicator" role="button" aria-label="Scroll down" data-offset="300" data-target="#features">
+            <div class="mouse" aria-hidden="true">
+                <div class="dot"></div>
+            </div>
+            <div class="hint">Scroll</div>
+        </div>
+    </section>
+    <!-- Banner end -->
+
+    <!-- What We Do Section -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">
+                    What We Do
+                </h2>
+                <div class="section-divider"></div>
+                <p class="mt-4 section-subtitle">
+                    Our profetional search services deliver high-impact leaders for your
+                    management and executive needs
+                </p>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100  border-0">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                        width: 56px;
+                        height: 56px;
+                        background: #3F597A;
+                        border-radius: 50%;
+                    ">
+                                <!-- <span style="font-size:2rem; color:#FF5C35;" class="bi bi-bullseye"></span> -->
+                                <img src="assets/images/icons/The-right-fit.svg" alt="" srcset="" style="
+                               height: 68%;
+                               padding-left: 5px;
+                           ">
+                            </div>
+                            <h5 class="card-title fw-bold" style="color: #23235b">
+                                The Right Fit For You
+                            </h5>
+                            <p class="card-text" style="color: #444">
+                                Industry and domain expertise helps in identifying, assessing,
+                                and validating the best-fit candidates.
+                            </p>
+                            <a href="#" class="text-decoration-none" style="color: #ff9900; font-weight: 500">Learn More
+                                &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100  border-0">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                        width: 56px;
+                        height: 56px;
+                        background: #3F597A;
+                        border-radius: 50%;
+                    ">
+                                <img src="assets/images/icons/spotting.svg" alt="" srcset="" style="
+                               height: 68%; 
+                           ">
+                            </div>
+                            <h5 class="card-title fw-bold" style="color: #23235b">
+                                Spotting Emerging Leaders
+                            </h5>
+                            <p class="card-text" style="color: #444">
+                                Identifying high potential talent to support our clients and
+                                also provide accelerated career opportunities for candidates.
+                            </p>
+                            <a href="#" class="text-decoration-none" style="color: #ff9900; font-weight: 500">Learn More
+                                &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100  border-0">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                        width: 56px;
+                        height: 56px;
+                        background: #3F597A;
+                        border-radius: 50%;
+                    ">
+                                <img src="assets/images/icons/Managing-careers.svg" alt="" srcset="" style="
+                               height: 61%; ">
+                            </div>
+                            <h5 class="card-title fw-bold" style="color: #23235b">
+                                Managing Careers
+                            </h5>
+                            <p class="card-text" style="color: #444">
+                                We ensure alignment between client and candidate expectations
+                                and that the offered position and the candidate's career
+                                motives are in sync.
+                            </p>
+                            <a href="#" class="text-decoration-none" style="color: #ff9900; font-weight: 500">Learn More
+                                &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End What We Do Section -->
+
+    <!-- Why Choose James Douglas Section -->
+    <section class="py-5" style="
+            background: linear-gradient(
+            120deg,
+            #23235b 0%,
+            #23235b 60%,
+            #2b3a67 100%
+            );
+        ">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left: Heading, description, buttons -->
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h2 class="section-heading text-white">
+                        Why Choose
+                        <span style="color: #00aeef"><br />James Douglas?</span>
+                    </h2>
+                    <div style="
+                    width: 80px;
+                    height: 4px;
+                    background: #ff9900;
+                    margin: 16px 0 24px 0;
+                    border-radius: 2px;
+                "></div>
+                    <p class="text-white-50 mb-4" style="font-size: 1.1rem">
+                        At James Douglas, we understand the evolving needs of today's
+                        workplace and specialize in delivering tailored talent solutions
+                        for leadership and management roles across industries. By
+                        embedding innovation and technology into every stage of our
+                        process, we ensure faster, more precise outcomes without
+                        compromising on quality.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#" class="btn btn-warning fw-semibold px-4" style="
+                    color: #fff;
+                    background: #ff9900;
+                    border: none;
+                    white-space: nowrap;
+                    ">About James Douglas India</a>
+                        <a href="#" class="btn fw-semibold px-4"
+                            style="background: #2b3a67; color: #fff; white-space: nowrap">About James Douglas Middle
+                            East</a>
+                    </div>
+                </div>
+                <!-- Right: Two separate containers with 2 cards each -->
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="d-flex gap-4 feature-cards-container">
+                        <!-- Left Container - 2 Cards -->
+                        <div class="flex-1">
+                            <div class="mb-3" data-aos="zoom-in" data-aos-delay="100">
+                                <div class="p-4 h-100 rounded-3  d-flex flex-column align-items-start feature-card">
+                                    <div class="mb-2 feature-card-icon precision">
+                                        <img src="assets/images/icons/precision.svg" alt="" height="42px;" width="42px;"
+                                            srcset="">
+                                    </div>
+                                    <div class="fw-bold text-white">Precision</div>
+                                    <div class="text-white-50 small">
+                                        Targeted executive search
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-aos="zoom-in" data-aos-delay="300">
+                                <div class="p-4 h-100 rounded-3  d-flex flex-column align-items-start feature-card">
+                                    <div class="mb-2 feature-card-icon speed">
+                                        <img src="assets/images/icons/Speed.svg" alt="" height="42px;" width="42px;"
+                                            srcset="">
+                                    </div>
+                                    <div class="fw-bold text-white">Speed</div>
+                                    <div class="text-white-50 small">Agile processes</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Container - 2 Cards -->
+                        <div class="flex-1 mt-4">
+                            <div class="mb-3" data-aos="zoom-in" data-aos-delay="200">
+                                <div class="p-4 h-100 rounded-3  d-flex flex-column align-items-start feature-card">
+                                    <div class="mb-2 feature-card-icon innovation">
+                                        <img src="assets/images/icons/innovation.svg" alt="" height="42px;"
+                                            width="42px;" srcset="">
+                                    </div>
+                                    <div class="fw-bold text-white">Innovation</div>
+                                    <div class="text-white-50 small">Cutting-edge technology</div>
+                                </div>
+                            </div>
+                            <div data-aos="zoom-in" data-aos-delay="400">
+                                <div class="p-4 h-100 rounded-3  d-flex flex-column align-items-start feature-card">
+                                    <div class="mb-2 feature-card-icon excellence">
+                                        <img src="assets/images/icons/Excellence.svg" alt="" height="42px;"
+                                            width="42px;" srcset="">
+                                    </div>
+                                    <div class="fw-bold text-white">Excellence</div>
+                                    <div class="text-white-50 small">Proven track record</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Why Choose James Douglas Section -->
+
+    <!-- What We Stand For Section -->
+    <section class="sections bg-grey">
+        <!-- Top Right Half Circle -->
+        <!-- <div class="position-absolute top-0 end-0 half-circle-decorator"></div> -->
+        <div class="container content-above-decorator">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">
+                    What We Do
+                </h2>
+                <div class="section-divider"></div>
+                <p class="mt-4" style="color: #444; font-size: 1.1rem">
+                    Our profetional search services deliver high-impact leaders for your
+                    management and executive needs
+                </p>
+            </div>
+            <div class="row g-4 justify-content-center">
+
+                <div class="col-12 col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="100">
+                    <div class="card h-100  border-0">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                        width: 56px;
+                        height: 56px;
+                        background: #3F597A;
+                        border-radius: 50%;
+                    ">
+                                <img src="assets/images/icons/Teamwork.svg" alt="" height="42px;" width="42px;"
+                                    srcset="">
+                            </div>
+                            <h5 class="card-title fw-bold" style="color: #23235b">
+                                Teamwork
+                            </h5>
+                            <p class="card-text" style="color: #444">
+                                We are committed to leveraging the power of global insights to bring exceptional
+                                expertise to every assignment.
+                            </p>
+                        </div>
+                        <div class="pseudo-element">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="200">
+                    <div class="card h-100  border-0">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                        width: 56px;
+                        height: 56px;
+                        background: #3F597A;
+                        border-radius: 50%;
+                    ">
+                                <img src="assets/images/icons/Excellence-1.svg" alt="" height="42px;" width="42px;"
+                                    srcset="">
+                            </div>
+                            <h5 class="card-title fw-bold" style="color: #23235b">
+                                Excellence
+                            </h5>
+                            <p class="card-text" style="color: #444">
+                                Our consultants strive for professional excellence through the highest degree of
+                                personal integrity.
+                            </p>
+                        </div>
+                        <div class="pseudo-element">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="300">
+                    <div class="card h-100  border-0">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                        width: 56px;
+                        height: 56px;
+                        background: #3F597A;
+                        border-radius: 50%;
+                    ">
+                                <img src="assets/images/icons/Commitment.svg" alt="" height="42px;" width="42px;"
+                                    srcset="">
+                            </div>
+                            <h5 class="card-title fw-bold" style="color: #23235b">
+                                Commitment
+                            </h5>
+                            <p class="card-text" style="color: #444">
+                                We strive to exceed our clients'
+                                expectations with dedication, focus
+                                and passion to provide them nothing
+                                but the best.
+                            </p>
+                        </div>
+                        <div class="pseudo-element">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End What We Stand For Section -->
+
+    <!-- Meet Our Consultants Section -->
+    <section class="bg-white sections">
+
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="section-heading">
+                Meet Our Consultants
+            </h2>
+            <div style=" width: 80px; height: 4px; background: #ff9900; margin: 16px auto 0 auto; border-radius: 2px; ">
+            </div>
+            <p class=" mt-4" style="color: #444; font-size: 1.1rem">
+                Our team is the heart of everything we do. Get to know the talent driving transformative results
+            </p>
+        </div>
+        <div style="display: flex; justify-content: center; margin-top:40px;" data-aos="slide-up" data-aos-delay="200">
+            <!-- Team Carousel -->
+            <div id="teamCarousel" class="carousel slide" data-bs-ride="carousel" style="width: 900px;">
+                <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div
+                            style="display: flex; box-shadow: 0 8px 32px rgba(44, 44, 84, 0.12); border-radius: 10px; overflow: hidden;">
+                            <div style=" background: linear-gradient(
+                        120deg,
+                        #23235b 0%,
+                        #23235b 60%,
+                        #2b3a67 100%
+                        ); color: #fff; flex: 1; padding: 48px 36px;">
+                                <h3 class="consultant-name">
+                                    Amarjeet Dutta</h3>
+                                <div style="color: #ff8000; font-size: 18px; margin: 8px 0 24px 0;">Managing Partner
+                                </div>
+                                <p style="font-size: 18px; color: #e0e0e0;">
+                                    Amarjeet leads the Leadership and Board level engagements for Jemes Douglas UAE. He
+                                    works with
+                                    clients in the Consumer, Financial Services, Payment & FinTech, Industrial,
+                                    Manufacturing,
+                                    Energy & Natural Resources and Real Estate sectors.
+                                </p>
+                                <button
+                                    style="margin-top: 32px; background: #ff8000; color: #fff; border: none; padding: 12px 32px; border-radius: 4px; font-size: 16px; cursor: pointer;">
+                                    Know more &gt;
+                                </button>
+                            </div>
+                            <div
+                                style="flex: 1; background: #222; display: flex; align-items: center; justify-content: center;">
+                                <img src="assets/images/Amarjeet-Dutta.jpg" alt="Amarjeet Dutta"
+                                    style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-item">
+                        <div
+                            style="display: flex; box-shadow: 0 8px 32px rgba(44, 44, 84, 0.12); border-radius: 10px; overflow: hidden;">
+                            <div style=" background: linear-gradient(
+                        120deg,
+                        #23235b 0%,
+                        #23235b 60%,
+                        #2b3a67 100%
+                        ); color: #fff; flex: 1; padding: 48px 36px;">
+                                <h3 class="consultant-name">Team
+                                    Member 2</h3>
+                                <div style="color: #ff8000; font-size: 18px; margin: 8px 0 24px 0;">Position Title</div>
+                                <p style="font-size: 18px; color: #e0e0e0;">
+                                    Amarjeet leads the Leadership and Board level engagements for Jemes Douglas UAE. He
+                                    works with clients in the Consumer, Financial Services, Payment & FinTech,
+                                    Industrial, Manufacturing, Energy & Natural Resources and Real Estate sectors.
+                                </p>
+                                <button
+                                    style="margin-top: 32px; background: #ff8000; color: #fff; border: none; padding: 12px 32px; border-radius: 4px; font-size: 16px; cursor: pointer;">
+                                    Know more &gt;
+                                </button>
+                            </div>
+                            <div
+                                style="flex: 1; background: #222; display: flex; align-items: center; justify-content: center;">
+                                <img src="assets/images/Amarjeet-Dutta.jpg" alt="Team Member 2"
+                                    style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-item">
+                        <div
+                            style="display: flex; box-shadow: 0 8px 32px rgba(44, 44, 84, 0.12); border-radius: 10px; overflow: hidden;">
+                            <div style=" background: linear-gradient(
+                        120deg,
+                        #23235b 0%,
+                        #23235b 60%,
+                        #2b3a67 100%
+                        ); color: #fff; flex: 1; padding: 48px 36px;">
+                                <h3 class="consultant-name">Team
+                                    Member 3</h3>
+                                <div style="color: #ff8000; font-size: 18px; margin: 8px 0 24px 0;">Position Title</div>
+                                <p style="font-size: 18px; color: #e0e0e0;">
+                                    Amarjeet leads the Leadership and Board level engagements for Jemes Douglas UAE. He
+                                    works with clients in the Consumer, Financial Services, Payment & FinTech,
+                                    Industrial, Manufacturing, Energy & Natural Resources and Real Estate sectors.
+                                </p>
+                                <button
+                                    style="margin-top: 32px; background: #ff8000; color: #fff; border: none; padding: 12px 32px; border-radius: 4px; font-size: 16px; cursor: pointer;">
+                                    Know more &gt;
+                                </button>
+                            </div>
+                            <div
+                                style="flex: 1; background: #222; display: flex; align-items: center; justify-content: center;">
+                                <img src="assets/images/Amarjeet-Dutta.jpg" alt="Team Member 3"
+                                    style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators" style="position: static; margin: 20px auto 0; width: fit-content;">
+            <button type="button" data-bs-target="#teamCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+                aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#teamCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#teamCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+    </section>
+
+    <!-- Insights & Perspectives Section -->
+    <section class="sections" id="insights">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">
+                    Insights & Perspectives
+                </h2>
+                <div class="section-divider"></div>
+                <p class="mt-4 text-muted fs-5" style="max-width: 800px; margin: 1rem auto;">
+                    Stay ahead with concise briefs on leadership trends, succession strategy, and board
+                    governance, freshly curated by our partners.
+                </p>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <!-- Card 1 -->
+                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100  border-0 p-4">
+                        <div class="card-img-top">
+                            <img src="assets/images/news-insights/insight-1.png"
+                                alt="The Future of Board Composition in 2025" class="w-100 h-100 rounded-3"
+                                style="object-fit: cover;">
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold text-primary-dark mb-3">
+                                The Future of Board Composition in 2025
+                            </h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                How leading organizations are reshaping their boards for the next decade of growth.
+                            </p>
+                            <a href="#" class="text-decoration-none text-warning fw-semibold">
+                                Learn More <i class="bi bi-arrow-right-short"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100  border-0 p-4">
+                        <div class="card-img-top">
+                            <img src="assets/images/news-insights/insight-2.png"
+                                alt="CEO Succession Planning: A Strategic Imperative" class="w-100 h-100 rounded-3"
+                                style="object-fit: cover;">
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold text-primary-dark mb-3">
+                                CEO Succession Planning: A Strategic Imperative
+                            </h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                Why 70% of succession plans fail and how to build a bulletproof leadership pipeline.
+                            </p>
+                            <a href="#" class="text-decoration-none text-warning fw-semibold">
+                                Learn More <i class="bi bi-arrow-right-short"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100  border-0 p-4">
+                        <div class="card-img-top">
+                            <img src="assets/images/news-insights/insight-3.png"
+                                alt="Global Talent Mobility in Executive Search" class="w-100 h-100 rounded-3"
+                                style="object-fit: cover;">
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold text-primary-dark mb-3">
+                                Global Talent Mobility in Executive Search
+                            </h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                Navigating cross-border executive placements in an interconnected world.
+                            </p>
+                            <a href="#" class="text-decoration-none text-warning fw-semibold">
+                                Learn More <i class="bi bi-arrow-right-short"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explore Button -->
+            <div class="text-center" data-aos="fade-up" data-aos-delay="400">
+                <a href="#" class="btn btn-warning-custom px-4 py-2 fs-6 fw-semibold">
+                    Explore >
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- End Insights & Perspectives Section -->
+
+
+    <!-- Call to Action Section -->
+    <section class="py-5" style="background: linear-gradient(135deg, #00aeef 0%, #2b3a67 100%);" id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center" data-aos="zoom-in">
+                    <h2 class="section-heading text-white">
+                        Ready to strengthen your leadership team?
+                    </h2>
+                    <p class="text-white mb-4" style="font-size: 1.1rem; opacity: 0.9;">
+                        James Douglas delivers impact-driven leaders confidentially and without compromise.
+                    </p>
+
+                    <!-- Contact Form -->
+                    <div class="d-flex justify-content-center gap-3 mt-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex-grow-1" style="max-width: 300px;">
+                            <input type="tel" class="form-control" placeholder="Enter your Number"
+                                style="padding: 12px 16px; border: none; border-radius: 4px;">
+                        </div>
+                        <button class="btn btn-warning-custom px-4 py-2 fw-semibold" style="border-radius: 4px;">
+                            Schedule a Call
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="assets/images/JD-logo-reverse.png" alt="James Douglas Logo" height="32">
+                    </div>
+                    <p class="text-white mb-4" style="opacity: 0.8; line-height: 1.6;">
+                        At James Douglas, we connect exceptional leadership talent with forward-thinking companies
+                        through
+                        tailored executive search solutions driven by insight, precision, and impact.
+                    </p>
+                    <!-- Social Media Icons -->
+                    <div class="d-flex gap-2">
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-linkedin"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-twitter"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-globe"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Our Services -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="footer-heading">Our Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Executive
+                                Search</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Leadership
+                                Assessment</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Succession
+                                Planning</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Board Advisory</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Career
+                                Transition</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Industries -->
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-info fw-semibold mb-3">Industries</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Financial
+                                Services</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Technology</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Healthcare</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Manufacturing</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Consumer Goods</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Get in Touch -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-info fw-semibold mb-3">Get in Touch</h5>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="bi bi-geo-alt-fill text-white me-2 mt-1" style="opacity: 0.7;"></i>
+                            <div>
+                                <p class="text-white mb-0" style="opacity: 0.8;">Mumbai, India</p>
+                                <p class="text-white mb-0" style="opacity: 0.8;">Business District</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-telephone-fill text-white me-2" style="opacity: 0.7;"></i>
+                            <p class="text-white mb-0" style="opacity: 0.8;">+91 (0) 22 1234 5678</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-envelope-fill text-white me-2" style="opacity: 0.7;"></i>
+                            <p class="text-white mb-0" style="opacity: 0.8;">info@jamesdouglas.co.in</p>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-warning-custom px-4 py-2 fw-semibold">
+                        Start a Conversation
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <p class="text-white mb-0" style="opacity: 0.6;">© 2024 James Douglas. All rights reserved.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="d-flex flex-wrap justify-content-md-end gap-3">
+                        <a href="#" class="text-white text-decoration-none" style="opacity: 0.6;">Privacy Policy</a>
+                        <a href="#" class="text-white text-decoration-none" style="opacity: 0.6;">Terms of Service</a>
+                        <a href="#" class="text-white text-decoration-none" style="opacity: 0.6;">Cookie Policy</a>
+                    </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+
+                    <p class="text-white mb-0 mt-2" style="opacity: 0.6; font-size: 0.9rem;">
+                        Powered by Innovation & Excellence
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/main.js"></script>
+
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Sticky navbar shadow effect on scroll
+        const navbar = document.getElementById("mainNavbar");
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 10) {
+                navbar.classList.add("sticky-effect");
+            } else {
+                navbar.classList.remove("sticky-effect");
+            }
+        });
+
+        // Handle carousel indicators active state
+        const carousel = document.getElementById('teamCarousel');
+        const indicators = document.querySelectorAll('.carousel-indicators button');
+
+        carousel.addEventListener('slide.bs.carousel', function (event) {
+            // Remove active class from all indicators
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active');
+                indicator.removeAttribute('aria-current');
+            });
+
+            // Add active class to current indicator
+            const activeIndicator = indicators[event.to];
+            if (activeIndicator) {
+                activeIndicator.classList.add('active');
+                activeIndicator.setAttribute('aria-current', 'true');
+            }
+        });
+    </script>
+    <script>
+        // Initialize Swiper
+        var bannerSwiper = new Swiper(".bannerSwiper", {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+
+</html>

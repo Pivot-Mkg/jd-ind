@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>James Douglas - Sitemap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        .sitemap-section {
+            padding: 60px 0;
+        }
+        .sitemap-container {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        .sitemap-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .sitemap-header h1 {
+            color: var(--jd-primary-dark);
+            margin-bottom: 15px;
+        }
+        .sitemap-header p {
+            color: var(--jd-text-muted);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .sitemap-section h2 {
+            color: var(--jd-primary-dark);
+            border-bottom: 2px solid var(--jd-orange);
+            padding-bottom: 10px;
+            margin: 30px 0 20px;
+            font-size: 1.8rem;
+        }
+        .sitemap-section h3 {
+            color: var(--jd-primary-light);
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+        }
+        .sitemap-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .sitemap-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+        }
+        .sitemap-list li:before {
+            content: "•";
+            color: var(--jd-orange);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        .sitemap-list ul {
+            list-style: none;
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+        .sitemap-list ul li:before {
+            content: "→";
+            color: var(--jd-info);
+        }
+        .back-to-top {
+            text-align: center;
+            margin-top: 40px;
+        }
+        .back-to-top a {
+            color: var(--jd-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.png" alt="James Douglas" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="sitemap.html">Sitemap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+     <!-- Sentinel (used to detect when the original navbar leaves the viewport) -->
+    <div id="navSentinel" aria-hidden="true"></div>
+
+    <!-- Sticky clone will be injected here by JS -->
+    <div id="stickyNavbarContainer" aria-hidden="true"></div>
+
+    <!-- Sitemap Content -->
+    <section class="sitemap-section">
+        <div class="container">
+            <div class="sitemap-container">
+                <div class="sitemap-header">
+                    <h1>Website Sitemap</h1>
+                    <p>James Douglas is a recruitment consultancy that focuses on securing talent for companies across various sectors, with a particular emphasis on leadership and management teams.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="sitemap-section">
+                            <h2>Current Website Structure</h2>
+                            
+                            <h3>Home Page</h3>
+                            <ul class="sitemap-list">
+                                <li><strong>Hero Section:</strong> "Find the right leaders for your business. Delivering agile recruitment solutions."</li>
+                                <li><strong>We Are James Douglas:</strong> Our approach to securing talent and tailor-made professional search services.</li>
+                                <li><strong>What We Do:</strong>
+                                    <ul>
+                                        <li>Culture of innovation and continuous improvement</li>
+                                        <li>The Right Fit For You (Industry and domain expertise)</li>
+                                        <li>Spotting Emerging Leaders (Identifying high potential talent)</li>
+                                        <li>Managing Careers (Alignment between client and candidate expectations)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>What We Stand For:</strong> Core Values - Teamwork, Community, Excellence, Commitment, Honesty</li>
+                                <li><strong>From Our Desk:</strong> Blog/Articles with downloadable content</li>
+                            </ul>
+
+                            <h3>Main Navigation</h3>
+                            <ul class="sitemap-list">
+                                <li><a href="clients.html">For Clients</a> - Services for companies seeking talent</li>
+                                <li><a href="candidates.html">For Candidates</a> - Services for job seekers</li>
+                                <li><a href="about-us.html">About Us</a> - Company information, mission, and team</li>
+                                <li><a href="contact-us.html">Contact Us</a> - Get in touch with our team</li>
+                                <li><a href="register.html">Register</a> - Candidate registration</li>
+                            </ul>
+
+                            <h3>Footer Links</h3>
+                            <ul class="sitemap-list">
+                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                <li><a href="cookie-policy.html">Cookie Policy</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="sitemap-section">
+                            <h2>Proposed New Pages & Sections</h2>
+                            
+                            <h3>For Clients</h3>
+                            <ul class="sitemap-list">
+                                <li><strong>Industry Specializations:</strong> Details of sectors we serve
+                                    <ul>
+                                        <li>List of industries</li>
+                                        <li>Types of roles recruited</li>
+                                        <li>Case studies by sector</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Our Process:</strong> Step-by-step recruitment process
+                                    <ul>
+                                        <li>Initial consultation</li>
+                                        <li>Job brief</li>
+                                        <li>Candidate sourcing</li>
+                                        <li>Screening & assessment</li>
+                                        <li>Interview coordination</li>
+                                        <li>Offer management</li>
+                                        <li>Post-placement follow-up</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Client Testimonials:</strong> Success stories and client feedback</li>
+                                <li><strong>Executive Search:</strong> Specialized recruitment for leadership roles</li>
+                            </ul>
+
+                            <h3>For Candidates</h3>
+                            <ul class="sitemap-list">
+                                <li><strong>Career Resources:</strong> Job search and career development content</li>
+                                <li><strong>Job Search Portal:</strong> Browse and apply for positions</li>
+                                <li><strong>Interview Preparation:</strong> Tips and guidance</li>
+                            </ul>
+
+                            <h3>About Us (Expanded)</h3>
+                            <ul class="sitemap-list">
+                                <li><strong>Our Team:</strong> Meet our leadership and consultants</li>
+                                <li><strong>Our Values in Action:</strong> How we live our values</li>
+                                <li><strong>Partnerships:</strong> Our relationship with EMA Partners India</li>
+                            </ul>
+                        </div>
+
+                        <div class="sitemap-section">
+                            <h2>Additional Features</h2>
+                            <ul class="sitemap-list">
+                                <li><strong>Blog/Insights:</strong> Regular industry insights and articles</li>
+                                <li><strong>News & Events:</strong> Company news and upcoming events</li>
+                                <li><strong>Resource Center:</strong> Downloadable resources and guides</li>
+                            </ul>
+                        </div>
+
+                        <div class="back-to-top">
+                            <a href="#top">Back to Top ↑</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2025 James Douglas. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="privacy-policy.html" class="text-white me-3">Privacy Policy</a>
+                    <a href="cookie-policy.html" class="text-white">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/main.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

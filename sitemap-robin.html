@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>James Douglas – India | Creating Value Through People</title>
+  <style>
+    :root {
+      --bg: #f7f9fb;
+      --card: #ffffff;
+      --text: #1e2a36;
+      --muted: #6c7a89;
+      --brand: #0d6efd;
+      --brand-2: #20c997;
+      --shadow: 0 6px 20px rgba(0, 0, 0, .08);
+      --radius: 14px;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    b {
+      color: var(--brand);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: rgba(255, 255, 255, .9);
+      border-bottom: 1px solid rgba(0, 0, 0, .08);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: .2px;
+      color: var(--brand);
+    }
+
+    .pillnav {
+      margin-left: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pillnav a {
+      padding: 8px 12px;
+      border: 1px solid rgba(0, 0, 0, .1);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .pillnav a:hover {
+      border-color: var(--brand);
+      color: var(--brand);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+    }
+
+    .masthead {
+      margin-top: 24px;
+      margin-bottom: 22px;
+      padding: 28px;
+      border: 1px solid rgba(0, 0, 0, .08);
+      background: linear-gradient(180deg, rgba(13, 110, 253, .05), rgba(32, 201, 151, .05));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .masthead h1 {
+      margin: 0 0 6px;
+      font-size: 28px;
+    }
+
+    .masthead p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 900px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(0, 0, 0, .08);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2,
+    .card h3 {
+      margin: 0 0 10px;
+    }
+
+    .eyebrow {
+      color: var(--brand-2);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 12px;
+    }
+
+    .lead {
+      color: var(--text);
+      font-weight: 700;
+      font-size: 18px;
+      margin: 6px 0 10px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .stack {
+      display: grid;
+      gap: 8px;
+    }
+
+    .bullets {
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .bullets li {
+      margin: 4px 0;
+    }
+
+    .section {
+      margin-top: 10px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .cta {
+      margin-top: 26px;
+      display: inline-block;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2));
+      color: #fff;
+      font-weight: 800;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 8px 20px rgba(13, 110, 253, .25);
+    }
+
+    .cta:hover {
+      filter: brightness(1.05);
+      box-shadow: 0 10px 26px rgba(32, 201, 151, .25);
+      text-decoration: none;
+    }
+
+    hr.sep {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, .0), rgba(0, 0, 0, .12), rgba(0, 0, 0, .0));
+      margin: 24px 0;
+    }
+
+    .anchor {
+      position: relative;
+    }
+
+    .anchor::before {
+      content: "#";
+      position: absolute;
+      left: -18px;
+      color: rgba(0, 0, 0, .2);
+      font-weight: 700;
+      opacity: 0;
+      transition: .2s ease;
+    }
+
+    .anchor:hover::before {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <div class="brand">James Douglas — India</div>
+      <nav class="pillnav" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#our-role">Our Role</a>
+        <a href="#why-jd">Why JD</a>
+        <a href="#beliefs">Our Belief</a>
+        <a href="#about">About</a>
+        <a href="#orgs">For Organizations</a>
+        <a href="#leaders">For Leaders</a>
+        <a href="#careers">Careers</a>
+        <a href="#insights">Insights</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="home" class="masthead anchor" aria-labelledby="master-line">
+      <h1 id="master-line">Creating Value Through People.</h1>
+      <p class="muted">James Douglas – Website INDIA Content (Movement Narrative)</p>
+    </section>
+
+    <section class="section" aria-label="Home Banners">
+      <div class="card">
+        <b>done</b>
+        <div class="eyebrow">Banner 1 – For Organizations</div>
+        <div class="lead">Leadership that changes everything.</div>
+        <p class="muted">We help organizations find and shape leaders who turn ambition into progress.</p>
+      </div>
+      <div class="card">
+        <b>done</b>
+        <div class="eyebrow">Banner 2 – For Leaders</div>
+        <b>done</b>
+        <div class="lead">Your career. Your legacy.</div>
+        <p class="muted">We stand beside leaders at defining moments, helping them make decisions that matter.</p>
+      </div>
+      <div class="card">
+        <b>done</b>
+        <div class="eyebrow">Banner 3 – For Our People</div>
+        <div class="lead">Advisors. Partners. Builders of futures.</div>
+        <p class="muted">At James Douglas, we are creating a firm where impact outlives transactions.</p>
+      </div>
+    </section>
+
+    <hr class="sep" />
+
+    <section id="our-role" class="section anchor" aria-labelledby="our-role-title">
+      <div class="card">
+        <h2 id="our-role-title">Our Role (What We Do)</h2>
+        <p>At James Douglas, we believe leadership is not hired. Leadership is built, shaped, and trusted to create
+          value.</p>
+        <p>That’s why we are not “recruiters.” We are advisors at the moments that shape companies, industries, and
+          careers.</p>
+        <ul class="bullets">
+          <li><strong>Advising Organizations</strong> – we help boards and leadership teams see beyond the immediate,
+            shaping leadership for resilience, innovation, and growth.</li>
+          <li><strong>Partnering with Leaders</strong> – we guide professionals at pivotal moments, aligning ambition
+            with purpose.</li>
+          <li><strong>Shaping Our People</strong> – we grow advisors who bring meaning to every engagement, not just
+            outcomes.</li>
+          <li><strong>Moving Ideas Forward</strong> – through insights and perspectives, we expand the conversation on
+            what leadership means today.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="why-jd" class="section anchor" aria-labelledby="why-title">
+      <div class="card">
+        <h2 id="why-title">Why James Douglas</h2>
+        <p class="lead">Because leadership is not a transaction. It is transformation.</p>
+        <ul class="bullets">
+          <li><strong>Partnership over Process</strong> – we co-create solutions with clients and leaders.</li>
+          <li><strong>Advisory over Transactions</strong> – our role is to guide, not just to place.</li>
+          <li><strong>Meaning over Metrics</strong> – our work is measured in growth and impact, not numbers.</li>
+          <li><strong>Legacies, not quick fixes</strong> – we help shape leadership that lasts.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="beliefs" class="section anchor" aria-labelledby="beliefs-title">
+      <div class="card">
+        <h2 id="beliefs-title">Our Belief (Core Values Reframed)</h2>
+        <p>At James Douglas, our values are not words. They are promises.</p>
+        <ul class="bullets">
+          <li><strong>Trust is our currency.</strong> Every relationship is built on integrity, openness, and
+            consistency.</li>
+          <li><strong>Responsibility is shared.</strong> Your goals are ours. Your challenges, ours to solve. Your
+            success, our measure.</li>
+          <li><strong>Excellence is purpose-driven.</strong> We pursue excellence not for perfection’s sake, but to
+            create outcomes that matter for people and organizations alike.</li>
+        </ul>
+        <p class="muted">This is who we are. This is why we exist. This is why people choose James Douglas.</p>
+      </div>
+    </section>
+
+    <section id="about" class="section anchor" aria-labelledby="about-title">
+      <div class="card">
+        <h2 id="about-title">About Us <b>done</b></h2>
+        <p>James Douglas is more than a search firm. We are a leadership advisory movement — built on the legacy of EMA
+          Partners in India, and renewed with a sharper purpose: to create value through people.</p>
+        <p>We believe that people shape organizations, and organizations shape society. Our role is to stand at the
+          intersection of ambition and impact, partnering with leaders and organizations at moments that define the
+          future.</p>
+        <div class="grid">
+          <div class="card" style="padding:16px">
+            <h3>Our Mission</h3>
+            <p class="muted">To empower organizations and leaders through trusted advisory, meaningful partnerships, and
+              people who make a difference.</p>
+          </div>
+          <div class="card" style="padding:16px">
+            <h3>Our Vision</h3>
+            <p class="muted">To redefine leadership advisory by shaping teams and careers that move industries and
+              communities forward.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="orgs" class="section anchor" aria-labelledby="orgs-title">
+      <div class="card">
+        <h2 id="orgs-title">For Organizations</h2>
+        <p class="lead">Shaping Leadership That Shapes Tomorrow.</p>
+        <p>We help organizations build leadership that outlives market cycles and creates lasting value.</p>
+        <h3>How We Partner</h3>
+        <ul class="bullets">
+          <li><strong>Listen First</strong> – to context, vision, and culture.</li>
+          <li><strong>Bring Perspective</strong> – with insights drawn from markets, leadership, and talent.</li>
+          <li><strong>Enable Growth</strong> – by connecting organizations with leaders who are catalysts for change.
+          </li>
+        </ul>
+        <p class="muted">We don’t just fill roles. We help shape leadership legacies.</p>
+      </div>
+    </section>
+
+    <section id="leaders" class="section anchor" aria-labelledby="leaders-title">
+      <div class="card">
+        <b>done</b>
+        <h2 id="leaders-title">For Leaders</h2>
+        <p class="lead">Your Journey. Our Commitment.</p>
+        <p>Every leader faces defining moments. Our role is to walk beside you in those moments with clarity,
+          discretion, and conviction.</p>
+        <h3>What Leaders Gain</h3>
+        <ul class="bullets">
+          <li><strong>Clarity</strong> – thoughtful, honest guidance when decisions matter most.</li>
+          <li><strong>Alignment</strong> – opportunities that connect ambition with purpose.</li>
+          <li><strong>Enduring Partnership</strong> – a relationship that evolves with your leadership journey.</li>
+        </ul>
+        <p class="muted">With James Douglas, you don’t just take the next step — you shape the next chapter.</p>
+      </div>
+    </section>
+
+    <section id="careers" class="section anchor" aria-labelledby="careers-title">
+      <div class="card"><b>done</b>
+        <h2 id="careers-title">Careers at James Douglas</h2>
+        <p class="lead">Advisors. Partners. Builders of Futures.</p>
+        <p>We are creating a firm for those who believe advisory is more than a career — it is a calling. At James
+          Douglas, your work shapes leaders, organizations, and industries.</p>
+        <h3>Why Join Us</h3>
+        <ul class="bullets">
+          <li><strong>Purposeful Work</strong> – impact that matters to businesses and lives.</li>
+          <li><strong>Ownership with Support</strong> – freedom to lead, backed by mentorship.</li>
+          <li><strong>Culture of Meaning</strong> – built on trust, shared responsibility, and excellence.</li>
+        </ul>
+        <p class="muted">Here, your career creates value through people. And that legacy lasts.</p>
+      </div>
+    </section>
+
+    <section id="insights" class="section anchor" aria-labelledby="insights-title">
+      <div class="card">
+        <h2 id="insights-title">Insights &amp; Perspectives</h2>
+        <p class="lead">Ideas That Move Leadership Forward.</p>
+        <p>We believe leadership shapes the world. That’s why we share insights that help organizations and leaders see
+          differently, act decisively, and thrive meaningfully.</p>
+        <h3>Themes</h3>
+        <ul class="bullets">
+          <li><strong>Leadership in Transition</strong> – guiding organizations through change.</li>
+          <li><strong>Future of Talent</strong> – what the next generation of leaders will demand and deliver.</li>
+          <li><strong>The JD View</strong> – reflections from our advisors on what makes leadership effective today.
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section anchor" aria-labelledby="contact-title">
+      <div class="card">
+        <b>done</b>
+        <h2 id="contact-title">Contact Us</h2>
+        <p class="lead">Let’s Create Value, Together.</p>
+        <p>We work with organizations, leaders, and colleagues who believe in building something meaningful. Reach out
+          to start a conversation about how we can create value through people.</p>
+        <a class="cta" href="#" aria-label="Start a conversation">Start a Conversation</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const supportsSmooth = 'scrollBehavior' in document.documentElement.style;
+      if (!supportsSmooth) return;
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const id = a.getAttribute('href');
+          if (!id || id === '#') return;
+          const el = document.querySelector(id);
+          if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>
