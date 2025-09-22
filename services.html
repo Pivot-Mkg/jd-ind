@@ -63,14 +63,35 @@
         }
 
         @keyframes slide {
-            0% { top: var(--pad); opacity: 1; }
-            55% { top: calc(var(--mouse-h) - var(--pad) - var(--dot-h)); opacity: 1; }
-            70% { top: var(--pad); opacity: 1; }
-            88% { top: var(--pad); opacity: 1; }
-            92% { opacity: .7; }
-            100% { opacity: 1; }
+            0% {
+                top: var(--pad);
+                opacity: 1;
+            }
+
+            55% {
+                top: calc(var(--mouse-h) - var(--pad) - var(--dot-h));
+                opacity: 1;
+            }
+
+            70% {
+                top: var(--pad);
+                opacity: 1;
+            }
+
+            88% {
+                top: var(--pad);
+                opacity: 1;
+            }
+
+            92% {
+                opacity: .7;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
-        
+
         .service-card {
             height: 100%;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -78,24 +99,35 @@
             border-radius: 8px;
             overflow: hidden;
         }
-        
+
+        .banner {
+            width: 100%;
+            min-height: 80vh;
+            height: 80vh;
+            background: url(./assets/images/hero-banner.png) center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
         .service-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
+
         .service-icon {
             font-size: 2.5rem;
             color: #00aeef;
             margin-bottom: 1.5rem;
             transition: transform 0.3s ease, color 0.3s ease;
         }
-        
+
         .service-card:hover .service-icon {
             transform: scale(1.1);
             color: #2b3a67;
         }
-        
+
         /* Button Styles */
         .btn {
             font-weight: 500;
@@ -108,25 +140,25 @@
             border: none;
             padding: 0.75rem 1.5rem;
         }
-        
+
         .btn-light {
             background-color: #fff;
             color: #2b3a67;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .btn-light:hover {
             background-color: #f8f9fa;
             color: #1a2a57;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         .btn-light:active {
             transform: translateY(0);
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .btn-primary {
             background: linear-gradient(135deg, #00aeef 0%, #2b3a67 100%);
             border: none;
@@ -134,7 +166,7 @@
             z-index: 1;
             overflow: hidden;
         }
-        
+
         .btn-primary::before {
             content: '';
             position: absolute;
@@ -147,21 +179,21 @@
             transition: opacity 0.3s ease;
             z-index: -1;
         }
-        
+
         .btn-primary:hover::before {
             opacity: 1;
         }
-        
+
         .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         .btn-primary:active {
             transform: translateY(0);
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         /* Learn More Link */
         .btn-link {
             position: relative;
@@ -170,11 +202,11 @@
             color: #00aeef !important;
             transition: all 0.3s ease;
         }
-        
+
         .btn-link:hover {
             color: #2b3a67 !important;
         }
-        
+
         .btn-link::after {
             content: '';
             position: absolute;
@@ -185,15 +217,15 @@
             background-color: #2b3a67;
             transition: width 0.3s ease;
         }
-        
+
         .btn-link:hover::after {
             width: 100%;
         }
-        
+
         .btn-link i {
             transition: transform 0.3s ease;
         }
-        
+
         .btn-link:hover i {
             transform: translateX(3px);
         }
@@ -236,8 +268,8 @@
         </div>
     </nav>
     <!-- End Navbar -->
-     
-     <!-- Sentinel (used to detect when the original navbar leaves the viewport) -->
+
+    <!-- Sentinel (used to detect when the original navbar leaves the viewport) -->
     <div id="navSentinel" aria-hidden="true"></div>
 
     <!-- Sticky clone will be injected here by JS -->
@@ -253,7 +285,8 @@
                 </h1>
             </div>
         </div>
-        <div class="scroll-indicator" role="button" aria-label="Scroll down" data-offset="300" data-target="#our-services">
+        <div class="scroll-indicator" role="button" aria-label="Scroll down" data-offset="300"
+            data-target="#our-services">
             <div class="mouse" aria-hidden="true">
                 <div class="dot"></div>
             </div>
@@ -280,8 +313,11 @@
                             <i class="bi bi-people-fill"></i>
                         </div>
                         <h3 class="h4 mb-3">Executive Search</h3>
-                        <p class="text-muted">Identifying and attracting top-tier executive talent to drive your organization's success with our proven search methodology and extensive industry network.</p>
-                        <a href="#" class="btn btn-link text-primary p-0">Learn More <i class="bi bi-arrow-right ms-1"></i></a>
+                        <p class="text-muted">Identifying and attracting top-tier executive talent to drive your
+                            organization's success with our proven search methodology and extensive industry network.
+                        </p>
+                        <a href="#" class="btn btn-link text-primary p-0">Learn More <i
+                                class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
 
@@ -292,8 +328,10 @@
                             <i class="bi bi-briefcase-fill"></i>
                         </div>
                         <h3 class="h4 mb-3">Leadership Hiring</h3>
-                        <p class="text-muted">Securing visionary leaders who can navigate complexity and drive sustainable growth for your business through our comprehensive assessment process.</p>
-                        <a href="#" class="btn btn-link text-primary p-0">Learn More <i class="bi bi-arrow-right ms-1"></i></a>
+                        <p class="text-muted">Securing visionary leaders who can navigate complexity and drive
+                            sustainable growth for your business through our comprehensive assessment process.</p>
+                        <a href="#" class="btn btn-link text-primary p-0">Learn More <i
+                                class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
 
@@ -304,8 +342,10 @@
                             <i class="bi bi-building-fill"></i>
                         </div>
                         <h3 class="h4 mb-3">Industry Specialization</h3>
-                        <p class="text-muted">Leveraging deep sector expertise across multiple industries to understand and address your unique talent requirements and challenges.</p>
-                        <a href="#" class="btn btn-link text-primary p-0">Learn More <i class="bi bi-arrow-right ms-1"></i></a>
+                        <p class="text-muted">Leveraging deep sector expertise across multiple industries to understand
+                            and address your unique talent requirements and challenges.</p>
+                        <a href="#" class="btn btn-link text-primary p-0">Learn More <i
+                                class="bi bi-arrow-right ms-1"></i></a>
                     </div>
                 </div>
             </div>
@@ -318,7 +358,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
                     <h2 class="mb-4">Why Choose James Douglas?</h2>
-                    <p class="lead">With years of experience in executive search and talent acquisition, we bring unparalleled expertise to every engagement.</p>
+                    <p class="lead">With years of experience in executive search and talent acquisition, we bring
+                        unparalleled expertise to every engagement.</p>
                     <div class="mt-4">
                         <div class="d-flex mb-3">
                             <div class="me-3">
@@ -326,7 +367,8 @@
                             </div>
                             <div>
                                 <h4 class="h5 mb-1">Proven Methodology</h4>
-                                <p class="mb-0 text-muted">Rigorous assessment and selection process that identifies the best talent.</p>
+                                <p class="mb-0 text-muted">Rigorous assessment and selection process that identifies the
+                                    best talent.</p>
                             </div>
                         </div>
                         <div class="d-flex mb-3">
@@ -335,7 +377,8 @@
                             </div>
                             <div>
                                 <h4 class="h5 mb-1">Extensive Network</h4>
-                                <p class="mb-0 text-muted">Access to passive candidates and industry leaders across sectors.</p>
+                                <p class="mb-0 text-muted">Access to passive candidates and industry leaders across
+                                    sectors.</p>
                             </div>
                         </div>
                         <div class="d-flex">
@@ -344,13 +387,14 @@
                             </div>
                             <div>
                                 <h4 class="h5 mb-1">Market Intelligence</h4>
-                                <p class="mb-0 text-muted">In-depth knowledge of industry trends and compensation benchmarks.</p>
+                                <p class="mb-0 text-muted">In-depth knowledge of industry trends and compensation
+                                    benchmarks.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
-                    <img src="assets/images/team-meeting.jpg" alt="Our Team" class="img-fluid rounded shadow">
+                    <img src="./assets/images/about-us-banner.jpg" alt="Our Team" class="img-fluid rounded shadow">
                 </div>
             </div>
         </div>
@@ -366,7 +410,7 @@
     </section>
 
     <!-- Footer -->
-     <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
+    <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
         <div class="container">
             <div class="row">
                 <!-- Company Info -->
@@ -413,17 +457,20 @@
                     <h5 class="footer-heading">Quick Links</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2">
-                            <a href="about-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">About Us</a>
+                            <a href="about-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">About
+                                Us</a>
                         </li>
                         <li class="mb-2">
                             <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Leadership
                                 Career</a>
                         </li>
                         <li class="mb-2">
-                            <a href="contact-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">Contact US</a>
+                            <a href="contact-us.html" class="text-white text-decoration-none"
+                                style="opacity: 0.8;">Contact US</a>
                         </li>
                         <li class="mb-2">
-                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Management Team</a>
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Management
+                                Team</a>
                         </li>
                     </ul>
                 </div>
@@ -489,12 +536,15 @@
                 </div>
                 <div class="col-md-6 text-center">
                     <div class="d-flex flex-wrap justify-content-md-end gap-3">
-                        <a href="privacy-policy.html" class="text-white text-decoration-none" style="opacity: 0.6;">Privacy Policy</a>
-                        <a href="terms-of-service.html" class="text-white text-decoration-none" style="opacity: 0.6;">Terms of Service</a>
-                        <a href="cookie-policy.html" class="text-white text-decoration-none" style="opacity: 0.6;">Cookie Policy</a>
+                        <a href="privacy-policy.html" class="text-white text-decoration-none"
+                            style="opacity: 0.6;">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="text-white text-decoration-none"
+                            style="opacity: 0.6;">Terms of Service</a>
+                        <a href="cookie-policy.html" class="text-white text-decoration-none"
+                            style="opacity: 0.6;">Cookie Policy</a>
                     </div>
                 </div>
-                 
+
             </div>
         </div>
     </footer>
@@ -510,18 +560,18 @@
             easing: 'ease-in-out',
             once: true
         });
-        
+
         // Scroll indicator functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const scrollIndicator = document.querySelector('.scroll-indicator');
             if (scrollIndicator) {
-                scrollIndicator.addEventListener('click', function() {
+                scrollIndicator.addEventListener('click', function () {
                     const targetId = this.getAttribute('data-target');
                     const targetSection = document.querySelector(targetId);
                     if (targetSection) {
                         const offset = parseInt(this.getAttribute('data-offset')) || 0;
                         const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - offset;
-                        
+
                         window.scrollTo({
                             top: targetPosition,
                             behavior: 'smooth'
