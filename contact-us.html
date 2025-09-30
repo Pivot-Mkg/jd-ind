@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About James Douglas India</title>
+    <link rel="icon" type="image/x-icon" href="./images/icons/favicon-jdg.png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
@@ -15,8 +16,46 @@
         .section-divider {
             margin-top: 5px;
             margin-bottom: 16px;
-            margin-left: 0;
+            margin-left: auto;
         }
+
+        .hero-corner::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            right: -21px;
+            width: 38px;
+            height: 38px;
+            display: block;
+            transform: scale(0.7);
+            background: url("./assets/images/icons/hero-heading-corner.svg") no-repeat center/contain;
+        }
+
+        @media (max-width: 768px) {
+            .hero-corner::before {
+                content: "";
+                position: absolute;
+                top: -14px;
+                right: -21px;
+                width: 38px;
+                height: 38px;
+                display: block;
+                transform: scale(0.6);
+                background: url("./assets/images/icons/hero-heading-corner.svg") no-repeat center/contain;
+            }
+        }
+
+@media (max-width: 375px) {
+         .hero-corner::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    right: 47px;
+    width: 25px;
+    height: 25px;
+}
+}
+   
     </style>
 </head>
 
@@ -25,7 +64,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3" id="mainNavbar">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="assets/images/JD-logo.png" alt="James Douglas Logo" height="44" class="me-2" />
+               <img src="assets/images/JD_India_logo.png" alt="James Douglas Logo" height="44" class="me-2 ms-5" />
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,39 +72,24 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link d-flex align-items-center" href="#" id="servicesDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Services <i class="bi bi-chevron-down ms-1"></i>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
-                            <li><a class="dropdown-item" href="services/banking-financial-services.html">Banking &
-                                    Financial Services</a></li>
-                            <li><a class="dropdown-item" href="services/family-business-private-enterprise.html">Family
-                                    Business & Private Enterprise</a></li>
-                            <li><a class="dropdown-item"
-                                    href="services/nationalization-emiratization-saudization.html">Nationalization/Emiratization/Saudization</a>
-                            </li>
-                            <li><a class="dropdown-item" href="services/technology-digital.html">Technology &
-                                    Digital</a></li>
-                            <li><a class="dropdown-item" href="services/industrial-logistics.html">Industrial
-                                    Logistics</a></li>
-                        </ul>
-                    </li> -->
+
                     <li>
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link" href="services.html">Services</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="nav-link" href="company.html">For Company</a>
                     </li>
                     <li>
                         <a class="nav-link" href="leaders.html">For Leaders</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="about-us.html">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="insights-hub.html">Insights</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="career.html">Careers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact-us.html">Contact</a>
@@ -87,14 +111,13 @@
         <div class="banner-overlay">
             <div class="banner-content">
                 <h1>
-                    <span class="hero-corner"> Let’s Create Value
+                    <span class="hero-corner">Let's Create Value, Together
                     </span><br>
-                    Together.
                 </h1>
-                <p>
+                <!-- <p>
                     We work with organizations, leaders, and colleagues who believe in building something meaningful.
                     Reach out to start a conversation about how we can create value through people.
-                </p>
+                </p> -->
             </div>
         </div>
     </section>
@@ -111,7 +134,7 @@
                             <h2 class="section-heading">Contact Us</h2>
                             <div class="section-divider"></div>
                             <p class="mt-4 text-muted" style="font-size: 1.1rem;">
-                                For all Business related enquiries, please share your details below
+                               We work with organizations, leaders and Teams who believe in building something meaningful. Reach out to start a conversation about how we can create value through people. 
                             </p>
                         </div>
                         <form class="contact-form" id="contactForm">
@@ -146,11 +169,14 @@
                                 <!-- Note -->
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="note" class="form-label">Note</label>
-                                        <textarea class="form-control contact-textarea" id="note" rows="6"
-                                            placeholder="Enter your note" required></textarea>
+                                        <label for="linkedin" class="form-label">LinkedIn</label>
+                                        <input type="url" class="form-control contact-input" id="linkedin"
+                                            name="linkedin" placeholder="Enter your LinkedIn profile URL"
+                                            pattern="https?://(www\.)?linkedin\.com/.*" required>
+                                        
                                     </div>
                                 </div>
+
 
                                 <!-- Submit Button -->
                                 <div class="col-12 text-center">
@@ -171,12 +197,11 @@
                 <!-- Map Column -->
                 <div class="col-lg-6">
                     <div class="map-container rounded-3 overflow-hidden" style="height: 100%; min-height: 400px;">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.388107360295!2d77.2065!3d28.6139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2daa9eb4d0b%3A0x717971125923e5d!2sIndia%20Gate%2C%20New%20Delhi%2C%20Delhi%20110021!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                        </iframe>
+                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7168.854879647868!2d72.85893169212632!3d19.063118828555112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c93f1120468f%3A0xff50874807e2426c!2sDHR%20Global!5e1!3m2!1sen!2sin!4v1759213547482!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
+
+
 
                 <!-- Address Column -->
                 <div class="col-lg-6">
@@ -190,8 +215,9 @@
                             </div> -->
                             <div>
                                 <!-- <h6 class="mb-1 fw-semibold">Address</h6> -->
-                                <p class="mb-0">James Douglas Professional Search India Private Limited 204, The Summit
-                                    Business Bay, Western Express Highway Vile Parle East, Mumbai 400057</p>
+                                <p class="mb-0">James Douglas Professional Search India Private Limited 10th Floor,
+                                    B-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex
+                                    Bandra (East), Mumbai- 400 051 India</p>
                             </div>
                         </div>
 
@@ -224,28 +250,28 @@
     </section>
 
     <!-- Footer -->
- <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
+    <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
         <div class="container">
             <div class="row">
                 <!-- Company Info -->
                 <div class="col-lg-5 col-md-6 mb-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <img src="assets/images/JD-logo-reverse.png" alt="James Douglas Logo" height="32">
-                    </div>
+                    <div class="about-us-footer" style="max-width: 440px;">
+                    <h5 class="footer-heading">About</h5>
                     <p class="text-white mb-4" style="opacity: 0.8; line-height: 1.6;">
                         At James Douglas, we connect exceptional leadership talent with forward-thinking companies
                         through
-                        tailored executive search solutions driven by insight, precision, and impact.
+                        tailored executive searnuch solutions driven by insight, precision, and impact.
                     </p>
+                    </div>
                     <!-- Social Media Icons -->
                     <div class="d-flex gap-2">
-                        <a href="#" class="text-white" style="opacity: 0.7;">
+                        <a href="https://www.linkedin.com/company/jamesdouglas/about/?viewAsMember=true" class="text-white" style="opacity: 0.7;">
                             <div class="rounded-circle d-flex align-items-center justify-content-center"
                                 style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
                                 <i class="bi bi-linkedin"></i>
                             </div>
                         </a>
-                        <a href="#" class="text-white" style="opacity: 0.7;">
+                        <!-- <a href="#" class="text-white" style="opacity: 0.7;">
                             <div class="rounded-circle d-flex align-items-center justify-content-center"
                                 style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
                                 <i class="bi bi-twitter"></i>
@@ -262,7 +288,7 @@
                                 style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
                                 <i class="bi bi-envelope"></i>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
                 </div>
 
@@ -271,17 +297,21 @@
                     <h5 class="footer-heading">Quick Links</h5>
                     <ul class="list-unstyled">
                         <li class="mb-2">
-                            <a href="about-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">About Us</a>
+                            <a href="about-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">About
+                                Us</a>
                         </li>
                         <li class="mb-2">
-                             <a href="career.html" class="text-white text-decoration-none"
+                            <a href="career.html" class="text-white text-decoration-none"
                                 style="opacity: 0.8;">Career</a>
                         </li>
                         <li class="mb-2">
-                            <a href="contact-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">Contact US</a>
+                            <a href="contact-us.html" class="text-white text-decoration-none"
+                                style="opacity: 0.8;">Contact US</a>
                         </li>
                         <li class="mb-2">
-                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Management Team</a>
+                            <a href="./about-us.html#management" class="text-white text-decoration-none"
+                                style="opacity: 0.8;">Management
+                                Team</a>
                         </li>
                     </ul>
                 </div>
@@ -316,15 +346,17 @@
                         <div class="d-flex align-items-start mb-2">
                             <i class="bi bi-geo-alt-fill text-white me-2 mt-1" style="opacity: 0.7;"></i>
                             <div>
-                                <p class="text-white mb-0" style="opacity: 0.8;">Mumbai, India</p>
-                                <p class="text-white mb-0" style="opacity: 0.8;">Business District</p>
+                                <p class="text-white mb-0" style="opacity: 0.8;"> 10th Floor, B-Wing, ONE BKC, “G
+                                    Block”, Bandra – Kurla Complex
+                                    Bandra (East), Mumbai- 400 051 India</p>
+                                <!-- <p class="text-white mb-0" style="opacity: 0.8;">Business District</p> -->
                             </div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <div class="d-flex align-items-center mb-2">
                             <i class="bi bi-telephone-fill text-white me-2" style="opacity: 0.7;"></i>
-                            <p class="text-white mb-0" style="opacity: 0.8;">+91 (0) 22 1234 5678</p>
+                            <p class="text-white mb-0" style="opacity: 0.8;">+91 22 3500 8804</p>
                         </div>
                     </div>
                     <div class="mb-4">
@@ -333,7 +365,7 @@
                             <p class="text-white mb-0" style="opacity: 0.8;">info@jamesdouglas.co.in</p>
                         </div>
                     </div>
-                    <a href="#contact" class="btn btn-warning-custom px-4 py-2 fw-semibold">
+                    <a href="./contact-us.html" class="btn btn-warning-custom px-4 py-2 fw-semibold">
                         Start a Conversation
                     </a>
                 </div>
@@ -343,21 +375,23 @@
             <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p class="text-white mb-0" style="opacity: 0.6;"> 2024 James Douglas. All rights reserved.</p>
+                    <p class="text-white mb-0" style="opacity: 0.6;"> 2025 James Douglas. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-center">
                     <div class="d-flex flex-wrap justify-content-md-end gap-3">
-                        <a href="privacy-policy.html" class="text-white text-decoration-none" style="opacity: 0.6;">Privacy Policy</a>
-                        <a href="terms-of-service.html" class="text-white text-decoration-none" style="opacity: 0.6;">Terms of Service</a>
-                        <a href="cookie-policy.html" class="text-white text-decoration-none" style="opacity: 0.6;">Cookie Policy</a>
+                        <a href="privacy-policy.html" class="text-white text-decoration-none"
+                            style="opacity: 0.6;">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="text-white text-decoration-none"
+                            style="opacity: 0.6;">Terms of Service</a>
+                        <a href="cookie-policy.html" class="text-white text-decoration-none"
+                            style="opacity: 0.6;">Cookie Policy</a>
                     </div>
                 </div>
-                 
+
             </div>
         </div>
     </footer>
-    <!-- Footer end -->
-     <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/main.js"></script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

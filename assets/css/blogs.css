@@ -1,0 +1,90 @@
+        .swiper-horizontal.swiper-pagination-bullets,
+        .swiper-pagination-bullets.swiper-pagination-horizontal,
+        .swiper-pagination-custom,
+        .swiper-pagination-fraction {
+            width: fit-content;
+            /* padding: 1px 3px; */
+            margin: 0 auto;
+            right: 0;
+            left: 0;
+            background-color: #ffffff48;
+            border-radius: 10px;
+        }
+
+        .swiper-wrapper .swiper-slide {
+            /* height: 100%; */
+            height: -webkit-fill-available;
+            height: -moz-fill-available;
+        }
+
+        .blogs-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1em;
+        }
+
+        .read-more-cta {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);
+            color: white;
+            width: fit-content;
+            font-size: 14px;
+            margin-top: 1em;
+            transition: .3s;
+        }
+
+        .read-more-cta svg {
+            height: 12px;
+        }
+
+        .read-more-cta:hover {
+            color: white;
+        }
+
+        .read-more-cta:hover svg {
+            transition: .3s ;
+            transform: translateX(6px);
+
+        }
+
+        .hero-section img {
+    width: 100%!important;
+}
+        
+        @media only screen and (min-width: 601px) {
+            .blogs-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media only screen and (min-width: 1024px) {
+            .blogs-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media only screen and (min-width: 2560px) {
+            .blogs-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .blogs-container {
+                grid-template-columns: repeat(1, 1fr);
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+        }
+
+        .blogs-section{
+            margin-top: 60px;
+        }
+    
+        .blog-card-caption{
+            padding: 30px;
+        }
