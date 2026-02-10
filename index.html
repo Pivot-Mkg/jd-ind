@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
+
+        .card-title, .card-text{
+            text-align: left;
+        }
         .swiper-horizontal.swiper-pagination-bullets,
         .swiper-pagination-bullets.swiper-pagination-horizontal,
         .swiper-pagination-custom,
@@ -37,18 +41,25 @@
         }
 
         @media only screen and (max-width: 600px) {
+
             /* for mobile  */
             .feature-cards-container {
                 margin-top: 50px;
-                gap: 1em!important;
+                gap: 1em !important;
                 flex-direction: column;
             }
 
             .feature-cards-container .flex-1 {
-                margin: 0%!important;
+                margin: 0% !important;
             }
         }
 
+        .row-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+        }
     </style>
 </head>
 
@@ -65,7 +76,9 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About</a>
+                    </li>
                     <li>
                         <a class="nav-link" href="services.html">Services</a>
                     </li>
@@ -75,14 +88,15 @@
                     <li>
                         <a class="nav-link" href="leaders.html">For Leaders</a>
                     </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="about-us.html">About</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="insights-hub.html">Insights</a>
                     </li>
                     <li>
                         <a class="nav-link" href="career.html">Careers</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact-us.html">Contact</a>
@@ -162,8 +176,39 @@
     </section>
     <!-- Banner end -->
 
-    <!-- What We Do Section -->
     <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">
+                    Redefining Leadership with Intent
+                </h2>
+                <div class="section-divider"></div>
+                <p class="mt-4 section-subtitle">
+                    At James Douglas, we believe leadership isn’t “filled.”. It is built over time, tested in
+                    complexity, and
+                    chosen with intent. That’s why we don’t see ourselves as recruiters. We work as advisors and
+                    long-term partners, shaping leadership decisions that impact businesses and careers beyond the
+                    immediate
+                    hire.
+                </p>
+            </div>
+            <div class="row-cta">
+                <div class="text-center">
+                    <a href="./career.html" class="btn btn-warning-custom px-4 py-2 fs-6 fw-semibold">
+                        Explore Leadership roles
+                    </a>
+                </div>
+                <div class="text-center">
+                    <a href="./hiring-solution.html" class="btn btn-warning-custom px-4 py-2 fs-6 fw-semibold">
+                        Build Your Leadership Team
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="pb-5 bg-white">
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="section-heading">
@@ -171,9 +216,11 @@
                 </h2>
                 <div class="section-divider"></div>
                 <p class="mt-4 section-subtitle">
-                   At James Douglas, we believe leadership is not hired. Leadership is built, shaped, and EMPOWERED to create value.
+                    At James Douglas, we believe leadership is not hired. Leadership is built, shaped, and EMPOWERED to
+                    create value.
                     <br>
-                   That’s why we are not “recruiters.” We are advisors & trusted partners who shape companies and careers. 
+                    That’s why we are not “recruiters.” We are advisors & trusted partners who shape companies and
+                    careers.
                 </p>
             </div>
             <div class="swiper cardSwiper py-4">
@@ -294,6 +341,156 @@
         </div>
     </section>
     <!-- End What We Do Section -->
+    <!-- What We Do Section -->
+
+    <section class=" bg-white">
+        <div class="container text-center" data-aos="fade-up">
+            <h2 class="section-heading">
+                    Industry Practices
+                </h2>
+                <div class="section-divider"></div>
+            <div class="swiper cardSwiper py-4">  
+                <div class="swiper-wrapper">
+                    <!-- Card 1 -->
+                    <div class="swiper-slide" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card h-100 border-0">
+                            <div class="card-body">
+                                <div class="pseudo-element"></div>
+                                <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                                    width: 56px;
+                                    height: 56px;
+                                    background: #3F597A;
+                                    border-radius: 50%;
+                                ">
+                                    <img src="assets/images/icons/bank.svg" alt=""
+                                        style="height: 68%; padding-left: 5px;">
+                                </div>
+
+                                <h5 class="card-title fw-bold" style="color: #23235b">
+                                    BFSI
+                                </h5>
+                                <p class="card-text" style="color: #444">
+                                    Banking, NBFCs, fintech, insurance, and financial institutions navigating scale and regulation
+
+                                </p>
+                                <a href="#" class="text-decoration-none"
+                                    style="color: #ff9900; font-weight: 500;display:none">Learn
+                                    More <i class="bi bi-arrow-right-short"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="swiper-slide" data-aos="fade-up" data-aos-delay="200">
+                        <div class="card h-100 border-0">
+                            <div class="card-body">
+                                <div class="pseudo-element"></div>
+                                <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                                    width: 56px;
+                                    height: 56px;
+                                    background: #3F597A;
+                                    border-radius: 50%;
+                                ">
+                                    <img src="assets/images/icons/technology.svg" alt="" style="height: 68%;">
+                                </div>
+                                <h5 class="card-title fw-bold" style="color: #23235b">
+                                    Technology
+                                </h5>
+                                <p class="card-text" style="color: #444">
+                                   Product, platform, SaaS, and digital-first businesses
+                                </p>
+                                <a href="#" class="text-decoration-none"
+                                    style="color: #ff9900; font-weight: 500;display:none">Learn
+                                    More <i class="bi bi-arrow-right-short"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="swiper-slide" data-aos="fade-up" data-aos-delay="300">
+                        <div class="card h-100 border-0">
+                            <div class="card-body">
+                                <div class="pseudo-element"></div>
+                                <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                                    width: 56px;
+                                    height: 56px;
+                                    background: #3F597A;
+                                    border-radius: 50%;
+                                ">
+                                    <img src="assets/images/icons/no-healthcare.svg" alt="" style="height: 61%;">
+                                    
+                                </div>
+                                <h5 class="card-title fw-bold" style="color: #23235b">
+                                    Healthcare & Life Sciences
+                                </h5>
+                                <p class="card-text" style="color: #444">
+                                    Pharma, biotech, medtech, devices, diagnostics, and health services
+                                </p>
+                                <a href="#" class="text-decoration-none"
+                                    style="color: #ff9900; font-weight: 500;display:none">Learn
+                                    More <i class="bi bi-arrow-right-short"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Card 4 -->
+                    <div class="swiper-slide" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card h-100 border-0">
+                            <div class="card-body">
+                                <div class="pseudo-element"></div>
+                                <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                                    width: 56px;
+                                    height: 56px;
+                                    background: #3F597A;
+                                    border-radius: 50%;
+                                ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M80-80v-481l280-119v80l200-80v120h320v480H80Zm80-80h640v-320H480v-82l-200 80v-78l-120 53v347Zm280-80h80v-160h-80v160Zm-160 0h80v-160h-80v160Zm320 0h80v-160h-80v160Zm280-320H680l40-320h120l40 320ZM160-160h640-640Z"/></svg>
+                                </div>
+                                <h5 class="card-title fw-bold" style="color: #23235b">
+                                    Industrial & Manufacturing
+                                </h5>
+                                <p class="card-text" style="color: #444">
+                                    Engineering-led, capital-intensive, and operations-driven businesses
+                                </p>
+                                <a href="#" class="text-decoration-none"
+                                    style="color: #ff9900; font-weight: 500;display:none">Learn
+                                    More <i class="bi bi-arrow-right-short"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- New Card 4 -->
+                    <div class="swiper-slide" data-aos="fade-up" data-aos-delay="400">
+                        <div class="card h-100 border-0">
+                            <div class="card-body">
+                                <div class="pseudo-element"></div>
+                                <div class="mb-3 d-flex align-items-center justify-content-center" style="
+                                    width: 56px;
+                                    height: 56px;
+                                    background: #3F597A;
+                                    border-radius: 50%;
+                                ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M440-600v-120H320v-80h120v-120h80v120h120v80H520v120h-80ZM223.5-103.5Q200-127 200-160t23.5-56.5Q247-240 280-240t56.5 23.5Q360-193 360-160t-23.5 56.5Q313-80 280-80t-56.5-23.5Zm400 0Q600-127 600-160t23.5-56.5Q647-240 680-240t56.5 23.5Q760-193 760-160t-23.5 56.5Q713-80 680-80t-56.5-23.5ZM40-800v-80h131l170 360h280l156-280h91L692-482q-11 20-29.5 31T622-440H324l-44 80h480v80H280q-45 0-68.5-39t-1.5-79l54-98-144-304H40Z"/></svg>
+                                </div>
+                                <h5 class="card-title fw-bold" style="color: #23235b">
+                                    Consumer (incl. Consumer Tech)
+                                </h5>
+                                <p class="card-text" style="color: #444">
+                                   Brands, marketplaces, and consumer-facing platforms
+                                </p>
+                                <a href="#" class="text-decoration-none"
+                                    style="color: #ff9900; font-weight: 500;display:none">Learn
+                                    More <i class="bi bi-arrow-right-short"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add pagination -->
+                <div class="swiper-pagination mt-4"></div>
+                <!-- Add navigation buttons -->
+                <!-- <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div> -->
+            </div>
+
+        </div>
+    </section>
+    <!-- End What We Do Section -->
 
     <!-- Why Choose James Douglas Section -->
     <!-- Why Choose James Douglas Section -->
@@ -313,12 +510,16 @@ background: linear-gradient(
                         Why Choose
                         <span style="color: #00aeef"><br />James Douglas?</span>
                     </h2>
-                    <div 
-                    style="width: 80px; height: 4px; background: #ff9900; margin: 16px 0 24px 0; border-radius: 2px;"></div>
+                    <div
+                        style="width: 80px; height: 4px; background: #ff9900; margin: 16px 0 24px 0; border-radius: 2px;">
+                    </div>
                     <p class="text-white-50 mb-4" style="font-size: 1.1rem">
-                       Because leadership is not a transaction. It is transformation. 
+                        At James Douglas, we work closely with organisations and professionals during critical hiring moments 
+when judgment, context, and perspective matter as much as capability. We understand what it takes to 
+succeed in roles across management and leadership levels, and we stay focused on what will work in the 
+real world.
                     </p>
-                    <ul class="text-white mb-4 p-2">
+                    <ul class="text-white mb-4 p-2 d-none">
                         <li>Partnership over Process – We co-create solutions with clients and leaders. </li>
                         <li>Advisory over Transactions – Our role is to build a career not just find a job. </li>
                         <li>Meaning over Metrics – Is measured in growth and impact, not numbers. </li>
@@ -347,9 +548,14 @@ background: linear-gradient(
                                         <img src="assets/images/icons/precision.svg" alt="" height="42px;"
                                             width="42px;" />
                                     </div>
-                                    <div class="fw-bold text-white">Partnership</div>
+                                    <div class="fw-bold text-white">Advisory to Boards & Leadership Teams
+                                    </div>
                                     <div class="text-white-50 small">
-                                        Over process - we co-create solutions with clients and leaders.
+                                        We help organisations think
+                                        beyond the role in front of them
+                                        aligning leadership decisions
+                                        with long-term strategy, culture,
+                                        and growth.
                                     </div>
                                 </div>
                             </div>
@@ -358,9 +564,12 @@ background: linear-gradient(
                                     <div class="mb-2 feature-card-icon speed">
                                         <img src="assets/images/icons/Speed.svg" alt="" height="42px;" width="42px;" />
                                     </div>
-                                    <div class="fw-bold text-white">Advisory</div>
+                                    <div class="fw-bold text-white">Partnering with Leaders</div>
                                     <div class="text-white-50 small">
-                                        Over transactions - our role is to guide, not just to place.
+                                        We work closely with senior
+                                        professionals at pivotal
+                                        career moments, helping
+                                        them make thoughtful, well-aligned moves.
                                     </div>
                                 </div>
                             </div>
@@ -386,9 +595,12 @@ background: linear-gradient(
                                         <img src="assets/images/icons/Excellence.svg" alt="" height="42px;"
                                             width="42px;" />
                                     </div>
-                                    <div class="fw-bold text-white">Legacy</div>
+                                    <div class="fw-bold text-white">Building Our Advisory Talent</div>
                                     <div class="text-white-50 small">
-                                        Not quick fixes - we help shape leadership that lasts.
+                                        We invest in developing
+                                        advisors who bring judgment,
+                                        empathy, and context not just
+                                        process to every engagement
                                     </div>
                                 </div>
                             </div>
@@ -551,7 +763,9 @@ background: linear-gradient(
                                     <div class="team-position">Senior Director
                                     </div>
                                     <p class="team-description">
-                                        Diksha is an executive search leader with 12+ years of experience in HR, sales, healthcare, and analytics, shaping leadership talent, driving organizational growth, and championing diversity and inclusion.
+                                        Diksha is an executive search leader with 12+ years of experience in HR, sales,
+                                        healthcare, and analytics, shaping leadership talent, driving organizational
+                                        growth, and championing diversity and inclusion.
 
                                     </p>
                                     <a href="./about-us.html"><button class="team-btn btn-warning-custom">
@@ -559,8 +773,7 @@ background: linear-gradient(
                                         </button></a>
                                 </div>
                                 <div class="team-image-container">
-                                    <img src="./images/diksha-uniyal.jpg" alt="Amarjeet Dutta"
-                                        class="team-image">
+                                    <img src="./images/diksha-uniyal.jpg" alt="Amarjeet Dutta" class="team-image">
                                 </div>
                             </div>
                         </div>
@@ -573,7 +786,11 @@ background: linear-gradient(
                                     <div class="team-position">Director
                                     </div>
                                     <p class="team-description">
-                                      With 9+ years of consulting experience, including the last 5+ years in recruitment, Sakshi heads the Technology function and BFSI practice. She partners with CXOs across Tech, Business, HR and others to shape leadership teams that drive digital transformation, combining proactive insight with a people-centric approach.
+                                        With 9+ years of consulting experience, including the last 5+ years in
+                                        recruitment, Sakshi heads the Technology function and BFSI practice. She
+                                        partners with CXOs across Tech, Business, HR and others to shape leadership
+                                        teams that drive digital transformation, combining proactive insight with a
+                                        people-centric approach.
                                     </p>
                                     <a href="./about-us.html"><button class="team-btn btn-warning-custom">
                                             Know more &gt;
@@ -728,7 +945,7 @@ background: linear-gradient(
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center" data-aos="zoom-in">
                     <h2 class="section-heading text-white">
-                        Ready to strengthen your leadership team?
+                       Better decisions start with better conversations
                     </h2>
                     <p class="text-white mb-4" style="font-size: 1.1rem; opacity: 0.9;">
                         Start the conversation that shapes your leadership future.
@@ -765,7 +982,8 @@ background: linear-gradient(
                     <div class="about-us-footer" style="max-width: 440px;">
                         <h5 class="footer-heading">About</h5>
                         <p class="text-white mb-4" style="opacity: 0.8; line-height: 1.6;">
-                           At James Douglas, we connect exceptional leadership talent with forward-thinking companies through tailored executive search solutions driven by insight, precision, and impact.
+                            At James Douglas, we connect exceptional leadership talent with forward-thinking companies
+                            through tailored executive search solutions driven by insight, precision, and impact.
                         </p>
                     </div>
                     <!-- Social Media Icons -->
@@ -852,8 +1070,9 @@ background: linear-gradient(
                         <div class="d-flex align-items-start mb-2">
                             <i class="bi bi-geo-alt-fill text-white me-2 mt-1" style="opacity: 0.7;"></i>
                             <div>
-                                <p class="text-white mb-0" style="opacity: 0.8;"> 
-                                    1012, 10th Floor, B-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex Bandra (East), Mumbai- 400 051 India. 
+                                <p class="text-white mb-0" style="opacity: 0.8;">
+                                    1012, 10th Floor, B-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex Bandra (East),
+                                    Mumbai- 400 051 India.
 
                                 </p>
                                 <!-- <p class="text-white mb-0" style="opacity: 0.8;">Business District</p> -->

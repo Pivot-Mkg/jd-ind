@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Services | James Douglas India</title>
+    <link rel="icon" type="image/x-icon" href="./images/icons/favicon-jdg.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        :root {
+            --mouse-w: 26px;
+            --mouse-h: 44px;
+            --mouse-border: 2px;
+            --mouse-radius: 16px;
+            --dot-w: 3px;
+            --dot-h: 10px;
+            --pad: 6px;
+            --color: rgba(255, 255, 255, 0.95);
+            --shadow: rgba(0, 0, 0, .25);
+            --z: 10;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+            display: inline-grid;
+            place-items: center;
+            gap: .4rem;
+            cursor: pointer;
+            -webkit-user-select: none;
+            user-select: none;
+            z-index: var(--z);
+        }
+
+        .scroll-indicator .mouse {
+            width: var(--mouse-w);
+            height: var(--mouse-h);
+            border: var(--mouse-border) solid var(--color);
+            border-radius: var(--mouse-radius);
+            position: relative;
+            box-shadow: 0 4px 10px var(--shadow);
+        }
+
+        .scroll-indicator .dot {
+            position: absolute;
+            left: 50%;
+            width: var(--dot-w);
+            height: var(--dot-h);
+            margin-left: calc(var(--dot-w) / -2);
+            background: var(--color);
+            border-radius: 2px;
+            top: var(--pad);
+            animation: slide 3s ease-in-out infinite;
+        }
+
+        .text-primary {
+            color: #262262 !important;
+        }
+
+        @keyframes slide {
+            0% {
+                top: var(--pad);
+                opacity: 1;
+            }
+
+            55% {
+                top: calc(var(--mouse-h) - var(--pad) - var(--dot-h));
+                opacity: 1;
+            }
+
+            70% {
+                top: var(--pad);
+                opacity: 1;
+            }
+
+            88% {
+                top: var(--pad);
+                opacity: 1;
+            }
+
+            92% {
+                opacity: .7;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .service-card {
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .banner {
+            width: 100%;
+            min-height: 80vh;
+            height: 80vh;
+            background: url(./assets/images/hero-banner.png) center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            /* color: #00aeef; */
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.03);
+            color: #2b3a67;
+        }
+
+        /* Button Styles */
+        .btn {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .btn-light {
+            background-color: #fff;
+            color: #2b3a67;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-light:hover {
+            background-color: #f8f9fa;
+            color: #1a2a57;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-light:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00aeef 0%, #2b3a67 100%);
+            border: none;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2b3a67 0%, #00aeef 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            opacity: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Learn More Link */
+        .btn-link {
+            position: relative;
+            text-decoration: none;
+            font-weight: 500;
+            /* color: #00aeef !important; */
+            transition: all 0.3s ease;
+        }
+
+        .btn-link:hover {
+            color: #2b3a67 !important;
+        }
+
+        .btn-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #2b3a67;
+            transition: width 0.3s ease;
+        }
+
+        .btn-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-link i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-link:hover i {
+            transform: translateX(3px);
+        }
+    </style>
+
+    <style>
+        :root {
+            --navy: #0f2b57;
+            --line: #e5e7eb;
+        }
+
+
+        .wrap {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 18px;
+        }
+
+        /* Swiper container */
+        .tabs-swiper {
+            padding: 10px 0 18px;
+            /* border-bottom: 1px solid var(--line); */
+            position: relative;
+        }
+
+        /* Each slide width = content based */
+        .tabs-swiper .swiper-slide {
+            width: auto;
+            /* IMPORTANT */
+            display: flex;
+            align-items: stretch;
+        }
+
+        /* Tab button */
+        .tab {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+            min-width: 170px;
+            text-align: center;
+            color: var(--navy);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 26px 22px;
+        }
+
+        .tab .icon {
+            width: 42px;
+            height: 42px;
+            margin: 0 auto 10px;
+            display: grid;
+            place-items: center;
+        }
+
+        .tab svg {
+            width: 36px;
+            height: 36px;
+            stroke: var(--navy);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .tab .label {
+            font-size: 18px;
+            line-height: 1.2;
+            font-weight: 500;
+        }
+
+        /* Active look (like first tab) */
+        .tab.active {
+            background: #3F597A;
+            border-radius: 23px;
+            color: #fff;
+            padding: 26px 22px;
+            min-width: 240px;
+            min-height: 150px;
+            justify-content: center;
+        }
+
+        .tab.active svg {
+            stroke: #fff;
+        }
+
+        /* Panel (your 2nd image) */
+        .panel {
+            margin-top: 26px;
+            border: 2px solid #0b0f1a;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 260px;
+            overflow: hidden;
+        }
+
+        .panel .media {
+            border-right: 2px solid #0b0f1a;
+            overflow: hidden;
+            background: #f3f4f6;
+        }
+
+        .panel .media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .panel .content {
+            padding: 18px;
+        }
+
+        .panel h3 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .panel p {
+            margin: 0 0 14px;
+            line-height: 1.45;
+            font-size: 14.5px;
+        }
+
+        .meta-title {
+            font-weight: 700;
+            font-size: 14.5px;
+            margin-top: 8px;
+        }
+
+        .pill-list {
+            margin: 8px 0 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 10px;
+            font-size: 14px;
+        }
+
+        .pill-list li::after {
+            content: "•";
+            margin-left: 10px;
+        }
+
+        .pill-list li:last-child::after {
+            content: "";
+            margin: 0;
+        }
+        .swiper-container-for-this-page .swiper-button-prev{
+            left: -45px;
+        }
+
+        .swiper-container-for-this-page .swiper-button-next{
+            right: -45px;
+        }
+
+        /* Mobile */
+        @media (max-width:820px) {
+            .panel {
+                grid-template-columns: 1fr;
+            }
+
+            .panel .media {
+                height: 220px;
+                border-right: none;
+                border-bottom: 2px solid #0b0f1a;
+            }
+        }
+
+        /* Make space for arrows so they don't overlap content */
+        .tabs-swiper {
+            padding-left: 44px;
+            padding-right: 44px;
+            position: relative;
+        }
+
+        /* Smaller arrows + move left/right */
+        .swiper-container-for-this-page .swiper-button-prev,
+        .swiper-container-for-this-page .swiper-button-next {
+            width: 26px;
+            height: 26px;
+            top: 50%;
+            transform: translateY(-50%);
+            margin-top: 0;
+        }
+
+        /* Push further out */
+        .swiper-container-for-this-page .swiper-button-prev {
+            left: -40px;
+        }
+
+        .swiper-container-for-this-page .swiper-button-next {
+            right: -37px;
+        }
+
+        /* Reduce icon size + match color */
+        .swiper-container-for-this-page .swiper-button-prev::after,
+        .swiper-container-for-this-page .swiper-button-next::after {
+            font-size: 14px;
+            /* ↓ icon size */
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        /* Optional: subtle background circle (clean UI) */
+        .swiper-container-for-this-page .swiper-button-prev,
+        .swiper-container-for-this-page .swiper-button-next {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, .08);
+        }
+
+        /* On hover */
+        .swiper-container-for-this-page .swiper-button-prev:hover,
+        .swiper-container-for-this-page .swiper-button-next:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+        }
+
+        /* Hide arrows on mobile if you want (swipe only) */
+        @media (max-width: 640px) {
+            .swiper-container-for-this-page {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .swiper-container-for-this-page .swiper-button-prev,
+            .swiper-container-for-this-page .swiper-button-next {
+                display: none;
+            }
+        }
+    </style>
+
+    <style>
+        /* Panel card layout like EMA screenshot */
+        .panel-card {
+            background: #f3f4f6;
+            border-radius: 14px;
+            /* border: 1px solid #e5e7eb !important; */
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            padding: 22px !important;
+
+            display: grid;
+            grid-template-columns: 325px 1fr;
+            /* left logo area, right text */
+            gap: 18px;
+            /* align-items: center; */
+        }
+
+        /* Logo container */
+        .panel-card .card-img-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 90px;
+        }
+
+        /* Logo sizing */
+        .panel-card .card-img {
+            width: 100%;
+            height: 100%;
+            /* object-fit: contain; */
+        }
+
+        /* Title */
+        .panel-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        /* Description text */
+        .panel-card .card-info-item-description {
+            font-size: 14.5px;
+            line-height: 1.55;
+            color: #111827;
+        }
+
+        /* Optional list style (if you keep it) */
+        .panel-card .pill-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 10px;
+            font-size: 13.5px;
+        }
+
+        .panel-card .pill-list li::after {
+            content: "•";
+            margin-left: 10px;
+            opacity: .8;
+        }
+
+        .panel-card .pill-list li:last-child::after {
+            content: "";
+            margin: 0;
+        }
+
+        /* Bullet list (replace pill-list styling) */
+        .panel-card .pill-list {
+            margin: 14px 0 0;
+            padding: 0;
+            list-style: none;
+            /* we will create custom bullets */
+            display: grid;
+            /* stacked items */
+            gap: 10px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Each bullet row */
+        .panel-card .pill-list li {
+            display: grid;
+            grid-template-columns: 12px 1fr;
+            /* bullet + text */
+            align-items: start;
+            column-gap: 10px;
+            color: #111827;
+        }
+
+        /* Custom bullet dot with light background */
+        .panel-card .pill-list li::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(15, 43, 87, 0.18);
+            /* light tint of #0f2b57 */
+            border: 1px solid rgba(15, 43, 87, 0.55);
+            margin-top: 4px;
+        }
+
+        /* Remove the old • separator if it exists anywhere */
+        .panel-card .pill-list li::after {
+            content: none !important;
+        }
+
+        /* Mobile stacked */
+
+        @media (min-width: 992px) {
+            .panel-card .pill-list {
+                grid-template-columns: 1fr 1fr;
+                column-gap: 26px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .panel-card {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .panel-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+        }
+
+
+        /* Expertise pills row */
+        .expertise-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* Each expertise item pill */
+        .expertise-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 8px 14px;
+            border-radius: 999px;
+
+            border: 1.5px solid var(--navy);
+            /* hero blue */
+            color: #0f2b57;
+            /* navy text */
+            background: #d9dfe83d;
+
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1;
+            white-space: nowrap;
+
+            transition: all .2s ease;
+        }
+
+        .expertise-pill:hover{
+  background: var(--navy);      /* was border color */
+  border-color: #d9dfe83d;      /* was background */
+  color: #fff;                  /* needed for contrast */
+}
+    </style>
+
+    <style>
+        /* ===== Service Cards UI (like screenshot) ===== */
+        .service-cards-swiper {
+            padding: 8px 6px 28px;
+        }
+
+        .service-card-cta {
+            text-decoration: none;
+            display: block;
+        }
+
+        .service-card-ui {
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .10);
+            border: 1px solid #eaeaea;
+            min-height: 350px;
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+
+        .service-card-ui:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, .14);
+        }
+
+        .service-img-wrapper-ui {
+            height: 130px;
+            overflow: hidden;
+        }
+
+        .service-img-ui {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .service-info-ui {
+            padding: 16px 16px 18px;
+        }
+
+        .service-info-ui h5 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #0aa6c8;
+            /* teal heading like ref */
+        }
+
+        .mini-underline {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: #c65b45;
+            /* small orange line like ref */
+            margin: 8px 0 10px;
+            border-radius: 99px;
+        }
+
+        .service-info-ui p {
+            margin: 0;
+            color: #111827;
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        /* ===== Swiper slides sizing ===== */
+        .service-cards-swiper .swiper-slide {
+            height: auto;
+        }
+
+        @media (max-width: 1200px) {
+            .service-card-ui {
+            min-height: 450px;
+        }
+        }
+        @media (max-width: 991px) {
+            .service-card-ui {
+            min-height: 400px;
+        }
+            .service-card-ui {
+            min-height: 450px;
+        }
+        }
+
+        /* Desktop: show 3 like screenshot */
+        @media (min-width: 992px) {
+            .service-cards-swiper {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+          
+        }
+
+        /* Smaller navigation arrows */
+        .service-cards-swiper .swiper-button-prev,
+        .service-cards-swiper .swiper-button-next {
+            width: 28px;
+            height: 28px;
+            top: 45%;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 999px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
+        }
+
+        .service-cards-swiper .swiper-button-prev::after,
+        .service-cards-swiper .swiper-button-next::after {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f2b57;
+        }
+
+        /* Pagination dots */
+        .service-cards-swiper .swiper-pagination-bullet {
+            opacity: .25;
+        }
+
+        .service-cards-swiper .swiper-pagination-bullet-active {
+            opacity: 1;
+        }
+
+        .service-swiper-wrap {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        /* Swiper should take remaining width */
+        .service-cards-swiper {
+            flex: 1;
+            overflow: hidden;
+            padding: 4px 0 28px;
+        }
+
+        /* Outside arrows */
+        .service-outside-nav {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, .10);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f2b57;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .service-outside-nav:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, .14);
+        }
+
+        .service-outside-nav:disabled {
+            opacity: .35;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .service-swiper-wrap {
+            overflow: visible !important;
+        }
+
+        .service-outside-nav {
+            z-index: 999 !important;
+        }
+
+        /* Hide outside arrows on very small screens if you want swipe only */
+        @media (max-width: 480px) {
+            .service-outside-nav {
+                display: none;
+            }
+
+            .service-swiper-wrap {
+                gap: 0;
+            }
+        }
+
+        /* Wrapper becomes positioning parent */
+        .service-swiper-wrap {
+            position: relative;
+            padding: 0 56px;
+            /* creates space so arrows sit OUTSIDE without overlapping */
+        }
+
+        /* Swiper full width */
+        .service-cards-swiper {
+            width: 100%;
+            overflow: hidden;
+            padding: 8px 0 28px;
+        }
+
+        /* Outside arrows */
+        .service-outside-nav {
+            position: absolute;
+            top: 36%;
+            /* transform: translateY(-50%); */
+            z-index: 50;
+
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: 1px solid #e5e7eb;
+            background: #fff;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, .10);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f2b57;
+        }
+
+        .service-outside-prev {
+            left: 0;
+        }
+
+        .service-outside-next {
+            right: 0;
+        }
+
+        /* mobile */
+        @media (max-width: 576px) {
+            .service-swiper-wrap {
+                padding: 0;
+            }
+
+            .service-outside-nav {
+                display: none;
+            }
+        }
+
+
+        .service-swiper-wrap {
+            position: relative;
+            overflow: visible;
+            padding: 0 56px;
+        }
+
+        .service-outside-nav {
+            z-index: 9999;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3" id="mainNavbar">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="assets/images/JD_India_logo.png" alt="James Douglas Logo" height="44" class="me-2 ms-5" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <!-- <li>
+                        <a class="nav-link" href="company.html">For Company</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="leaders.html">For Leaders</a>
+                    </li> -->
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="insights-hub.html">Insights</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="career.html">Careers</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- Sentinel (used to detect when the original navbar leaves the viewport) -->
+    <div id="navSentinel" aria-hidden="true"></div>
+
+    <!-- Sticky clone will be injected here by JS -->
+    <div id="stickyNavbarContainer" aria-hidden="true"></div>
+
+    <!-- Banner -->
+    <section class="banner" id="services-banner">
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <h1>
+                    <span class="hero-corner">Hiring Solutions</span><br> for Organizations
+                </h1>
+            </div>
+        </div>
+        <div class="scroll-indicator" role="button" aria-label="Scroll down" data-offset="300"
+            data-target="#our-services">
+            <div class="mouse" aria-hidden="true">
+                <div class="dot"></div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner end -->
+
+    <!-- Services Section -->
+    <section class="py-5 bg-white" id="our-services">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">Find Talents That Move Businesses Forward</h2>
+                <div class="section-divider"></div>
+                <p class="mt-4 section-subtitle">
+                    Exceptional outcomes come from thoughtful hiring.<br>
+                    At James Douglas, we work closely with organizations to place professionals who combine skill,
+                    intent,
+                    and long-term fit across management and leadership roles.
+                </p>
+            </div>
+
+            <div class="wrap">
+                <div class="text-center mb-5" data-aos="fade-up">
+                    <h2 class="section-heading">Industries We Serve</h2>
+                    <div class="section-divider"></div>
+
+                </div>
+
+                <div class="swiper-container-for-this-page" style="position: relative;">
+                    <!-- Tabs Swiper -->
+                    <div class="tabs-swiper swiper" id="sectorTabsSwiper">
+                        <div class="swiper-wrapper">
+
+                            <div class="swiper-slide">
+                                <button class="tab active" data-key="banking" type="button">
+                                    <div class="icon">
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M3 21V10l6 3V10l6 3V4h6v17H3z"></path>
+                                            <path d="M7 21v-6"></path>
+                                            <path d="M11 21v-6"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="label">Banking and Financial<br />Services</div>
+                                </button>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <button class="tab" data-key="industrial" type="button">
+                                    <div class="icon">
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M12 21v-6"></path>
+                                            <path d="M7 21h10"></path>
+                                            <path d="M12 15l7-7"></path>
+                                            <path d="M12 15L5 8"></path>
+                                            <path d="M12 15a7 7 0 1 0-7-7"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="label">Industrial and<br /> Manufacturing</div>
+                                </button>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <button class="tab" data-key="health" type="button">
+                                    <div class="icon">
+                                        <svg viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="9"></circle>
+                                            <path d="M9.5 10.5c0-1 1-1.8 2.5-1.8s2.5.7 2.5 1.7"></path>
+                                            <path
+                                                d="M9 13.5c.2 1.1 1.3 1.9 3 1.9 1.8 0 3-.8 3-2 0-1-1-1.5-2.5-1.8l-1.2-.3c-1.5-.3-2.3-.8-2.3-1.7">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="label">Health care and <br />Lifesciences</div>
+                                </button>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <button class="tab" data-key="consumer" type="button">
+                                    <div class="icon">
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6V4z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="label">Consumer</div>
+                                </button>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <button class="tab" data-key="technology" type="button">
+                                    <div class="icon">
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M6 6h15l-2 9H7L6 6z"></path>
+                                            <path d="M6 6L5 3H2"></path>
+                                            <circle cx="8" cy="19" r="1.5"></circle>
+                                            <circle cx="18" cy="19" r="1.5"></circle>
+                                        </svg>
+                                    </div>
+                                    <div class="label">Technology</div>
+                                </button>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <button class="tab" data-key="human" type="button">
+                                    <div class="icon">
+                                        <svg viewBox="0 0 24 24">
+                                            <path d="M13 2L3 14h8l-1 8 11-14h-8l0-6z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="label">Human Resources</div>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+
+
+                <!-- ONLY ONE Content Panel -->
+                <!-- NEW PANEL (company-card style) -->
+                <div class="company-card-grid-wrapper">
+                    <div class="company-card-grid">
+
+                        <figure class="card shadow p-3 mb-1 border panel-card" id="panelCard">
+                            <div class="card-img-wrapper">
+                                <img id="panelImg" class="card-img"
+                                    src="./assets/images/hiring-solutions-imgs/banking-financial.jpg" alt="Sector logo">
+                            </div>
+
+                            <figcaption class="card-info-wrapper">
+                                <h3 id="panelTitle" class="panel-title mb-2">Banking and Financial Services</h3>
+
+                                <p id="panelDesc" class="card-info-item card-info-item-description mb-0">
+                                    Our Global Financial Services Practice is designed to be flexible and to serve the
+                                    needs of an ever-changing market.
+                                </p>
+
+                                <h5 class="mt-2">Sector expertise includes:</h5>
+
+                                <!-- OPTIONAL: if you still want the list, keep this. If not needed, delete it -->
+                                <div class="expertise-row mt-3" id="panelList"></div>
+                            </figcaption>
+                        </figure>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <section class="pb-5 bg-white" id="our-search-approach">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">Our Search Approach</h2>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="service-swiper-wrap" data-aos="fade-up" data-aos-delay="100">
+
+                <!-- LEFT ARROW -->
+                <button class="service-outside-nav service-outside-prev" type="button" aria-label="Previous">‹</button>
+
+                <!-- Swiper -->
+                <div class="swiper service-cards-swiper" id="searchApproachSwiper">
+                    <div class="swiper-wrapper">
+
+                        <!-- Card 1 -->
+                        <div class="swiper-slide">
+                            <a href="#discovery" class="service-card-cta">
+                                <figure class="service-card-ui">
+                                    <div class="service-img-wrapper-ui">
+                                        <img class="service-img-ui"
+                                            src="./assets/images/hiring-solutions-imgs/Understanding-the-Mandate.jpg"
+                                            alt="Discovery & Alignment">
+                                    </div>
+                                    <figcaption class="service-info-ui">
+                                        <h5>Understanding the Mandate</h5>
+                                        <span class="mini-underline"></span>
+                                        <p>We begin by spending time with senior stakeholders to understand the business
+                                            context, the role’s intent, and what success truly looks like beyond the job
+                                            description.
+                                       Every search starts with clarity.</p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="swiper-slide">
+                            <a href="#mapping" class="service-card-cta">
+                                <figure class="service-card-ui">
+                                    <div class="service-img-wrapper-ui">
+                                        <img class="service-img-ui"
+                                            src="./assets/images/hiring-solutions-imgs/Market-Mapping-&-Research.jpg"
+                                            alt="Market Mapping">
+                                    </div>
+                                    <figcaption class="service-info-ui">
+                                        <h5>Market Mapping & Research</h5>
+                                        <span class="mini-underline"></span>
+                                        <p>Our dedicated research team conducts a rigorous market mapping exercise,
+                                            identifying relevant talent across industries, competitors, and adjacent
+                                            spaces. This allows us to form an informed view of the talent landscape before
+                                            approaching candidates.</p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="swiper-slide">
+                            <a href="#outreach" class="service-card-cta">
+                                <figure class="service-card-ui">
+                                    <div class="service-img-wrapper-ui">
+                                        <img class="service-img-ui"
+                                            src="./assets/images/hiring-solutions-imgs/Assessment-&-Alignment.jpg"
+                                            alt="Targeted Outreach">
+                                    </div>
+                                    <figcaption class="service-info-ui">
+                                        <h5>Assessment & Alignment</h5>
+                                        <span class="mini-underline"></span>
+                                        <p>We assess candidates not only for capability and experience, but for
+                                            judgment, motivation, and cultural alignment. The focus is on long-term fit not just immediate competence.</p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="swiper-slide">
+                            <a href="#assessment" class="service-card-cta">
+                                <figure class="service-card-ui">
+                                    <div class="service-img-wrapper-ui">
+                                        <img class="service-img-ui"
+                                            src="./assets/images/hiring-solutions-imgs/Shortlist-&-Advisor.jpg"
+                                            alt="Assessment">
+                                    </div>
+                                    <figcaption class="service-info-ui">
+                                        <h5>Shortlist & Advisory</h5>
+                                        <span class="mini-underline"></span>
+                                        <p>We present a curated shortlist supported by detailed insights on each
+                                            candidate, including strengths, risks, and contextual observations. This stage is collaborative, we refine the search together as understanding
+                                            deepens.</p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="swiper-slide">
+                            <a href="#shortlist" class="service-card-cta">
+                                <figure class="service-card-ui">
+                                    <div class="service-img-wrapper-ui">
+                                        <img class="service-img-ui"
+                                            src="./assets/images/hiring-solutions-imgs/offer-support.jpg"
+                                            alt="Shortlist & Interviews">
+                                    </div>
+                                    <figcaption class="service-info-ui">
+                                        <h5>Selection &amp; Offer Support</h5>
+                                        <span class="mini-underline"></span>
+                                        <p>We partner closely with our clients through final selection and offer
+                                            discussions, providing guidance on positioning, expectations, and closure.
+                                        </p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div class="swiper-slide">
+                            <a href="#closing" class="service-card-cta">
+                                <figure class="service-card-ui">
+                                    <div class="service-img-wrapper-ui">
+                                        <img class="service-img-ui"
+                                            src="./assets/images/hiring-solutions-imgs/Follow-Through.jpg"
+                                            alt="Offer & Onboarding">
+                                    </div>
+                                    <figcaption class="service-info-ui">
+                                        <h5>Closure &amp; Follow-Through</h5>
+                                        <span class="mini-underline"></span>
+                                        <p>We support closure, joining, and early integration for a confident start. Ensuring clarity, alignment, and momentum from day one, so transitions feel structured, supported, and decisive.</p>
+                                    </figcaption>
+                                </figure>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- navigation -->
+                    <!-- <div class="swiper-button-prev service-nav-prev"></div>
+      <div class="swiper-button-next service-nav-next"></div> -->
+
+                    <!-- pagination (optional) -->
+                    <div class="swiper-pagination"></div>
+                </div>
+
+                <!-- RIGHT ARROW -->
+                <button class="service-outside-nav service-outside-next" type="button" aria-label="Next">›</button>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- CTA Section -->
+    <section class="py-5" style="background: linear-gradient(135deg, #00aeef 0%, #2b3a67 100%);">
+        <div class="container text-center text-white">
+            <h2 class="mb-4">Ready to Transform Your Talent Strategy?</h2>
+            <p class="lead mb-4">Start the conversation that shapes your leadership future.</p>
+            <a href="contact-us.html" class="btn btn-warning-custom btn-lg px-4">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-lg-5 col-md-6 mb-4">
+                    <div class="about-us-footer" style="max-width: 440px;">
+                        <h5 class="footer-heading">About</h5>
+                        <p class="text-white mb-4" style="opacity: 0.8; line-height: 1.6;">
+                            At James Douglas, we connect exceptional leadership talent with forward-thinking companies
+                            through tailored executive search solutions driven by insight, precision, and impact.
+                        </p>
+                    </div>
+                    <!-- Social Media Icons -->
+                    <div class="d-flex gap-2">
+                        <a href="https://www.linkedin.com/company/jamesdouglas/about/?viewAsMember=true"
+                            class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-linkedin"></i>
+                            </div>
+                        </a>
+                        <!-- <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-twitter"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-globe"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="text-white" style="opacity: 0.7;">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                        </a> -->
+                    </div>
+                </div>
+
+                <!-- Our Services -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="about-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">About
+                                Us</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="career.html" class="text-white text-decoration-none"
+                                style="opacity: 0.8;">Career</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="contact-us.html" class="text-white text-decoration-none"
+                                style="opacity: 0.8;">Contact US</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="./about-us.html#management" class="text-white text-decoration-none"
+                                style="opacity: 0.8;">Management
+                                Team</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Industries -->
+                <!-- <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-info fw-semibold mb-3">Industries</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Financial
+                                Services</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Technology</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Healthcare</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Manufacturing</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none" style="opacity: 0.8;">Consumer Goods</a>
+                        </li>
+                    </ul>
+                </div> -->
+
+                <!-- Get in Touch -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-info fw-semibold mb-3">Get in Touch</h5>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-start mb-2">
+                            <i class="bi bi-geo-alt-fill text-white me-2 mt-1" style="opacity: 0.7;"></i>
+                            <div>
+                                <p class="text-white mb-0" style="opacity: 0.8;">
+                                    1012, 10th Floor, B-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex Bandra (East),
+                                    Mumbai- 400 051 India.
+                                </p>
+                                <!-- <p class="text-white mb-0" style="opacity: 0.8;">Business District</p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-telephone-fill text-white me-2" style="opacity: 0.7;"></i>
+                            <p class="text-white mb-0" style="opacity: 0.8;">+91 22 3500 8804</p>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-envelope-fill text-white me-2" style="opacity: 0.7;"></i>
+                            <p class="text-white mb-0" style="opacity: 0.8;">info@jamesdouglas.co.in</p>
+                        </div>
+                    </div>
+                    <a href="./contact-us.html" class="btn btn-warning-custom px-4 py-2 fw-semibold">
+                        Start a Conversation
+                    </a>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-white mb-0" style="opacity: 0.6;"> 2025 James Douglas. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center">
+                    <div class="d-flex flex-wrap justify-content-md-end gap-3">
+                        <a href="privacy-policy.html" class="text-white text-decoration-none"
+                            style="opacity: 0.6;">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="text-white text-decoration-none"
+                            style="opacity: 0.6;">Terms of Service</a>
+                        <a href="cookie-policy.html" class="text-white text-decoration-none"
+                            style="opacity: 0.6;">Cookie Policy</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <script src="./assets/js/main.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Scroll indicator functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', function () {
+                    const targetId = this.getAttribute('data-target');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        const offset = parseInt(this.getAttribute('data-offset')) || 0;
+                        const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - offset;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+
+    <script>
+        const SECTOR_DATA = {
+            banking: {
+                title: "Banking and Financial Services:",
+                img: "./assets/images/hiring-solutions-imgs/banking-financial.jpg",
+                desc: "Our Global Financial Services Practice is designed to be flexible and to serve the needs of an ever-changing market.",
+                list: ["Retail Banking", "Corporate Banking", "Fintech", "Insurance", "Risk & Compliance", "Wealth", "Payments"]
+            },
+            industrial: {
+                title: "Industrial and Manufacturing:",
+                img: "./assets/images/hiring-solutions-imgs/industrial-and-manufac.jpg",
+                desc: "James Douglas specializes in mid-management to senior executive search across industrial and hi-tech sectors. From advanced manufacturing to mining start- ups, James helps organisations secure leaders who drive operational excellence and long- term growth.</br> Industry continues to evolve rapidly, and the right executives are essential for global expansion, innovation, and competitive advantage. James focuses on identifying leaders who can deliver immediate impact while shaping future strategy.",
+                list: ["Automotive", "Aerospace & Defence", "Chemicals", "Construction Materials", " Electronics", "Engineered Products", "Food Processing", "General Manufacturing", "Paper & Packaging", "Steel & Alloys"]
+            },
+            health: {
+                title: "Health care and Lifesciences:",
+                img: "https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&w=900&q=60",
+                desc: "Scientific research, technological advancements, and constant development in healthcare and life sciences create both challenges and opportunities in this vibrant and innovative sector. <br/>There is a burgeoning of sub-sectors as a result of the intersection of science, technology, and the delivery of products and services.",
+                list: ["Specialised Medical Device Companies", "Hospitals", "Fintech", "Insurance", "Risk & Compliance", "Wealth", "Payments"]
+            },
+            consumer: {
+                title: "Consumer:",
+                img: "./assets/images/hiring-solutions-imgs/consumer.jpg",
+                desc: "We know that the sector is constantly evolving and that leadership is faced with daily challenges that threaten both market share and margin erosion. </br>Our consultants have consistently provided clients with dynamic, high-performing leaders, establishing the next generation of emerging leaders who will prepare their organisations to compete and thrive well into the future.",
+                list: ["Hospitals", "Private Care Organisations", "Community Health Systems", "Pharmaceuticals and Biotechnology", "Medical Research", "Corporate Health Services", "Insurers"]
+            },
+            technology: {
+                title: "Technology:",
+                img: "./assets/images/hiring-solutions-imgs/technology.jpg",
+                desc: "In addition to providing our clients with multi-country global search services, we also specialise in supporting small to mid-sized entrepreneurial companies and start-ups within the Financial Services sector",
+                list: ["Hardware and Systems", "Technology Consulting", "Semiconductors", "Software", "IT Services and Outsourcing", "Business Services", "Media and Digital Communications", "Telecommunications", "Assets"]
+            },
+            human: {
+                title: "Human Resources:",
+                img: "./assets/images/hiring-solutions-imgs/human-resrc.jpg",
+                desc: "Human Resources leadership is no longer just about policy, it’s about enabling business transformation. We help organizations hire HR leaders who can build high-performance cultures, strengthen leadership pipelines, and drive change at scale. From fast-growing companies to established enterprises, our focus is on HR professionals who balance people strategy with measurable business impact. We bring deep understanding of modern talent challenges, workforce planning, and organizational design.",
+                list: ["HR Leadership", "Talent Acquisition", "Leadership Development", "Compensation", "Industrial Relations", "Employee Relations", "HR Operations"]
+            }
+        };
+
+        // Panel nodes
+        const panelImg = document.getElementById("panelImg");
+        const panelTitle = document.getElementById("panelTitle");
+        const panelDesc = document.getElementById("panelDesc");
+        const panelList = document.getElementById("panelList");
+
+        // Init tabs swiper
+        const tabsSwiper = new Swiper("#sectorTabsSwiper", {
+            slidesPerView: "auto",
+            spaceBetween: 34,
+            freeMode: true,
+            watchSlidesProgress: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        function setActiveTab(key) {
+            // update active class
+            document.querySelectorAll("#sectorTabsSwiper .tab").forEach(btn => {
+                btn.classList.toggle("active", btn.dataset.key === key);
+            });
+
+            // update content
+            const data = SECTOR_DATA[key];
+            if (!data) return;
+
+            panelImg.src = data.img;
+            panelTitle.textContent = data.title.replace(":", ""); // removes colon
+            panelDesc.innerHTML = data.desc; // allow <br>
+
+
+            panelList.innerHTML = "";
+            data.list.forEach(item => {
+                const pill = document.createElement("span");
+                pill.className = "expertise-pill";
+                pill.textContent = item;
+                panelList.appendChild(pill);
+            });
+
+
+            // center the active slide in swiper
+            const activeBtn = document.querySelector(`#sectorTabsSwiper .tab[data-key="${key}"]`);
+            const slideEl = activeBtn.closest(".swiper-slide");
+            const index = [...slideEl.parentNode.children].indexOf(slideEl);
+            tabsSwiper.slideTo(index, 400);
+        }
+
+        // click handler (works even with swiper)
+        document.getElementById("sectorTabsSwiper").addEventListener("click", (e) => {
+            const btn = e.target.closest(".tab");
+            if (!btn) return;
+            setActiveTab(btn.dataset.key);
+        });
+
+        // initial
+        setActiveTab("banking");
+
+    </script>
+
+    <script>
+        const searchApproachSwiper = new Swiper("#searchApproachSwiper", {
+            loop: false,
+            spaceBetween: 18,
+            pagination: {
+                el: "#searchApproachSwiper .swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".service-outside-next",
+                prevEl: ".service-outside-prev",
+            },
+            breakpoints: {
+                0: { slidesPerView: 1.1 },
+                576: { slidesPerView: 1.6 },
+                768: { slidesPerView: 2.2 },
+                992: { slidesPerView: 3, spaceBetween: 22 },
+            }
+        });
+
+        /* optional: disable buttons at ends */
+        function syncServiceNav() {
+            const prev = document.querySelector(".service-outside-prev");
+            const next = document.querySelector(".service-outside-next");
+            if (!prev || !next) return;
+            prev.disabled = searchApproachSwiper.isBeginning;
+            next.disabled = searchApproachSwiper.isEnd;
+        }
+        searchApproachSwiper.on("init", syncServiceNav);
+        searchApproachSwiper.on("slideChange", syncServiceNav);
+        syncServiceNav();
+
+    </script>
+
+</body>
+
+</html>
