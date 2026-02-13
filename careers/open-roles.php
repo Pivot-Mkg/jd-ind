@@ -438,7 +438,7 @@ function build_filter_url(array $params): string
     <!-- Banner end -->
 
     <!-- Why Join Us start here  -->
-    <section class="sections">
+    <section class="sections mt-0">
         <div class="container content-above-decorator">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="section-heading">
@@ -513,7 +513,7 @@ function build_filter_url(array $params): string
                         background: #3F597A;
                         border-radius: 50%;
                     ">
-                                <img src="../assets/images/icons/Commitment.svg" alt="" height="42px;" width="42px;"
+                                <img src="../assets/images/icons/handshake.svg" alt="" height="42px;" width="42px;"
                                     srcset="">
                             </div>
                             <h5 class="card-title fw-bold" style="color: #23235b">
@@ -537,7 +537,7 @@ function build_filter_url(array $params): string
     <!-- Why Join Us end here  -->
 
     <!-- Work With Us start here -->
-     <section class="py-5 bg-white" id="apply">
+     <section class="pb-5 bg-white" id="apply">
         <div class="container">
 
             <div class="row justify-content-center">
