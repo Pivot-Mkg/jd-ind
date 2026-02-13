@@ -444,13 +444,16 @@
             e.preventDefault();
 
             // Get form values
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('emailAddress').value;
-            const phone = document.getElementById('contactNumber').value;
-            const note = document.getElementById('note').value;
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const organization = document.getElementById('organization').value;
+            const title = document.getElementById('title').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const help = document.getElementById('help').value;
 
             // Basic validation
-            if (!fullName || !email || !phone || !note) {
+            if (!firstName || !lastName || !organization || !title || !email || !phone || !help) {
                 alert('Please fill in all fields');
                 return;
             }

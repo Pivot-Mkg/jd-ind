@@ -25,7 +25,7 @@
                         <a href="../about-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">About Us</a>
                     </li>
                     <li class="mb-2">
-                        <a href="../career.html" class="text-white text-decoration-none" style="opacity: 0.8;">Career</a>
+                        <a href="../careers/open-roles.php" class="text-white text-decoration-none" style="opacity: 0.8;">Career</a>
                     </li>
                       <li class="mb-2">
                             <a href="insights-hub.html" class="text-white text-decoration-none"

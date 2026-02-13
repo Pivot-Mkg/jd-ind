@@ -1383,13 +1383,17 @@ function build_filter_url(array $params): string
             return params.toString();
         }
 
-        function applyFilters(page = 1) {
-            const filters = getActiveFilters();
-            const queryString = buildFilterQuery(filters, page);
-            const newUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ''}`;
-            window.history.replaceState({}, '', newUrl);
-            fetchFilteredJobs(queryString);
-        }
+       function applyFilters(page = 1) {
+  const filters = getActiveFilters();
+  const queryString = buildFilterQuery(filters, page);
+
+  const hash = window.location.hash || ''; // ✅ keep existing hash
+  const newUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ''}${hash}`;
+
+  window.history.replaceState({}, '', newUrl);
+  fetchFilteredJobs(queryString);
+}
+
 
         function setActiveFiltersFromParams(params) {
             if (categorySelect) {
@@ -1420,14 +1424,18 @@ function build_filter_url(array $params): string
     </script>
 
     <script>
-    const targetElement = document.querySelector('section#internal-jobs-section');
-if (targetElement) {
-  targetElement.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
-    margin: '500px'
-  });
-}
+ document.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash;
+  if (!hash) return;
+
+  setTimeout(() => {
+    const el = document.querySelector(hash);
+    if (!el) return;
+
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+});
+
 </script>
 
 

@@ -18,7 +18,7 @@
                         <a class="nav-link" href="../hiring-solution.html">Hiring Solutions</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./careers/open-roles.php">Careers</a>
+                        <a class="nav-link" href="../careers/open-roles.php">Careers</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../join-us.html">Join Us</a>
