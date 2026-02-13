@@ -60,7 +60,7 @@
 </head>
 
 <body>
-    <!-- Navbar -->
+     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3" id="mainNavbar">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -75,9 +75,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about-us.html">About</a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="services.html">Services</a>
+                     <li>
+                        <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="careers/open-roles.php">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="join-us.html">Join Us</a>
+                    </li>
+                    <!-- <li>
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li> -->
                     <!-- <li>
                         <a class="nav-link" href="company.html">For Company</a>
                     </li>
@@ -85,15 +94,11 @@
                         <a class="nav-link" href="leaders.html">For Leaders</a>
                     </li> -->
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="insights-hub.html">Insights</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="career.html">Careers</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
-                    </li>
+                    </li> -->
+                    
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="contact-us.html">Contact</a>
                     </li>
@@ -137,7 +142,7 @@
                             <h2 class="section-heading">Contact Us</h2>
                             <div class="section-divider"></div>
                             <p class="mt-4 text-muted" style="font-size: 1.1rem;">
-                               We work with organizations, leaders, and colleagues who believe in building something meaningful. Reach out to start a conversation about how we can create value through people.
+                               We work with organizations, leaders and Teams who believe in building something meaningful. Reach out to start a conversation about how we can create value through people.
                             </p>
                         </div>
                         <form class="contact-form" id="contactForm">
@@ -145,32 +150,66 @@
                                 <!-- Full Name -->
                                 <div class="col-6 col-md-4">
                                     <div class="form-group">
-                                        <label for="fullName" class="form-label">Full Name</label>
-                                        <input type="text" class="form-control contact-input" id="fullName"
-                                            placeholder="Enter your name" required>
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control contact-input" id="firstName"
+                                            placeholder="Enter your first name" required>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="form-group">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control contact-input" id="lastName"
+                                            placeholder="Enter your last name" required>
                                     </div>
                                 </div>
 
                                 <!-- Email Address -->
                                 <div class="col-6 col-md-4">
                                     <div class="form-group">
-                                        <label for="emailAddress" class="form-label">Email Address</label>
-                                        <input type="email" class="form-control contact-input" id="emailAddress"
-                                            placeholder="Enter your email" required>
+                                        <label for="organization" class="form-label">Organization</label>
+                                        <input type="text" class="form-control contact-input" id="organization"
+                                            placeholder="Enter your organization name" required>
                                     </div>
                                 </div>
 
                                 <!-- Contact Number -->
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="contactNumber" class="form-label">Contact Number</label>
-                                        <input type="tel" class="form-control contact-input" id="contactNumber"
-                                            placeholder="Enter your contact number" required>
+                                        <label for="title" class="form-label">Title</label>
+                                        <input type="text" class="form-control contact-input" id="title"
+                                            placeholder="Enter your title" required>
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control contact-input" id="email"
+                                            placeholder="Enter your email address" required>
+                                    </div>
+                                </div>
+
+                                <!-- Phone  -->
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="phone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control contact-input" id="phone"
+                                            placeholder="Enter your phone number" required>
+                                    </div>
+                                </div>
+
+                                <!-- Help  -->
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="help" class="form-label">How can we help you?</label>
+                                        <input type="text" class="form-control contact-input" id="help"
+                                            placeholder="Enter your query or request" required>
                                     </div>
                                 </div>
 
                                 <!-- Note -->
-                                <div class="col-md-12">
+                                <!-- <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="linkedin" class="form-label">LinkedIn</label>
                                         <input type="url" class="form-control contact-input" id="linkedin"
@@ -178,7 +217,7 @@
                                             pattern="https?://(www\.)?linkedin\.com/.*" required>
                                         
                                     </div>
-                                </div>
+                                </div> -->
 
 
                                 <!-- Submit Button -->
@@ -304,14 +343,18 @@
                                 style="opacity: 0.8;">Career</a>
                         </li>
                         <li class="mb-2">
+                            <a href="insights-hub.html" class="text-white text-decoration-none"
+                                style="opacity: 0.8;">Insights</a>
+                        </li>
+                        <li class="mb-2">
                             <a href="contact-us.html" class="text-white text-decoration-none"
                                 style="opacity: 0.8;">Contact US</a>
                         </li>
-                        <li class="mb-2">
+                        <!-- <li class="mb-2">
                             <a href="./about-us.html#management" class="text-white text-decoration-none"
                                 style="opacity: 0.8;">Management
                                 Team</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
@@ -352,12 +395,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <div class="d-flex align-items-center mb-2">
                             <i class="bi bi-telephone-fill text-white me-2" style="opacity: 0.7;"></i>
                             <p class="text-white mb-0" style="opacity: 0.8;">+91 22 3500 8804</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="mb-4">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-envelope-fill text-white me-2" style="opacity: 0.7;"></i>

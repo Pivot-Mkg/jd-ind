@@ -59,7 +59,18 @@
             align-items: center;
             justify-content: center;
             gap: 50px;
+            flex-wrap: wrap;
         }
+
+        @media (max-width:768px) {
+            .row-cta {
+                gap: 20px;
+                
+            }
+        }
+        /* .home-btn a{
+            padding: 5px !important;
+        } */
     </style>
 </head>
 
@@ -79,9 +90,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about-us.html">About</a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="services.html">Services</a>
+                     <li>
+                        <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="careers/open-roles.php">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="join-us.html">Join Us</a>
+                    </li>
+                    <!-- <li>
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li> -->
                     <!-- <li>
                         <a class="nav-link" href="company.html">For Company</a>
                     </li>
@@ -89,15 +109,11 @@
                         <a class="nav-link" href="leaders.html">For Leaders</a>
                     </li> -->
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="insights-hub.html">Insights</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="career.html">Careers</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
-                    </li>
+                    </li> -->
+                    
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="contact-us.html">Contact</a>
                     </li>
@@ -193,12 +209,12 @@
                 </p>
             </div>
             <div class="row-cta">
-                <div class="text-center">
-                    <a href="./career.html" class="btn btn-warning-custom px-4 py-2 fs-6 fw-semibold">
+                <div class="text-center home-btn">
+                    <a href="./careers/open-roles.php#internal-jobs-section" class="btn btn-warning-custom px-4 py-2 fs-6 fw-semibold">
                         Explore Leadership roles
                     </a>
                 </div>
-                <div class="text-center">
+                <div class="text-center home-btn">
                     <a href="./hiring-solution.html" class="btn btn-warning-custom px-4 py-2 fs-6 fw-semibold">
                         Build Your Leadership Team
                     </a>
@@ -513,12 +529,20 @@ background: linear-gradient(
                     <div
                         style="width: 80px; height: 4px; background: #ff9900; margin: 16px 0 24px 0; border-radius: 2px;">
                     </div>
+
+                    <p class="text-white-50 mb-4" style="font-size: 1.1rem">
+                        In a world full of frameworks, tools, and opinions, hiring decisions are still deeply human.</p>
+
                     <p class="text-white-50 mb-4" style="font-size: 1.1rem">
                         At James Douglas, we work closely with organisations and professionals during critical hiring moments 
 when judgment, context, and perspective matter as much as capability. We understand what it takes to 
 succeed in roles across management and leadership levels, and we stay focused on what will work in the 
 real world.
                     </p>
+                    <p class="text-white-50 mb-4" style="font-size: 1.1rem">
+                        We advise companies and senior professionals through important leadership decisions with clarity, discretion, and balance. Our role is not just to find people, but to bring insight, perspective, and the right conversations together so hiring decisions are made with confidence, not urgency.
+                    </p>
+                    
                     <ul class="text-white mb-4 p-2 d-none">
                         <li>Partnership over Process – We co-create solutions with clients and leaders. </li>
                         <li>Advisory over Transactions – Our role is to build a career not just find a job. </li>
@@ -615,7 +639,7 @@ real world.
     <!-- End Why Choose James Douglas Section -->
 
     <!-- What We Stand For Section -->
-    <section class="sections bg-grey">
+    <section class="sections bg-grey d-none">
         <!-- Top Right Half Circle -->
         <!-- <div class="position-absolute top-0 end-0 half-circle-decorator"></div> -->
         <div class="container content-above-decorator">
@@ -1025,18 +1049,22 @@ real world.
                                 Us</a>
                         </li>
                         <li class="mb-2">
-                            <a href="career.html" class="text-white text-decoration-none"
+                            <a href="careers/open-roles.php" class="text-white text-decoration-none"
                                 style="opacity: 0.8;">Career</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="insights-hub.html" class="text-white text-decoration-none"
+                                style="opacity: 0.8;">Insights</a>
                         </li>
                         <li class="mb-2">
                             <a href="contact-us.html" class="text-white text-decoration-none"
                                 style="opacity: 0.8;">Contact US</a>
                         </li>
-                        <li class="mb-2">
+                        <!-- <li class="mb-2">
                             <a href="./about-us.html#management" class="text-white text-decoration-none"
                                 style="opacity: 0.8;">Management
                                 Team</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
@@ -1079,12 +1107,12 @@ real world.
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <div class="d-flex align-items-center mb-2">
                             <i class="bi bi-telephone-fill text-white me-2" style="opacity: 0.7;"></i>
                             <p class="text-white mb-0" style="opacity: 0.8;">+91 22 3500 8804</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="mb-4">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-envelope-fill text-white me-2" style="opacity: 0.7;"></i>

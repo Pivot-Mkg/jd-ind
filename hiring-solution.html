@@ -453,7 +453,7 @@
         }
 
         /* Hide arrows on mobile if you want (swipe only) */
-        @media (max-width: 640px) {
+        /* @media (max-width: 640px) {
             .swiper-container-for-this-page {
                 padding-left: 0;
                 padding-right: 0;
@@ -463,7 +463,21 @@
             .swiper-container-for-this-page .swiper-button-next {
                 display: none;
             }
-        }
+        } */
+
+        @media (max-width: 640px) {
+  .swiper-container-for-this-page .swiper-button-prev,
+  .swiper-container-for-this-page .swiper-button-next {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    top: 50%;
+  }
+
+  .swiper-container-for-this-page .swiper-button-prev { left: 6px; }
+  .swiper-container-for-this-page .swiper-button-next { right: 6px; }
+}
+
     </style>
 
     <style>
@@ -510,6 +524,7 @@
             font-size: 14.5px;
             line-height: 1.55;
             color: #111827;
+            text-align: justify;
         }
 
         /* Optional list style (if you keep it) */
@@ -658,6 +673,11 @@
             transition: transform .25s ease, box-shadow .25s ease;
         }
 
+        .service-card-ui{
+            min-height: unset;     /* remove tall forcing */
+            height: auto;
+        }
+
         .service-card-ui:hover {
             transform: translateY(-4px);
             box-shadow: 0 16px 32px rgba(0, 0, 0, .14);
@@ -722,6 +742,18 @@
             min-height: 450px;
         }
         }
+
+        @media (max-width: 576px){
+  .service-info-ui{ padding: 14px; }
+  .service-info-ui h5{ font-size: 18px; }
+  .service-info-ui p{ font-size: 14px; }
+   .service-cards-swiper{
+    padding: 0 10px 28px;
+  }
+  .service-card-ui{
+    width: 100%;
+  }
+}
 
         /* Desktop: show 3 like screenshot */
         @media (min-width: 992px) {
@@ -866,15 +898,17 @@
         }
 
         /* mobile */
-        @media (max-width: 576px) {
-            .service-swiper-wrap {
-                padding: 0;
-            }
-
-            .service-outside-nav {
-                display: none;
-            }
-        }
+       @media (max-width: 576px){
+  .service-swiper-wrap{ padding: 0 14px; } /* give space */
+  .service-outside-nav{
+    display: grid;
+    width: 30px;
+    height: 30px;
+    top: 46%;
+  }
+  .service-outside-prev{ left: 6px; }
+  .service-outside-next{ right: 6px; }
+}
 
 
         .service-swiper-wrap {
@@ -886,11 +920,60 @@
         .service-outside-nav {
             z-index: 9999;
         }
+
+     /* ===== Our Search Approach (Option C: device mockup frame) ===== */
+.tab-our-search-approach-img,
+.mobile-our-search-approach-img{
+  margin: 0 auto;
+  border-radius: 18px;
+  padding: 14px;
+  background: linear-gradient(180deg, #ffffff, #f3f4f6);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 32px rgba(0,0,0,.10);
+}
+
+/* Image inside the frame */
+.tab-our-search-approach-img img,
+.mobile-our-search-approach-img img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Default: show TAB image (desktop/tablet), hide mobile */
+.tab-our-search-approach-img{ display: block; max-width: 1100px; }
+.mobile-our-search-approach-img{ display: none;  max-width: 520px; }
+
+/* Mobile: show MOBILE image, hide TAB */
+@media (max-width: 767.98px){
+  .tab-our-search-approach-img{ display: none; }
+  .mobile-our-search-approach-img{ display: block; }
+
+  /* Slightly tighter frame on small screens */
+  .mobile-our-search-approach-img{
+    padding: 10px;
+    border-radius: 16px;
+  }
+  .mobile-our-search-approach-img img{
+    border-radius: 10px;
+  }
+}
+
+/* Tablet fine-tune (optional, but looks nicer) */
+@media (min-width: 768px) and (max-width: 991.98px){
+  .tab-our-search-approach-img{
+    max-width: 920px;
+  }
+}
+
+
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
+     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3" id="mainNavbar">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -905,9 +988,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about-us.html">About</a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="services.html">Services</a>
+                     <li>
+                        <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="careers/open-roles.php">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="join-us.html">Join Us</a>
+                    </li>
+                    <!-- <li>
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li> -->
                     <!-- <li>
                         <a class="nav-link" href="company.html">For Company</a>
                     </li>
@@ -915,15 +1007,11 @@
                         <a class="nav-link" href="leaders.html">For Leaders</a>
                     </li> -->
 
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="insights-hub.html">Insights</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="career.html">Careers</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
-                    </li>
+                    </li> -->
+                    
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="contact-us.html">Contact</a>
                     </li>
@@ -1113,161 +1201,29 @@
                 <div class="section-divider"></div>
             </div>
 
-            <div class="service-swiper-wrap" data-aos="fade-up" data-aos-delay="100">
+        <div class="tab-our-search-approach-img device-frame">
+            <img src="./assets/images/our-search-approach-img/tab-search-approach-img.jpeg" alt="Our Search Approach" loading="lazy">
+        </div>
+        <div class="mobile-our-search-approach-img device-frame">
+            <img src="./assets/images/our-search-approach-img/mobile-search-approach-img.jpeg" alt="Our Search Approach" loading="lazy">
+        </div>
 
-                <!-- LEFT ARROW -->
-                <button class="service-outside-nav service-outside-prev" type="button" aria-label="Previous">‹</button>
 
-                <!-- Swiper -->
-                <div class="swiper service-cards-swiper" id="searchApproachSwiper">
-                    <div class="swiper-wrapper">
 
-                        <!-- Card 1 -->
-                        <div class="swiper-slide">
-                            <a href="#discovery" class="service-card-cta">
-                                <figure class="service-card-ui">
-                                    <div class="service-img-wrapper-ui">
-                                        <img class="service-img-ui"
-                                            src="./assets/images/hiring-solutions-imgs/Understanding-the-Mandate.jpg"
-                                            alt="Discovery & Alignment">
-                                    </div>
-                                    <figcaption class="service-info-ui">
-                                        <h5>Understanding the Mandate</h5>
-                                        <span class="mini-underline"></span>
-                                        <p>We begin by spending time with senior stakeholders to understand the business
-                                            context, the role’s intent, and what success truly looks like beyond the job
-                                            description.
-                                       Every search starts with clarity.</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!-- Card 2 -->
-                        <div class="swiper-slide">
-                            <a href="#mapping" class="service-card-cta">
-                                <figure class="service-card-ui">
-                                    <div class="service-img-wrapper-ui">
-                                        <img class="service-img-ui"
-                                            src="./assets/images/hiring-solutions-imgs/Market-Mapping-&-Research.jpg"
-                                            alt="Market Mapping">
-                                    </div>
-                                    <figcaption class="service-info-ui">
-                                        <h5>Market Mapping & Research</h5>
-                                        <span class="mini-underline"></span>
-                                        <p>Our dedicated research team conducts a rigorous market mapping exercise,
-                                            identifying relevant talent across industries, competitors, and adjacent
-                                            spaces. This allows us to form an informed view of the talent landscape before
-                                            approaching candidates.</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!-- Card 3 -->
-                        <div class="swiper-slide">
-                            <a href="#outreach" class="service-card-cta">
-                                <figure class="service-card-ui">
-                                    <div class="service-img-wrapper-ui">
-                                        <img class="service-img-ui"
-                                            src="./assets/images/hiring-solutions-imgs/Assessment-&-Alignment.jpg"
-                                            alt="Targeted Outreach">
-                                    </div>
-                                    <figcaption class="service-info-ui">
-                                        <h5>Assessment & Alignment</h5>
-                                        <span class="mini-underline"></span>
-                                        <p>We assess candidates not only for capability and experience, but for
-                                            judgment, motivation, and cultural alignment. The focus is on long-term fit not just immediate competence.</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!-- Card 4 -->
-                        <div class="swiper-slide">
-                            <a href="#assessment" class="service-card-cta">
-                                <figure class="service-card-ui">
-                                    <div class="service-img-wrapper-ui">
-                                        <img class="service-img-ui"
-                                            src="./assets/images/hiring-solutions-imgs/Shortlist-&-Advisor.jpg"
-                                            alt="Assessment">
-                                    </div>
-                                    <figcaption class="service-info-ui">
-                                        <h5>Shortlist & Advisory</h5>
-                                        <span class="mini-underline"></span>
-                                        <p>We present a curated shortlist supported by detailed insights on each
-                                            candidate, including strengths, risks, and contextual observations. This stage is collaborative, we refine the search together as understanding
-                                            deepens.</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!-- Card 5 -->
-                        <div class="swiper-slide">
-                            <a href="#shortlist" class="service-card-cta">
-                                <figure class="service-card-ui">
-                                    <div class="service-img-wrapper-ui">
-                                        <img class="service-img-ui"
-                                            src="./assets/images/hiring-solutions-imgs/offer-support.jpg"
-                                            alt="Shortlist & Interviews">
-                                    </div>
-                                    <figcaption class="service-info-ui">
-                                        <h5>Selection &amp; Offer Support</h5>
-                                        <span class="mini-underline"></span>
-                                        <p>We partner closely with our clients through final selection and offer
-                                            discussions, providing guidance on positioning, expectations, and closure.
-                                        </p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                        <!-- Card 6 -->
-                        <div class="swiper-slide">
-                            <a href="#closing" class="service-card-cta">
-                                <figure class="service-card-ui">
-                                    <div class="service-img-wrapper-ui">
-                                        <img class="service-img-ui"
-                                            src="./assets/images/hiring-solutions-imgs/Follow-Through.jpg"
-                                            alt="Offer & Onboarding">
-                                    </div>
-                                    <figcaption class="service-info-ui">
-                                        <h5>Closure &amp; Follow-Through</h5>
-                                        <span class="mini-underline"></span>
-                                        <p>We support closure, joining, and early integration for a confident start. Ensuring clarity, alignment, and momentum from day one, so transitions feel structured, supported, and decisive.</p>
-                                    </figcaption>
-                                </figure>
-                            </a>
-                        </div>
-
-                    </div>
-
-                    <!-- navigation -->
-                    <!-- <div class="swiper-button-prev service-nav-prev"></div>
-      <div class="swiper-button-next service-nav-next"></div> -->
-
-                    <!-- pagination (optional) -->
-                    <div class="swiper-pagination"></div>
-                </div>
-
-                <!-- RIGHT ARROW -->
-                <button class="service-outside-nav service-outside-next" type="button" aria-label="Next">›</button>
-
-            </div>
+        </div>
         </div>
     </section>
 
 
 
     <!-- CTA Section -->
-    <section class="py-5" style="background: linear-gradient(135deg, #00aeef 0%, #2b3a67 100%);">
+    <!-- <section class="py-5" style="background: linear-gradient(135deg, #00aeef 0%, #2b3a67 100%);">
         <div class="container text-center text-white">
             <h2 class="mb-4">Ready to Transform Your Talent Strategy?</h2>
             <p class="lead mb-4">Start the conversation that shapes your leadership future.</p>
             <a href="contact-us.html" class="btn btn-warning-custom btn-lg px-4">Contact Us</a>
         </div>
-    </section>
+    </section> -->
 
     <!-- Footer -->
     <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
@@ -1325,14 +1281,18 @@
                                 style="opacity: 0.8;">Career</a>
                         </li>
                         <li class="mb-2">
+                            <a href="insights-hub.html" class="text-white text-decoration-none"
+                                style="opacity: 0.8;">Insights</a>
+                        </li>
+                        <li class="mb-2">
                             <a href="contact-us.html" class="text-white text-decoration-none"
                                 style="opacity: 0.8;">Contact US</a>
                         </li>
-                        <li class="mb-2">
+                        <!-- <li class="mb-2">
                             <a href="./about-us.html#management" class="text-white text-decoration-none"
                                 style="opacity: 0.8;">Management
                                 Team</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
@@ -1374,12 +1334,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mb-3">
+                    <!-- <div class="mb-3">
                         <div class="d-flex align-items-center mb-2">
                             <i class="bi bi-telephone-fill text-white me-2" style="opacity: 0.7;"></i>
                             <p class="text-white mb-0" style="opacity: 0.8;">+91 22 3500 8804</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="mb-4">
                         <div class="d-flex align-items-center">
                             <i class="bi bi-envelope-fill text-white me-2" style="opacity: 0.7;"></i>
@@ -1500,8 +1460,8 @@
             freeMode: true,
             watchSlidesProgress: true,
             navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
+                nextEl: ".swiper-container-for-this-page .swiper-button-next",
+    prevEl: ".swiper-container-for-this-page .swiper-button-prev",
             },
         });
 
@@ -1556,16 +1516,16 @@
                 el: "#searchApproachSwiper .swiper-pagination",
                 clickable: true,
             },
-            navigation: {
-                nextEl: ".service-outside-next",
-                prevEl: ".service-outside-prev",
-            },
-            breakpoints: {
-                0: { slidesPerView: 1.1 },
-                576: { slidesPerView: 1.6 },
-                768: { slidesPerView: 2.2 },
-                992: { slidesPerView: 3, spaceBetween: 22 },
-            }
+             navigation: {
+    nextEl: "#our-search-approach .service-outside-next",
+    prevEl: "#our-search-approach .service-outside-prev",
+  },
+             breakpoints: {
+      0:   { slidesPerView: 1, spaceBetween: 14 },   // was 1.1
+  576: { slidesPerView: 1.2 },
+  768: { slidesPerView: 2.2 },
+  992: { slidesPerView: 3, spaceBetween: 22 },
+}
         });
 
         /* optional: disable buttons at ends */
