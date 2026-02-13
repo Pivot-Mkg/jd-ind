@@ -135,6 +135,53 @@
             margin: auto;
         }
 
+        
+     /* ===== Our Search Approach (Option C: device mockup frame) ===== */
+.tab-our-search-approach-img,
+.mobile-our-search-approach-img{
+  margin: 0 auto;
+  border-radius: 18px;
+  padding: 14px;
+  background: linear-gradient(180deg, #ffffff, #f3f4f6);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 32px rgba(0,0,0,.10);
+}
+
+/* Image inside the frame */
+.tab-our-search-approach-img img,
+.mobile-our-search-approach-img img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Default: show TAB image (desktop/tablet), hide mobile */
+.tab-our-search-approach-img{ display: block; max-width: 1100px; }
+.mobile-our-search-approach-img{ display: none;  max-width: 520px; }
+
+/* Mobile: show MOBILE image, hide TAB */
+@media (max-width: 767.98px){
+  .tab-our-search-approach-img{ display: none; }
+  .mobile-our-search-approach-img{ display: block; }
+
+  /* Slightly tighter frame on small screens */
+  .mobile-our-search-approach-img{
+    padding: 10px;
+    border-radius: 16px;
+  }
+  .mobile-our-search-approach-img img{
+    border-radius: 10px;
+  }
+}
+
+/* Tablet fine-tune (optional, but looks nicer) */
+@media (min-width: 768px) and (max-width: 991.98px){
+  .tab-our-search-approach-img{
+    max-width: 920px;
+  }
+}
+
 
     </style>
 </head>
@@ -235,6 +282,26 @@
         </div>
     </section>
     <!-- about us end -->
+
+     <section class="pb-5 bg-white" id="our-search-approach">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">How we work</h2>
+                <div class="section-divider"></div>
+            </div>
+
+        <div class="tab-our-search-approach-img device-frame">
+            <img src="./assets/images/our-search-approach-img/how-we-work-img.jpeg" alt="Our Search Approach" loading="lazy">
+        </div>
+        <div class="mobile-our-search-approach-img device-frame">
+            <img src="./assets/images/our-search-approach-img/how-we-work-mobile-img.jpeg" alt="Our Search Approach" loading="lazy">
+        </div>
+
+
+
+        </div>
+        </div>
+    </section>
 
     <!-- mission vision values -->
     <section class="d-none">
