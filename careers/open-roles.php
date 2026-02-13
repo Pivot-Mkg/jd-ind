@@ -623,10 +623,14 @@ function build_filter_url(array $params): string
     <section class="open-roles-section" id="internal-jobs-section">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="section-heading">Internal Opportunities</h2>
+                <h2 class="section-heading">
+                    Build Your Career With James Douglas
+                    <!-- Internal Opportunities -->
+                </h2>
                 <div class="section-divider"></div>
                 <p class="mt-3 text-muted">
-                    Roles that are not marked as Client (External).
+                    Join Our Growing Team
+                   <!-- Careers at James Douglas -->
                 </p>
             </div>
 
@@ -733,10 +737,13 @@ function build_filter_url(array $params): string
     <section class="open-roles-section">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="section-heading">Client (External) Opportunities</h2>
+                <h2 class="section-heading">
+                    <!-- External Opportunities -->
+                    Leadership Roles With Our Partners
+                </h2>
                 <div class="section-divider"></div>
                 <p class="mt-3 text-muted">
-                    Roles marked as Client (External).
+                 Global Talent Acquisition Opportunities
                 </p>
             </div>
             <div class="jobs-filter-form-wrapper">
