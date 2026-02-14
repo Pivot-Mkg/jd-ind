@@ -278,6 +278,8 @@
             align-items: center;
             justify-content: flex-start;
             padding: 26px 22px;
+            gap: 16px;
+
         }
 
         .tab .icon {
@@ -381,11 +383,12 @@
             content: "";
             margin: 0;
         }
-        .swiper-container-for-this-page .swiper-button-prev{
+
+        .swiper-container-for-this-page .swiper-button-prev {
             left: -45px;
         }
 
-        .swiper-container-for-this-page .swiper-button-next{
+        .swiper-container-for-this-page .swiper-button-next {
             right: -45px;
         }
 
@@ -466,18 +469,23 @@
         } */
 
         @media (max-width: 640px) {
-  .swiper-container-for-this-page .swiper-button-prev,
-  .swiper-container-for-this-page .swiper-button-next {
-    display: grid;
-    width: 30px;
-    height: 30px;
-    top: 50%;
-  }
 
-  .swiper-container-for-this-page .swiper-button-prev { left: 6px; }
-  .swiper-container-for-this-page .swiper-button-next { right: 6px; }
-}
+            .swiper-container-for-this-page .swiper-button-prev,
+            .swiper-container-for-this-page .swiper-button-next {
+                display: grid;
+                width: 30px;
+                height: 30px;
+                top: 50%;
+            }
 
+            .swiper-container-for-this-page .swiper-button-prev {
+                left: 6px;
+            }
+
+            .swiper-container-for-this-page .swiper-button-next {
+                right: 6px;
+            }
+        }
     </style>
 
     <style>
@@ -500,15 +508,15 @@
         /* Logo container */
         .panel-card .card-img-wrapper {
             display: flex;
-            align-items: center;
+            /* align-items: center; */
             justify-content: center;
             min-height: 90px;
         }
 
         /* Logo sizing */
         .panel-card .card-img {
-            width: 100%;
-            height: 100%;
+            width: 325px;
+            height: 300px;
             /* object-fit: contain; */
         }
 
@@ -521,13 +529,13 @@
 
         /* Description text */
         .panel-card .card-info-item-description {
-    word-spacing: 0.2rem;
-    font-size: 14.5px;
-    line-height: 1.55;
-    color: #111827;
-    text-align: start;
-    
-}
+            word-spacing: 0.2rem;
+            font-size: 14.5px;
+            line-height: 1.55;
+            color: #111827;
+            text-align: start;
+
+        }
 
         /* Optional list style (if you keep it) */
         .panel-card .pill-list {
@@ -647,11 +655,14 @@
             transition: all .2s ease;
         }
 
-        .expertise-pill:hover{
-  background: var(--navy);      /* was border color */
-  border-color: #d9dfe83d;      /* was background */
-  color: #fff;                  /* needed for contrast */
-}
+        .expertise-pill:hover {
+            background: var(--navy);
+            /* was border color */
+            border-color: #d9dfe83d;
+            /* was background */
+            color: #fff;
+            /* needed for contrast */
+        }
     </style>
 
     <style>
@@ -675,8 +686,9 @@
             transition: transform .25s ease, box-shadow .25s ease;
         }
 
-        .service-card-ui{
-            min-height: unset;     /* remove tall forcing */
+        .service-card-ui {
+            min-height: unset;
+            /* remove tall forcing */
             height: auto;
         }
 
@@ -733,29 +745,41 @@
 
         @media (max-width: 1200px) {
             .service-card-ui {
-            min-height: 450px;
-        }
-        }
-        @media (max-width: 991px) {
-            .service-card-ui {
-            min-height: 400px;
-        }
-            .service-card-ui {
-            min-height: 450px;
-        }
+                min-height: 450px;
+            }
         }
 
-        @media (max-width: 576px){
-  .service-info-ui{ padding: 14px; }
-  .service-info-ui h5{ font-size: 18px; }
-  .service-info-ui p{ font-size: 14px; }
-   .service-cards-swiper{
-    padding: 0 10px 28px;
-  }
-  .service-card-ui{
-    width: 100%;
-  }
-}
+        @media (max-width: 991px) {
+            .service-card-ui {
+                min-height: 400px;
+            }
+
+            .service-card-ui {
+                min-height: 450px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .service-info-ui {
+                padding: 14px;
+            }
+
+            .service-info-ui h5 {
+                font-size: 18px;
+            }
+
+            .service-info-ui p {
+                font-size: 14px;
+            }
+
+            .service-cards-swiper {
+                padding: 0 10px 28px;
+            }
+
+            .service-card-ui {
+                width: 100%;
+            }
+        }
 
         /* Desktop: show 3 like screenshot */
         @media (min-width: 992px) {
@@ -764,7 +788,7 @@
                 padding-right: 0;
             }
 
-          
+
         }
 
         /* Smaller navigation arrows */
@@ -900,17 +924,27 @@
         }
 
         /* mobile */
-       @media (max-width: 576px){
-  .service-swiper-wrap{ padding: 0 14px; } /* give space */
-  .service-outside-nav{
-    display: grid;
-    width: 30px;
-    height: 30px;
-    top: 46%;
-  }
-  .service-outside-prev{ left: 6px; }
-  .service-outside-next{ right: 6px; }
-}
+        @media (max-width: 576px) {
+            .service-swiper-wrap {
+                padding: 0 14px;
+            }
+
+            /* give space */
+            .service-outside-nav {
+                display: grid;
+                width: 30px;
+                height: 30px;
+                top: 46%;
+            }
+
+            .service-outside-prev {
+                left: 6px;
+            }
+
+            .service-outside-next {
+                right: 6px;
+            }
+        }
 
 
         .service-swiper-wrap {
@@ -923,59 +957,70 @@
             z-index: 9999;
         }
 
-     /* ===== Our Search Approach (Option C: device mockup frame) ===== */
-.tab-our-search-approach-img,
-.mobile-our-search-approach-img{
-  margin: 0 auto;
-  border-radius: 18px;
-  padding: 14px;
-  background: linear-gradient(180deg, #ffffff, #f3f4f6);
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 14px 32px rgba(0,0,0,.10);
-}
+        /* ===== Our Search Approach (Option C: device mockup frame) ===== */
+        .tab-our-search-approach-img,
+        .mobile-our-search-approach-img {
+            margin: 0 auto;
+            border-radius: 18px;
+            padding: 14px;
+            background: linear-gradient(180deg, #ffffff, #f3f4f6);
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 14px 32px rgba(0, 0, 0, .10);
+        }
 
-/* Image inside the frame */
-.tab-our-search-approach-img img,
-.mobile-our-search-approach-img img{
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-}
+        /* Image inside the frame */
+        .tab-our-search-approach-img img,
+        .mobile-our-search-approach-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
 
-/* Default: show TAB image (desktop/tablet), hide mobile */
-.tab-our-search-approach-img{ display: block; max-width: 1100px; }
-.mobile-our-search-approach-img{ display: none;  max-width: 520px; }
+        /* Default: show TAB image (desktop/tablet), hide mobile */
+        .tab-our-search-approach-img {
+            display: block;
+            max-width: 1100px;
+        }
 
-/* Mobile: show MOBILE image, hide TAB */
-@media (max-width: 767.98px){
-  .tab-our-search-approach-img{ display: none; }
-  .mobile-our-search-approach-img{ display: block; }
+        .mobile-our-search-approach-img {
+            display: none;
+            max-width: 520px;
+        }
 
-  /* Slightly tighter frame on small screens */
-  .mobile-our-search-approach-img{
-    padding: 10px;
-    border-radius: 16px;
-  }
-  .mobile-our-search-approach-img img{
-    border-radius: 10px;
-  }
-}
+        /* Mobile: show MOBILE image, hide TAB */
+        @media (max-width: 767.98px) {
+            .tab-our-search-approach-img {
+                display: none;
+            }
 
-/* Tablet fine-tune (optional, but looks nicer) */
-@media (min-width: 768px) and (max-width: 991.98px){
-  .tab-our-search-approach-img{
-    max-width: 920px;
-  }
-}
+            .mobile-our-search-approach-img {
+                display: block;
+            }
 
+            /* Slightly tighter frame on small screens */
+            .mobile-our-search-approach-img {
+                padding: 10px;
+                border-radius: 16px;
+            }
 
+            .mobile-our-search-approach-img img {
+                border-radius: 10px;
+            }
+        }
+
+        /* Tablet fine-tune (optional, but looks nicer) */
+        @media (min-width: 768px) and (max-width: 991.98px) {
+            .tab-our-search-approach-img {
+                max-width: 920px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
-     <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3" id="mainNavbar">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -990,7 +1035,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about-us.html">About</a>
                     </li>
-                     <li>
+                    <li>
                         <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
                     </li>
                     <li>
@@ -1012,8 +1057,8 @@
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="insights-hub.html">Insights</a>
                     </li> -->
-                    
-                   
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="contact-us.html">Contact</a>
                     </li>
@@ -1076,11 +1121,8 @@
                             <div class="swiper-slide">
                                 <button class="tab active" data-key="banking" type="button">
                                     <div class="icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M3 21V10l6 3V10l6 3V4h6v17H3z"></path>
-                                            <path d="M7 21v-6"></path>
-                                            <path d="M11 21v-6"></path>
-                                        </svg>
+                                        <img src="./assets/images/icons/banking-service.svg" alt=""
+                                            style="width: 56px;height: 56px;">
                                     </div>
                                     <div class="label">Banking and Financial<br />Services</div>
                                 </button>
@@ -1089,13 +1131,9 @@
                             <div class="swiper-slide">
                                 <button class="tab" data-key="industrial" type="button">
                                     <div class="icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M12 21v-6"></path>
-                                            <path d="M7 21h10"></path>
-                                            <path d="M12 15l7-7"></path>
-                                            <path d="M12 15L5 8"></path>
-                                            <path d="M12 15a7 7 0 1 0-7-7"></path>
-                                        </svg>
+                                        <img src="./assets/images/icons/manufacturing.svg" alt=""
+                                            style="width: 56px; height: 56px;">
+
                                     </div>
                                     <div class="label">Industrial and<br /> Manufacturing</div>
                                 </button>
@@ -1104,13 +1142,9 @@
                             <div class="swiper-slide">
                                 <button class="tab" data-key="health" type="button">
                                     <div class="icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <circle cx="12" cy="12" r="9"></circle>
-                                            <path d="M9.5 10.5c0-1 1-1.8 2.5-1.8s2.5.7 2.5 1.7"></path>
-                                            <path
-                                                d="M9 13.5c.2 1.1 1.3 1.9 3 1.9 1.8 0 3-.8 3-2 0-1-1-1.5-2.5-1.8l-1.2-.3c-1.5-.3-2.3-.8-2.3-1.7">
-                                            </path>
-                                        </svg>
+                                        <img src="./assets/images/icons/healthcare.svg" alt=""
+                                            style="width: 56px; height: 56px;">
+                                       
                                     </div>
                                     <div class="label">Health care and <br />Lifesciences</div>
                                 </button>
@@ -1119,9 +1153,8 @@
                             <div class="swiper-slide">
                                 <button class="tab" data-key="consumer" type="button">
                                     <div class="icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M10 4h4v6h6v4h-6v6h-4v-6H4v-4h6V4z"></path>
-                                        </svg>
+                                        <img src="./assets/images/icons/customer.svg" alt=""
+                                            style="width: 56px; height: 56px;">
                                     </div>
                                     <div class="label">Consumer</div>
                                 </button>
@@ -1130,12 +1163,8 @@
                             <div class="swiper-slide">
                                 <button class="tab" data-key="technology" type="button">
                                     <div class="icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M6 6h15l-2 9H7L6 6z"></path>
-                                            <path d="M6 6L5 3H2"></path>
-                                            <circle cx="8" cy="19" r="1.5"></circle>
-                                            <circle cx="18" cy="19" r="1.5"></circle>
-                                        </svg>
+                                         <img src="./assets/images/icons/customer.svg" alt=""
+                                            style="width: 56px; height: 56px;">
                                     </div>
                                     <div class="label">Technology</div>
                                 </button>
@@ -1144,9 +1173,8 @@
                             <div class="swiper-slide">
                                 <button class="tab" data-key="human" type="button">
                                     <div class="icon">
-                                        <svg viewBox="0 0 24 24">
-                                            <path d="M13 2L3 14h8l-1 8 11-14h-8l0-6z"></path>
-                                        </svg>
+                                        <img src="./assets/images/icons/analitycs.svg" alt=""
+                                            style="width: 56px; height: 56px;">
                                     </div>
                                     <div class="label">Human Resources</div>
                                 </button>
@@ -1203,12 +1231,14 @@
                 <div class="section-divider"></div>
             </div>
 
-        <div class="tab-our-search-approach-img device-frame">
-            <img src="./assets/images/our-search-approach-img/tab-search-approach-img.jpeg" alt="Our Search Approach" loading="lazy">
-        </div>
-        <div class="mobile-our-search-approach-img device-frame">
-            <img src="./assets/images/our-search-approach-img/mobile-search-approach-img.jpeg" alt="Our Search Approach" loading="lazy">
-        </div>
+            <div class="tab-our-search-approach-img device-frame">
+                <img src="./assets/images/our-search-approach-img/tab-search-approach-img.jpeg"
+                    alt="Our Search Approach" loading="lazy">
+            </div>
+            <div class="mobile-our-search-approach-img device-frame">
+                <img src="./assets/images/our-search-approach-img/mobile-search-approach-img.jpeg"
+                    alt="Our Search Approach" loading="lazy">
+            </div>
 
 
 
@@ -1425,7 +1455,7 @@
             },
             health: {
                 title: "Health care and Lifesciences:",
-                img: "https://images.unsplash.com/photo-1554224155-1696413565d3?auto=format&fit=crop&w=900&q=60",
+                img: "./assets/images/hiring-solutions-imgs/health-lifescience.jpg",
                 desc: "Scientific research, technological advancements, and constant development in healthcare and life sciences create both challenges and opportunities in this vibrant and innovative sector. <br/>There is a burgeoning of sub-sectors as a result of the intersection of science, technology, and the delivery of products and services.",
                 list: ["Specialised Medical Device Companies", "Hospitals", "Fintech", "Insurance", "Risk & Compliance", "Wealth", "Payments"]
             },
@@ -1463,7 +1493,7 @@
             watchSlidesProgress: true,
             navigation: {
                 nextEl: ".swiper-container-for-this-page .swiper-button-next",
-    prevEl: ".swiper-container-for-this-page .swiper-button-prev",
+                prevEl: ".swiper-container-for-this-page .swiper-button-prev",
             },
         });
 
@@ -1518,16 +1548,16 @@
                 el: "#searchApproachSwiper .swiper-pagination",
                 clickable: true,
             },
-             navigation: {
-    nextEl: "#our-search-approach .service-outside-next",
-    prevEl: "#our-search-approach .service-outside-prev",
-  },
-             breakpoints: {
-      0:   { slidesPerView: 1, spaceBetween: 14 },   // was 1.1
-  576: { slidesPerView: 1.2 },
-  768: { slidesPerView: 2.2 },
-  992: { slidesPerView: 3, spaceBetween: 22 },
-}
+            navigation: {
+                nextEl: "#our-search-approach .service-outside-next",
+                prevEl: "#our-search-approach .service-outside-prev",
+            },
+            breakpoints: {
+                0: { slidesPerView: 1, spaceBetween: 14 },   // was 1.1
+                576: { slidesPerView: 1.2 },
+                768: { slidesPerView: 2.2 },
+                992: { slidesPerView: 3, spaceBetween: 22 },
+            }
         });
 
         /* optional: disable buttons at ends */
