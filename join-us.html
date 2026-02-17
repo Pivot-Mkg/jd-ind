@@ -149,9 +149,29 @@
             background: url(./assets/images/join-us-img.jpg) center / cover no-repeat;
         }
 
-        /* .legacy-content{
-            width: 450px;
-        } */
+        @media (max-width:576px) {
+         .legacy-content{
+            padding: 19px;
+        }
+
+        .impact-section .legacy-image {
+    width: 80%;
+    height: 100%;
+    border-radius: 16px;
+    display: block;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-left: 0rem;
+        padding-left: 9px;
+}
+        } 
+
+        .btn-warning-custom {
+    color: #fff;
+    background-color: var(--jd-warning) !important;
+    border-color: var(--jd-warning) !important;
+    white-space: normal;
+    transition: all 0.5s ease-in-out;
+}
     </style>
 </head>
 

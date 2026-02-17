@@ -407,8 +407,8 @@
 
         /* Make space for arrows so they don't overlap content */
         .tabs-swiper {
-            padding-left: 44px;
-            padding-right: 44px;
+                padding-left: 30px;
+    padding-right: 47px;
             position: relative;
         }
 
@@ -479,11 +479,11 @@
             }
 
             .swiper-container-for-this-page .swiper-button-prev {
-                left: 6px;
+                left: -26px;
             }
 
             .swiper-container-for-this-page .swiper-button-next {
-                right: 6px;
+                right: -26px;
             }
         }
     </style>
@@ -503,6 +503,7 @@
             /* left logo area, right text */
             gap: 18px;
             /* align-items: center; */
+            margin-top: 40px;
         }
 
         /* Logo container */
@@ -1015,6 +1016,48 @@
                 max-width: 920px;
             }
         }
+
+        .swiper-container-for-this-page .swiper-btns{
+            position: static;
+        }
+
+        @media (max-width:576px){
+            .swiper-container-for-this-page{
+                position: relative;
+            }
+
+            .swiper-container-for-this-page .swiper-btns{
+                position: absolute;
+                       top: 105%;
+        left: 35%;
+                transform: translate(-50, 50%);
+                display: flex;
+                align-items: center;
+                gap: 28px;
+                z-index: 10;
+    pointer-events: none;
+    width: auto;
+            }
+
+              .swiper-container-for-this-page .swiper-btns .swiper-button-prev,
+  .swiper-container-for-this-page .swiper-btns .swiper-button-next{
+    position: static !important; /* overrides Swiper absolute */
+    margin: 0;
+    /* width: 42px;
+    height: 42px; */
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    pointer-events: auto;
+  }
+
+  .swiper-container-for-this-page .swiper-btns .swiper-button-prev::after,
+  .swiper-container-for-this-page .swiper-btns .swiper-button-next::after{
+    font-size: 16px;
+    font-weight: 700;
+    color: #0B3041;
+  }
+        }
     </style>
 </head>
 
@@ -1182,8 +1225,10 @@
 
                         </div>
                     </div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
+                    <div class="swiper-btns">
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
                 </div>
 
 
