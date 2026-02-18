@@ -1,12 +1,13 @@
 .open-roles-section {
   background: #f3f6f9;
   padding-top: 40px;
-  padding-bottom: 72px;
+  /* padding-bottom: 72px; */
 }
 
 /* Why Join Us block (open-roles.php) */
 .sections {
   padding: 60px 0 30px;
+  padding-bottom: 0;
   background: #fff;
 }
 
@@ -109,7 +110,7 @@
   width: auto;
 }
 
-.jobs-filter-form-wrapper.is-sticky + .open-roles-grid {
+.jobs-filter-form-wrapper.is-sticky+.open-roles-grid {
   margin-top: 30px;
 }
 
@@ -479,6 +480,7 @@
 }
 
 @media (min-width: 768px) {
+
   #job-list,
   #internal-job-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -487,6 +489,7 @@
 }
 
 @media (min-width: 1200px) {
+
   #job-list,
   #internal-job-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));

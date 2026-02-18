@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 $apiUrl = 'https://api.recruitcrm.io/v1/jobs';
@@ -454,12 +455,12 @@ function build_filter_url(array $params): string
     <!-- Why Join Us start here  -->
     <section class="sections mt-0">
         <div class="container content-above-decorator">
-            <div class="text-center mb-5" data-aos="fade-up">
+            <div class="text-center" data-aos="fade-up">
                 <h2 class="section-heading">
                     Careers Opportunities
                 </h2>
                 <div class="section-divider"></div>
-               
+
                 <!-- <p class="mt-1" style="color: #444; font-size: 1.1rem">
                     Your career deserves more than routine mandates. At James Douglas, you’ll work on high-stakes
                     leadership searches, learn from industry experts, and grow in an environment that rewards ambition
@@ -472,6 +473,9 @@ function build_filter_url(array $params): string
 
                 <p class="mt-4" style="color: #444; font-size: 1.1rem">
                     Browse exclusive job opportunities across industries and functions. Each role offers genuine growth potential and aligns with our commitment to creating meaningful connections.
+                    <br>
+                    <br>
+                    Here, your career creates value through people. And that legacy lasts.
                 </p>
 
             </div>
@@ -548,14 +552,12 @@ function build_filter_url(array $params): string
                     </div>
                 </div>
             </div>
-            <p class="mt-4 text-center" style="color: #444; font-size: 1.1rem">
-                Here, your career creates value through people. And that legacy lasts. 
-            </p>
+
         </div>
     </section>
     <!-- Why Join Us end here  -->
 
-   
+
 
     <!-- internal job section start -->
     <section class="open-roles-section" id="internal-jobs-section" style="display: none;">
@@ -568,7 +570,7 @@ function build_filter_url(array $params): string
                 <div class="section-divider"></div>
                 <p class="mt-3 text-muted">
                     Join Our Growing Team
-                   <!-- Careers at James Douglas -->
+                    <!-- Careers at James Douglas -->
                 </p>
             </div>
 
@@ -681,7 +683,7 @@ function build_filter_url(array $params): string
                 </h2>
                 <div class="section-divider"></div>
                 <p class="mt-3 text-muted">
-                 Global Talent Acquisition Opportunities
+                    Global Talent Acquisition Opportunities
                 </p>
             </div>
             <div class="jobs-filter-form-wrapper">
@@ -698,65 +700,65 @@ function build_filter_url(array $params): string
                         <div class="jobs-filter-group">
                             <span class="jobs-filter-label">Job Category</span>
                             <div class="jobs-filter-select">
-                            <select id="job-category-select" name="job_category">
-                                <option value="">All</option>
-                                <?php foreach ($categoryOptions as $category): ?>
-                                    <option value="<?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $categoryFilter === $category ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                            </svg>
+                                <select id="job-category-select" name="job_category">
+                                    <option value="">All</option>
+                                    <?php foreach ($categoryOptions as $category): ?>
+                                        <option value="<?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $categoryFilter === $category ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
+                                </svg>
                             </div>
                         </div>
                         <div class="jobs-filter-group">
                             <span class="jobs-filter-label">City</span>
                             <div class="jobs-filter-select">
-                            <select id="job-city-select" name="city">
-                                <option value="">All</option>
-                                <?php foreach ($cityOptions as $city): ?>
-                                    <option value="<?php echo htmlspecialchars($city, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $cityFilter === $city ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($city, ENT_QUOTES, 'UTF-8'); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                            </svg>
+                                <select id="job-city-select" name="city">
+                                    <option value="">All</option>
+                                    <?php foreach ($cityOptions as $city): ?>
+                                        <option value="<?php echo htmlspecialchars($city, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $cityFilter === $city ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($city, ENT_QUOTES, 'UTF-8'); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
+                                </svg>
                             </div>
                         </div>
                         <div class="jobs-filter-group">
                             <span class="jobs-filter-label">Industry</span>
                             <div class="jobs-filter-select">
-                            <select id="job-industry-select" name="job_industry">
-                                <option value="">All</option>
-                                <?php foreach ($industryOptions as $industry): ?>
-                                    <option value="<?php echo htmlspecialchars($industry, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $industryFilter === $industry ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($industry, ENT_QUOTES, 'UTF-8'); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                            </svg>
+                                <select id="job-industry-select" name="job_industry">
+                                    <option value="">All</option>
+                                    <?php foreach ($industryOptions as $industry): ?>
+                                        <option value="<?php echo htmlspecialchars($industry, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $industryFilter === $industry ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($industry, ENT_QUOTES, 'UTF-8'); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
+                                </svg>
                             </div>
                         </div>
                         <div class="jobs-filter-group">
                             <span class="jobs-filter-label">Salary Range</span>
                             <div class="jobs-filter-select">
-                            <select id="job-salary-select" name="salary_range">
-                                <option value="">All</option>
-                                <?php foreach ($salaryRanges as $key => $label): ?>
-                                    <option value="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $salaryFilter === $key ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                            </svg>
+                                <select id="job-salary-select" name="salary_range">
+                                    <option value="">All</option>
+                                    <?php foreach ($salaryRanges as $key => $label): ?>
+                                        <option value="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $salaryFilter === $key ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -827,7 +829,7 @@ function build_filter_url(array $params): string
                                 data-apply-url="<?php echo htmlspecialchars($jobUrl, ENT_QUOTES, 'UTF-8'); ?>">
                                 <div class="open-role-header">
                                     <div class="open-role-brand">
-                                            <div class="open-role-logo rounded-circle m-0"><?php echo htmlspecialchars(substr($company ?: 'JD', 0, 1), ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="open-role-logo rounded-circle m-0"><?php echo htmlspecialchars(substr($company ?: 'JD', 0, 1), ENT_QUOTES, 'UTF-8'); ?></div>
                                         <div>
                                             <div class="open-role-title mb-0open-role-info-label"><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></div>
                                             <div class="open-role-subtitle">
@@ -861,8 +863,8 @@ function build_filter_url(array $params): string
             <?php endif; ?>
         </div>
     </section>
-   
- 
+
+
     <div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 rounded-4 p-3ad">
@@ -913,8 +915,8 @@ function build_filter_url(array $params): string
         </div>
     </div>
 
-        <!-- Work With Us start here -->
-     <section class="pb-5 bg-white mt-5" id="apply">
+    <!-- Work With Us start here -->
+    <section class="pb-5 bg-white mt-5" id="apply">
         <div class="container">
 
             <div class="row justify-content-center">
@@ -924,7 +926,7 @@ function build_filter_url(array $params): string
                             <h2 class="section-heading">Considering your next move?</h2>
                             <div class="section-divider"></div>
                             <p class="mt-4 text-muted" style="font-size: 1.1rem;">
-                               We work with professionals across management and leadership roles, often before opportunities are publicly visible. Share your details and we’ll reach out when there’s a relevant conversation to have.
+                                We work with professionals across management and leadership roles, often before opportunities are publicly visible. Share your details and we’ll reach out when there’s a relevant conversation to have.
                             </p>
                         </div>
 
@@ -1089,7 +1091,7 @@ function build_filter_url(array $params): string
         const carousel = document.getElementById('teamCarousel');
         const indicators = document.querySelectorAll('.carousel-indicators button');
         if (carousel && indicators.length) {
-            carousel.addEventListener('slide.bs.carousel', function (event) {
+            carousel.addEventListener('slide.bs.carousel', function(event) {
                 indicators.forEach(indicator => {
                     indicator.classList.remove('active');
                     indicator.removeAttribute('aria-current');
@@ -1192,7 +1194,10 @@ function build_filter_url(array $params): string
                             return;
                         }
                         renderPage(nextPage);
-                        list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        list.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
                     });
                 });
             };
@@ -1357,7 +1362,10 @@ function build_filter_url(array $params): string
                         return;
                     }
                     applyFilters(nextPage);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 });
             });
         }
@@ -1491,16 +1499,16 @@ function build_filter_url(array $params): string
             return params.toString();
         }
 
-       function applyFilters(page = 1) {
-  const filters = getActiveFilters();
-  const queryString = buildFilterQuery(filters, page);
+        function applyFilters(page = 1) {
+            const filters = getActiveFilters();
+            const queryString = buildFilterQuery(filters, page);
 
-  const hash = window.location.hash || ''; // ✅ keep existing hash
-  const newUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ''}${hash}`;
+            const hash = window.location.hash || ''; // ✅ keep existing hash
+            const newUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ''}${hash}`;
 
-  window.history.replaceState({}, '', newUrl);
-  fetchFilteredJobs(queryString);
-}
+            window.history.replaceState({}, '', newUrl);
+            fetchFilteredJobs(queryString);
+        }
 
 
         function setActiveFiltersFromParams(params) {
@@ -1532,22 +1540,23 @@ function build_filter_url(array $params): string
     </script>
 
     <script>
- document.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash;
-  if (!hash) return;
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash;
+            if (!hash) return;
 
-  setTimeout(() => {
-    const el = document.querySelector(hash);
-    if (!el) return;
+            setTimeout(() => {
+                const el = document.querySelector(hash);
+                if (!el) return;
 
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 200);
-});
-
-</script>
+                el.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 200);
+        });
+    </script>
 
 
 </body>
 
 </html>
- 
