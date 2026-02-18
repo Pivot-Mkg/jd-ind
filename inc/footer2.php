@@ -27,12 +27,12 @@
                     <li class="mb-2">
                         <a href="../careers/open-roles.php" class="text-white text-decoration-none" style="opacity: 0.8;">Career</a>
                     </li>
-                      <li class="mb-2">
-                            <a href="insights-hub.html" class="text-white text-decoration-none"
-                                style="opacity: 0.8;">Insights</a>
-                        </li>
                     <li class="mb-2">
-                        <a href="../contact-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">Contact Us</a>
+                        <a href="insights-hub.html" class="text-white text-decoration-none"
+                            style="opacity: 0.8;">Insights</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="../contact-us.html" class="text-white text-decoration-none" style="opacity: 0.8;">Contact</a>
                     </li>
                     <!-- <li class="mb-2">
                         <a href="../about-us.html#management" class="text-white text-decoration-none" style="opacity: 0.8;">Management Team</a>
