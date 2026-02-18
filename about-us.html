@@ -136,62 +136,52 @@
         }
 
 /* ===== How we work infographic (Option C refined) ===== */
-
-#our-search-approach .device-frame{
+.tab-our-search-approach-img,
+.mobile-our-search-approach-img{
   margin: 0 auto;
-  width: 100%;
-  border-radius: 20px;
-  padding: clamp(10px, 1.6vw, 16px);
-
-  background: linear-gradient(180deg, #ffffff, #f6f7fb);
-  border: 1px solid rgba(0,0,0,.08);
-  box-shadow: 0 18px 44px rgba(0,0,0,.10);
+  border-radius: 18px;
+  padding: 12px; /* slightly tighter so image looks larger */
+  background: #fff; /* remove gradient (often makes image look dull/washed) */
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 26px rgba(0,0,0,.10);
 }
 
-/* Make it BIG (uses container width) */
-.tab-our-search-approach-img{ 
-  display: block; 
-  max-width: 1240px;     /* increase from 1100 */
-}
-
-.mobile-our-search-approach-img{ 
-  display: none;  
-  max-width: 640px;      /* increase from 520 */
-}
-
-/* Image styling */
-#our-search-approach .device-frame img{
+/* Image */
+.tab-our-search-approach-img img,
+.mobile-our-search-approach-img img{
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 14px;
-
-  /* helps perceived sharpness */
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  image-rendering: -webkit-optimize-contrast;
+  border-radius: 12px;
 }
 
-/* Mobile: show mobile image */
+/* Default: show TAB */
+.tab-our-search-approach-img{ 
+  display: block; 
+  max-width: 980px;   /* prevents upscaling too much */
+}
+.mobile-our-search-approach-img{ 
+  display: none;  
+  max-width: 420px;   /* prevents blurry stretching on phones */
+}
+
+/* Mobile */
 @media (max-width: 767.98px){
   .tab-our-search-approach-img{ display: none; }
   .mobile-our-search-approach-img{ display: block; }
 
-  #our-search-approach .device-frame{
-    border-radius: 18px;
-    box-shadow: 0 14px 34px rgba(0,0,0,.10);
+  .mobile-our-search-approach-img{
+    padding: 10px;
+    border-radius: 16px;
   }
-
-  #our-search-approach .device-frame img{
-    border-radius: 12px;
+  .mobile-our-search-approach-img img{
+    border-radius: 10px;
   }
 }
 
-/* Tablet: keep it wide but not too huge */
+/* Tablet fine tune */
 @media (min-width: 768px) and (max-width: 991.98px){
-  .tab-our-search-approach-img{
-    max-width: 1040px;
-  }
+  .tab-our-search-approach-img{ max-width: 860px; }
 }
 
 
@@ -295,7 +285,7 @@
     </section>
     <!-- about us end -->
 
-     <section class="pb-5 bg-white" id="our-search-approach"> 
+    <section class="pb-5 bg-white" id="our-search-approach">
   <div class="container">
     <div class="text-center mb-5" data-aos="fade-up">
       <h2 class="section-heading">How we work</h2>
@@ -304,39 +294,25 @@
 
     <!-- TAB / DESKTOP -->
     <figure class="tab-our-search-approach-img device-frame">
-      <picture>
-        <!-- if you have a higher-res version -->
-        <source
-          srcset="
-            ./assets/imagesour-search-approach-img/how-we-work-img.jpeg 1x,
-            ./assets/images/our-search-approach-img/how-we-work-img@2x.jpeg 2x
-          ">
-        <img
-          src="./assets/images/our-search-approach-img/how-we-work-img.jpeg"
-          alt="How we work infographic"
-          loading="lazy"
-          decoding="async">
-      </picture>
+      <img
+        src="./assets/images/our-search-approach-img/how-we-work-img.jpeg"
+        alt="How we work infographic"
+        loading="lazy"
+        decoding="async">
     </figure>
 
     <!-- MOBILE -->
     <figure class="mobile-our-search-approach-img device-frame">
-      <picture>
-        <source
-          srcset="
-            ./assets/images/our-search-approach-img/how-we-work-mobile-img.jpeg 1x,
-            ./assets/images/our-search-approach-img/how-we-work-mobile-img@2x.jpeg 2x
-          ">
-        <img
-          src="./assets/images/our-search-approach-img/how-we-work-mobile-img.jpeg"
-          alt="How we work infographic"
-          loading="lazy"
-          decoding="async">
-      </picture>
+      <img
+        src="./assets/images/our-search-approach-img/how-we-work-mobile-img.jpeg"
+        alt="How we work infographic"
+        loading="lazy"
+        decoding="async">
     </figure>
 
   </div>
 </section>
+
 
 
     <!-- mission vision values -->
@@ -738,10 +714,10 @@
 
                     <!-- Contact Form -->
                     <div class="d-flex justify-content-center gap-3 mt-4">
-                        <div class="flex-grow-1" style="max-width: 300px;">
+                        <!-- <div class="flex-grow-1" style="max-width: 300px;">
                             <input type="tel" class="form-control" placeholder="Enter your Number"
                                 style="padding: 12px 16px; border: none; border-radius: 4px;">
-                        </div>
+                        </div> -->
                         <a href="./contact-us.html"><button class="btn btn-warning-custom px-4 py-2 fw-semibold" style="border-radius: 4px;">
                             Contact us
                         </button></a>

@@ -442,7 +442,7 @@ function build_filter_url(array $params): string
         <div class="container content-above-decorator">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="section-heading">
-                    Careers (for Candidates) Opportunities 
+                    Careers Opportunities for Candidates
 
                 </h2>
                 <div class="section-divider"></div>
@@ -462,7 +462,7 @@ function build_filter_url(array $params): string
                 </p>
 
             </div>
-            <div class="row g-4 justify-content-center">
+            <div class="row g-4 justify-content-center d-none">
 
                 <div class="col-12 col-md-6 col-lg-4" data-aos="flip-left" data-aos-delay="100">
                     <div class="card h-100  border-0">

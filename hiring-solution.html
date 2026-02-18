@@ -957,65 +957,59 @@
         .service-outside-nav {
             z-index: 9999;
         }
+/* ===== Our Search Approach (Option C refined) ===== */
+.tab-our-search-approach-img,
+.mobile-our-search-approach-img{
+  margin: 0 auto;
+  border-radius: 18px;
+  padding: 10px;                 /* less padding = less “big frame” */
+  background: #fff;              /* remove gradient (keeps image crisp) */
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 26px rgba(0,0,0,.10);
+}
 
-        /* ===== Our Search Approach (Option C: device mockup frame) ===== */
-        .tab-our-search-approach-img,
-        .mobile-our-search-approach-img {
-            margin: 0 auto;
-            border-radius: 18px;
-            padding: 14px;
-            background: linear-gradient(180deg, #ffffff, #f3f4f6);
-            border: 1px solid #e5e7eb;
-            box-shadow: 0 14px 32px rgba(0, 0, 0, .10);
-        }
+/* Image inside the frame */
+.tab-our-search-approach-img img,
+.mobile-our-search-approach-img img{
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
 
-        /* Image inside the frame */
-        .tab-our-search-approach-img img,
-        .mobile-our-search-approach-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 12px;
-        }
+/* Desktop/tablet: show TAB image, but cap width so it never gets huge */
+.tab-our-search-approach-img{
+  display: block;
+  max-width: 920px;              /* key change: smaller cap */
+}
 
-        /* Default: show TAB image (desktop/tablet), hide mobile */
-        .tab-our-search-approach-img {
-            display: block;
-            max-width: 1100px;
-        }
+/* Hide mobile by default */
+.mobile-our-search-approach-img{
+  display: none;
+  max-width: 420px;              /* prevent blurry upscaling on phones */
+}
 
-        .mobile-our-search-approach-img {
-            display: none;
-            max-width: 520px;
-        }
+/* Mobile: show MOBILE image */
+@media (max-width: 767.98px){
+  .tab-our-search-approach-img{ display: none; }
+  .mobile-our-search-approach-img{ display: block; }
 
-        /* Mobile: show MOBILE image, hide TAB */
-        @media (max-width: 767.98px) {
-            .tab-our-search-approach-img {
-                display: none;
-            }
+  .mobile-our-search-approach-img{
+    padding: 8px;
+    border-radius: 16px;
+  }
+  .mobile-our-search-approach-img img{
+    border-radius: 10px;
+  }
+}
 
-            .mobile-our-search-approach-img {
-                display: block;
-            }
+/* Large screens: still keep it controlled */
+@media (min-width: 1200px){
+  .tab-our-search-approach-img{ max-width: 860px; }
+}
 
-            /* Slightly tighter frame on small screens */
-            .mobile-our-search-approach-img {
-                padding: 10px;
-                border-radius: 16px;
-            }
 
-            .mobile-our-search-approach-img img {
-                border-radius: 10px;
-            }
-        }
 
-        /* Tablet fine-tune (optional, but looks nicer) */
-        @media (min-width: 768px) and (max-width: 991.98px) {
-            .tab-our-search-approach-img {
-                max-width: 920px;
-            }
-        }
 
         .swiper-container-for-this-page .swiper-btns{
             position: static;
