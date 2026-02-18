@@ -300,17 +300,33 @@ $applySlug = $stringify($job['slug'] ?? $job['job_slug'] ?? $jobSlug);
                                 <label class="form-label">Last Name</label>
                                 <input type="text" class="form-control" name="last_name" required>
                             </div>
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 <label class="form-label">Email</label>
                                 <input type="email" class="form-control" name="email" required>
                             </div>
-                            <div class="col-12">
+                            <div class="col-md-6">
                                 <label class="form-label">Phone Number</label>
                                 <input type="tel" class="form-control" name="phone" required>
                             </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Function/ Department</label>
+                                <input type="text" class="form-control" name="function" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Industry</label>
+                                <input type="text" class="form-control" name="industry" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Job Title</label>
+                                <input type="text" class="form-control" name="job_title" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Current Organization</label>
+                                <input type="text" class="form-control" name="current_organization" required>
+                            </div>
                             <div class="col-12">
-                                <label class="form-label">Salary Expectation</label>
-                                <input type="number" class="form-control" name="salary_expectation" min="0" step="1" required>
+                                <label class="form-label">LinkedIn Profile</label>
+                                <input type="url" class="form-control" name="linkedin_profile" placeholder="https://linkedin.com/in/yourprofile" required>
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Upload Resume</label>
@@ -318,7 +334,7 @@ $applySlug = $stringify($job['slug'] ?? $job['job_slug'] ?? $jobSlug);
                             </div>
                         </div>
                         <div class="mt-4 d-flex align-items-center gap-3">
-                            <button type="submit" class="btn btn-primary px-4">Submit Application</button>
+                            <button type="submit" class="open-role-apply px-4">Submit Application</button>
                             <div id="apply-job-status" class="small text-muted"></div>
                         </div>
                     </form>
