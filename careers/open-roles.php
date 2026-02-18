@@ -62,6 +62,11 @@ function job_hiring_for_value(array $job): string
     return '';
 }
 
+function is_confidential_job(array $job): bool
+{
+    return strcasecmp(job_hiring_for_value($job), 'Do Not Post (Confidential)') === 0;
+}
+
 function job_industry_value(array $job): string
 {
     $candidates = [
@@ -165,10 +170,16 @@ while ($nextUrl && $pageCount < $maxPages) {
 }
 
 $internalJobs = array_values(array_filter($allJobs, function ($job) {
+    if (is_confidential_job($job)) {
+        return false;
+    }
     $hiringFor = strtolower(job_hiring_for_value($job));
     return $hiringFor !== 'client (external)';
 }));
 $externalJobs = array_values(array_filter($allJobs, function ($job) {
+    if (is_confidential_job($job)) {
+        return false;
+    }
     $hiringFor = strtolower(job_hiring_for_value($job));
     return $hiringFor === 'client (external)';
 }));
@@ -185,6 +196,9 @@ if ($cityFilter !== '') {
         if ($response['status'] >= 200 && $response['status'] < 300 && is_array($data)) {
             $jobs = extract_jobs($data);
             $jobs = array_values(array_filter($jobs, function ($job) {
+                if (is_confidential_job($job)) {
+                    return false;
+                }
                 $hiringFor = strtolower(job_hiring_for_value($job));
                 return $hiringFor === 'client (external)';
             }));
@@ -442,8 +456,7 @@ function build_filter_url(array $params): string
         <div class="container content-above-decorator">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="section-heading">
-                    Careers Opportunities for Candidates
-
+                    Careers Opportunities
                 </h2>
                 <div class="section-divider"></div>
                
@@ -542,91 +555,10 @@ function build_filter_url(array $params): string
     </section>
     <!-- Why Join Us end here  -->
 
-    <!-- Work With Us start here -->
-     <section class="pb-5 bg-white" id="apply">
-        <div class="container">
-
-            <div class="row justify-content-center">
-                <div class="col-lg-11 col-xl-11">
-                    <div class="contact-form-container">
-                        <div class="text-center mb-5">
-                            <h2 class="section-heading">Work With Us</h2>
-                            <div class="section-divider"></div>
-                            <p class="mt-4 text-muted" style="font-size: 1.1rem;">
-                                We're always looking for talented individuals to join our growing team. If you're
-                                passionate about
-                                connecting great leaders with exceptional opportunities, we'd love to hear from you.
-                            </p>
-                        </div>
-
-                        <!-- 5-field candidate form -->
-                        <form class="contact-form" id="applyForm">
-                            <div class="row g-4">
-                                <!-- Full Name -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="applicantName" class="form-label">Full Name</label>
-                                        <input type="text" class="form-control contact-input" id="applicantName"
-                                            placeholder="Enter your name" required>
-                                    </div>
-                                </div>
-
-                                <!-- Email -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="applicantEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control contact-input" id="applicantEmail"
-                                            placeholder="you@example.com" required>
-                                    </div>
-                                </div>
-
-                                <!-- Phone -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="applicantPhone" class="form-label">Phone</label>
-                                        <input type="tel" class="form-control contact-input" id="applicantPhone"
-                                            placeholder="+91 98XXXXXX" required>
-                                    </div>
-                                </div>
-
-                                <!-- Role Applying For (prefilled from buttons) -->
-                                <!-- <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="applicantRole" class="form-label">Appling for</label>
-                                        <select class="form-select contact-input" id="applicantRole" required>
-                                            <option value="" selected disabled>Select role</option>
-                                            <option>Senior Executive Search Consultant</option>
-                                            <option>Research Associate</option>
-                                            <option>Business Development Manager</option>
-                                        </select>
-                                    </div>
-                                </div> -->
-
-                                <!-- LinkedIn / Resume URL -->
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="applicantLink" class="form-label">LinkedIn Profile</label>
-                                        <input type="url" class="form-control contact-input" id="applicantLink"
-                                            placeholder="https://www.linkedin.com/in/your-profile" required>
-                                    </div>
-                                </div>
-
-                                <!-- Submit -->
-                                <div class="col-12 text-center">
-                                    <button type="submit" class="btn btn-submit">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                        <!-- /form -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Work With Us end here -->
+   
 
     <!-- internal job section start -->
-    <section class="open-roles-section" id="internal-jobs-section">
+    <section class="open-roles-section" id="internal-jobs-section" style="display: none;">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-heading">
@@ -745,7 +677,7 @@ function build_filter_url(array $params): string
             <div class="text-center mb-5">
                 <h2 class="section-heading">
                     <!-- External Opportunities -->
-                    Leadership Roles With Our Partners
+                    Leadership Roles With us
                 </h2>
                 <div class="section-divider"></div>
                 <p class="mt-3 text-muted">
@@ -963,6 +895,10 @@ function build_filter_url(array $params): string
                                 <input type="number" class="form-control" name="salary_expectation" min="0" step="1" required>
                             </div>
                             <div class="col-12">
+                                <label class="form-label">Current CTC</label>
+                                <input type="text" class="form-control" name="current_ctc" required>
+                            </div>
+                            <div class="col-12">
                                 <label class="form-label">Upload Resume</label>
                                 <input type="file" class="form-control" name="resume" required>
                             </div>
@@ -976,6 +912,126 @@ function build_filter_url(array $params): string
             </div>
         </div>
     </div>
+
+        <!-- Work With Us start here -->
+     <section class="pb-5 bg-white mt-5" id="apply">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-xl-11">
+                    <div class="contact-form-container">
+                        <div class="text-center mb-5">
+                            <h2 class="section-heading">Considering your next move?</h2>
+                            <div class="section-divider"></div>
+                            <p class="mt-4 text-muted" style="font-size: 1.1rem;">
+                               We work with professionals across management and leadership roles, often before opportunities are publicly visible. Share your details and we’ll reach out when there’s a relevant conversation to have.
+                            </p>
+                        </div>
+
+                        <form class="contact-form" id="applyForm" enctype="multipart/form-data">
+                            <input type="hidden" name="form_type" value="work_with_us">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workFirstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control contact-input" id="workFirstName"
+                                            name="first_name" placeholder="Enter first name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workLastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control contact-input" id="workLastName"
+                                            name="last_name" placeholder="Enter last name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workPhone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control contact-input" id="workPhone"
+                                            name="phone" placeholder="+91 98XXXXXX" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control contact-input" id="workEmail"
+                                            name="email" placeholder="you@example.com" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workFunction" class="form-label">Function / Department</label>
+                                        <input type="text" class="form-control contact-input" id="workFunction"
+                                            name="function" placeholder="e.g. Sales, Finance, HR" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workIndustry" class="form-label">Industry</label>
+                                        <input type="text" class="form-control contact-input" id="workIndustry"
+                                            name="industry" placeholder="Enter your industry" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workJobTitle" class="form-label">Job Title</label>
+                                        <input type="text" class="form-control contact-input" id="workJobTitle"
+                                            name="job_title" placeholder="Enter your current job title" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workOrganization" class="form-label">Current Organization</label>
+                                        <input type="text" class="form-control contact-input" id="workOrganization"
+                                            name="current_organization" placeholder="Enter current organization" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workCurrentSalary" class="form-label">Current CTC</label>
+                                        <input type="text" class="form-control contact-input" id="workCurrentSalary"
+                                            name="current_salary" placeholder="Enter current CTC" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workLinkedIn" class="form-label">LinkedIn</label>
+                                        <input type="url" class="form-control contact-input" id="workLinkedIn"
+                                            name="linkedin_profile" placeholder="https://www.linkedin.com/in/your-profile" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="workResume" class="form-label">Resume</label>
+                                        <input type="file" class="form-control contact-input" id="workResume"
+                                            name="resume" accept=".pdf,.doc,.docx" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-submit">Register your profile</button>
+                                    <div id="workWithUsStatus" class="small text-muted mt-3"></div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- /form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Work With Us end here -->
 
     <!-- footer starts -->
     <?php include '../inc/footer2.php'; ?>
@@ -993,70 +1049,37 @@ function build_filter_url(array $params): string
 
     <!-- Contact Form JavaScript -->
     <script>
-        // --- Prefill "Role Applying For" from Apply buttons ---
-        document.querySelectorAll('.btn-apply').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const role = btn.getAttribute('data-role');
-                const select = document.getElementById('applicantRole');
-                if (select && role) {
-                    let matched = false;
-                    for (const opt of select.options) {
-                        if (opt.text.trim() === role.trim() || opt.value.trim() === role.trim()) {
-                            select.value = opt.value;
-                            matched = true;
-                            break;
-                        }
+        const workWithUsForm = document.getElementById('applyForm');
+        const workWithUsStatus = document.getElementById('workWithUsStatus');
+        if (workWithUsForm && workWithUsStatus) {
+            workWithUsForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                workWithUsStatus.textContent = 'Submitting...';
+                workWithUsStatus.classList.remove('text-danger', 'text-success');
+                workWithUsStatus.classList.add('text-muted');
+
+                const formData = new FormData(workWithUsForm);
+                try {
+                    const response = await fetch('apply-job.php', {
+                        method: 'POST',
+                        body: formData,
+                    });
+                    const data = await response.json().catch(() => ({}));
+                    if (response.ok && !data.error) {
+                        workWithUsStatus.textContent = data.message || 'Submitted successfully.';
+                        workWithUsStatus.classList.remove('text-muted', 'text-danger');
+                        workWithUsStatus.classList.add('text-success');
+                        workWithUsForm.reset();
+                    } else {
+                        workWithUsStatus.textContent = data.message || 'Failed to submit.';
+                        workWithUsStatus.classList.remove('text-muted', 'text-success');
+                        workWithUsStatus.classList.add('text-danger');
                     }
-                    // If the exact role isn't in the dropdown, add & select it
-                    if (!matched) {
-                        const opt = new Option(role, role, true, true);
-                        select.add(opt);
-                    }
+                } catch (error) {
+                    workWithUsStatus.textContent = 'Failed to submit.';
+                    workWithUsStatus.classList.remove('text-muted', 'text-success');
+                    workWithUsStatus.classList.add('text-danger');
                 }
-            });
-        });
-
-        // --- Application form validation + submit ---
-        const form = document.getElementById('applyForm');
-        if (form) {
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                const name = document.getElementById('applicantName')?.value.trim();
-                const email = document.getElementById('applicantEmail')?.value.trim();
-                const phone = document.getElementById('applicantPhone')?.value.trim();
-                const role = document.getElementById('applicantRole')?.value;
-                const link = document.getElementById('applicantLink')?.value.trim();
-
-                if (!name || !email || !phone || !role || !link) {
-                    alert('Please complete all fields.');
-                    return;
-                }
-
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    alert('Please enter a valid email address.');
-                    return;
-                }
-
-                const phoneRegex = /^[+]?[\d\s\-()]{7,}$/;
-                if (!phoneRegex.test(phone)) {
-                    alert('Please enter a valid phone number.');
-                    return;
-                }
-
-                try { new URL(link); } catch {
-                    alert('Please enter a valid LinkedIn or Resume URL.');
-                    return;
-                }
-
-
-                // Show success message (in a real application, you would send this to a server)
-                alert('Thank you for your message! We will get back to you soon.');
-
-
-                // Reset form
-                this.reset();
             });
         }
     </script>

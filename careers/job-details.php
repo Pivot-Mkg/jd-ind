@@ -8,6 +8,44 @@ $similarJobs = [];
 
 $apiToken = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
 
+function job_hiring_for_value(array $job): string
+{
+    $candidates = [
+        $job['custom_fields'] ?? null,
+        $job['custom_field'] ?? null,
+        $job['custom_fields_values'] ?? null,
+        $job['custom_field_values'] ?? null,
+        $job['fields'] ?? null,
+    ];
+
+    foreach ($candidates as $fields) {
+        if (!is_array($fields)) {
+            continue;
+        }
+        foreach ($fields as $field) {
+            if (!is_array($field)) {
+                continue;
+            }
+            $fieldName = strtolower((string)($field['field_name'] ?? $field['name'] ?? ''));
+            $fieldId = (int)($field['field_id'] ?? $field['id'] ?? 0);
+            if ($fieldId === 7 || $fieldName === 'hiring for') {
+                $value = $field['value'] ?? $field['field_value'] ?? $field['selected'] ?? '';
+                if (is_array($value)) {
+                    $value = $value['value'] ?? $value['label'] ?? $value['name'] ?? '';
+                }
+                return trim((string)$value);
+            }
+        }
+    }
+
+    return '';
+}
+
+function is_confidential_job(array $job): bool
+{
+    return strcasecmp(job_hiring_for_value($job), 'Do Not Post (Confidential)') === 0;
+}
+
 if ($jobSlug === '') {
     $errorMessage = 'Missing job slug.';
 } else {
@@ -65,6 +103,9 @@ if (!$errorMessage) {
         foreach ($listJobs as $item) {
             $slug = $item['slug'] ?? $item['job_slug'] ?? '';
             if ($slug === '' || $slug === $jobSlug) {
+                continue;
+            }
+            if (is_confidential_job($item)) {
                 continue;
             }
             $similarJobs[] = $item;
@@ -323,6 +364,10 @@ $applySlug = $stringify($job['slug'] ?? $job['job_slug'] ?? $jobSlug);
                             <div class="col-md-6">
                                 <label class="form-label">Current Organization</label>
                                 <input type="text" class="form-control" name="current_organization" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Current CTC</label>
+                                <input type="text" class="form-control" name="current_ctc" required>
                             </div>
                             <div class="col-12">
                                 <label class="form-label">LinkedIn Profile</label>

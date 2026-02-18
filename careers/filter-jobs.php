@@ -75,6 +75,11 @@ function job_hiring_for_value(array $job): string
     return '';
 }
 
+function is_confidential_job(array $job): bool
+{
+    return strcasecmp(job_hiring_for_value($job), 'Do Not Post (Confidential)') === 0;
+}
+
 function job_industry_value(array $job): string
 {
     $candidates = [
@@ -207,6 +212,9 @@ if ($searchQuery !== '' && empty($searchParams)) {
 }
 
 $jobs = array_values(array_filter($jobs, function ($job) {
+    if (is_confidential_job($job)) {
+        return false;
+    }
     $hiringFor = strtolower(job_hiring_for_value($job));
     return $hiringFor === 'client (external)';
 }));

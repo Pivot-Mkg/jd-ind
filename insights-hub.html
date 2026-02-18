@@ -17,95 +17,95 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/blogs.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
- 
+
     <style>
-/* 
+        /* 
         #career-banner {
     background: url("./assets/images/banners/blog-page-banner.jpg") center/cover no-repeat;
 } */
 
-.banner {
-    width: 100%;
-    min-height: 80vh;
-    height: 80vh;
-    background: url("./assets/images/banners/blog-page-banner.jpg") center / cover no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
+        .banner {
+            width: 100%;
+            min-height: 80vh;
+            height: 80vh;
+            background: url("./assets/images/banners/blog-page-banner.jpg") center / cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
 
         .hero-section {
-  position: relative;
-  width: 100%;
-  
-  overflow: hidden;
-}
+            position: relative;
+            width: 100%;
 
-.hero-section .desktop-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
+            overflow: hidden;
+        }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35); /* dark overlay for contrast */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
+        .hero-section .desktop-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
 
-.hero-content {
-  color: #fff;
-  max-width: 800px;
-  padding: 0 20px;
-}
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            /* dark overlay for contrast */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
 
-.hero-content h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 700;
-  margin: 0;
-  position: relative;
-}
+        .hero-content {
+            color: #fff;
+            max-width: 800px;
+            padding: 0 20px;
+        }
 
-/* special corner styling for span */
-.hero-corner {
-  position: relative;
-  display: inline-block;
-  /* padding-right: 12px; */
-}
+        .hero-content h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin: 0;
+            position: relative;
+        }
 
-.hero-corner::before {
-    content: "";
-    position: absolute;
-    top: -4px;
-    right: -10px;
-    width: 38px;
-    height: 38px;
-    display: block;
-    transform: scale(0.7);
-    background: url("./assets/images/icons/hero-heading-corner.svg") no-repeat
-    center/contain;
-}
+        /* special corner styling for span */
+        .hero-corner {
+            position: relative;
+            display: inline-block;
+            /* padding-right: 12px; */
+        }
 
-.hero-corner::before {
-    content: "";
-    position: absolute;
-    top: -8px;
-    right: -21px;
-    width: 25px;
-    height: 25px;
-}
+        .hero-corner::before {
+            content: "";
+            position: absolute;
+            top: -4px;
+            right: -10px;
+            width: 38px;
+            height: 38px;
+            display: block;
+            transform: scale(0.7);
+            background: url("./assets/images/icons/hero-heading-corner.svg") no-repeat center/contain;
+        }
+
+        .hero-corner::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            right: -21px;
+            width: 25px;
+            height: 25px;
+        }
     </style>
 </head>
 
 <body>
-     <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3" id="mainNavbar">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -120,7 +120,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about-us.html">About</a>
                     </li>
-                     <li>
+                    <li>
                         <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
                     </li>
                     <li>
@@ -142,8 +142,8 @@
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="insights-hub.html">Insights</a>
                     </li> -->
-                    
-                   
+
+
                     <li class="nav-item">
                         <a class="nav-link" href="contact-us.html">Contact</a>
                     </li>
@@ -152,14 +152,14 @@
         </div>
     </nav>
     <!-- End Navbar -->
-     
+
     <!-- Sentinel (used to detect when the original navbar leaves the viewport) -->
     <div id="navSentinel" aria-hidden="true"></div>
     <!-- Sticky clone will be injected here by JS -->
     <div id="stickyNavbarContainer" aria-hidden="true"></div>
 
-    
-<!-- <section class="hero-section">
+
+    <!-- <section class="hero-section">
   <img class="desktop-img" src="./assets/images/banners/blog-page-banner.jpg" alt="Blog page banner">
 
   <div class="hero-overlay">
@@ -173,15 +173,15 @@
   </div>
 </section> -->
 
-<section class="banner" id="insights-banner">
-   
+    <section class="banner" id="insights-banner">
+
         <div class="banner-overlay">
             <div class="banner-content">
                 <h1>
-        <span class="hero-corner">Insights & Perspectives
-                    </span><br>  
+                    <span class="hero-corner">Insights & Perspectives
+                    </span><br>
                 </h1>
-               
+
             </div>
         </div>
     </section>
@@ -191,11 +191,12 @@
         <div class="container">
             <div class="section-header">
                 <h1 class="section-title fw-normal">Latest Insights & Articles</h1>
-                <p>Stay ahead with concise briefs on leadership trends, succession strategy, and board governance, freshly curated by our partners</p>
+                <p>Stay ahead with concise briefs on leadership trends, succession strategy, and board governance,
+                    freshly curated by our partners</p>
             </div>
 
             <div class="blogs-container">
-                    
+
                 <!-- <figure class="blog-card border rounded">
                     <div class="img-wrapper">
                         <img class="rounded" width="100%" src="./assets/images/blog-imgs/blog-2-Succession-Planning-in-Promoter-Led-Indian-Companies.jpg" alt="" srcset="">
@@ -245,44 +246,29 @@
                  -->
                 <figure class="blog-card border rounded">
                     <div class="img-wrapper">
-                        <img class="rounded" width="100%" src="./assets/images/blog-imgs/blog-3-CEO-Succession-Planning.jpg" alt="" srcset="">
+                        <img class="rounded" width="100%"
+                            src="./assets/images/blog-imgs/blog-3-CEO-Succession-Planning.jpg" alt="" srcset="">
                     </div>
                     <figcaption class="blog-card-caption py-4 px-4">
-                        <small class="blog-card-caption-item blog-card-caption-item-tag m-0 p-0">BUSINESS, CONSULTING</small>
+                        <small class="blog-card-caption-item blog-card-caption-item-tag m-0 p-0">BUSINESS,
+                            CONSULTING</small>
                         <h6 class="blog-card-caption-item blog-card-caption-item-name fw-bold d-block my-2">
                             CEO Succession Planning: A Strategic Imperative</h6>
                         <p class="blog-card-caption-item blog-card-caption-item-description m-0 p-0">
-                            Most succession plans fail, risking instability done right, they ensure continuity and competitive edge.</p>
+                            Most succession plans fail, risking instability done right, they ensure continuity and
+                            competitive edge.</p>
 
                         <a href="./blogs/CEO-Succession-Planning.html" class="btn read-more-cta">
                             <span> Read more </span>
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17" viewBox="0 0 24 17" fill="none">
-                                    <path d="M13.9499 16.5073C13.6676 16.5087 13.3913 16.4422 13.156 16.3164C12.9208 16.1907 12.7374 16.0113 12.6291 15.8012C12.5209 15.5911 12.4927 15.3597 12.5483 15.1367C12.6038 14.9136 12.7405 14.7089 12.9409 14.5487L20.4728 8.4895L12.9409 2.4303C12.7081 2.21118 12.5864 1.92932 12.6002 1.64105C12.6141 1.35278 12.7623 1.07933 13.0154 0.875338C13.2685 0.671347 13.6078 0.551845 13.9654 0.54071C14.3231 0.529576 14.6728 0.627629 14.9447 0.815277L23.4713 7.68772C23.736 7.90232 23.8846 8.19263 23.8846 8.49523C23.8846 8.79783 23.736 9.08813 23.4713 9.30274L14.9447 16.1752C14.68 16.3868 14.3227 16.5061 13.9499 16.5073Z" fill="white"></path>
-                                    <path d="M1.42254 16.5075C1.14027 16.5088 0.863909 16.4423 0.628688 16.3166C0.393466 16.1908 0.210042 16.0114 0.101801 15.8013C-0.00644071 15.5912 -0.034595 15.3599 0.0209272 15.1368C0.0764495 14.9137 0.213133 14.709 0.41355 14.5488L7.94543 8.48963L0.41355 2.43043C0.14595 2.21475 -0.00438591 1.92222 -0.00438591 1.6172C-0.0043859 1.31217 0.14595 1.01964 0.41355 0.803957C0.681151 0.588272 1.04409 0.467102 1.42254 0.467102C1.80098 0.467102 2.16393 0.588272 2.43153 0.803957L10.9582 7.67639C11.2229 7.891 11.3714 8.18131 11.3714 8.48391C11.3714 8.78651 11.2229 9.07681 10.9582 9.29142L2.43153 16.1639C2.29991 16.2721 2.14296 16.3582 1.96976 16.4172C1.79656 16.4761 1.61056 16.5068 1.42254 16.5075Z" fill="white"></path>
-                                </svg>
-                            </span>
-                        </a>
-                    </figcaption>
-                </figure>
-
-                     <figure class="blog-card border rounded">
-                    <div class="img-wrapper">
-                        <img class="rounded" width="100%" src="./assets/images/blog-imgs/blog-2-Succession-Planning-in-Promoter-Led-Indian-Companies.jpg" alt="" srcset="">
-                    </div>
-                    <figcaption class="blog-card-caption">
-                        <small class="blog-card-caption-item blog-card-caption-item-tag m-0 p-0">BUSINESS, CONSULTING</small>
-                        <h6 class="blog-card-caption-item blog-card-caption-item-name fw-bold d-block my-2">
-                            Succession Planning in Promoter-Led Indian Companies</h6>
-                        <p class="blog-card-caption-item blog-card-caption-item-description m-0 p-0">
-                             How smart succession planning turns risk into strategic opportunity.</p>
-
-                        <a href="./blogs/De-Risking-Leadership-Transitions.html" class="btn read-more-cta">
-                            <span> Read more </span>
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17" viewBox="0 0 24 17" fill="none">
-                                    <path d="M13.9499 16.5073C13.6676 16.5087 13.3913 16.4422 13.156 16.3164C12.9208 16.1907 12.7374 16.0113 12.6291 15.8012C12.5209 15.5911 12.4927 15.3597 12.5483 15.1367C12.6038 14.9136 12.7405 14.7089 12.9409 14.5487L20.4728 8.4895L12.9409 2.4303C12.7081 2.21118 12.5864 1.92932 12.6002 1.64105C12.6141 1.35278 12.7623 1.07933 13.0154 0.875338C13.2685 0.671347 13.6078 0.551845 13.9654 0.54071C14.3231 0.529576 14.6728 0.627629 14.9447 0.815277L23.4713 7.68772C23.736 7.90232 23.8846 8.19263 23.8846 8.49523C23.8846 8.79783 23.736 9.08813 23.4713 9.30274L14.9447 16.1752C14.68 16.3868 14.3227 16.5061 13.9499 16.5073Z" fill="white"></path>
-                                    <path d="M1.42254 16.5075C1.14027 16.5088 0.863909 16.4423 0.628688 16.3166C0.393466 16.1908 0.210042 16.0114 0.101801 15.8013C-0.00644071 15.5912 -0.034595 15.3599 0.0209272 15.1368C0.0764495 14.9137 0.213133 14.709 0.41355 14.5488L7.94543 8.48963L0.41355 2.43043C0.14595 2.21475 -0.00438591 1.92222 -0.00438591 1.6172C-0.0043859 1.31217 0.14595 1.01964 0.41355 0.803957C0.681151 0.588272 1.04409 0.467102 1.42254 0.467102C1.80098 0.467102 2.16393 0.588272 2.43153 0.803957L10.9582 7.67639C11.2229 7.891 11.3714 8.18131 11.3714 8.48391C11.3714 8.78651 11.2229 9.07681 10.9582 9.29142L2.43153 16.1639C2.29991 16.2721 2.14296 16.3582 1.96976 16.4172C1.79656 16.4761 1.61056 16.5068 1.42254 16.5075Z" fill="white"></path>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17" viewBox="0 0 24 17"
+                                    fill="none">
+                                    <path
+                                        d="M13.9499 16.5073C13.6676 16.5087 13.3913 16.4422 13.156 16.3164C12.9208 16.1907 12.7374 16.0113 12.6291 15.8012C12.5209 15.5911 12.4927 15.3597 12.5483 15.1367C12.6038 14.9136 12.7405 14.7089 12.9409 14.5487L20.4728 8.4895L12.9409 2.4303C12.7081 2.21118 12.5864 1.92932 12.6002 1.64105C12.6141 1.35278 12.7623 1.07933 13.0154 0.875338C13.2685 0.671347 13.6078 0.551845 13.9654 0.54071C14.3231 0.529576 14.6728 0.627629 14.9447 0.815277L23.4713 7.68772C23.736 7.90232 23.8846 8.19263 23.8846 8.49523C23.8846 8.79783 23.736 9.08813 23.4713 9.30274L14.9447 16.1752C14.68 16.3868 14.3227 16.5061 13.9499 16.5073Z"
+                                        fill="white"></path>
+                                    <path
+                                        d="M1.42254 16.5075C1.14027 16.5088 0.863909 16.4423 0.628688 16.3166C0.393466 16.1908 0.210042 16.0114 0.101801 15.8013C-0.00644071 15.5912 -0.034595 15.3599 0.0209272 15.1368C0.0764495 14.9137 0.213133 14.709 0.41355 14.5488L7.94543 8.48963L0.41355 2.43043C0.14595 2.21475 -0.00438591 1.92222 -0.00438591 1.6172C-0.0043859 1.31217 0.14595 1.01964 0.41355 0.803957C0.681151 0.588272 1.04409 0.467102 1.42254 0.467102C1.80098 0.467102 2.16393 0.588272 2.43153 0.803957L10.9582 7.67639C11.2229 7.891 11.3714 8.18131 11.3714 8.48391C11.3714 8.78651 11.2229 9.07681 10.9582 9.29142L2.43153 16.1639C2.29991 16.2721 2.14296 16.3582 1.96976 16.4172C1.79656 16.4761 1.61056 16.5068 1.42254 16.5075Z"
+                                        fill="white"></path>
                                 </svg>
                             </span>
                         </a>
@@ -291,21 +277,60 @@
 
                 <figure class="blog-card border rounded">
                     <div class="img-wrapper">
-                        <img class="rounded" width="100%" src="./assets/images/blog-imgs/blog-1-Beyond-Skills.jpg" alt="" srcset="">
+                        <img class="rounded" width="100%"
+                            src="./assets/images/blog-imgs/blog-2-Succession-Planning-in-Promoter-Led-Indian-Companies.jpg"
+                            alt="" srcset="">
+                    </div>
+                    <figcaption class="blog-card-caption">
+                        <small class="blog-card-caption-item blog-card-caption-item-tag m-0 p-0">BUSINESS,
+                            CONSULTING</small>
+                        <h6 class="blog-card-caption-item blog-card-caption-item-name fw-bold d-block my-2">
+                            Succession Planning in Promoter-Led Indian Companies</h6>
+                        <p class="blog-card-caption-item blog-card-caption-item-description m-0 p-0">
+                            How smart succession planning turns risk into strategic opportunity.</p>
+
+                        <a href="./blogs/De-Risking-Leadership-Transitions.html" class="btn read-more-cta">
+                            <span> Read more </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17" viewBox="0 0 24 17"
+                                    fill="none">
+                                    <path
+                                        d="M13.9499 16.5073C13.6676 16.5087 13.3913 16.4422 13.156 16.3164C12.9208 16.1907 12.7374 16.0113 12.6291 15.8012C12.5209 15.5911 12.4927 15.3597 12.5483 15.1367C12.6038 14.9136 12.7405 14.7089 12.9409 14.5487L20.4728 8.4895L12.9409 2.4303C12.7081 2.21118 12.5864 1.92932 12.6002 1.64105C12.6141 1.35278 12.7623 1.07933 13.0154 0.875338C13.2685 0.671347 13.6078 0.551845 13.9654 0.54071C14.3231 0.529576 14.6728 0.627629 14.9447 0.815277L23.4713 7.68772C23.736 7.90232 23.8846 8.19263 23.8846 8.49523C23.8846 8.79783 23.736 9.08813 23.4713 9.30274L14.9447 16.1752C14.68 16.3868 14.3227 16.5061 13.9499 16.5073Z"
+                                        fill="white"></path>
+                                    <path
+                                        d="M1.42254 16.5075C1.14027 16.5088 0.863909 16.4423 0.628688 16.3166C0.393466 16.1908 0.210042 16.0114 0.101801 15.8013C-0.00644071 15.5912 -0.034595 15.3599 0.0209272 15.1368C0.0764495 14.9137 0.213133 14.709 0.41355 14.5488L7.94543 8.48963L0.41355 2.43043C0.14595 2.21475 -0.00438591 1.92222 -0.00438591 1.6172C-0.0043859 1.31217 0.14595 1.01964 0.41355 0.803957C0.681151 0.588272 1.04409 0.467102 1.42254 0.467102C1.80098 0.467102 2.16393 0.588272 2.43153 0.803957L10.9582 7.67639C11.2229 7.891 11.3714 8.18131 11.3714 8.48391C11.3714 8.78651 11.2229 9.07681 10.9582 9.29142L2.43153 16.1639C2.29991 16.2721 2.14296 16.3582 1.96976 16.4172C1.79656 16.4761 1.61056 16.5068 1.42254 16.5075Z"
+                                        fill="white"></path>
+                                </svg>
+                            </span>
+                        </a>
+                    </figcaption>
+                </figure>
+
+                <figure class="blog-card border rounded">
+                    <div class="img-wrapper">
+                        <img class="rounded" width="100%" src="./assets/images/blog-imgs/blog-1-Beyond-Skills.jpg"
+                            alt="" srcset="">
                     </div>
                     <figcaption class="blog-card-caption ">
-                        <small class="blog-card-caption-item blog-card-caption-item-tag m-0 p-0">BUSINESS, CONSULTING</small>
+                        <small class="blog-card-caption-item blog-card-caption-item-tag m-0 p-0">BUSINESS,
+                            CONSULTING</small>
                         <h6 class="blog-card-caption-item blog-card-caption-item-name fw-bold d-block my-2">
                             Hiring Leaders Who Shape the Future</h6>
                         <p class="blog-card-caption-item blog-card-caption-item-description m-0 p-0">
-                            In boardrooms today, the pace of change has far outstripped yesterday’s leadership playbooks.</p>
+                            In boardrooms today, the pace of change has far outstripped yesterday’s leadership
+                            playbooks.</p>
 
                         <a href="./blogs/Beyond-Skills.html" class="btn read-more-cta">
                             <span> Read more </span>
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17" viewBox="0 0 24 17" fill="none">
-                                    <path d="M13.9499 16.5073C13.6676 16.5087 13.3913 16.4422 13.156 16.3164C12.9208 16.1907 12.7374 16.0113 12.6291 15.8012C12.5209 15.5911 12.4927 15.3597 12.5483 15.1367C12.6038 14.9136 12.7405 14.7089 12.9409 14.5487L20.4728 8.4895L12.9409 2.4303C12.7081 2.21118 12.5864 1.92932 12.6002 1.64105C12.6141 1.35278 12.7623 1.07933 13.0154 0.875338C13.2685 0.671347 13.6078 0.551845 13.9654 0.54071C14.3231 0.529576 14.6728 0.627629 14.9447 0.815277L23.4713 7.68772C23.736 7.90232 23.8846 8.19263 23.8846 8.49523C23.8846 8.79783 23.736 9.08813 23.4713 9.30274L14.9447 16.1752C14.68 16.3868 14.3227 16.5061 13.9499 16.5073Z" fill="white"></path>
-                                    <path d="M1.42254 16.5075C1.14027 16.5088 0.863909 16.4423 0.628688 16.3166C0.393466 16.1908 0.210042 16.0114 0.101801 15.8013C-0.00644071 15.5912 -0.034595 15.3599 0.0209272 15.1368C0.0764495 14.9137 0.213133 14.709 0.41355 14.5488L7.94543 8.48963L0.41355 2.43043C0.14595 2.21475 -0.00438591 1.92222 -0.00438591 1.6172C-0.0043859 1.31217 0.14595 1.01964 0.41355 0.803957C0.681151 0.588272 1.04409 0.467102 1.42254 0.467102C1.80098 0.467102 2.16393 0.588272 2.43153 0.803957L10.9582 7.67639C11.2229 7.891 11.3714 8.18131 11.3714 8.48391C11.3714 8.78651 11.2229 9.07681 10.9582 9.29142L2.43153 16.1639C2.29991 16.2721 2.14296 16.3582 1.96976 16.4172C1.79656 16.4761 1.61056 16.5068 1.42254 16.5075Z" fill="white"></path>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="17" viewBox="0 0 24 17"
+                                    fill="none">
+                                    <path
+                                        d="M13.9499 16.5073C13.6676 16.5087 13.3913 16.4422 13.156 16.3164C12.9208 16.1907 12.7374 16.0113 12.6291 15.8012C12.5209 15.5911 12.4927 15.3597 12.5483 15.1367C12.6038 14.9136 12.7405 14.7089 12.9409 14.5487L20.4728 8.4895L12.9409 2.4303C12.7081 2.21118 12.5864 1.92932 12.6002 1.64105C12.6141 1.35278 12.7623 1.07933 13.0154 0.875338C13.2685 0.671347 13.6078 0.551845 13.9654 0.54071C14.3231 0.529576 14.6728 0.627629 14.9447 0.815277L23.4713 7.68772C23.736 7.90232 23.8846 8.19263 23.8846 8.49523C23.8846 8.79783 23.736 9.08813 23.4713 9.30274L14.9447 16.1752C14.68 16.3868 14.3227 16.5061 13.9499 16.5073Z"
+                                        fill="white"></path>
+                                    <path
+                                        d="M1.42254 16.5075C1.14027 16.5088 0.863909 16.4423 0.628688 16.3166C0.393466 16.1908 0.210042 16.0114 0.101801 15.8013C-0.00644071 15.5912 -0.034595 15.3599 0.0209272 15.1368C0.0764495 14.9137 0.213133 14.709 0.41355 14.5488L7.94543 8.48963L0.41355 2.43043C0.14595 2.21475 -0.00438591 1.92222 -0.00438591 1.6172C-0.0043859 1.31217 0.14595 1.01964 0.41355 0.803957C0.681151 0.588272 1.04409 0.467102 1.42254 0.467102C1.80098 0.467102 2.16393 0.588272 2.43153 0.803957L10.9582 7.67639C11.2229 7.891 11.3714 8.18131 11.3714 8.48391C11.3714 8.78651 11.2229 9.07681 10.9582 9.29142L2.43153 16.1639C2.29991 16.2721 2.14296 16.3582 1.96976 16.4172C1.79656 16.4761 1.61056 16.5068 1.42254 16.5075Z"
+                                        fill="white"></path>
                                 </svg>
                             </span>
                         </a>
@@ -333,29 +358,31 @@
                         </a>
                     </figcaption>
                 </figure> -->
-       
-                
+
+
             </div>
         </div>
     </section>
 
 
 
-     <!-- Footer -->
+    <!-- Footer -->
     <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
         <div class="container">
             <div class="row">
                 <!-- Company Info -->
                 <div class="col-lg-5 col-md-6 mb-4">
                     <div class="about-us-footer" style="max-width: 440px;">
-                    <h5 class="footer-heading">About</h5>
-                    <p class="text-white mb-4" style="opacity: 0.8; line-height: 1.6;">
-                       At James Douglas, we connect exceptional leadership talent with forward-thinking companies through tailored executive search solutions driven by insight, precision, and impact.
-                    </p>
+                        <h5 class="footer-heading">About</h5>
+                        <p class="text-white mb-4" style="opacity: 0.8; line-height: 1.6;">
+                            At James Douglas, we connect exceptional leadership talent with forward-thinking companies
+                            through tailored executive search solutions driven by insight, precision, and impact.
+                        </p>
                     </div>
                     <!-- Social Media Icons -->
                     <div class="d-flex gap-2">
-                        <a href="https://www.linkedin.com/company/jamesdouglas/about/?viewAsMember=true" class="text-white" style="opacity: 0.7;">
+                        <a href="https://www.linkedin.com/company/jamesdouglas/about/?viewAsMember=true"
+                            class="text-white" style="opacity: 0.7;">
                             <div class="rounded-circle d-flex align-items-center justify-content-center"
                                 style="width: 40px; height: 40px; background-color: rgba(255,255,255,0.1);">
                                 <i class="bi bi-linkedin"></i>
@@ -400,7 +427,7 @@
                         </li>
                         <li class="mb-2">
                             <a href="contact-us.html" class="text-white text-decoration-none"
-                                style="opacity: 0.8;">Contact US</a>
+                                style="opacity: 0.8;">Contact</a>
                         </li>
                         <!-- <li class="mb-2">
                             <a href="./about-us.html#management" class="text-white text-decoration-none" style="opacity: 0.8;">Management
@@ -439,8 +466,9 @@
                         <div class="d-flex align-items-start mb-2">
                             <i class="bi bi-geo-alt-fill text-white me-2 mt-1" style="opacity: 0.7;"></i>
                             <div>
-                                <p class="text-white mb-0" style="opacity: 0.8;"> 
-                                   1012, 10th Floor, B-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex Bandra (East), Mumbai- 400 051 India. 
+                                <p class="text-white mb-0" style="opacity: 0.8;">
+                                    1012, 10th Floor, B-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex Bandra (East),
+                                    Mumbai- 400 051 India.
                                 </p>
                                 <!-- <p class="text-white mb-0" style="opacity: 0.8;">Business District</p> -->
                             </div>
@@ -492,7 +520,7 @@
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="./assets/js/main.js"></script>
-  
+
     <script>
         // Initialize AOS
         AOS.init({
