@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1100" viewBox="0 0 1400 1100">
+
+    <style>
+        :root{
+        --navy:#1F2F6B;
+        --text:#1F2328;
+        --muted:#5B6472;
+        --line:#2B3A7A;
+        --dash:#C7CEDF;
+        }
+
+        .title{ font:700 24px Inter, system-ui, sans-serif; fill:var(--text);}
+        .body{ font:400 17px/1.6 Inter, system-ui, sans-serif; fill:var(--muted);}
+        .num{ font:800 34px Inter, system-ui, sans-serif; fill:#fff; text-anchor:middle;
+        dominant-baseline:middle;}
+        .hex{ fill:var(--navy);}
+        .divider{ stroke:var(--line); stroke-width:6;}
+        .dash{ stroke:var(--dash); stroke-width:3; stroke-dasharray:6 10; stroke-linecap:round;}
+    </style>
+
+    <rect width="1400" height="1100" fill="#FFFFFF" />
+
+    <!-- GRID SETTINGS -->
+    <!-- Column centers -->
+    <!-- 233 | 700 | 1167 -->
+    <!-- Top row base Y = 200 -->
+    <!-- Bottom row base Y = 640 -->
+    <!-- Each content block spaced safely -->
+
+    <!-- ===== STEP TEMPLATE FUNCTION ===== -->
+    <!-- Repeated manually for clarity -->
+
+    <!-- STEP 1 -->
+    <g transform="translate(233 120)">
+        <polygon class="hex" points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" />
+        <text class="num" x="0" y="4">1</text>
+    </g>
+    <line x1="233" y1="170" x2="233" y2="215" class="dash" />
+    <line x1="150" y1="235" x2="316" y2="235" class="divider" />
+    <text class="title" x="100" y="280">Understanding the Mandate</text>
+    <text class="body" x="100" y="315">
+        <tspan x="100" dy="0">We begin by spending time with senior stakeholders</tspan>
+        <tspan x="100" dy="26">to understand the business context, the role’s</tspan>
+        <tspan x="100" dy="26">intent, and what success truly looks like beyond</tspan>
+        <tspan x="100" dy="26">the job description.</tspan>
+        <tspan x="100" dy="28" fill="#1F2328">Every search starts with clarity.</tspan>
+    </text>
+
+    <!-- STEP 2 -->
+    <g transform="translate(700 120)">
+        <polygon class="hex" points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" />
+        <text class="num" x="0" y="4">2</text>
+    </g>
+    <line x1="700" y1="170" x2="700" y2="215" class="dash" />
+    <line x1="617" y1="235" x2="783" y2="235" class="divider" />
+    <text class="title" x="567" y="280">Market Mapping &amp;amp; Research</text>
+    <text class="body" x="567" y="315">
+        <tspan x="567" dy="0">Our dedicated research team conducts rigorous</tspan>
+        <tspan x="567" dy="26">market mapping, identifying relevant talent</tspan>
+        <tspan x="567" dy="26">across industries, competitors, and adjacent</tspan>
+        <tspan x="567" dy="26">spaces.</tspan>
+        <tspan x="567" dy="28" fill="#1F2328">This allows us to form an informed view before</tspan>
+        <tspan x="567" dy="26" fill="#1F2328">approaching candidates.</tspan>
+    </text>
+
+    <!-- STEP 3 -->
+    <g transform="translate(1167 120)">
+        <polygon class="hex" points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" />
+        <text class="num" x="0" y="4">3</text>
+    </g>
+    <line x1="1167" y1="170" x2="1167" y2="215" class="dash" />
+    <line x1="1084" y1="235" x2="1250" y2="235" class="divider" />
+    <text class="title" x="1034" y="280">Assessment &amp;amp; Alignment</text>
+    <text class="body" x="1034" y="315">
+        <tspan x="1034" dy="0">We assess candidates not only for capability and</tspan>
+        <tspan x="1034" dy="26">experience, but for judgement, motivation, and</tspan>
+        <tspan x="1034" dy="26">cultural alignment.</tspan>
+        <tspan x="1034" dy="28" fill="#1F2328">The focus is on long term fit, not immediate</tspan>
+        <tspan x="1034" dy="26" fill="#1F2328">competence.</tspan>
+    </text>
+
+    <!-- STEP 4 -->
+    <g transform="translate(233 600)">
+        <polygon class="hex" points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" />
+        <text class="num" x="0" y="4">4</text>
+    </g>
+    <line x1="233" y1="650" x2="233" y2="695" class="dash" />
+    <line x1="150" y1="715" x2="316" y2="715" class="divider" />
+    <text class="title" x="100" y="760">Shortlist &amp; Advisory</text>
+    <text class="body" x="100" y="795">
+        <tspan x="100" dy="0">We present a curated shortlist supported by</tspan>
+        <tspan x="100" dy="26">detailed insights including strengths, risks, and</tspan>
+        <tspan x="100" dy="26">contextual observations.</tspan>
+        <tspan x="100" dy="28" fill="#1F2328">This stage is collaborative, refined together.</tspan>
+    </text>
+
+    <!-- STEP 5 -->
+    <g transform="translate(700 600)">
+        <polygon class="hex" points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" />
+        <text class="num" x="0" y="4">5</text>
+    </g>
+    <line x1="700" y1="650" x2="700" y2="695" class="dash" />
+    <line x1="617" y1="715" x2="783" y2="715" class="divider" />
+    <text class="title" x="567" y="760">Selection &amp; Offer Support</text>
+    <text class="body" x="567" y="795">
+        <tspan x="567" dy="0">We partner closely through final selection and</tspan>
+        <tspan x="567" dy="26">offer discussions, guiding positioning,</tspan>
+        <tspan x="567" dy="26">expectations, and closure.</tspan>
+    </text>
+
+    <!-- STEP 6 -->
+    <g transform="translate(1167 600)">
+        <polygon class="hex" points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" />
+        <text class="num" x="0" y="4">6</text>
+    </g>
+    <line x1="1167" y1="650" x2="1167" y2="695" class="dash" />
+    <line x1="1084" y1="715" x2="1250" y2="715" class="divider" />
+    <text class="title" x="1034" y="760">Closure &amp; Follow-Through</text>
+    <text class="body" x="1034" y="795">
+        <tspan x="1034" dy="0">Once a candidate accepts, we ensure respectful</tspan>
+        <tspan x="1034" dy="26">closure with all participants and remain engaged</tspan>
+        <tspan x="1034" dy="26">through transition to support a smooth start.</tspan>
+    </text>
+
+</svg>

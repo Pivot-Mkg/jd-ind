@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1040" viewBox="0 0 1200 1040">
+  <defs>
+    <style>
+      :root{
+        --navy:#1F2F6B;
+        --text:#1F2328;
+        --muted:#5B6472;
+        --card:#FFFFFF;
+        --stroke:#1F2F6B;
+        --dash:#B7C0D6;
+      }
+
+      .h1{ font: 700 26px/1.2 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; fill: var(--text); }
+      .p { font: 400 18px/1.55 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; fill: var(--muted); }
+      .num{ font: 800 30px/1 Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; fill: #fff; text-anchor: middle; dominant-baseline: middle; }
+
+      .cardStroke{ fill: var(--card); stroke: var(--stroke); stroke-width: 2.25; }
+      .dash{ stroke: var(--dash); stroke-width: 2; stroke-dasharray: 4 8; stroke-linecap: round; }
+      .hex{ fill: var(--navy); }
+      .softShadow{ filter: url(#shadow); }
+    </style>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0B1437" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="1040" fill="#FFFFFF"/>
+
+  <!--
+    Clean spacing, no overlap:
+    Cards: 520 x 260
+    Horizontal gap: 80  (left x=40, right x=640)
+    Top row y: 210..470
+    Bottom row moved DOWN to y: 660..920  (was 580..840)
+    Badges 3/4 moved down accordingly with consistent spacing.
+    Centers: left=300, right=900
+  -->
+
+  <!-- ========== 1 ========== -->
+  <line x1="300" y1="128" x2="300" y2="194" class="dash"/>
+  <g transform="translate(300 100)">
+    <polygon class="hex" points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19"/>
+    <text class="num" x="0" y="2">1</text>
+  </g>
+  <g class="softShadow" transform="translate(40 210)">
+    <rect class="cardStroke" x="0" y="0" width="520" height="260" rx="24" ry="24"/>
+    <text class="h1" x="34" y="62">A research-led model, by design</text>
+    <text class="p" x="34" y="104">
+      <tspan x="34" dy="0">We don’t believe one person should do</tspan>
+      <tspan x="34" dy="28">everything. Our model clearly separates client</tspan>
+      <tspan x="34" dy="28">engagement and deep research, allowing each</tspan>
+      <tspan x="34" dy="28">to operate at its best. The result is sharper</tspan>
+      <tspan x="34" dy="28">insights, stronger short lists, and more</tspan>
+      <tspan x="34" dy="28">thoughtful problem-solving for our clients.</tspan>
+    </text>
+  </g>
+
+  <!-- ========== 2 ========== -->
+  <line x1="900" y1="128" x2="900" y2="194" class="dash"/>
+  <g transform="translate(900 100)">
+    <polygon class="hex" points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19"/>
+    <text class="num" x="0" y="2">2</text>
+  </g>
+  <g class="softShadow" transform="translate(640 210)">
+    <rect class="cardStroke" x="0" y="0" width="520" height="260" rx="24" ry="24"/>
+    <text class="h1" x="34" y="62">One relationship. One accountable</text>
+    <text class="h1" x="34" y="92">expert.</text>
+    <text class="p" x="34" y="134">
+      <tspan x="34" dy="0">Every client works with a single Key Account</tspan>
+      <tspan x="34" dy="28">Manager who is also an industry specialist. This</tspan>
+      <tspan x="34" dy="28">ensures continuity, context, and advice that</tspan>
+      <tspan x="34" dy="28">improves with time, not repeated re-briefs.</tspan>
+    </text>
+  </g>
+
+  <!-- ========== 3 (moved down) ========== -->
+  <!-- Top row ends at 470. Keep a generous gap before badge 3. -->
+  <line x1="300" y1="578" x2="300" y2="644" class="dash"/>
+  <g transform="translate(300 550)">
+    <polygon class="hex" points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19"/>
+    <text class="num" x="0" y="2">3</text>
+  </g>
+  <g class="softShadow" transform="translate(40 660)">
+    <rect class="cardStroke" x="0" y="0" width="520" height="260" rx="24" ry="24"/>
+    <text class="h1" x="34" y="62">Depth over volume, always</text>
+    <text class="p" x="34" y="104">
+      <tspan x="34" dy="0">We take on mandates where we can genuinely</tspan>
+      <tspan x="34" dy="28">add value. That means rigorous market</tspan>
+      <tspan x="34" dy="28">mapping, informed talent perspectives, and</tspan>
+      <tspan x="34" dy="28">honest counsel even when it’s uncomfortable.</tspan>
+    </text>
+  </g>
+
+  <!-- ========== 4 (moved down) ========== -->
+  <line x1="900" y1="578" x2="900" y2="644" class="dash"/>
+  <g transform="translate(900 550)">
+    <polygon class="hex" points="0,-38 33,-19 33,19 0,38 -33,19 -33,-19"/>
+    <text class="num" x="0" y="2">4</text>
+  </g>
+  <g class="softShadow" transform="translate(640 660)">
+    <rect class="cardStroke" x="0" y="0" width="520" height="260" rx="24" ry="24"/>
+    <text class="h1" x="34" y="62">Built for complexity, not just hiring</text>
+    <text class="p" x="34" y="104">
+      <tspan x="34" dy="0">Much of our work sits at the intersection of</tspan>
+      <tspan x="34" dy="28">hiring, leadership transitions, and succession</tspan>
+      <tspan x="34" dy="28">planning. We partner closely with founders,</tspan>
+      <tspan x="34" dy="28">boards, and CXOs during moments that truly</tspan>
+      <tspan x="34" dy="28">matter, when decisions shape what comes next.</tspan>
+    </text>
+  </g>
+</svg>
