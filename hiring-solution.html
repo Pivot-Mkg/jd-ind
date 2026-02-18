@@ -407,7 +407,7 @@
 
         /* Make space for arrows so they don't overlap content */
         .tabs-swiper {
-                /* padding-left: 30px;
+            /* padding-left: 30px;
     padding-right: 47px; */
             position: relative;
         }
@@ -957,100 +957,114 @@
         .service-outside-nav {
             z-index: 9999;
         }
-/* ===== Our Search Approach (Option C refined) ===== */
-.tab-our-search-approach-img,
-.mobile-our-search-approach-img{
-  margin: 0 auto;
-  border-radius: 18px;
-  padding: 10px;                 /* less padding = less “big frame” */
-  background: #fff;              /* remove gradient (keeps image crisp) */
-  /* border: 1px solid #e5e7eb;
+
+        /* ===== Our Search Approach (Option C refined) ===== */
+        .tab-our-search-approach-img,
+        .mobile-our-search-approach-img {
+            margin: 0 auto;
+            border-radius: 18px;
+            padding: 10px;
+            /* less padding = less “big frame” */
+            background: #fff;
+            /* remove gradient (keeps image crisp) */
+            /* border: 1px solid #e5e7eb;
   box-shadow: 0 12px 26px rgba(0,0,0,.10); */
-}
+        }
 
-/* Image inside the frame */
-.tab-our-search-approach-img img,
-.mobile-our-search-approach-img img{
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 12px;
-}
+        /* Image inside the frame */
+        .tab-our-search-approach-img img,
+        .mobile-our-search-approach-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+        }
 
-/* Desktop/tablet: show TAB image, but cap width so it never gets huge */
-.tab-our-search-approach-img{
-  display: block;
-  max-width: 920px;              /* key change: smaller cap */
-}
+        /* Desktop/tablet: show TAB image, but cap width so it never gets huge */
+        .tab-our-search-approach-img {
+            display: block;
+            max-width: 920px;
+            /* key change: smaller cap */
+        }
 
-/* Hide mobile by default */
-.mobile-our-search-approach-img{
-  display: none;
-  max-width: 420px;              /* prevent blurry upscaling on phones */
-}
+        /* Hide mobile by default */
+        .mobile-our-search-approach-img {
+            display: none;
+            max-width: 420px;
+            /* prevent blurry upscaling on phones */
+        }
 
-/* Mobile: show MOBILE image */
-@media (max-width: 767.98px){
-  .tab-our-search-approach-img{ display: none; }
-  .mobile-our-search-approach-img{ display: block; }
+        /* Mobile: show MOBILE image */
+        @media (max-width: 767.98px) {
+            .tab-our-search-approach-img {
+                display: none;
+            }
 
-  .mobile-our-search-approach-img{
-    padding: 8px;
-    border-radius: 16px;
-  }
-  .mobile-our-search-approach-img img{
-    border-radius: 10px;
-  }
-}
+            .mobile-our-search-approach-img {
+                display: block;
+            }
 
-/* Large screens: still keep it controlled */
-@media (min-width: 1200px){
-  .tab-our-search-approach-img{ max-width: 860px; }
-}
+            .mobile-our-search-approach-img {
+                padding: 8px;
+                border-radius: 16px;
+            }
+
+            .mobile-our-search-approach-img img {
+                border-radius: 10px;
+            }
+        }
+
+        /* Large screens: still keep it controlled */
+        @media (min-width: 1200px) {
+            .tab-our-search-approach-img {
+                max-width: 860px;
+            }
+        }
 
 
 
 
-        .swiper-container-for-this-page .swiper-btns{
+        .swiper-container-for-this-page .swiper-btns {
             position: static;
         }
 
-        @media (max-width:576px){
-            .swiper-container-for-this-page{
+        @media (max-width:576px) {
+            .swiper-container-for-this-page {
                 position: relative;
             }
 
-            .swiper-container-for-this-page .swiper-btns{
+            .swiper-container-for-this-page .swiper-btns {
                 position: absolute;
-                       top: 105%;
-        left: 35%;
+                top: 105%;
+                left: 35%;
                 transform: translate(-50, 50%);
                 display: flex;
                 align-items: center;
                 gap: 28px;
                 z-index: 10;
-    pointer-events: none;
-    width: auto;
+                pointer-events: none;
+                width: auto;
             }
 
-              .swiper-container-for-this-page .swiper-btns .swiper-button-prev,
-  .swiper-container-for-this-page .swiper-btns .swiper-button-next{
-    position: static !important; /* overrides Swiper absolute */
-    margin: 0;
-    /* width: 42px;
+            .swiper-container-for-this-page .swiper-btns .swiper-button-prev,
+            .swiper-container-for-this-page .swiper-btns .swiper-button-next {
+                position: static !important;
+                /* overrides Swiper absolute */
+                margin: 0;
+                /* width: 42px;
     height: 42px; */
-    border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 8px 24px rgba(0,0,0,.12);
-    pointer-events: auto;
-  }
+                border-radius: 50%;
+                background: #fff;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+                pointer-events: auto;
+            }
 
-  .swiper-container-for-this-page .swiper-btns .swiper-button-prev::after,
-  .swiper-container-for-this-page .swiper-btns .swiper-button-next::after{
-    font-size: 16px;
-    font-weight: 700;
-    color: #0B3041;
-  }
+            .swiper-container-for-this-page .swiper-btns .swiper-button-prev::after,
+            .swiper-container-for-this-page .swiper-btns .swiper-button-next::after {
+                font-size: 16px;
+                font-weight: 700;
+                color: #0B3041;
+            }
         }
     </style>
 </head>
@@ -1181,7 +1195,7 @@
                                     <div class="icon">
                                         <img src="./assets/images/icons/healthcare.svg" alt=""
                                             style="width: 56px; height: 56px;">
-                                       
+
                                     </div>
                                     <div class="label">Health care and <br />Lifesciences</div>
                                 </button>
@@ -1200,7 +1214,7 @@
                             <div class="swiper-slide">
                                 <button class="tab" data-key="technology" type="button">
                                     <div class="icon">
-                                         <img src="./assets/images/icons/digital.svg" alt=""
+                                        <img src="./assets/images/icons/digital.svg" alt=""
                                             style="width: 56px; height: 56px;">
                                     </div>
                                     <div class="label">Technology</div>
@@ -1271,8 +1285,8 @@
             </div>
 
             <div class="tab-our-search-approach-img device-frame">
-                <img src="./assets/images/our-search-approach-img/search-approach.svg"
-                    alt="Our Search Approach" loading="lazy">
+                <img src="./assets/images/our-search-approach-img/search-approach.svg" alt="Our Search Approach"
+                    loading="lazy">
             </div>
             <div class="mobile-our-search-approach-img device-frame">
                 <img src="./assets/images/our-search-approach-img/mobile-search-approach-img.jpeg"
@@ -1288,13 +1302,13 @@
 
 
     <!-- CTA Section -->
-    <!-- <section class="py-5" style="background: linear-gradient(135deg, #00aeef 0%, #2b3a67 100%);">
+    <section class="py-5" style="background: linear-gradient(135deg, #00aeef 0%, #2b3a67 100%);">
         <div class="container text-center text-white">
-            <h2 class="mb-4">Ready to Transform Your Talent Strategy?</h2>
-            <p class="lead mb-4">Start the conversation that shapes your leadership future.</p>
+            <h2 class="mb-4">Ready to build your next leadership advantage?</h2>
+            <p class="lead mb-4">Let’s define the roles that matter and run a search built for results.</p>
             <a href="contact-us.html" class="btn btn-warning-custom btn-lg px-4">Contact Us</a>
         </div>
-    </section> -->
+    </section>
 
     <!-- Footer -->
     <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
@@ -1357,7 +1371,7 @@
                         </li>
                         <li class="mb-2">
                             <a href="contact-us.html" class="text-white text-decoration-none"
-                                style="opacity: 0.8;">Contact US</a>
+                                style="opacity: 0.8;">Contact</a>
                         </li>
                         <!-- <li class="mb-2">
                             <a href="./about-us.html#management" class="text-white text-decoration-none"
