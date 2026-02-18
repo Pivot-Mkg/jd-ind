@@ -442,11 +442,12 @@ function build_filter_url(array $params): string
         <div class="container content-above-decorator">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="section-heading">
-                    Why Join Us
+                    Careers (for Candidates) Opportunities 
+
                 </h2>
                 <div class="section-divider"></div>
                
-                <p class="mt-1" style="color: #444; font-size: 1.1rem">
+                <!-- <p class="mt-1" style="color: #444; font-size: 1.1rem">
                     Your career deserves more than routine mandates. At James Douglas, you’ll work on high-stakes
                     leadership searches, learn from industry experts, and grow in an environment that rewards ambition
                     and sharp thinking.
@@ -454,7 +455,12 @@ function build_filter_url(array $params): string
                 <p class="mt-4" style="color: #444; font-size: 1.1rem">
                     We are creating a firm for those who believe advisory is more than a career — it is a calling. At
                     James Douglas, your work shapes leaders, organizations, and industries.
+                </p> -->
+
+                <p class="mt-4" style="color: #444; font-size: 1.1rem">
+                    Browse exclusive job opportunities across industries and functions. Each role offers genuine growth potential and aligns with our commitment to creating meaningful connections.
                 </p>
+
             </div>
             <div class="row g-4 justify-content-center">
 
@@ -983,6 +989,78 @@ function build_filter_url(array $params): string
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="../assets/js/main.js"></script>
+
+
+    <!-- Contact Form JavaScript -->
+    <script>
+        // --- Prefill "Role Applying For" from Apply buttons ---
+        document.querySelectorAll('.btn-apply').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const role = btn.getAttribute('data-role');
+                const select = document.getElementById('applicantRole');
+                if (select && role) {
+                    let matched = false;
+                    for (const opt of select.options) {
+                        if (opt.text.trim() === role.trim() || opt.value.trim() === role.trim()) {
+                            select.value = opt.value;
+                            matched = true;
+                            break;
+                        }
+                    }
+                    // If the exact role isn't in the dropdown, add & select it
+                    if (!matched) {
+                        const opt = new Option(role, role, true, true);
+                        select.add(opt);
+                    }
+                }
+            });
+        });
+
+        // --- Application form validation + submit ---
+        const form = document.getElementById('applyForm');
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('applicantName')?.value.trim();
+                const email = document.getElementById('applicantEmail')?.value.trim();
+                const phone = document.getElementById('applicantPhone')?.value.trim();
+                const role = document.getElementById('applicantRole')?.value;
+                const link = document.getElementById('applicantLink')?.value.trim();
+
+                if (!name || !email || !phone || !role || !link) {
+                    alert('Please complete all fields.');
+                    return;
+                }
+
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+
+                const phoneRegex = /^[+]?[\d\s\-()]{7,}$/;
+                if (!phoneRegex.test(phone)) {
+                    alert('Please enter a valid phone number.');
+                    return;
+                }
+
+                try { new URL(link); } catch {
+                    alert('Please enter a valid LinkedIn or Resume URL.');
+                    return;
+                }
+
+
+                // Show success message (in a real application, you would send this to a server)
+                alert('Thank you for your message! We will get back to you soon.');
+
+
+                // Reset form
+                this.reset();
+            });
+        }
+    </script>
+
     <script>
         // Handle carousel indicators active state (guard for non-home pages)
         const carousel = document.getElementById('teamCarousel');

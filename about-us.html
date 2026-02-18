@@ -135,50 +135,62 @@
             margin: auto;
         }
 
-        
-     /* ===== Our Search Approach (Option C: device mockup frame) ===== */
-.tab-our-search-approach-img,
-.mobile-our-search-approach-img{
+/* ===== How we work infographic (Option C refined) ===== */
+
+#our-search-approach .device-frame{
   margin: 0 auto;
-  border-radius: 18px;
-  padding: 14px;
-  background: linear-gradient(180deg, #ffffff, #f3f4f6);
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 14px 32px rgba(0,0,0,.10);
+  width: 100%;
+  border-radius: 20px;
+  padding: clamp(10px, 1.6vw, 16px);
+
+  background: linear-gradient(180deg, #ffffff, #f6f7fb);
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 18px 44px rgba(0,0,0,.10);
 }
 
-/* Image inside the frame */
-.tab-our-search-approach-img img,
-.mobile-our-search-approach-img img{
+/* Make it BIG (uses container width) */
+.tab-our-search-approach-img{ 
+  display: block; 
+  max-width: 1240px;     /* increase from 1100 */
+}
+
+.mobile-our-search-approach-img{ 
+  display: none;  
+  max-width: 640px;      /* increase from 520 */
+}
+
+/* Image styling */
+#our-search-approach .device-frame img{
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 12px;
+  border-radius: 14px;
+
+  /* helps perceived sharpness */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  image-rendering: -webkit-optimize-contrast;
 }
 
-/* Default: show TAB image (desktop/tablet), hide mobile */
-.tab-our-search-approach-img{ display: block; max-width: 1100px; }
-.mobile-our-search-approach-img{ display: none;  max-width: 520px; }
-
-/* Mobile: show MOBILE image, hide TAB */
+/* Mobile: show mobile image */
 @media (max-width: 767.98px){
   .tab-our-search-approach-img{ display: none; }
   .mobile-our-search-approach-img{ display: block; }
 
-  /* Slightly tighter frame on small screens */
-  .mobile-our-search-approach-img{
-    padding: 10px;
-    border-radius: 16px;
+  #our-search-approach .device-frame{
+    border-radius: 18px;
+    box-shadow: 0 14px 34px rgba(0,0,0,.10);
   }
-  .mobile-our-search-approach-img img{
-    border-radius: 10px;
+
+  #our-search-approach .device-frame img{
+    border-radius: 12px;
   }
 }
 
-/* Tablet fine-tune (optional, but looks nicer) */
+/* Tablet: keep it wide but not too huge */
 @media (min-width: 768px) and (max-width: 991.98px){
   .tab-our-search-approach-img{
-    max-width: 920px;
+    max-width: 1040px;
   }
 }
 
@@ -283,25 +295,49 @@
     </section>
     <!-- about us end -->
 
-     <section class="pb-5 bg-white" id="our-search-approach">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="section-heading">How we work</h2>
-                <div class="section-divider"></div>
-            </div>
+     <section class="pb-5 bg-white" id="our-search-approach"> 
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="section-heading">How we work</h2>
+      <div class="section-divider"></div>
+    </div>
 
-        <div class="tab-our-search-approach-img device-frame">
-            <img src="./assets/images/our-search-approach-img/how-we-work-img.jpeg" alt="Our Search Approach" loading="lazy">
-        </div>
-        <div class="mobile-our-search-approach-img device-frame">
-            <img src="./assets/images/our-search-approach-img/how-we-work-mobile-img.jpeg" alt="Our Search Approach" loading="lazy">
-        </div>
+    <!-- TAB / DESKTOP -->
+    <figure class="tab-our-search-approach-img device-frame">
+      <picture>
+        <!-- if you have a higher-res version -->
+        <source
+          srcset="
+            ./assets/imagesour-search-approach-img/how-we-work-img.jpeg 1x,
+            ./assets/images/our-search-approach-img/how-we-work-img@2x.jpeg 2x
+          ">
+        <img
+          src="./assets/images/our-search-approach-img/how-we-work-img.jpeg"
+          alt="How we work infographic"
+          loading="lazy"
+          decoding="async">
+      </picture>
+    </figure>
 
+    <!-- MOBILE -->
+    <figure class="mobile-our-search-approach-img device-frame">
+      <picture>
+        <source
+          srcset="
+            ./assets/images/our-search-approach-img/how-we-work-mobile-img.jpeg 1x,
+            ./assets/images/our-search-approach-img/how-we-work-mobile-img@2x.jpeg 2x
+          ">
+        <img
+          src="./assets/images/our-search-approach-img/how-we-work-mobile-img.jpeg"
+          alt="How we work infographic"
+          loading="lazy"
+          decoding="async">
+      </picture>
+    </figure>
 
+  </div>
+</section>
 
-        </div>
-        </div>
-    </section>
 
     <!-- mission vision values -->
     <section class="d-none">
