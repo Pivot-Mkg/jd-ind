@@ -459,6 +459,138 @@ background: linear-gradient(
     </section>
     <!-- about us end -->
 
+    <!-- Internal Job Listings -->
+    <section class="py-5 bg-light" id="internal-openings">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-heading">Internal Job Listings</h2>
+                <div class="section-divider"></div>
+                <p class="mt-4 text-muted" style="font-size: 1.05rem;">
+                    Explore current internal opportunities at James Douglas.
+                </p>
+            </div>
+            <div id="internalJobsStatus" class="text-center text-muted mb-4">Loading jobs...</div>
+            <div class="row g-4" id="internalJobsList"></div>
+        </div>
+    </section>
+
+    <!-- Work With Us -->
+    <section class="pb-5 bg-white" id="apply">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-xl-11">
+                    <div class="contact-form-container">
+                        <div class="text-center mb-5">
+                            <h2 class="section-heading">Power up your career with James Douglas</h2>
+                            <div class="section-divider"></div>
+                            <p class="mt-4 text-muted" style="font-size: 1.1rem;">
+                                We are always looking for thoughtful, high-performing professionals to join our team.
+                            </p>
+                        </div>
+
+                        <form class="contact-form" id="joinUsApplyForm" enctype="multipart/form-data">
+                            <input type="hidden" name="form_type" value="work_with_us">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinFirstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control contact-input" id="joinFirstName"
+                                            name="first_name" placeholder="Enter first name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinLastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control contact-input" id="joinLastName"
+                                            name="last_name" placeholder="Enter last name" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinPhone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control contact-input" id="joinPhone"
+                                            name="phone" placeholder="+91 98XXXXXX" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control contact-input" id="joinEmail"
+                                            name="email" placeholder="you@example.com" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinFunction" class="form-label">Function / Department</label>
+                                        <input type="text" class="form-control contact-input" id="joinFunction"
+                                            name="function" placeholder="e.g. Sales, Finance, HR" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinIndustry" class="form-label">Industry</label>
+                                        <input type="text" class="form-control contact-input" id="joinIndustry"
+                                            name="industry" placeholder="Enter your industry" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinJobTitle" class="form-label">Job Title</label>
+                                        <input type="text" class="form-control contact-input" id="joinJobTitle"
+                                            name="job_title" placeholder="Enter your current job title" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinOrganization" class="form-label">Current Organization</label>
+                                        <input type="text" class="form-control contact-input" id="joinOrganization"
+                                            name="current_organization" placeholder="Enter current organization" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinCurrentSalary" class="form-label">Current CTC</label>
+                                        <input type="text" class="form-control contact-input" id="joinCurrentSalary"
+                                            name="current_salary" placeholder="Enter current CTC" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinLinkedIn" class="form-label">LinkedIn</label>
+                                        <input type="url" class="form-control contact-input" id="joinLinkedIn"
+                                            name="linkedin_profile" placeholder="https://www.linkedin.com/in/your-profile" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="joinResume" class="form-label">Resume</label>
+                                        <input type="file" class="form-control contact-input" id="joinResume"
+                                            name="resume" accept=".pdf,.doc,.docx" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-submit">Register your profile</button>
+                                    <div id="joinUsStatus" class="small text-muted mt-3"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
         <div class="container">
@@ -685,6 +817,120 @@ background: linear-gradient(
         }
 
         document.addEventListener('DOMContentLoaded', setupScrollIndicators);
+    </script>
+
+    <script>
+        const internalJobsList = document.getElementById('internalJobsList');
+        const internalJobsStatus = document.getElementById('internalJobsStatus');
+
+        function escapeHtml(value) {
+            return String(value || '')
+                .replaceAll('&', '&amp;')
+                .replaceAll('<', '&lt;')
+                .replaceAll('>', '&gt;')
+                .replaceAll('"', '&quot;')
+                .replaceAll("'", '&#39;');
+        }
+
+        function renderInternalJobs(jobs) {
+            if (!internalJobsList || !internalJobsStatus) {
+                return;
+            }
+
+            if (!Array.isArray(jobs) || jobs.length === 0) {
+                internalJobsStatus.textContent = 'No internal jobs available right now.';
+                internalJobsList.innerHTML = '';
+                return;
+            }
+
+            internalJobsStatus.textContent = '';
+            internalJobsList.innerHTML = jobs.map((job) => {
+                const title = escapeHtml(job.title || 'Open Position');
+                const company = escapeHtml(job.company || 'James Douglas');
+                const city = escapeHtml(job.city || '');
+                const location = escapeHtml(job.location || '');
+                const jobType = escapeHtml(job.job_type || 'Full time');
+                const minExp = escapeHtml(job.min_experience || '');
+                const maxExp = escapeHtml(job.max_experience || '');
+                const exp = minExp || maxExp ? `${minExp}${minExp && maxExp ? ' - ' : ''}${maxExp} Years` : 'Experience not specified';
+                const slug = encodeURIComponent(job.slug || '');
+                const locationText = city || location || 'Location not specified';
+
+                return `
+                    <div class="col-md-6 col-lg-4">
+                        <a href="careers/job-details.php?slug=${slug}" class="text-decoration-none">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="fw-bold mb-2" style="color:#23235b;">${title}</h5>
+                                    <p class="mb-2 text-muted">${company}</p>
+                                    <p class="mb-2"><i class="bi bi-geo-alt me-1"></i>${locationText}</p>
+                                    <p class="mb-2"><i class="bi bi-briefcase me-1"></i>${jobType}</p>
+                                    <p class="mb-0"><i class="bi bi-clock me-1"></i>${exp}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function loadInternalJobs() {
+            if (!internalJobsList || !internalJobsStatus) {
+                return;
+            }
+
+            try {
+                const response = await fetch('careers/internal-jobs.php');
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok || data.error) {
+                    internalJobsStatus.textContent = data.message || 'Unable to load internal jobs right now.';
+                    internalJobsList.innerHTML = '';
+                    return;
+                }
+                renderInternalJobs(data.jobs || []);
+            } catch (error) {
+                internalJobsStatus.textContent = 'Unable to load internal jobs right now.';
+                internalJobsList.innerHTML = '';
+            }
+        }
+
+        loadInternalJobs();
+    </script>
+
+    <script>
+        const joinUsApplyForm = document.getElementById('joinUsApplyForm');
+        const joinUsStatus = document.getElementById('joinUsStatus');
+        if (joinUsApplyForm && joinUsStatus) {
+            joinUsApplyForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                joinUsStatus.textContent = 'Submitting...';
+                joinUsStatus.classList.remove('text-danger', 'text-success');
+                joinUsStatus.classList.add('text-muted');
+
+                const formData = new FormData(joinUsApplyForm);
+                try {
+                    const response = await fetch('careers/apply-job.php', {
+                        method: 'POST',
+                        body: formData,
+                    });
+                    const data = await response.json().catch(() => ({}));
+                    if (response.ok && !data.error) {
+                        joinUsStatus.textContent = data.message || 'Submitted successfully.';
+                        joinUsStatus.classList.remove('text-muted', 'text-danger');
+                        joinUsStatus.classList.add('text-success');
+                        joinUsApplyForm.reset();
+                    } else {
+                        joinUsStatus.textContent = data.message || 'Failed to submit.';
+                        joinUsStatus.classList.remove('text-muted', 'text-success');
+                        joinUsStatus.classList.add('text-danger');
+                    }
+                } catch (error) {
+                    joinUsStatus.textContent = 'Failed to submit.';
+                    joinUsStatus.classList.remove('text-muted', 'text-success');
+                    joinUsStatus.classList.add('text-danger');
+                }
+            });
+        }
     </script>
 
     <script>

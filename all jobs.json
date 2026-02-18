@@ -1,0 +1,1751 @@
+{
+  "data": [
+    {
+      "id": 36,
+      "slug": "17700084924310128788mdM",
+      "name": "CEO",
+      "company_slug": "17700084766270128788qUx",
+      "contact_slug": null,
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 0,
+      "maximum_experience": 0,
+      "min_annual_salary": 15000000,
+      "max_annual_salary": 20000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Ritu Sanghavi\",\"updated_on\":1770008493,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "",
+      "country": "",
+      "address": "",
+      "created_on": "2026-02-02T05:01:32.000000Z",
+      "created_by": 128788,
+      "updated_on": "2026-02-18T10:38:19.000000Z",
+      "updated_by": 128788,
+      "owner": 128788,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 6,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": "119019"
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Medical Devices"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": null
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "20"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "3500000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Do Not Post (Confidential)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17700084924310128788mdM",
+      "application_form_url": "https://recruitcrm.io/apply/17700084924310128788mdM",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 34,
+      "slug": "17700041713170127058htb",
+      "name": "CIO (Confidential)",
+      "company_slug": "17691612512240128495gpu",
+      "contact_slug": "17691612516520128495kUe",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 0,
+      "maximum_experience": 0,
+      "min_annual_salary": 8000000,
+      "max_annual_salary": 10000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Sakshi Punjabi\",\"updated_on\":1770004172,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "MH",
+      "country": "India",
+      "address": "Chembur, Mumbai, India",
+      "created_on": "2026-02-02T03:49:31.000000Z",
+      "created_by": 127058,
+      "updated_on": "2026-02-18T10:33:30.000000Z",
+      "updated_by": 128788,
+      "owner": 127058,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "<b>Role:</b> CIO<br />\n<br />\n<b>Context of the Role: </b>H<u>ighly confidential replacement mandate</u><br />\nThis is a mission-critical leadership role to strengthen and govern the company’s existing technology ecosystem. The organization has already invested significantly in digitisation across sales, distribution, manufacturing, and operations. The current need is execution, ownership, security, and control rather than fresh transformation. <br />\n<b>Key drivers include: </b>\n<ul>\n\t<li>Rising information and data security risks</li>\n\t<li>Monitoring the efficiency of third-party applications (especially for Sales and Distributor Management)</li>\n\t<li>Building a 3-year IT roadmap across Infrastructure, Applications, InfoSec, Data &amp; AI, and strengthening a largely junior IT team. </li>\n</ul>\n<br />\n<br />\n<b>Reporting to:</b> Managing Director.<br />\n<b>Team: </b>Current IT team size is 12–14 members, largely junior with a few long-tenured employees. The CIO will be responsible for restructuring, capability building, and selective hiring.<br />\n<br />\n<b>Looking For:</b><br />\nA hands-on, execution-oriented IT leader comfortable in promoter-driven FMCG environments, with strong ownership and operational discipline. The individual should be a long-term stabilizer for the organization.<br />\n<br />\n<b>Role Requirements:</b>\n\n<ul>\n\t<li><u>Applications &amp; Digital Platforms:</u> Own Sales and Distributor platforms (DMS &amp; SFA – Field Assist), ensure adoption, compliance, uptime, and data accuracy across ~4,000 distributors and ~2,000 sales users, and enable seamless data flow between Sales, Operations, and Production.</li>\n\t<li><u>Infrastructure &amp; IT Operations: </u>Review and stabilize existing infrastructure, improve monitoring of live but under-utilized systems, and strengthen vendor management and SLA governance.</li>\n\t<li><u>Information Security &amp; Risk:</u> Strengthen data security, access controls, admin rights governance, third-party risk management, disaster recovery, backups, and incident readiness.</li>\n\t<li><u>Data, Analytics &amp; AI</u>: Improve reporting and analytics maturity, establish data governance, and introduce AI/automation use cases in a phased manner.</li>\n\t<li><u>Leadership &amp; Governance:</u> Establish IT governance, policies, and controls, and build a stronger internal IT team with leadership depth.</li>\n</ul>\n<br />\n<br />\n<b>Education Background:</b> No specific education requirement; practical experience and execution capability are prioritized.<br />\n<b>Experience:</b> Open. Candidates must have strong exposure to large field teams, distributor networks, third-party ecosystems, and execution-heavy IT operations and security environments.<br />\n<b>Industry Background:</b> FMCG, Consumer, Retail, and distribution-led organizations.<br />\n<b>Target Companies: </b>Indian FMCG and consumer brands, retail and distribution-heavy organizations, traditional or mid-scale enterprises.<br />\n<br />\n<b>Location: </b>Chembur, Mumbai (office shifting to BKC by year-end)<br />\n<b>Working Model:</b> Work from office. Travel to factory locations in Gujarat and regional offices. All Saturdays are working half days.<br />\n<br />\n<b>Screening Process:</b> Initial interaction with the MD (virtual or in-person) focusing on mindset, ownership, and execution capability. Final detailed discussion &amp; decision by MD.<br />\n<br />\n<b>Search Strategy &amp; Budgets: </b>\n\n<ul>\n\t<li>Open to CIO or Head of IT as No.1 <i><u>[We will prioritize this approach to begin with]</u></i> || <b>Budget: 80-1 Cr (all fixed)</b></li>\n\t<li>Two -1 level heads each having expertise in Infra &amp; Info-sec and Applications &amp; Data respectively; both reporting into MD || <b>Budget: 50-60 LPA (all fixed)</b></li>\n</ul>\n<br />\n<br />\n<b><u>Documents to be shared with candidates:</u> </b>As discussed, we will be leveraging the 3-Year IT transformation plan (without the company logo) to be shared with candidates and also disclose the company name while emphasizing on a high level of confidentiality to be maintained.",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": ""
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "FMCG"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1440000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17700041713170127058htb",
+      "application_form_url": "https://recruitcrm.io/apply/17700041713170127058htb",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Technology",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Technology",
+      "job_industry": "Food",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127049
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 44,
+      "slug": "17703630451680127060Ptj",
+      "name": "Corporate HR",
+      "company_slug": "17669990168240127058WHi",
+      "contact_slug": "17669990194730127058SNx",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 12,
+      "maximum_experience": 18,
+      "min_annual_salary": 4500000,
+      "max_annual_salary": 6500000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Pooja Varia\",\"updated_on\":1770363046,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "INTERFACE-11, 801, 8th floor, New Link Rd, Malad West, Mumbai, Maharashtra - 400064",
+      "created_on": "2026-02-06T07:30:45.000000Z",
+      "created_by": 127060,
+      "updated_on": "2026-02-18T08:25:34.000000Z",
+      "updated_by": 130861,
+      "owner": 127060,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": ""
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Ed-Tech"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": null
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "17"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1105000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": null
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17703630451680127060Ptj",
+      "application_form_url": "https://recruitcrm.io/apply/17703630451680127060Ptj",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Corporate HR",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127287,
+        128483
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 53,
+      "slug": "17713877900150128495skP",
+      "name": "Deputy Business Head - Sales",
+      "company_slug": "17695053163320127050VNr",
+      "contact_slug": "17695053196920127050hko",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 2,
+      "minimum_experience": 8,
+      "maximum_experience": 8,
+      "min_annual_salary": 5500000,
+      "max_annual_salary": 7500000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Kopal Pandey\",\"updated_on\":1771387791,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "MH",
+      "country": "India",
+      "address": "Mumbai, MH, India",
+      "created_on": "2026-02-18T04:09:50.000000Z",
+      "created_by": 128495,
+      "updated_on": "2026-02-18T04:13:16.000000Z",
+      "updated_by": 128495,
+      "owner": 128495,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 5,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": {
+        "filename": "JD - Deputy Business Head - Sales HoABL.pdf",
+        "file_link": "https://api.recruitcrm.io/v1/jobs/17713877900150128495skP/job-description-file/eyJpdiI6IlhCaEJicTFVUHEvcmxQa2F0M3haTnc9PSIsInZhbHVlIjoiVXBXRTBJeXJvME9oc3RqK0ZpdnV0amhSQ0QwaVVpYUtHdkZCRjVrRnNqNTM4U3ZxWGFuV0FvY3ZwYUxSNGlNWkdKYmRvMVNCOGpKbEtnWm5oS1k4ak50ZG83Mmg2eWRhTHdwMEVyUm5hVHNJOUhLcXp4YXlIUUVqSlQyY1RFZE5ubHA5M0YrbXd5dUs0aUJxcjhlcWtRPT0iLCJtYWMiOiIyMWUyZjg0MGU4NzQxZDBlMDYyODMzZjVmNWVlMjQ5ZTRlOGYxNDZlYWU5Y2NkY2M2NzhiMjc2NDA4MWNmMWRjIn0="
+      },
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": null
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Real Estate"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1100000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17713877900150128495skP",
+      "application_form_url": "https://recruitcrm.io/apply/17713877900150128495skP",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Sales",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Sales and Business Development",
+      "job_industry": "Real Estate",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [
+        2348
+      ],
+      "xml_feeds": []
+    },
+    {
+      "id": 19,
+      "slug": "17694245060100127288hpG",
+      "name": "Researchers_JDT",
+      "company_slug": "17673591792430127287Hio",
+      "contact_slug": null,
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 0,
+      "maximum_experience": 0,
+      "min_annual_salary": 0,
+      "max_annual_salary": 0,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Shradha Uniyal\",\"updated_on\":1769424506,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "MH",
+      "country": "India",
+      "address": "Pune, MH, India",
+      "created_on": "2026-01-26T10:48:26.000000Z",
+      "created_by": 127288,
+      "updated_on": "2026-02-17T06:48:41.000000Z",
+      "updated_by": 127050,
+      "owner": 127288,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": {
+        "filename": "Job description Research-JDT_New.pdf",
+        "file_link": "https://api.recruitcrm.io/v1/jobs/17694245060100127288hpG/job-description-file/eyJpdiI6IlQ2MlB2bmZIUnlqQndYQTYvdjFqQ2c9PSIsInZhbHVlIjoiK1lEVXFvNDB0RjZKQ2FNNnc4NEE2Z1hXbG1MdTE3MWVkZ2xKbThTOFJFUU56b252MWZucGVxTGlOTnNLbHkzWDZVTzBKTlNXNjRqck9HTXNnUXRmTHpSdCtuTzM2SzlNbThGRzRSeG1zR1RhUGZoeC80N2NzUnF0WWRCLy9RRUhGU1J3MnlVdHhUV2NDNmc3UmxrMnJnPT0iLCJtYWMiOiI3NTkzZTI2ZGJiZTgzN2VjN2RjNThmYjVmMTFmNTRlYTZjNWQ3MzczZjEzZThmMmYzMGJkYWM2MzA1OGI2NWUyIn0="
+      },
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": null
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": null
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": null
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": null
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": null
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": null
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17694245060100127288hpG",
+      "application_form_url": "https://recruitcrm.io/apply/17694245060100127288hpG",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "2",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 17,
+      "slug": "17691799735630127058Axl",
+      "name": "RSH - Trade & CMS",
+      "company_slug": "17675940456870127050lcz",
+      "contact_slug": "17689999676190127058uMb",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 2,
+      "minimum_experience": 10,
+      "maximum_experience": 18,
+      "min_annual_salary": 6000000,
+      "max_annual_salary": 6500000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Sakshi Punjabi\",\"updated_on\":1769179974,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Mumbai, Maharashtra, India",
+      "created_on": "2026-01-23T14:52:53.000000Z",
+      "created_by": 127058,
+      "updated_on": "2026-02-16T15:05:52.000000Z",
+      "updated_by": 128520,
+      "owner": 127058,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "<ol start=\"1\" type=\"1\">\n\t<li><span style=\"font-size:11px;\"><b><u>Regional Head - CMS Sales (Commercial Banking)</u></b></span></li>\n</ol>\n\n<p><span style=\"font-size:11px;\"><strong>Role/ Job Title:</strong> Regional Head - CMS Sales (Commercial Banking)</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Function/ Department: </strong>Transaction Banking-Cash</span></p>\n\n<p><span style=\"font-size:11px;\"><b>Location: </b>Delhi</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Job Purpose:</strong></span></p>\n\n<p><span style=\"font-size:11px;\">The role entails owning the end to end &amp; scaling Cash Management Business for the bank at regional level in a cost-effective manner. The role bearer is responsible for designing the sales strategy to build volumes across region in mid-corporate and pure liability clients. It includes building up teams, systems, process and culture amenable to the scale and consistency of delivery. The role will closely collaborate with the Product Head, Operations, Compliance, Risk, IT and Policy team to ensure development of a market leading solutions in CMS (Physical &amp; Digital). The role is responsible for revenue growth and will develop strategies to drive product penetration while maintaining overall portfolio quality requirement. It has a direct revenue responsibility for the Cash Management business contributing to the larger organizational objectives of the bank.</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Roles &amp; Responsibilities:</strong></span></p>\n\n<ul type=\"disc\">\n\t<li><span style=\"font-size:11px;\">Grow the volume of business for Cash Management solutions for mid-corporate and liability clients and ensure that the overall revenue, profitability and portfolio quality targets are met.</span></li>\n\t<li><span style=\"font-size:11px;\">Lead and direct the team by providing strategic inputs and plans for distribution penetration in current markets as well as future geographic expansion.</span></li>\n\t<li><span style=\"font-size:11px;\">Develop constructive relationships with key partners to drive growth of business.</span></li>\n\t<li><span style=\"font-size:11px;\">Collaborate with the Product Head and policies team to ensure that the target segment is offered the best in class &amp; customized CMS solutions.</span></li>\n\t<li><span style=\"font-size:11px;\">Design long term and short term strategy and develop constructive relationships with Digital marketplace partners and key alliances to drive digital transactions.                                                                                       </span></li>\n\t<li><span style=\"font-size:11px;\">Conduct competition benchmarking and gather market intelligence to shape up the overall sales &amp; product strategy for maximizing business growth.</span></li>\n\t<li><span style=\"font-size:11px;\">Design a fulfilling customer journey leading to customer delight and making IDFC First Bank their banking partner of choice.</span></li>\n\t<li><span style=\"font-size:11px;\">Leverage synergies through collaboration with internal stakeholders and deepen relationship with customers.</span></li>\n\t<li><span style=\"font-size:11px;\">Ensure the successful adoption of internal compliances and regulatory framework across the business.</span></li>\n\t<li><span style=\"font-size:11px;\">Maximize average current account balance and fee income.</span></li>\n\t<li><span style=\"font-size:11px;\">Champion the adoption of high-quality market intelligence and data analytics to promote product, solution and sales effectiveness in line with the banks growth/profitability objectives.</span></li>\n\t<li><span style=\"font-size:11px;\">Recommend improvements to processes and policies across the Cash Management business to drive operational efficiencies and high quality customer service.                                                                                                                        </span></li>\n\t<li><span style=\"font-size:11px;\">Keep abreast with global market trends and competitor strategies in key markets.</span></li>\n\t<li><span style=\"font-size:11px;\">Monitor key parameters on sales productivity, hiring quality and attrition rates and make necessary improvements.</span></li>\n\t<li><span style=\"font-size:11px;\">Champion IDFC FIRST's customer first culture by driving the team to take up high degree servicing norms to ensure absolute customer delight.</span></li>\n\t<li><span style=\"font-size:11px;\">Attract and retain best-in-class talent for key roles in their reporting structure.</span></li>\n\t<li><span style=\"font-size:11px;\">Drive co-operation with product, technology, analytics and risk teams to ensure smooth functioning of business.</span></li>\n\t<li><span style=\"font-size:11px;\">Ensure that sales team adhere to benchmarks/processes set up for finalizing commercials and other key parameters.</span></li>\n</ul>\n\n<p><span style=\"font-size:11px;\"><strong>Education Qualification: </strong></span></p>\n\n<p><span style=\"font-size:11px;\">Graduate – Any graduation</span></p>\n\n<p><span style=\"font-size:11px;\">Post Graduate – Any post graduation</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Experience:</strong> 10+ years of experience with 3+ years at leadership position in Transaction Banking</span></p>\n\n<p> </p>\n\n<p> </p>\n\n<ol start=\"2\" type=\"1\">\n\t<li><span style=\"font-size:11px;\"><b><u>Regional Head - CMS Sales (Corporate Banking)</u></b></span></li>\n</ol>\n\n<p><span style=\"font-size:11px;\"><strong>Role/ Job Title:</strong> Regional Head - CMS Sales (Corporate Banking)</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Function/ Department: </strong>Transaction Banking-Cash</span></p>\n\n<p><span style=\"font-size:11px;\"><b>Location</b>: Delhi</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Job Purpose: </strong></span></p>\n\n<p><span style=\"font-size:11px;\">The Regional Head – CMS Sales is responsible for scaling the Cash Management Services (CMS) business across a defined region. This leadership role involves designing and executing sales strategies, driving revenue and profitability, and ensuring best-in-class CMS solutions through collaboration with internal and external stakeholders. The role carries full P&amp;L responsibility and plays a key part in achieving the bank’s broader transaction banking objectives.</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Roles &amp; Responsibilities:</strong></span></p>\n\n<ul type=\"disc\">\n\t<li><span style=\"font-size:11px;\">Drive business growth for CMS solutions, ensuring achievement of revenue, cost, profitability, and portfolio quality targets.</span></li>\n\t<li><span style=\"font-size:11px;\">Lead and mentor a high-performing sales team, providing strategic direction for market penetration and geographic expansion.</span></li>\n\t<li><span style=\"font-size:11px;\">Collaborate with Product, Operations, Compliance, Risk, IT, and Policy teams to deliver customized and compliant CMS solutions.</span></li>\n\t<li><span style=\"font-size:11px;\">Develop and maintain strategic partnerships with digital marketplaces, vendors, and alliances to enhance digital transaction volumes.</span></li>\n\t<li><span style=\"font-size:11px;\">Conduct market benchmarking and gather competitive intelligence to shape product and sales strategies.</span></li>\n\t<li><span style=\"font-size:11px;\">Design and deliver a seamless customer journey to position IDFC FIRST Bank as the preferred banking partner.</span></li>\n\t<li><span style=\"font-size:11px;\">Maximize average current account balances and fee income through effective client engagement.</span></li>\n\t<li><span style=\"font-size:11px;\">Manage relationships with Indian banks, mutual funds, AMCs, and PE fund houses.</span></li>\n</ul>\n\n<ul type=\"disc\">\n\t<li><span style=\"font-size:11px;\">Promote the use of data analytics and market intelligence to enhance product and sales effectiveness.</span></li>\n\t<li><span style=\"font-size:11px;\">Recommend process and policy improvements to drive operational efficiency and service quality.</span></li>\n\t<li><span style=\"font-size:11px;\">Stay updated on global market trends and competitor strategies.</span></li>\n</ul>\n\n<p><span style=\"font-size:11px;\"><strong>Education Qualification: </strong></span></p>\n\n<p><span style=\"font-size:11px;\">Graduate – Any graduation</span></p>\n\n<p><span style=\"font-size:11px;\">Post Graduate – Any post graduation</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Experience:</strong></span></p>\n\n<p><span style=\"font-size:11px;\">10+ years of experience with 3+ years at leadership position in Transaction Banking</span></p>\n\n<p> </p>\n\n<ol start=\"3\" type=\"1\">\n\t<li><span style=\"font-size:11px;\"><b><u>Regional Head - Trade Sales (Commercial Banking)</u></b></span></li>\n</ol>\n\n<p><span style=\"font-size:11px;\"><strong>Role/ Job Title:</strong> Regional Head - Trade Sales (Commercial Banking)</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Function/ Department: </strong>Transaction Banking-Trade</span></p>\n\n<p><span style=\"font-size:11px;\"><b>Location: Delhi</b></span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Job Purpose: </strong></span></p>\n\n<p><span style=\"font-size:11px;\">The role entails owning end to end and scaling the Trade Business for the bank at a region level in a cost effective manner. The role bearer is responsible for designing the sales strategy to build volumes across zone for mid corporate and pure liability customers. It includes building up teams, systems, process and culture amenable to the scale and consistency of delivery. The role will closely collaborate with the Wholesale Banking Product Head, Operations, Compliance, Legal, Risk, IT and Policy team to ensure development of a market leading solutions. The role is responsible for revenue growth and will develop strategies to drive product penetration while maintaining overall portfolio quality requirement. It has a Balance Sheet and P&amp; L responsibility for the Trade sales business contributing to the larger organizational objectives of the bank.</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Roles &amp; Responsibilities:</strong></span></p>\n\n<ul type=\"disc\">\n\t<li><span style=\"font-size:11px;\">Complete ownership of regional portfolio of Trade Finance business. having targets of balancheet and Revenue numbers.</span></li>\n\t<li><span style=\"font-size:11px;\">Manage and grow the volume of business for Trade solutions for corporates and ensure that the overall revenue, cost, profitability and portfolio quality targets are met</span></li>\n\t<li><span style=\"font-size:11px;\">Direct the Sales team by providing strategic inputs and plans for distribution penetration in current markets as well as future geographic expansion</span></li>\n\t<li><span style=\"font-size:11px;\">Develop constructive relationships with Customers and Key Strategic Partners to drive growth of business</span></li>\n\t<li><span style=\"font-size:11px;\">Collaborate with the Product Head and policies team to ensure that the target segment is offered the best in class solutions funding/multi-funding requirements</span></li>\n\t<li><span style=\"font-size:11px;\">Provide end to end solutioning and customization for corporate clients</span></li>\n\t<li><span style=\"font-size:11px;\">Provide best in class service and advisory service to existing customers regarding their requirements and regulatory compliances thereby making IDFC First their banking partner of choice.</span></li>\n\t<li><span style=\"font-size:11px;\">Manage portfolio and ensure it is within risk appetite of the bank by monitoring and flagging early warning signs</span></li>\n\t<li><span style=\"font-size:11px;\">Ensure the successful adoption of internal compliances and regulatory framework across the business</span></li>\n\t<li><span style=\"font-size:11px;\">Monitor key parameters on sales productivity, hiring quality and attrition rates and make necessary improvements</span></li>\n\t<li><span style=\"font-size:11px;\">Champion IDFC First's customer first culture by driving the team to take up high degree servicing norms to ensure absolute customer delight</span></li>\n\t<li><span style=\"font-size:11px;\">Attract and retain best-in-class talent for key roles in their reporting structure</span></li>\n\t<li><span style=\"font-size:11px;\">Drive co-operation with product, technology, analytics and risk teams to ensure smooth functioning of business</span></li>\n\t<li><span style=\"font-size:11px;\">Ensure that sales team adhere to benchmarks/processes set up for finalizing commercials and other key parameters</span></li>\n\t<li><span style=\"font-size:11px;\">Champion the adoption of high quality market intelligence and data analytics to promote product, solution and sales effectiveness in line with the banks growth/profitability objectives</span></li>\n\t<li><span style=\"font-size:11px;\">Recommend improvements to processes and policies across the Corporate Liabilities business to drive operational efficiencies and high quality customer service</span></li>\n\t<li><span style=\"font-size:11px;\">Keep abreast with global market trends and competitors strategies in key markets</span></li>\n\t<li><span style=\"font-size:11px;\">Managing team of regional Trade sales persons.</span></li>\n\t<li><span style=\"font-size:11px;\">Guiding and mentoring team to achieve overall goals and objectives of Trade Business.</span></li>\n\t<li><span style=\"font-size:11px;\">Work closely with Business Head and provide timely inputs on improving efficiencies.</span></li>\n</ul>\n\n<p><span style=\"font-size:11px;\"><strong>Education Qualification:                                                                                                                                        </strong></span></p>\n\n<p><span style=\"font-size:11px;\">Graduate – Any graduation</span></p>\n\n<p><span style=\"font-size:11px;\">Post Graduate – Any post graduation</span></p>\n\n<p><span style=\"font-size:11px;\"><strong>Experience:</strong></span></p>\n\n<p><span style=\"font-size:11px;\">10+ years of experience with 3+ years at leadership position in Transaction Banking</span></p>\n ",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Banking"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "20"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1200000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": null
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17691799735630127058Axl",
+      "application_form_url": "https://recruitcrm.io/apply/17691799735630127058Axl",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Technology",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        128520
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 28,
+      "slug": "17694922351740128788wEj",
+      "name": "Head - Commercial Excellence",
+      "company_slug": "17675944717830127050doe",
+      "contact_slug": null,
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 0,
+      "maximum_experience": 0,
+      "min_annual_salary": 10000000,
+      "max_annual_salary": 12000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 0,
+        "label": "Closed"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Ritu Sanghavi\",\"updated_on\":1769492236,\"status_label\":\"Open\"},{\"status_id\":0,\"remark\":\"Closed it internally\",\"updated_by\":\"Ritu Sanghavi\",\"updated_on\":1771237639,\"status_label\":\"Closed\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "",
+      "country": "",
+      "address": "",
+      "created_on": "2026-01-27T05:37:15.000000Z",
+      "created_by": 128788,
+      "updated_on": "2026-02-16T10:27:19.000000Z",
+      "updated_by": 128788,
+      "owner": 128788,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": "127287"
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Pharmaceutical"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1800000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": null
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17694922351740128788wEj",
+      "application_form_url": "https://recruitcrm.io/apply/17694922351740128788wEj",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127049,
+        128788
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 14,
+      "slug": "17691472218290128788gcT",
+      "name": "Head - Corp Comm",
+      "company_slug": "17675941196180127050xZy",
+      "contact_slug": "17685597297180127050AQH",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 0,
+      "maximum_experience": 0,
+      "min_annual_salary": 0,
+      "max_annual_salary": 0,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 3,
+        "label": "Canceled"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Ritu Sanghavi\",\"updated_on\":1769147223,\"status_label\":\"Open\"},{\"status_id\":3,\"remark\":\"Duplicate\",\"updated_by\":\"Ritu Sanghavi\",\"updated_on\":1770355838,\"status_label\":\"Canceled\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "",
+      "country": "",
+      "address": "Mumbai, Mumbai, Maharashtra, India",
+      "created_on": "2026-01-23T05:47:01.000000Z",
+      "created_by": 128788,
+      "updated_on": "2026-02-16T10:26:49.000000Z",
+      "updated_by": 128788,
+      "owner": 128788,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": null
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": null
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": null
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": null
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17691472218290128788gcT",
+      "application_form_url": "https://recruitcrm.io/apply/17691472218290128788gcT",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": null,
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 8,
+      "slug": "17681930001420128788mtu",
+      "name": "Marketing Lead",
+      "company_slug": "17675986405570127050TMs",
+      "contact_slug": null,
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 0,
+      "maximum_experience": 15,
+      "min_annual_salary": 8000000,
+      "max_annual_salary": 8200000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 0,
+        "label": "Closed"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Ritu Sanghavi\",\"updated_on\":1768193001,\"status_label\":\"Open\"},{\"status_id\":0,\"remark\":\"Client dissolved the job\",\"updated_by\":\"Ritu Sanghavi\",\"updated_on\":1771237575,\"status_label\":\"Closed\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "",
+      "country": "",
+      "address": "",
+      "created_on": "2026-01-12T04:43:20.000000Z",
+      "created_by": 128788,
+      "updated_on": "2026-02-16T10:26:15.000000Z",
+      "updated_by": 128788,
+      "owner": 128788,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": ""
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Pharmaceutical"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "20"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1200000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": null
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17681930001420128788mtu",
+      "application_form_url": "https://recruitcrm.io/apply/17681930001420128788mtu",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 51,
+      "slug": "17710797006590127058frX",
+      "name": "Data Integration Engineer (Level J)",
+      "company_slug": "17710728618130127058aoR",
+      "contact_slug": "17710732034770127058TFl",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 2,
+      "maximum_experience": 5,
+      "min_annual_salary": 1500000,
+      "max_annual_salary": 3500000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Sakshi Punjabi\",\"updated_on\":1771079702,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Navi Mumbai",
+      "locality": "",
+      "state": "MH",
+      "country": "India",
+      "address": "Navi Mumbai, MH, India",
+      "created_on": "2026-02-14T14:35:00.000000Z",
+      "created_by": 127058,
+      "updated_on": "2026-02-16T04:12:31.000000Z",
+      "updated_by": 127064,
+      "owner": 127058,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": {
+        "filename": "Data Integration Engineer - Level J - JD.docx",
+        "file_link": "https://api.recruitcrm.io/v1/jobs/17710797006590127058frX/job-description-file/eyJpdiI6IkNYc0V5UkZMSjViTHVUQ25iNnVhYlE9PSIsInZhbHVlIjoiM1gzeHMways1Z3JMOStrN0FiVCszQnV6dk1pM3JMUU9JYTExYldCMHVDTW85UFVNU016cEdMS01yUWRUZnIvR2N3ODY3czdIcmhWZCtmc0I3S0NuM0plemZ5d3RRZkdaR2ZTZEx6QjZ5ZmpQNG13TEVscE1ZZzhTNXRRNk9kL0tpU213dXhnR2dXT3BIS21KQ25HYktBPT0iLCJtYWMiOiJlMjg5OTM5Y2FjYTUyMjkxYmViYjJiMmJiNGZlNTU2OTAzMTUwOWJhMjM1YTllODU3NDc5ZDQzZDM5ZmY3YjA5In0="
+      },
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Oil & Gas"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "20"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "600000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17710797006590127058frX",
+      "application_form_url": "https://recruitcrm.io/apply/17710797006590127058frX",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Technology",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127064
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 46,
+      "slug": "17703833990500127058EvG",
+      "name": "Head Digital Business",
+      "company_slug": "17676896661160127050GBH",
+      "contact_slug": "17700051608910127058zZw",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 18,
+      "maximum_experience": 23,
+      "min_annual_salary": 8000000,
+      "max_annual_salary": 10000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Sakshi Punjabi\",\"updated_on\":1770383400,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Mumbai, MH, India",
+      "created_on": "2026-02-06T13:09:59.000000Z",
+      "created_by": 127058,
+      "updated_on": "2026-02-16T03:07:25.000000Z",
+      "updated_by": 128520,
+      "owner": 127058,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": {
+        "filename": "Head- Digital.pdf",
+        "file_link": "https://api.recruitcrm.io/v1/jobs/17703833990500127058EvG/job-description-file/eyJpdiI6Im9yM2lRLytQU1VseTBCZEpJY2p0Rmc9PSIsInZhbHVlIjoiSm83U3YwV2pBMEhHREVJZmtUTitaNDcwRWs3bHpOYkV4WDgzTjFrMkZDdGNPQkpJTUZ6b2U1WjFjY0x0Wk5wUXhuZHpodVMzYjlUVXNLamZIOVdOMituYjVFODBZbmVTdGw5OVZ3dkRYV3c9IiwibWFjIjoiNDM3MzM2YzhjMDAyYzNlMTFkOGIwNGFlMzg0YTMzOTE0Nzk1OTM2ZThkNjQ2NTU3MTZkYWNhMjdjZGNkNjMwZCJ9"
+      },
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Mutual Funds & AMC"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1440000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17703833990500127058EvG",
+      "application_form_url": "https://recruitcrm.io/apply/17703833990500127058EvG",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Technology",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Technology",
+      "job_industry": "Banking",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        128520
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 50,
+      "slug": "17710795313000127058CAK",
+      "name": "AI Product Manager (Level G)",
+      "company_slug": "17710728618130127058aoR",
+      "contact_slug": "17710732034770127058TFl",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 12,
+      "maximum_experience": 16,
+      "min_annual_salary": 6000000,
+      "max_annual_salary": 9000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Sakshi Punjabi\",\"updated_on\":1771079532,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Navi Mumbai",
+      "locality": "",
+      "state": "MH",
+      "country": "India",
+      "address": "Navi Mumbai, MH, India",
+      "created_on": "2026-02-14T14:32:11.000000Z",
+      "created_by": 127058,
+      "updated_on": "2026-02-15T16:36:40.000000Z",
+      "updated_by": 127058,
+      "owner": 127058,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": {
+        "filename": "Chief AI Product Manager - Level G -JD.docx",
+        "file_link": "https://api.recruitcrm.io/v1/jobs/17710795313000127058CAK/job-description-file/eyJpdiI6IkhaTkNYbjUwck9DSjFkZHBYT1NqSEE9PSIsInZhbHVlIjoiVmFRdUI0Z2ZjWGhtaWlFQkFlalEwZ0dvN0V1ckhMUFNBM1hQUlIrRGtqbUFpV0pESG5LQ3VqeHFnSDN3UXdPKzRlTGNEM0dDUm1BQWZBd1hMa2pieUJKUXllemhGSmNQS0Uxa29lalU2aEhZRWUwK2RZemYxWU82dC93U1RlUUdnSUJOTVk5V2pSaHJjQkwrK2lBTlpRPT0iLCJtYWMiOiIyZGQ0NDI3YzNiN2FlZTQ1NDc0NGFmNDRhODc3ZGM2Yjc2MTY5ZGUzMDk1YmJmMjM2ZDcxMjg3ZjhlMzlmNDYxIn0="
+      },
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Oil & Gas"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "20"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1200000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17710795313000127058CAK",
+      "application_form_url": "https://recruitcrm.io/apply/17710795313000127058CAK",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Technology",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Technology",
+      "job_industry": "Energy",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        128520
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 49,
+      "slug": "17710787841820127058drI",
+      "name": "GM - Data Scientist",
+      "company_slug": "17710728618130127058aoR",
+      "contact_slug": "17710732034770127058TFl",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 12,
+      "maximum_experience": 15,
+      "min_annual_salary": 6000000,
+      "max_annual_salary": 9000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Sakshi Punjabi\",\"updated_on\":1771078785,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Navi Mumbai",
+      "locality": "",
+      "state": "MH",
+      "country": "India",
+      "address": "Navi Mumbai, MH, India",
+      "created_on": "2026-02-14T14:19:44.000000Z",
+      "created_by": 127058,
+      "updated_on": "2026-02-15T16:36:40.000000Z",
+      "updated_by": 127058,
+      "owner": 127058,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": {
+        "filename": "Chief Data Scientist Level G - JD.docx",
+        "file_link": "https://api.recruitcrm.io/v1/jobs/17710787841820127058drI/job-description-file/eyJpdiI6ImxOVTFjVzdrOUV2c1VOOFpMZnVoQ0E9PSIsInZhbHVlIjoieTh3TUpXQnNtMzN0S1hBUXlKU3g4QkI3K1dhRzY2cFluK2lYTUxmM1d0T2xoN1N5MVVnQUREUHZFc1BOYUFXQXVFMDY2a1J6UVg3UkJHM2QwTWpNQUxvb3E5UGpid1lwT1pCQmJnUFppQW5vTC9EZVhsR0VnN2xsQzBVaFBzRmJtYmRZK0NRNkdzd3BDdlJqRTI0WFN3PT0iLCJtYWMiOiI5MDk0OWU5NGFmZjE3MTAzNzAwMmUyMWNhZTU4MjI1NDVjYmQ3Y2ZhMTJmODJhYTMzMDdhMmVkNWMwZDQ5MzA1In0="
+      },
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Oil & Gas"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "20"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1200000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17710787841820127058drI",
+      "application_form_url": "https://recruitcrm.io/apply/17710787841820127058drI",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127049
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 52,
+      "slug": "17711462094110128788iLx",
+      "name": "NSM - Sanofi",
+      "company_slug": "17691612537380128495nZg",
+      "contact_slug": "17691612543040128495pEP",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 18,
+      "maximum_experience": 30,
+      "min_annual_salary": 12000000,
+      "max_annual_salary": 15000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Ritu Sanghavi\",\"updated_on\":1771146210,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Hyderabad",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Mumbai, Maharashtra, India",
+      "created_on": "2026-02-15T09:03:29.000000Z",
+      "created_by": 128788,
+      "updated_on": "2026-02-15T10:35:00.000000Z",
+      "updated_by": 128788,
+      "owner": 128788,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "MBa",
+      "qualification_id": 5,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": "119019"
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Pharmaceutical"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "MNC"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "20"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "2500000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17711462094110128788iLx",
+      "application_form_url": "https://recruitcrm.io/apply/17711462094110128788iLx",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Sales and Business Development",
+      "job_industry": "Pharmaceuticals",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 39,
+      "slug": "17703616189750127060BKm",
+      "name": "Program Manager - Procurement Voltas",
+      "company_slug": "17696864412500127050ord",
+      "contact_slug": "17703594991910127060FNB",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 5,
+      "maximum_experience": 15,
+      "min_annual_salary": 3000000,
+      "max_annual_salary": 3500000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Pooja Varia\",\"updated_on\":1770361620,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Navi Mumbai (Reliance Corporate Park)",
+      "locality": "",
+      "state": "MAHARASHTRA",
+      "country": "India",
+      "address": "Voltas House , A Block, Chinchpokli, Mumbai, Mumbai - 400033, Mumbai, Maharastra 400033, IN",
+      "created_on": "2026-02-06T07:06:58.000000Z",
+      "created_by": 127060,
+      "updated_on": "2026-02-15T06:48:19.000000Z",
+      "updated_by": 128483,
+      "owner": 127060,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": ""
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "FMCD"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": null
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "630000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": null
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17703616189750127060BKm",
+      "application_form_url": "https://recruitcrm.io/apply/17703616189750127060BKm",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Program Manager",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Procurement",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127287,
+        128483
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    }
+  ],
+  "current_page": 1,
+  "from": 1,
+  "last_page": 4,
+  "path": "https://api.recruitcrm.io/v1/jobs",
+  "per_page": 15,
+  "to": 15,
+  "total": 50,
+  "first_page_url": "https://api.recruitcrm.io/v1/jobs?page=1",
+  "next_page_url": "https://api.recruitcrm.io/v1/jobs?page=2",
+  "last_page_url": "https://api.recruitcrm.io/v1/jobs?page=4",
+  "prev_page_url": null
+}
