@@ -840,7 +840,7 @@ background: linear-gradient(
                 .replaceAll("'", '&#39;');
         }
 
-        function paginateInternalJobs(pageSize = 9) {
+        function paginateInternalJobs(pageSize = 6) {
             if (!internalJobsList || !internalJobsPagination) {
                 return;
             }
@@ -966,7 +966,7 @@ background: linear-gradient(
                 `;
             }).join('');
 
-            paginateInternalJobs(9);
+            paginateInternalJobs(6);
         }
 
         async function loadInternalJobs() {
