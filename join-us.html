@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/open-roles.css" />
     <!-- AOS CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
@@ -460,7 +461,7 @@ background: linear-gradient(
     <!-- about us end -->
 
     <!-- Internal Job Listings -->
-    <section class="py-5 bg-light" id="internal-openings">
+    <section class="open-roles-section" id="internal-openings">
         <div class="container">
             <div class="text-center mb-5">
                 <!-- <h2 class="section-heading">Internal Job Listings</h2> -->
@@ -471,7 +472,10 @@ background: linear-gradient(
                 </p> -->
             </div>
             <div id="internalJobsStatus" class="text-center text-muted mb-4">Loading jobs...</div>
-            <div class="row g-4" id="internalJobsList"></div>
+            <div class="open-roles-grid pb-5">
+                <div id="internal-job-list"></div>
+                <div id="internal-jobs-pagination" class="jobs-pagination"></div>
+            </div>
         </div>
     </section>
 
@@ -823,8 +827,9 @@ background: linear-gradient(
     </script>
 
     <script>
-        const internalJobsList = document.getElementById('internalJobsList');
+        const internalJobsList = document.getElementById('internal-job-list');
         const internalJobsStatus = document.getElementById('internalJobsStatus');
+        const internalJobsPagination = document.getElementById('internal-jobs-pagination');
 
         function escapeHtml(value) {
             return String(value || '')
@@ -835,6 +840,74 @@ background: linear-gradient(
                 .replaceAll("'", '&#39;');
         }
 
+        function paginateInternalJobs(pageSize = 9) {
+            if (!internalJobsList || !internalJobsPagination) {
+                return;
+            }
+
+            const cards = Array.from(internalJobsList.querySelectorAll('.open-role-list-card'));
+            if (!cards.length) {
+                internalJobsPagination.innerHTML = '';
+                return;
+            }
+
+            const totalPages = Math.ceil(cards.length / pageSize);
+            let currentPage = 1;
+
+            const renderPage = (page) => {
+                currentPage = Math.max(1, Math.min(totalPages, page));
+                const start = (currentPage - 1) * pageSize;
+                const end = start + pageSize;
+                cards.forEach((card, index) => {
+                    card.style.display = index >= start && index < end ? '' : 'none';
+                });
+                renderPagination();
+            };
+
+            const renderPagination = () => {
+                if (totalPages <= 1) {
+                    internalJobsPagination.innerHTML = '';
+                    return;
+                }
+                let html = '';
+                html += `<button class="pagination-btn" data-page="${Math.max(1, currentPage - 1)}" ${currentPage === 1 ? 'disabled' : ''}>Prev</button>`;
+                const start = Math.max(1, currentPage - 2);
+                const end = Math.min(totalPages, currentPage + 2);
+                if (start > 1) {
+                    html += `<button class="pagination-btn" data-page="1">1</button>`;
+                    if (start > 2) {
+                        html += `<span class="pagination-ellipsis">...</span>`;
+                    }
+                }
+                for (let i = start; i <= end; i += 1) {
+                    html += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+                }
+                if (end < totalPages) {
+                    if (end < totalPages - 1) {
+                        html += `<span class="pagination-ellipsis">...</span>`;
+                    }
+                    html += `<button class="pagination-btn" data-page="${totalPages}">${totalPages}</button>`;
+                }
+                html += `<button class="pagination-btn" data-page="${Math.min(totalPages, currentPage + 1)}" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>`;
+                internalJobsPagination.innerHTML = html;
+                internalJobsPagination.querySelectorAll('.pagination-btn').forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        const nextPage = parseInt(btn.dataset.page || '1', 10);
+                        if (Number.isNaN(nextPage) || nextPage === currentPage) {
+                            return;
+                        }
+                        renderPage(nextPage);
+                        internalJobsList.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    });
+                });
+            };
+
+            renderPage(1);
+        }
+
         function renderInternalJobs(jobs) {
             if (!internalJobsList || !internalJobsStatus) {
                 return;
@@ -843,11 +916,14 @@ background: linear-gradient(
             if (!Array.isArray(jobs) || jobs.length === 0) {
                 internalJobsStatus.textContent = 'No internal jobs available right now.';
                 internalJobsList.innerHTML = '';
+                if (internalJobsPagination) {
+                    internalJobsPagination.innerHTML = '';
+                }
                 return;
             }
 
             internalJobsStatus.textContent = '';
-            internalJobsList.innerHTML = jobs.map((job) => {
+            internalJobsList.innerHTML = jobs.map((job, index) => {
                 const title = escapeHtml(job.title || 'Open Position');
                 const company = escapeHtml(job.company || 'James Douglas');
                 const city = escapeHtml(job.city || '');
@@ -855,26 +931,42 @@ background: linear-gradient(
                 const jobType = escapeHtml(job.job_type || 'Full time');
                 const minExp = escapeHtml(job.min_experience || '');
                 const maxExp = escapeHtml(job.max_experience || '');
-                const exp = minExp || maxExp ? `${minExp}${minExp && maxExp ? ' - ' : ''}${maxExp} Years` : 'Experience not specified';
+                const exp = minExp || maxExp ? `${minExp}${minExp && maxExp ? ' - ' : ''}${maxExp} Years` : 'Not specified';
                 const slug = encodeURIComponent(job.slug || '');
-                const locationText = city || location || 'Location not specified';
+                const locationText = city || location || 'Not specified';
+                const companyInitial = escapeHtml((company || 'JD').trim().slice(0, 1) || 'J');
+                const subtitle = `${company}${locationText ? ' &bull; ' + locationText : ''}`;
 
                 return `
-                    <div class="col-md-6 col-lg-4">
-                        <a href="careers/job-details.php?slug=${slug}" class="text-decoration-none">
-                            <div class="card h-100 border-0 shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="fw-bold mb-2" style="color:#23235b;">${title}</h5>
-                                    <p class="mb-2 text-muted">${company}</p>
-                                    <p class="mb-2"><i class="bi bi-geo-alt me-1"></i>${locationText}</p>
-                                    <p class="mb-2"><i class="bi bi-briefcase me-1"></i>${jobType}</p>
-                                    <p class="mb-0"><i class="bi bi-clock me-1"></i>${exp}</p>
+                    <a href="careers/job-details.php?slug=${slug}" class="open-role-list-card ${index === 0 ? 'active' : ''} mb-3">
+                        <div class="open-role-header">
+                            <div class="open-role-brand">
+                                <div class="open-role-logo rounded-circle m-0">${companyInitial}</div>
+                                <div>
+                                    <div class="open-role-title mb-0">${title}</div>
+                                    <div class="open-role-subtitle">${subtitle}</div>
                                 </div>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                        <div class="open-role-info">
+                            <div>
+                                <div class="open-role-info-label">Experience</div>
+                                <div class="open-role-info-value">${exp}</div>
+                            </div>
+                            <div>
+                                <div class="open-role-info-label">Job Type</div>
+                                <div class="open-role-info-value">${jobType}</div>
+                            </div>
+                            <div>
+                                <div class="open-role-info-label">Location</div>
+                                <div class="open-role-info-value">${locationText}</div>
+                            </div>
+                        </div>
+                    </a>
                 `;
             }).join('');
+
+            paginateInternalJobs(9);
         }
 
         async function loadInternalJobs() {
@@ -888,12 +980,18 @@ background: linear-gradient(
                 if (!response.ok || data.error) {
                     internalJobsStatus.textContent = data.message || 'Unable to load internal jobs right now.';
                     internalJobsList.innerHTML = '';
+                    if (internalJobsPagination) {
+                        internalJobsPagination.innerHTML = '';
+                    }
                     return;
                 }
                 renderInternalJobs(data.jobs || []);
             } catch (error) {
                 internalJobsStatus.textContent = 'Unable to load internal jobs right now.';
                 internalJobsList.innerHTML = '';
+                if (internalJobsPagination) {
+                    internalJobsPagination.innerHTML = '';
+                }
             }
         }
 
