@@ -11,17 +11,21 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
 
                 <li>
-                    <a class="nav-link" href="../about-us.html">About</a>
+                    <a class="nav-link" href="../index.html">Home</a>
+                </li>
+
+                <li>
+                    <a class="nav-link" href="../careers/open-roles.php">Find Job</a>
                 </li>
 
                  <li>
-                        <a class="nav-link" href="../hiring-solution.html">Hiring Solutions</a>
+                        <a class="nav-link" href="../hiring-solution.html">Hire Talent</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="../careers/open-roles.php">Careers</a>
+                        <a class="nav-link" href="../about-us.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../join-us.html">Join Us</a>
+                        <a class="nav-link" href="../contact-us.html">Contact Us</a>
                     </li>
 
                 <!-- <li class="dropdown Services">
@@ -59,7 +63,7 @@
                 </li> -->
 
                 <li class="nav-item">
-                    <a class="nav-link" href="../contact-us.html">Contact</a>
+                    <a class="nav-link" href="../join-us.html">Join us</a>
                 </li>
             </ul>
         </div>

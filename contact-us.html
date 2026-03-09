@@ -56,6 +56,247 @@
             }
         }
     </style>
+
+    <style>
+    .section-divider {
+        margin-top: 5px;
+        margin-bottom: 16px;
+        margin-left: auto;
+    }
+
+    .hero-corner::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        right: -21px;
+        width: 38px;
+        height: 38px;
+        display: block;
+        transform: scale(0.7);
+        background: url("./assets/images/icons/hero-heading-corner.svg") no-repeat center/contain;
+    }
+
+    @media (max-width: 768px) {
+        .hero-corner::before {
+            content: "";
+            position: absolute;
+            top: -14px;
+            right: -21px;
+            width: 38px;
+            height: 38px;
+            display: block;
+            transform: scale(0.6);
+            background: url("./assets/images/icons/hero-heading-corner.svg") no-repeat center/contain;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .hero-corner::before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            right: 22px;
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    /* New Contact Section Styling */
+    .contact-page-section {
+        background: #f5f5f5;
+        padding: 80px 0 90px;
+    }
+
+    .contact-left-block {
+        padding-right: 40px;
+        color: #111111;
+    }
+
+    .contact-left-title {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 64px;
+        line-height: 1.05;
+        font-weight: 500;
+        color: #0d1028;
+        letter-spacing: -0.5px;
+        margin-bottom: 28px;
+        max-width: 480px;
+    }
+
+    .contact-left-text {
+        font-size: 16px;
+        line-height: 1.8;
+        color: #555;
+        max-width: 430px;
+        margin-bottom: 44px;
+    }
+
+    .contact-info-group {
+        margin-bottom: 34px;
+    }
+
+    .contact-info-heading {
+        font-size: 18px;
+        font-weight: 600;
+        color: #111;
+        margin-bottom: 18px;
+    }
+
+    .contact-info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 22px;
+    }
+
+    .contact-info-item i {
+        font-size: 18px;
+        color: #4a4a4a;
+        line-height: 1;
+        margin-top: 4px;
+    }
+
+    .contact-info-item p,
+    .contact-info-item a {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.6;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .contact-form-card {
+        background: #ffffff;
+        border: 1px solid #e3e3e3;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+        padding: 28px 28px 34px;
+        max-width: 100%;
+    }
+
+    /* .contact-form-card h3 {
+        font-size: 20px;
+        font-weight: 500;
+        color: #222;
+        margin-bottom: 6px;
+    } */
+
+    .contact-form-card .subtext {
+        font-size: 15px;
+        color: #555;
+        margin-bottom: 18px;
+    }
+
+    .contact-form-card .form-label {
+        font-size: 13px;
+        font-weight: 500;
+        color: #222;
+        margin-bottom: 8px;
+    }
+
+    .contact-form-card .form-control,
+    .contact-form-card .form-select {
+        border: 1px solid #d8d8d8;
+        border-radius: 0;
+        min-height: 44px;
+        font-size: 15px;
+        color: #222;
+        box-shadow: none !important;
+    }
+
+    .contact-form-card textarea.form-control {
+        min-height: 96px;
+        resize: vertical;
+        padding-top: 12px;
+    }
+
+    .contact-form-card .form-control::placeholder,
+    .contact-form-card .form-select {
+        color: #9a9a9a;
+    }
+
+    .upload-btn-wrap {
+        display: flex;
+        align-items: end;
+        /* height: 100%; */
+    }
+
+    .custom-upload-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #1f1f1f;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 18px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        min-height: 44px;
+    }
+
+    .custom-upload-btn:hover {
+        background: #111;
+    }
+
+    .form-check-label {
+        font-size: 12px;
+        line-height: 1.5;
+        color: #333;
+    }
+
+    .form-check-label a {
+        color: #222;
+    }
+
+    .contact-submit-btn {
+        background: #3f3bd9;
+        color: #fff;
+        border: none;
+        border-radius: 0;
+        min-width: 120px;
+        min-height: 44px;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 10px 22px;
+    }
+
+    .contact-submit-btn:hover {
+        background: #312dc2;
+        color: #fff;
+    }
+
+    @media (max-width: 991px) {
+        .contact-page-section {
+            padding: 60px 0 70px;
+        }
+
+        .contact-left-block {
+            padding-right: 0;
+            margin-bottom: 40px;
+        }
+
+        .contact-left-title {
+            font-size: 46px;
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .contact-left-title {
+            font-size: 36px;
+            line-height: 1.15;
+        }
+
+        .contact-form-card {
+            padding: 22px 18px 26px;
+        }
+    }
+
+    .section-heading{
+        font-size: 25px!important;
+    }
+</style>
 </head>
 
 <body>
@@ -72,17 +313,25 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="about-us.html">About</a>
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                     <li>
+                        <a class="nav-link" href="careers/open-roles.php">Find Job</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="careers/open-roles.php">Careers</a>
+                        <a class="nav-link" href="hiring-solution.html">Hire Talent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="join-us.html">Join Us</a>
+                        <a class="nav-link" href="about-us.html">About</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">Contact Us</a>
+                    </li>
+                   
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="join-us.html">Join Us</a>
+                    </li> -->
+
                     <!-- <li>
                         <a class="nav-link" href="services.html">Services</a>
                     </li> -->
@@ -99,7 +348,7 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="contact-us.html">Contact</a>
+                        <a class="nav-link" href="join-us.html">Join Us</a>
                     </li>
                 </ul>
             </div>
@@ -131,107 +380,146 @@
     <!-- Banner end -->
 
     <!-- contact form  -->
-    <section class="py-5 bg-white ">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-11 col-xl-11">
-                    <!-- Contact Form -->
-                    <div class="contact-form-container">
-                        <div class="text-center mb-5">
-                            <h2 class="section-heading">Contact Us</h2>
-                            <div class="section-divider"></div>
-                            <p class="mt-4 text-muted" style="font-size: 1.1rem;">
-                                We work with organizations, leaders and Teams who believe in building something
-                                meaningful. Reach out to start a conversation about how we can create value through
-                                people.
+    <!-- Contact Section -->
+<section class="contact-page-section">
+    <div class="container">
+        <div class="row align-items-start justify-content-between g-5">
+            <!-- Left Content -->
+            <div class="col-lg-5">
+                <div class="contact-left-block">
+                    <h2 class="legacy-heading">Get in touch</h2>
+                    <p class="contact-left-text">
+                        Tell us what you’re looking for and we’ll take it from there.
+                    </p>
+
+                    <div class="contact-info-group">
+                        <h5 class="contact-info-heading">Reach Us here</h5>
+                        <div class="contact-info-item">
+                            <i class="bi bi-envelope"></i>
+                            <a href="mailto:contactus@jamesdouglas.co.in">contactus@jamesdouglas.co.in</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-group">
+                        <h5 class="contact-info-heading">Offices</h5>
+
+                        <div class="contact-info-item">
+                            <i class="bi bi-geo-alt"></i>
+                            <p>
+                                James Douglas Professional Search India Private Limited 1012, 10th
+                                    Floor, B-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex Bandra (East), Mumbai- 400
+                                    051 India.
                             </p>
                         </div>
-                        <form class="contact-form" id="contactForm">
-                            <div class="row g-4">
-                                <!-- Full Name -->
-                                <div class="col-6 col-md-4">
-                                    <div class="form-group">
-                                        <label for="firstName" class="form-label">First Name</label>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Form -->
+            <div class="col-lg-6">
+                <div class="contact-form-card">
+                    <h6 class="section-heading text-center">Thank you for your Interest in James Douglas</h6>
+                    
+                    <p class="subtext">
+                        To connect with one of our experts, please complete the form:
+                    </p>
+
+                    <form id="contactForm" class="contact-form">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="assist" class="form-label">How Can We Assist You</label>
+                                <select class="form-select" id="assist" required>
+                                    <option value="" selected disabled>Select one</option>
+                                    <option>Find your next career move</option>
+                                    <option>Hire for you</option>
+                                    <option>Join us</option>
+                                    
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                               <label for="firstName" class="form-label">First Name</label>
                                         <input type="text" class="form-control contact-input" id="firstName"
                                             placeholder="Enter your first name" required>
-                                    </div>
-                                </div>
-                                <div class="col-6 col-md-4">
-                                    <div class="form-group">
-                                        <label for="lastName" class="form-label">Last Name</label>
+                             </div>
+
+                            <div class="col-md-6">
+                                 <label for="lastName" class="form-label">Last Name</label>
                                         <input type="text" class="form-control contact-input" id="lastName"
                                             placeholder="Enter your last name" required>
-                                    </div>
-                                </div>
+                                         </div>
 
-                                <!-- Email Address -->
-                                <div class="col-6 col-md-4">
-                                    <div class="form-group">
-                                        <label for="organization" class="form-label">Organization</label>
+                            <div class="col-md-6">
+                                <label for="organization" class="form-label">Company</label>
                                         <input type="text" class="form-control contact-input" id="organization"
                                             placeholder="Enter your organization name" required>
-                                    </div>
-                                </div>
+                                        </div>
 
-                                <!-- Contact Number -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="title" class="form-label">Title</label>
-                                        <input type="text" class="form-control contact-input" id="title"
-                                            placeholder="Enter your title" required>
-                                    </div>
-                                </div>
+                            <div class="col-md-6">
+                                <label for="designation" class="form-label">Designation</label>
+                                <input type="text" class="form-control contact-input" id="designation" placeholder="Designation" required>
+                            </div>
 
-                                <!-- Email -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="email" class="form-label">Email</label>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email</label>
                                         <input type="email" class="form-control contact-input" id="email"
                                             placeholder="Enter your email address" required>
-                                    </div>
-                                </div>
+                                        </div>
 
-                                <!-- Phone  -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="phone" class="form-label">Phone</label>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                        <label for="phone" class="form-label">Phone Number</label>
                                         <input type="tel" class="form-control contact-input" id="phone"
                                             placeholder="Enter your phone number" required>
                                     </div>
                                 </div>
 
-                                <!-- Help  -->
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="help" class="form-label">How can we help you?</label>
-                                        <input type="text" class="form-control contact-input" id="help"
-                                            placeholder="Enter your query or request" required>
-                                    </div>
-                                </div>
+                            <div class="col-md-6">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control contact-input" id="country" placeholder="City" required>
+                            </div>
 
-                                <!-- Note -->
-                                <!-- <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="linkedin" class="form-label">LinkedIn</label>
-                                        <input type="url" class="form-control contact-input" id="linkedin"
-                                            name="linkedin" placeholder="Enter your LinkedIn profile URL"
-                                            pattern="https?://(www\.)?linkedin\.com/.*" required>
-                                        
-                                    </div>
-                                </div> -->
+                            <div class="col-md-6">
+                                <label for="country" class="form-label">Country</label>
+                                <input type="text" class="form-control contact-input" id="country" placeholder="Country" required>
+                            </div>
 
-
-                                <!-- Submit Button -->
-                                <div class="col-12 text-center">
-                                    <button type="submit" class="btn btn-submit btn-warning-custom">Submit</button>
+                            <div class="col-md-6">
+                                <label for="attachment" class="form-label">Attach Relevant Documents</label>
+                                <div class="upload-btn-wrap">
+                                    <input type="file" id="attachment" hidden class="contact-input">
+                                    <label for="attachment" class="custom-upload-btn mb-0">
+                                        <i class="bi bi-upload"></i> Upload files
+                                    </label>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+
+                            <div class="col-12">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control contact-input" id="message" placeholder="Message" required></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                    <label class="form-check-label" for="termsCheck">
+                                        I agree to the terms &amp; conditions. I consent to be contacted by James Douglas.
+                                        <a href="terms-of-service.html">Terms &amp; Conditions</a>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 pt-2">
+                                <button type="submit" class="btn btn-warning-custom">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
     <!-- contact form end -->
 
     <section class="map-address bg-light pb-4">
@@ -247,7 +535,7 @@
 
 
                 <!-- Address Column -->
-                <div class="col-lg-6">
+                <div class="col-lg-6 d-none">
                     <div class="contact-info p-4 p-lg-5 h-100">
                         <h2 class="section-heading">Corporate Office</h2>
                         <div class="section-divider"></div>

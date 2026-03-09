@@ -1074,13 +1074,803 @@
                 color: #0B3041;
             }
         }
+
+        .section-1 {
+            display: flex;
+            /* align-items: center; */
+            justify-content: space-between;
+            gap: 80px;
+            padding: 90px 7%;
+            background: #f3f3f3;
+        }
+
+        .section-1-left {
+            flex: 0 0 52%;
+            max-width: 52%;
+        }
+
+        .section-1 .section-heading {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 5.2rem;
+            line-height: 0.95;
+            font-weight: 500;
+            letter-spacing: -1.5px;
+            color: #050826;
+            max-width: 700px;
+            margin-bottom: 42px;
+        }
+
+        .section-1 .section-subtitle {
+            font-size: 1.15rem;
+            line-height: 1.65;
+            color: #1f2233;
+            max-width: 760px;
+            margin-bottom: 42px;
+        }
+
+        .section-1 .section-divider {
+            display: none;
+        }
+
+        .section-cta {
+            background: #4742d9;
+            color: #fff;
+            border: none;
+            border-radius: 0;
+            padding: 16px 32px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+            display: inline-block;
+        }
+
+        .section-cta:hover {
+            background: #3530c3;
+            color: #fff;
+        }
+
+        .section-1-img {
+            flex: 0 0 42%;
+            max-width: 42%;
+        }
+
+        .section-1-img img {
+            width: 100%;
+            height: 720px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Large screens */
+        @media (max-width: 1600px) {
+            .section-1 .section-heading {
+                font-size: 4.5rem;
+            }
+
+            .section-1-img img {
+                height: 620px;
+            }
+        }
+
+        /* Laptop */
+        @media (max-width: 1200px) {
+            .section-1 {
+                gap: 50px;
+                padding: 70px 5%;
+            }
+
+            .section-1 .section-heading {
+                font-size: 3.8rem;
+            }
+
+            .section-1 .section-subtitle {
+                font-size: 1.05rem;
+            }
+
+            .section-1-img img {
+                height: 520px;
+            }
+        }
+
+        /* Tablet */
+        @media (max-width: 991px) {
+            .section-1 {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 40px;
+                padding: 60px 5%;
+            }
+
+            .section-1-left,
+            .section-1-img {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+            .section-1 .section-heading {
+                font-size: 3.2rem;
+                max-width: 100%;
+            }
+
+            .section-1 .section-subtitle {
+                max-width: 100%;
+            }
+
+            .section-1-img img {
+                height: auto;
+                aspect-ratio: 4 / 3;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 576px) {
+            .section-1 {
+                padding: 50px 20px;
+            }
+
+            .section-1 .section-heading {
+                font-size: 2.5rem;
+                line-height: 1;
+                margin-bottom: 24px;
+            }
+
+            .section-1 .section-subtitle {
+                font-size: 1rem;
+                line-height: 1.7;
+                margin-bottom: 28px;
+            }
+
+            .section-cta {
+                width: 100%;
+                text-align: center;
+                padding: 14px 20px;
+                font-size: 0.95rem;
+            }
+        }
+
+        .industry-specialization-section {
+    background: #f3f3f3;
+    padding: 90px 0;
+    overflow: hidden;
+}
+
+.industry-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+    margin-bottom: 48px;
+}
+
+.industry-left {
+    flex: 0 0 48%;
+    max-width: 48%;
+}
+
+.industry-right {
+    flex: 0 0 34%;
+    max-width: 34%;
+    padding-top: 10px;
+}
+
+.industry-heading {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 5rem;
+    line-height: 0.95;
+    font-weight: 500;
+    color: #050826;
+    margin: 0;
+    letter-spacing: -1.5px;
+}
+
+.industry-right p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #202437;
+    margin: 0;
+}
+
+.industry-cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.industry-image-card {
+    position: relative;
+    display: block;
+    height: 410px;
+    overflow: hidden;
+    text-decoration: none;
+    background: #111;
+}
+
+.industry-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.55s ease;
+}
+
+/* black shadow from bottom */
+.industry-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 38%;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.92) 0%,
+            rgba(0, 0, 0, 0.72) 35%,
+            rgba(0, 0, 0, 0.32) 70%,
+            rgba(0, 0, 0, 0) 100%);
+    transition: height 0.45s ease, background 0.45s ease;
+    z-index: 1;
+}
+
+/* content always on top */
+.industry-card-content {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 18px;
+    z-index: 2;
+    color: #fff;
+}
+
+.industry-card-content h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.05rem;
+    line-height: 1.3;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: #fff;
+}
+
+.industry-card-content p {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(8px);
+    transition: max-height 0.45s ease, opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* hover effect */
+.industry-image-card:hover .industry-overlay {
+    height: 100%;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.92) 0%,
+            rgba(0, 0, 0, 0.8) 45%,
+            rgba(0, 0, 0, 0.52) 75%,
+            rgba(0, 0, 0, 0.2) 100%);
+}
+
+.industry-image-card:hover img {
+    transform: scale(1.05);
+}
+
+.industry-image-card:hover .industry-card-content p {
+    max-height: 140px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional slight lift */
+.industry-image-card:hover {
+    transform: translateY(-2px);
+    transition: transform 0.35s ease;
+}
+
+/* tablet */
+@media (max-width: 1199px) {
+    .industry-heading {
+        font-size: 4rem;
+    }
+
+    .industry-cards-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* mobile */
+@media (max-width: 767px) {
+    .industry-specialization-section {
+        padding: 60px 0;
+    }
+
+    .industry-top-row {
+        flex-direction: column;
+        gap: 22px;
+        margin-bottom: 34px;
+    }
+
+    .industry-left,
+    .industry-right {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .industry-heading {
+        font-size: 2.8rem;
+        line-height: 1;
+    }
+
+    .industry-right p {
+        font-size: 1rem;
+    }
+
+    .industry-cards-row {
+        grid-template-columns: 1fr;
+    }
+
+    .industry-image-card {
+        height: 360px;
+    }
+
+    .industry-overlay {
+        height: 48%;
+    }
+
+    .industry-card-content p {
+        max-height: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.industry-specialization-section {
+    background: #f3f3f3;
+    padding: 90px 0;
+    overflow: hidden;
+}
+
+.industry-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 60px;
+    margin-bottom: 48px;
+}
+
+.industry-left {
+    flex: 0 0 48%;
+    max-width: 48%;
+}
+
+.industry-right {
+    flex: 0 0 34%;
+    max-width: 34%;
+    padding-top: 10px;
+}
+
+.industry-heading {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 5rem;
+    line-height: 0.95;
+    font-weight: 500;
+    color: #050826;
+    margin: 0;
+    letter-spacing: -1.5px;
+}
+
+.industry-right p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #202437;
+    margin: 0;
+}
+
+.industry-slider-wrap {
+    position: relative;
+}
+
+.industrySwiper {
+    overflow: hidden;
+    padding-bottom: 70px;
+}
+
+.industrySwiper .swiper-slide {
+    height: auto;
+}
+
+.industry-image-card {
+    position: relative;
+    display: block;
+    height: 410px;
+    overflow: hidden;
+    text-decoration: none;
+    background: #111;
+}
+
+.industry-image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.55s ease;
+}
+
+.industry-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 36%;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.75) 38%,
+            rgba(0, 0, 0, 0.28) 72%,
+            rgba(0, 0, 0, 0) 100%);
+    transition: height 0.45s ease, background 0.45s ease;
+    z-index: 1;
+}
+
+.industry-card-content {
+    position: absolute;
+    left: 22px;
+    right: 22px;
+    bottom: 18px;
+    z-index: 2;
+    color: #fff;
+}
+
+.industry-card-content h3 {
+    font-family: var(--primary-font);
+    font-size: 1.2rem;
+    line-height: 1.2;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: #fff;
+}
+
+.industry-card-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.88);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(10px);
+    transition: max-height 0.45s ease, opacity 0.35s ease, transform 0.35s ease;
+}
+
+.industry-image-card:hover .industry-overlay {
+    height: 100%;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.94) 0%,
+            rgba(0, 0, 0, 0.82) 45%,
+            rgba(0, 0, 0, 0.5) 75%,
+            rgba(0, 0, 0, 0.18) 100%);
+}
+
+.industry-image-card:hover img {
+    transform: scale(1.05);
+}
+
+.industry-image-card:hover .industry-card-content p {
+    max-height: 220px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.industry-swiper-nav {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 10;
+}
+
+.industry-swiper-prev,
+.industry-swiper-next {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid rgba(5, 8, 38, 0.18);
+    background: transparent;
+    color: #2b2b2b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.industry-swiper-prev i,
+.industry-swiper-next i {
+    font-size: 28px;
+    line-height: 1;
+}
+
+.industry-swiper-prev:hover,
+.industry-swiper-next:hover {
+    background: #4742d9;
+    color: #fff;
+    border-color: #4742d9;
+}
+
+@media (max-width: 1199px) {
+    .industry-heading {
+        font-size: 4rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .industry-specialization-section {
+        padding: 60px 0;
+    }
+
+    .industry-top-row {
+        flex-direction: column;
+        gap: 22px;
+        margin-bottom: 30px;
+    }
+
+    .industry-left,
+    .industry-right {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .industry-heading {
+        font-size: 2.8rem;
+        line-height: 1;
+    }
+
+    .industry-right p {
+        font-size: 1rem;
+    }
+
+    .industry-image-card {
+        height: 360px;
+    }
+
+    .industry-card-content h3 {
+        font-size: 1.35rem;
+    }
+
+    .industry-card-content p {
+        max-height: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .industry-swiper-nav {
+        position: static;
+        justify-content: center;
+        margin-top: 20px;
+    }
+}
+
+/* Hire Talent Modal */
+.hire-talent-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+}
+
+.hire-talent-modal.active {
+    display: block;
+}
+
+.hire-talent-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(12, 18, 37, 0.65);
+    backdrop-filter: blur(2px);
+}
+
+.hire-talent-dialog {
+    position: relative;
+    width: min(1000px, calc(100% - 40px));
+    max-height: calc(100vh - 40px);
+    margin: 20px auto;
+    background: #f8f8f8;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.28);
+}
+
+.hire-talent-dialog-inner {
+    padding: 28px 42px 40px;
+    overflow-y: auto;
+    max-height: calc(100vh - 40px);
+}
+
+.hire-talent-title {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 4rem;
+    line-height: 0.95;
+    color: #050826;
+    font-weight: 500;
+    margin: 0 0 38px;
+    letter-spacing: -1px;
+}
+
+.hire-talent-close {
+    position: absolute;
+    top: 26px;
+    right: 28px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: transparent;
+    color: #5f6b76;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 5;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.hire-talent-close:hover {
+    color: #111827;
+    transform: rotate(90deg);
+}
+
+.hire-talent-form .form-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #06102b;
+    margin-bottom: 10px;
+}
+
+.hire-input {
+    min-height: 48px;
+    border: 1px solid #cfd5df;
+    border-radius: 0;
+    background: #fff;
+    box-shadow: none !important;
+    padding: 12px 16px;
+    font-size: 1rem;
+    color: #1f2937;
+}
+
+.hire-input::placeholder {
+    color: #98a2b3;
+}
+
+.hire-textarea {
+    min-height: 118px;
+    resize: vertical;
+    padding-top: 14px;
+}
+
+.hire-textarea.message-box {
+    min-height: 130px;
+}
+
+.hire-upload-wrap {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    min-height: 48px;
+}
+
+.hire-upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1f1f1f;
+    color: #fff;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+}
+
+.hire-upload-btn:hover {
+    background: #111;
+    color: #fff;
+}
+
+.hire-file-name {
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.hire-check-wrap {
+    margin-top: 4px;
+}
+
+.hire-check-wrap .form-check-label {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #374151;
+}
+
+.hire-check-wrap .form-check-label a {
+    color: #111827;
+}
+
+.hire-submit-btn {
+    min-width: 130px;
+    height: 48px;
+    border: none;
+    border-radius: 0;
+    background: #4742d9;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 12px 26px;
+}
+
+.hire-submit-btn:hover {
+    background: #3631bf;
+    color: #fff;
+}
+
+body.modal-open-custom {
+    overflow: hidden;
+}
+
+@media (max-width: 991px) {
+    .hire-talent-dialog {
+        width: calc(100% - 24px);
+        max-height: calc(100vh - 24px);
+        margin: 12px auto;
+        border-radius: 18px;
+    }
+
+    .hire-talent-dialog-inner {
+        padding: 24px 20px 30px;
+        max-height: calc(100vh - 24px);
+    }
+
+    .hire-talent-title {
+        font-size: 2.8rem;
+        line-height: 1;
+        padding-right: 40px;
+        margin-bottom: 28px;
+    }
+
+    .hire-talent-close {
+        top: 18px;
+        right: 18px;
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hire-talent-title {
+        font-size: 2.2rem;
+    }
+
+    .hire-upload-wrap {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .hire-submit-btn {
+        width: 100%;
+    }
+}
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3" id="mainNavbar">
+   <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top py-3" id="mainNavbar">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="index.html">
                 <img src="assets/images/JD_India_logo.png" alt="James Douglas Logo" height="44" class="me-2 ms-5" />
@@ -1092,17 +1882,25 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="about-us.html">About</a>
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                     <li>
+                        <a class="nav-link" href="careers/open-roles.php">Find Job</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="hiring-solution.html">Hiring Solutions</a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="careers/open-roles.php">Careers</a>
+                        <a class="nav-link" href="hiring-solution.html">Hire Talent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="join-us.html">Join Us</a>
+                        <a class="nav-link" href="about-us.html">About</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact-us.html">Contact Us</a>
+                    </li>
+                   
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="join-us.html">Join Us</a>
+                    </li> -->
+
                     <!-- <li>
                         <a class="nav-link" href="services.html">Services</a>
                     </li> -->
@@ -1119,7 +1917,7 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="contact-us.html">Contact</a>
+                        <a class="nav-link" href="join-us.html">Join Us</a>
                     </li>
                 </ul>
             </div>
@@ -1154,18 +1952,28 @@
     <!-- Services Section -->
     <section class="py-5 bg-white" id="our-services">
         <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="section-heading">Find Talents That Move Businesses Forward</h2>
-                <div class="section-divider"></div>
-                <p class="mt-4 section-subtitle">
-                    Exceptional results come from thoughtful hiring.<br>
-                    At James Douglas, we work closely with organizations to place professionals who combine skill,
-                    intent,
-                    and long-term fit across management and leadership roles.
-                </p>
+            <div class="section-1">
+                <div class="section-1-left" data-aos="fade-up">
+                    <h2 class="legacy-heading">Build High-Impact Teams</h2>
+                    <p class="section-subtitle">
+                        Exceptional organizations need exceptional people. James Douglas, with its team of specialized
+                        consultants
+                        and AI-powered tools, delivers candidates who bring both expertise and alignment, creating
+                        matches that
+                        drive measurable business impact.
+                    </p>
+                    <button type="button" class="btn btn-warning-custom" id="openHireTalentModal">
+    Find Your Next Hire
+</button>
+                </div>
+
+                <div class="section-1-img" data-aos="fade-left">
+                    <img src="./images/hiring-section-transfor-teams.jpg"
+                        alt="Professional team meeting">
+                </div>
             </div>
 
-            <div class="wrap">
+            <div class="wrap d-none">
                 <div class="text-center mb-5" data-aos="fade-up">
                     <h2 class="section-heading">Industries We Serve</h2>
                     <div class="section-divider"></div>
@@ -1349,10 +2157,134 @@
 
             </div>
 
-
-
         </div>
     </section>
+
+   <section class="industry-specialization-section">
+    <div class="container">
+        <div class="industry-top-row">
+            <div class="industry-left">
+                <h2 class="legacy-heading">Industry<br>Specialization</h2>
+            </div>
+            <div class="industry-right">
+                <p>
+                    We connect top talent with leading organizations across industries. With deep expertise and a
+                    human-first approach, we deliver tailored recruitment solutions that drive success.
+                </p>
+            </div>
+        </div>
+
+        <div class="industry-slider-wrap">
+            <div class="swiper industrySwiper">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <a href="#" class="industry-image-card">
+                            <img src="./assets/images/hiring-solutions-imgs/banking-financial.jpg"
+                                alt="Banking and Financial Services">
+                            <div class="industry-overlay"></div>
+                            <div class="industry-card-content">
+                                <h3>Banking &amp; Financial<br>Services</h3>
+                                <p>
+                                    Our Global Financial Services Practice is designed to be flexible and to serve the
+                                    needs of an ever-changing market. It adapts seamlessly to shifting regulatory
+                                    landscapes, digital transformation mandates, and evolving customer expectations.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <a href="#" class="industry-image-card">
+                            <img src="./assets/images/hiring-solutions-imgs/consumer.jpg"
+                                alt="Industrial and Manufacturing">
+                            <div class="industry-overlay"></div>
+                            <div class="industry-card-content">
+                                <h3>Industrial &amp;<br>Manufacturing</h3>
+                                <p>
+                                    James Douglas specializes in mid-management to senior executive search across
+                                    industrial and hi-tech sectors. From advanced manufacturing to mining start-ups,
+                                    we help organisations secure leaders who drive operational excellence and long-term
+                                    growth.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <a href="#" class="industry-image-card">
+                            <img src="./assets/images/hiring-solutions-imgs/healthcare-lifescience.jpg"
+                                alt="Health care and Lifesciences">
+                            <div class="industry-overlay"></div>
+                            <div class="industry-card-content">
+                                <h3>Health care &amp;<br>Lifesciences</h3>
+                                <p>
+                                    Scientific research, technological advancements, and constant development in
+                                    healthcare and life sciences create both challenges and opportunities in this
+                                    vibrant and innovative sector.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <a href="#" class="industry-image-card">
+                            <img src="./assets/images/hiring-solutions-imgs/consumer-img.jpg" alt="Consumer">
+                            <div class="industry-overlay"></div>
+                            <div class="industry-card-content">
+                                <h3>Consumer</h3>
+                                <p>
+                                    We know that the sector is constantly evolving and that leadership is faced with
+                                    daily challenges that threaten both market share and margin erosion.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <a href="#" class="industry-image-card">
+                            <img src="./assets/images/hiring-solutions-imgs/technology.jpg" alt="Technology">
+                            <div class="industry-overlay"></div>
+                            <div class="industry-card-content">
+                                <h3>Technology</h3>
+                                <p>
+                                    We also specialise in supporting entrepreneurial companies and start-ups within
+                                    the Financial Services sector, identifying talent that can scale businesses and
+                                    navigate competitive digital landscapes.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <a href="#" class="industry-image-card">
+                            <img src="./assets/images/hiring-solutions-imgs/hr.jpg" alt="Human Resources">
+                            <div class="industry-overlay"></div>
+                            <div class="industry-card-content">
+                                <h3>Human Resources</h3>
+                                <p>
+                                    Human Resources leadership is no longer just about policy, it is about enabling
+                                    business transformation. We help organizations hire HR leaders who can build
+                                    high-performance cultures and drive change at scale.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="industry-swiper-nav">
+                <div class="industry-swiper-prev">
+                    <i class="bi bi-arrow-left"></i>
+                </div>
+                <div class="industry-swiper-next">
+                    <i class="bi bi-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <section class="bg-white" id="our-search-approach">
         <div class="container">
@@ -1386,6 +2318,101 @@
             <a href="contact-us.html" class="btn btn-warning-custom btn-lg px-4">Contact Us</a>
         </div>
     </section>
+
+    <!-- Hire Talent Modal -->
+<div class="hire-talent-modal" id="hireTalentModal" aria-hidden="true">
+    <div class="hire-talent-backdrop" id="hireTalentBackdrop"></div>
+
+    <div class="hire-talent-dialog" role="dialog" aria-modal="true" aria-labelledby="hireTalentModalTitle">
+        <button type="button" class="hire-talent-close" id="closeHireTalentModal" aria-label="Close">
+            <i class="bi bi-x-lg"></i>
+        </button>
+
+        <div class="hire-talent-dialog-inner">
+            <h2 class="section-heading text-center" id="hireTalentModalTitle">Hire talent with us</h2>
+            <div class="section-divider"></div>
+
+            <form id="hireTalentForm" class="hire-talent-form">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label for="hireFirstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control hire-input" id="hireFirstName" placeholder="First name" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="hireLastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control hire-input" id="hireLastName" placeholder="Last name" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="hireEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control hire-input" id="hireEmail" placeholder="you@company.com" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="hirePhone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control hire-input" id="hirePhone" placeholder="Phone no" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="hireJobTitle" class="form-label">Job Title</label>
+                        <input type="text" class="form-control hire-input" id="hireJobTitle" placeholder="Job Title" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="hireOrganization" class="form-label">Organization</label>
+                        <input type="text" class="form-control hire-input" id="hireOrganization" placeholder="Organization" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="hireCity" class="form-label">City</label>
+                        <input type="text" class="form-control hire-input" id="hireCity" placeholder="City" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="hireCountry" class="form-label">Country</label>
+                        <input type="text" class="form-control hire-input" id="hireCountry" placeholder="Country" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="hireRoles" class="form-label">Roles You Are Looking To Hire For</label>
+                        <textarea class="form-control hire-input hire-textarea" id="hireRoles" placeholder="Enter the roles you are hiring for" required></textarea>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="hireAttachment" class="form-label">Attach Any Relevant Collaterals</label>
+                        <div class="hire-upload-wrap">
+                            <input type="file" id="hireAttachment" hidden>
+                            <label for="hireAttachment" class="hire-upload-btn">
+                                <i class="bi bi-upload"></i> Upload files
+                            </label>
+                            <span class="hire-file-name" id="hireFileName">No file chosen</span>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="hireMessage" class="form-label">Message</label>
+                        <textarea class="form-control hire-input hire-textarea message-box" id="hireMessage" placeholder="Message" required></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-check hire-check-wrap">
+                            <input class="form-check-input" type="checkbox" id="hireTerms" required>
+                            <label class="form-check-label" for="hireTerms">
+                                I agree to the terms &amp; conditions. I consent to be contacted by James Douglas.
+                                <a href="terms-of-service.html" target="_blank">Terms &amp; Conditions</a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn hire-submit-btn">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
     <!-- Footer -->
     <footer class="pt-5 pb-4" style="background: linear-gradient(135deg, #2b3a67 0%, #23235b 100%);">
@@ -1704,6 +2731,119 @@
 
     </script>
 
+<script>
+    const industrySwiper = new Swiper('.industrySwiper', {
+        slidesPerView: 1.15,
+        spaceBetween: 14,
+        speed: 800,
+        loop: false,
+        navigation: {
+            nextEl: '.industry-swiper-next',
+            prevEl: '.industry-swiper-prev',
+        },
+        breakpoints: {
+            576: {
+                slidesPerView: 1.4,
+                spaceBetween: 14
+            },
+            768: {
+                slidesPerView: 2.2,
+                spaceBetween: 14
+            },
+            992: {
+                slidesPerView: 3.1,
+                spaceBetween: 14
+            },
+            1200: {
+                slidesPerView: 3.6,
+                spaceBetween: 14
+            }
+        }
+    });
+</script>
+
+<script>
+    const hireTalentModal = document.getElementById('hireTalentModal');
+    const openHireTalentModal = document.getElementById('openHireTalentModal');
+    const closeHireTalentModal = document.getElementById('closeHireTalentModal');
+    const hireTalentBackdrop = document.getElementById('hireTalentBackdrop');
+    const hireAttachment = document.getElementById('hireAttachment');
+    const hireFileName = document.getElementById('hireFileName');
+    const hireTalentForm = document.getElementById('hireTalentForm');
+
+    function openModal() {
+        hireTalentModal.classList.add('active');
+        document.body.classList.add('modal-open-custom');
+        hireTalentModal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+        hireTalentModal.classList.remove('active');
+        document.body.classList.remove('modal-open-custom');
+        hireTalentModal.setAttribute('aria-hidden', 'true');
+    }
+
+    openHireTalentModal.addEventListener('click', openModal);
+    closeHireTalentModal.addEventListener('click', closeModal);
+    hireTalentBackdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && hireTalentModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    hireAttachment.addEventListener('change', function () {
+        if (this.files && this.files.length > 0) {
+            hireFileName.textContent = this.files[0].name;
+        } else {
+            hireFileName.textContent = 'No file chosen';
+        }
+    });
+
+    hireTalentForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const firstName = document.getElementById('hireFirstName').value.trim();
+        const lastName = document.getElementById('hireLastName').value.trim();
+        const email = document.getElementById('hireEmail').value.trim();
+        const phone = document.getElementById('hirePhone').value.trim();
+        const jobTitle = document.getElementById('hireJobTitle').value.trim();
+        const organization = document.getElementById('hireOrganization').value.trim();
+        const city = document.getElementById('hireCity').value.trim();
+        const country = document.getElementById('hireCountry').value.trim();
+        const roles = document.getElementById('hireRoles').value.trim();
+        const message = document.getElementById('hireMessage').value.trim();
+        const terms = document.getElementById('hireTerms').checked;
+
+        if (!firstName || !lastName || !email || !phone || !jobTitle || !organization || !city || !country || !roles || !message) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        const phoneRegex = /^[+]?[\d\s\-()]+$/;
+        if (!phoneRegex.test(phone)) {
+            alert('Please enter a valid phone number.');
+            return;
+        }
+
+        if (!terms) {
+            alert('Please accept the terms and conditions.');
+            return;
+        }
+
+        alert('Thank you for your enquiry! We will get back to you soon.');
+        this.reset();
+        hireFileName.textContent = 'No file chosen';
+        closeModal();
+    });
+</script>
 </body>
 
 </html>

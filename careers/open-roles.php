@@ -457,7 +457,7 @@ function build_filter_url(array $params): string
         <div class="container content-above-decorator">
             <div class="text-center" data-aos="fade-up">
                 <h2 class="section-heading">
-                    Careers Opportunities
+                    Job Opportunities
                 </h2>
                 <div class="section-divider"></div>
 
@@ -472,11 +472,8 @@ function build_filter_url(array $params): string
                 </p> -->
 
                 <p class="mt-4" style="color: #444; font-size: 1.1rem">
-                    Browse exclusive job opportunities across industries and functions. Each role offers genuine growth potential and aligns with our commitment to creating meaningful connections.
-                    <br>
-                    <br>
-                    Here, your career creates value through people. And that legacy lasts.
-                </p>
+                    Take a look at the roles we're currently working on.
+If one of them feels like the right next step, we'd love to hear from you.</p>
 
             </div>
             <div class="row g-4 justify-content-center d-none">
@@ -676,9 +673,9 @@ function build_filter_url(array $params): string
 
     <section class="open-roles-section">
         <div class="container">
-            <div class="text-center mb-5">
+            <div class="text-center d-none mb-5">
                 <h2 class="section-heading">
-                    <!-- External Opportunities -->
+                   
                     Leadership Roles With us
                 </h2>
                 <div class="section-divider"></div>
