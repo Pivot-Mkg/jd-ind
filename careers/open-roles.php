@@ -455,11 +455,11 @@ function build_filter_url(array $params): string
     <!-- Why Join Us start here  -->
     <section class="sections mt-0">
         <div class="container content-above-decorator">
-            <div class="text-center" data-aos="fade-up">
+            <div data-aos="fade-up">
                 <h2 class="section-heading">
                     Job Opportunities
                 </h2>
-                <div class="section-divider"></div>
+                <div class="section-divider text-left"></div>
 
                 <!-- <p class="mt-1" style="color: #444; font-size: 1.1rem">
                     Your career deserves more than routine mandates. At James Douglas, you’ll work on high-stakes

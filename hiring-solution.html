@@ -135,10 +135,10 @@
 
         /* Button Styles */
         .btn {
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 0.5px;
-            text-transform: uppercase;
-            font-size: 0.85rem;
+            /* text-transform: uppercase; */
+            font-size: 1rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -1080,7 +1080,7 @@
             /* align-items: center; */
             justify-content: space-between;
             gap: 80px;
-            padding: 90px 7%;
+            padding: 50px 7%;
             background: #f3f3f3;
         }
 
@@ -1138,7 +1138,7 @@
 
         .section-1-img img {
             width: 100%;
-            height: 720px;
+            /* height: 720px; */
             object-fit: cover;
             display: block;
         }
@@ -1150,7 +1150,7 @@
             }
 
             .section-1-img img {
-                height: 620px;
+                height: 350px;
             }
         }
 
@@ -1427,7 +1427,7 @@
 
 .industry-specialization-section {
     background: #f3f3f3;
-    padding: 90px 0;
+    padding: 50px 0;
     overflow: hidden;
 }
 
@@ -1673,7 +1673,7 @@
 
 .hire-talent-dialog {
     position: relative;
-    width: min(1000px, calc(100% - 40px));
+    width: min(835px, calc(100% - 40px));
     max-height: calc(100vh - 40px);
     margin: 20px auto;
     background: #f8f8f8;
@@ -1823,7 +1823,7 @@ body.modal-open-custom {
 
 @media (max-width: 991px) {
     .hire-talent-dialog {
-        width: calc(100% - 24px);
+        width: calc(100% - 165px);
         max-height: calc(100vh - 24px);
         margin: 12px auto;
         border-radius: 18px;
@@ -1863,6 +1863,36 @@ body.modal-open-custom {
     .hire-submit-btn {
         width: 100%;
     }
+       .hire-talent-dialog {
+        width: calc(100% - 32px);
+        max-height: calc(100vh - 24px);
+        margin: 12px auto;
+        border-radius: 18px;
+    }
+
+    .hire-talent-dialog-inner .section-heading{
+    text-align: left!important;
+    font-size: 22px;
+        font-weight: 500;
+}
+ .hire-talent-dialog-inner .section-divider {
+        margin-left: 0;
+    }
+
+}
+@media (max-width: 768px) {
+    .legacy-heading {
+        font-size: 28px;
+        text-align: left;
+    }
+}
+
+.hire-talent-form{
+    margin-top: 30px;
+}
+
+.our-search-approach{
+    margin-top: 3rem;
 }
     </style>
 </head>
@@ -1891,7 +1921,7 @@ body.modal-open-custom {
                         <a class="nav-link" href="hiring-solution.html">Hire Talent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about-us.html">About</a>
+                        <a class="nav-link" href="about-us.html">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact-us.html">Contact Us</a>
@@ -1956,11 +1986,7 @@ body.modal-open-custom {
                 <div class="section-1-left" data-aos="fade-up">
                     <h2 class="legacy-heading">Build High-Impact Teams</h2>
                     <p class="section-subtitle">
-                        Exceptional organizations need exceptional people. James Douglas, with its team of specialized
-                        consultants
-                        and AI-powered tools, delivers candidates who bring both expertise and alignment, creating
-                        matches that
-                        drive measurable business impact.
+                        Exceptional results come from thoughtful hiring. At James Douglas, we work closely with organizations to place professionals who combine skill, intent, and long-term fit across management and leadership roles.
                     </p>
                     <button type="button" class="btn btn-warning-custom" id="openHireTalentModal">
     Find Your Next Hire
@@ -2179,7 +2205,7 @@ body.modal-open-custom {
                 <div class="swiper-wrapper">
 
                     <div class="swiper-slide">
-                        <a href="#" class="industry-image-card">
+                        <div class="industry-image-card">
                             <img src="./assets/images/hiring-solutions-imgs/banking-financial.jpg"
                                 alt="Banking and Financial Services">
                             <div class="industry-overlay"></div>
@@ -2191,11 +2217,11 @@ body.modal-open-custom {
                                     landscapes, digital transformation mandates, and evolving customer expectations.
                                 </p>
                             </div>
-                        </a>
+                        </div>
                     </div>
 
                     <div class="swiper-slide">
-                        <a href="#" class="industry-image-card">
+                        <div class="industry-image-card">
                             <img src="./assets/images/hiring-solutions-imgs/consumer.jpg"
                                 alt="Industrial and Manufacturing">
                             <div class="industry-overlay"></div>
@@ -2208,11 +2234,11 @@ body.modal-open-custom {
                                     growth.
                                 </p>
                             </div>
-                        </a>
+                        </div>
                     </div>
 
                     <div class="swiper-slide">
-                        <a href="#" class="industry-image-card">
+                        <div class="industry-image-card">
                             <img src="./assets/images/hiring-solutions-imgs/healthcare-lifescience.jpg"
                                 alt="Health care and Lifesciences">
                             <div class="industry-overlay"></div>
@@ -2224,11 +2250,11 @@ body.modal-open-custom {
                                     vibrant and innovative sector.
                                 </p>
                             </div>
-                        </a>
+                        </div>
                     </div>
 
                     <div class="swiper-slide">
-                        <a href="#" class="industry-image-card">
+                        <div class="industry-image-card">
                             <img src="./assets/images/hiring-solutions-imgs/consumer-img.jpg" alt="Consumer">
                             <div class="industry-overlay"></div>
                             <div class="industry-card-content">
@@ -2238,11 +2264,11 @@ body.modal-open-custom {
                                     daily challenges that threaten both market share and margin erosion.
                                 </p>
                             </div>
-                        </a>
+                        </div>
                     </div>
 
                     <div class="swiper-slide">
-                        <a href="#" class="industry-image-card">
+                        <div class="industry-image-card">
                             <img src="./assets/images/hiring-solutions-imgs/technology.jpg" alt="Technology">
                             <div class="industry-overlay"></div>
                             <div class="industry-card-content">
@@ -2253,11 +2279,11 @@ body.modal-open-custom {
                                     navigate competitive digital landscapes.
                                 </p>
                             </div>
-                        </a>
+                        </div>
                     </div>
 
                     <div class="swiper-slide">
-                        <a href="#" class="industry-image-card">
+                        <div class="industry-image-card">
                             <img src="./assets/images/hiring-solutions-imgs/hr.jpg" alt="Human Resources">
                             <div class="industry-overlay"></div>
                             <div class="industry-card-content">
@@ -2268,7 +2294,7 @@ body.modal-open-custom {
                                     high-performance cultures and drive change at scale.
                                 </p>
                             </div>
-                        </a>
+                        </div>
                     </div>
 
                 </div>
@@ -2286,7 +2312,7 @@ body.modal-open-custom {
     </div>
 </section>
 
-    <section class="bg-white" id="our-search-approach">
+    <section class="bg-white our-search-approach" id="our-search-approach">
         <div class="container">
             <div class="text-center" data-aos="fade-up">
                 <h2 class="section-heading">Our Search Approach</h2>
@@ -2344,25 +2370,29 @@ body.modal-open-custom {
                         <input type="text" class="form-control hire-input" id="hireLastName" placeholder="Last name" required>
                     </div>
 
+                     <div class="col-md-6">
+                        <label for="company" class="form-label">Company</label>
+                        <input type="text" class="form-control hire-input" id="company" placeholder="Company" required>
+                    </div>
+
+                    
+                    <div class="col-md-6">
+                        <label for="designation" class="form-label">Designation</label>
+                        <input type="text" class="form-control hire-input" id="designation" placeholder="Designation" required>
+                    </div>
+
+
                     <div class="col-md-6">
                         <label for="hireEmail" class="form-label">Email</label>
                         <input type="email" class="form-control hire-input" id="hireEmail" placeholder="you@company.com" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label for="hirePhone" class="form-label">Phone</label>
+                        <label for="hirePhone" class="form-label">Phone Number</label>
                         <input type="tel" class="form-control hire-input" id="hirePhone" placeholder="Phone no" required>
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="hireJobTitle" class="form-label">Job Title</label>
-                        <input type="text" class="form-control hire-input" id="hireJobTitle" placeholder="Job Title" required>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="hireOrganization" class="form-label">Organization</label>
-                        <input type="text" class="form-control hire-input" id="hireOrganization" placeholder="Organization" required>
-                    </div>
+                   
 
                     <div class="col-md-6">
                         <label for="hireCity" class="form-label">City</label>
@@ -2375,12 +2405,7 @@ body.modal-open-custom {
                     </div>
 
                     <div class="col-md-6">
-                        <label for="hireRoles" class="form-label">Roles You Are Looking To Hire For</label>
-                        <textarea class="form-control hire-input hire-textarea" id="hireRoles" placeholder="Enter the roles you are hiring for" required></textarea>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="hireAttachment" class="form-label">Attach Any Relevant Collaterals</label>
+                        <label for="hireAttachment" class="form-label">Attach Relevant Document</label>
                         <div class="hire-upload-wrap">
                             <input type="file" id="hireAttachment" hidden>
                             <label for="hireAttachment" class="hire-upload-btn">
@@ -2406,7 +2431,7 @@ body.modal-open-custom {
                     </div>
 
                     <div class="col-12">
-                        <button type="submit" class="btn hire-submit-btn">Submit</button>
+                        <button type="submit" class="btn btn-warning-custom">Submit</button>
                     </div>
                 </div>
             </form>

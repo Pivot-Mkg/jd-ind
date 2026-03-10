@@ -22,7 +22,7 @@
                         <a class="nav-link" href="../hiring-solution.html">Hire Talent</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="../about-us.html">About</a>
+                        <a class="nav-link" href="../about-us.html">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../contact-us.html">Contact Us</a>
