@@ -10,19 +10,30 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav mb-2 mb-lg-0">
 
-                <li>
+                <!-- <li>
                     <a class="nav-link" href="../index.html">Home</a>
-                </li>
+                </li> -->
 
-                <li>
-                    <a class="nav-link" href="../careers/open-roles.php">Find Job</a>
-                </li>
+                  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle"
+       href="#"
+       id="findOpportunitiesDropdown"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-expanded="false">
+        Find Opportunities
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="findOpportunitiesDropdown">
+        <li><a class="nav-link" href="careers/open-roles.php">Open Roles</a></li>
+        <li><a class="nav-link" href="../join-us.html">Join US</a></li>
+    </ul>
+</li>
 
                  <li>
                         <a class="nav-link" href="../hiring-solution.html">Hire Talent</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="../about-us.html">About Us</a>
+                        <a class="nav-link" href="../about-us.html">Our Expertise</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../contact-us.html">Contact Us</a>
@@ -62,9 +73,9 @@
                     <a class="nav-link" href="../leaders.html">For Leaders</a>
                 </li> -->
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="../join-us.html">Join us</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

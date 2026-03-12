@@ -179,14 +179,16 @@
 }
 
 .role-cta-inner {
+        background-image: url(./assets/images/19209.jpg);
+
     width: 100%;
     min-height: 180px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 32px;
-    padding: 48px 24px 13px 8px;;
-    background: #f3f3f3;
+    padding: 48px 40px 13px 25px;
+    /* background: #f3f3f3; */
     border: 1px solid #ececec;
 }
 
@@ -541,17 +543,28 @@ body.modal-open-custom {
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                     <li>
-                        <a class="nav-link" href="careers/open-roles.php">Find Job</a>
-                    </li>
+                    </li> -->
+         <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle"
+       href="#"
+       id="findOpportunitiesDropdown"
+       role="button"
+       data-bs-toggle="dropdown"
+       aria-expanded="false">
+        Find Opportunities
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="findOpportunitiesDropdown">
+        <li><a class="nav-link" href="careers/open-roles.php">Open Roles</a></li>
+        <li><a class="nav-link" href="./join-us.html">Join US</a></li>
+    </ul>
+</li>
                     <li>
                         <a class="nav-link" href="hiring-solution.html">Hire Talent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about-us.html">About Us</a>
+                        <a class="nav-link" href="about-us.html">Our Expertise</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="contact-us.html">Contact Us</a>
@@ -574,11 +587,6 @@ body.modal-open-custom {
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="insights-hub.html">Insights</a>
                     </li> -->
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="join-us.html">Join Us</a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -661,7 +669,7 @@ background: linear-gradient(
                 <!-- Right: Two separate containers with 2 cards each -->
                 <div class="col-lg-5" data-aos="fade-left">
                     <div class="legacy-image-container">
-                        <img src="assets/images/join-us.jpg" alt="EMA Partners Global Network"
+                        <img src="assets/images/join-us-2.jpg" alt="EMA Partners Global Network"
                             class="img-fluid legacy-image">
 
                     </div>
@@ -790,12 +798,7 @@ background: linear-gradient(
         <div class="role-cta-strip mt-5" data-aos="fade-up" data-aos-delay="150">
             <div class="role-cta-inner">
                 <div class="role-cta-left">
-                    <div class="role-cta-avatar-wrap">
-                        <img src="./assets/images/career-person.png" alt="Professional portrait" class="role-cta-avatar">
-                        <span class="role-cta-line role-cta-line-one"></span>
-                        <span class="role-cta-line role-cta-line-two"></span>
-                        <span class="role-cta-dot"></span>
-                    </div>
+                    
 
                     <div class="role-cta-content">
                         <h3>Haven’t found your desired role?</h3>
