@@ -423,6 +423,11 @@ function build_filter_url(array $params): string
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/open-roles.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        div#job-list {
+            display: block !important;
+        }
+    </style>
 
     <!-- Google Tag Manager -->
     <?php include '../inc/gtm-head-code.php'; ?>
