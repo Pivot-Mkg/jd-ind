@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 $apiUrl = 'https://api.recruitcrm.io/v1/jobs';
@@ -31,33 +32,31 @@ $stringify = function ($value): string {
 
 function job_hiring_for_value(array $job): string
 {
-    $fields = $job['custom_fields'] ?? [];
-    if (!is_array($fields)) {
-        return '';
-    }
+    $candidates = [
+        $job['custom_fields'] ?? null,
+        $job['custom_field'] ?? null,
+        $job['custom_fields_values'] ?? null,
+        $job['custom_field_values'] ?? null,
+        $job['fields'] ?? null,
+    ];
 
-    foreach ($fields as $field) {
-        if (!is_array($field)) {
+    foreach ($candidates as $fields) {
+        if (!is_array($fields)) {
             continue;
         }
-        $fieldId = (int)($field['field_id'] ?? 0);
-        $entityType = trim((string)($field['entity_type'] ?? ''));
-        $fieldName = trim((string)($field['field_name'] ?? ''));
-        $fieldType = trim((string)($field['field_type'] ?? ''));
-        $value = trim((string)($field['value'] ?? ''));
-        if (
-            $fieldId === 7 &&
-            $entityType === 'job' &&
-            $fieldName === 'Hiring For' &&
-            $fieldType === 'dropdown' &&
-            $value === 'Client (External)'
-
-        ) {
-            $value = $field['value'] ?? '';
-            if (is_array($value)) {
-                return '';
+        foreach ($fields as $field) {
+            if (!is_array($field)) {
+                continue;
             }
-            return trim((string)$value);
+            $fieldName = strtolower((string)($field['field_name'] ?? $field['name'] ?? ''));
+            $fieldId = (int)($field['field_id'] ?? $field['id'] ?? 0);
+            if ($fieldId === 7 || $fieldName === 'hiring for') {
+                $value = $field['value'] ?? $field['field_value'] ?? $field['selected'] ?? '';
+                if (is_array($value)) {
+                    $value = $value['value'] ?? $value['label'] ?? $value['name'] ?? '';
+                }
+                return trim((string)$value);
+            }
         }
     }
 
@@ -67,11 +66,6 @@ function job_hiring_for_value(array $job): string
 function is_confidential_job(array $job): bool
 {
     return strcasecmp(job_hiring_for_value($job), 'Do Not Post (Confidential)') === 0;
-}
-
-function has_external_client_hiring_for_field(array $job): bool
-{
-    return job_hiring_for_value($job) === 'Client (External)';
 }
 
 function job_industry_value(array $job): string
@@ -155,7 +149,7 @@ function extract_jobs(array $data): array
 
 $errorMessage = '';
 $nextUrl = $apiUrl;
-$maxPages = 100;
+$maxPages = 20;
 $pageCount = 0;
 
 while ($nextUrl && $pageCount < $maxPages) {
@@ -176,18 +170,41 @@ while ($nextUrl && $pageCount < $maxPages) {
     }
 }
 
-$internalJobs = [];
+$internalJobs = array_values(array_filter($allJobs, function ($job) {
+    if (is_confidential_job($job)) {
+        return false;
+    }
+    $hiringFor = strtolower(job_hiring_for_value($job));
+    return $hiringFor !== 'client (external)';
+}));
 $externalJobs = array_values(array_filter($allJobs, function ($job) {
-    return has_external_client_hiring_for_field($job);
+    if (is_confidential_job($job)) {
+        return false;
+    }
+    $hiringFor = strtolower(job_hiring_for_value($job));
+    return $hiringFor === 'client (external)';
 }));
 
 $jobs = $externalJobs;
 
 if ($cityFilter !== '') {
-    $jobs = array_values(array_filter($jobs, function ($job) use ($cityFilter, $stringify) {
-        $city = $stringify($job['city'] ?? '');
-        return $city !== '' && strcasecmp($city, $cityFilter) === 0;
-    }));
+    $searchUrl = $apiUrl . '/search?city=' . urlencode($cityFilter);
+    $response = recruitcrm_get($searchUrl, $apiToken);
+    if ($response['error']) {
+        $errorMessage = 'We could not load open roles right now. Please try again later.';
+    } else {
+        $data = json_decode($response['body'], true);
+        if ($response['status'] >= 200 && $response['status'] < 300 && is_array($data)) {
+            $jobs = extract_jobs($data);
+            $jobs = array_values(array_filter($jobs, function ($job) {
+                if (is_confidential_job($job)) {
+                    return false;
+                }
+                $hiringFor = strtolower(job_hiring_for_value($job));
+                return $hiringFor === 'client (external)';
+            }));
+        }
+    }
 }
 
 if ($searchQuery !== '') {
@@ -406,6 +423,11 @@ function build_filter_url(array $params): string
     <link rel="stylesheet" href="../assets/css/style.css" />
     <link rel="stylesheet" href="../assets/css/open-roles.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        div#job-list {
+            display: block !important;
+        }
+    </style>
 
     <!-- Google Tag Manager -->
     <?php include '../inc/gtm-head-code.php'; ?>
@@ -438,12 +460,12 @@ function build_filter_url(array $params): string
     <!-- Why Join Us start here  -->
     <section class="sections mt-0">
         <div class="container content-above-decorator">
-            <div class="text-center mb-5" data-aos="fade-up">
+            <div data-aos="fade-up">
                 <h2 class="section-heading">
-                    Careers Opportunities
+                    Job Opportunities
                 </h2>
-                <div class="section-divider"></div>
-               
+                <div class="section-divider text-left"></div>
+
                 <!-- <p class="mt-1" style="color: #444; font-size: 1.1rem">
                     Your career deserves more than routine mandates. At James Douglas, you’ll work on high-stakes
                     leadership searches, learn from industry experts, and grow in an environment that rewards ambition
@@ -455,8 +477,8 @@ function build_filter_url(array $params): string
                 </p> -->
 
                 <p class="mt-4" style="color: #444; font-size: 1.1rem">
-                    Browse exclusive job opportunities across industries and functions. Each role offers genuine growth potential and aligns with our commitment to creating meaningful connections.
-                </p>
+                    Take a look at the roles we're currently working on.
+If one of them feels like the right next step, we'd love to hear from you.</p>
 
             </div>
             <div class="row g-4 justify-content-center d-none">
@@ -532,14 +554,12 @@ function build_filter_url(array $params): string
                     </div>
                 </div>
             </div>
-            <p class="mt-4 text-center" style="color: #444; font-size: 1.1rem">
-                Here, your career creates value through people. And that legacy lasts. 
-            </p>
+
         </div>
     </section>
     <!-- Why Join Us end here  -->
 
-   
+
 
     <!-- internal job section start -->
     <section class="open-roles-section" id="internal-jobs-section" style="display: none;">
@@ -552,7 +572,7 @@ function build_filter_url(array $params): string
                 <div class="section-divider"></div>
                 <p class="mt-3 text-muted">
                     Join Our Growing Team
-                   <!-- Careers at James Douglas -->
+                    <!-- Careers at James Douglas -->
                 </p>
             </div>
 
@@ -580,7 +600,6 @@ function build_filter_url(array $params): string
                             $status = $stringify($job['job_status']['label'] ?? $job['job_status'] ?? $job['status'] ?? '');
                             $city = $stringify($job['city'] ?? '');
                             $address = $stringify($job['address'] ?? $job['address_line'] ?? $job['location_address'] ?? '');
-                            $hiringForLabel = job_hiring_for_value($job);
                             $salary = $stringify($job['salary'] ?? $job['salary_range'] ?? $job['salary_expectation'] ?? $job['compensation'] ?? '');
                             if ($salary === '') {
                                 $minSalary = is_numeric($job['min_annual_salary'] ?? null) ? (int)$job['min_annual_salary'] : 0;
@@ -630,11 +649,6 @@ function build_filter_url(array $params): string
                                                     • <?php echo htmlspecialchars($location ?: $city, ENT_QUOTES, 'UTF-8'); ?>
                                                 <?php endif; ?>
                                             </div>
-                                            <?php if (strcasecmp($hiringForLabel, 'Client (External)') === 0): ?>
-                                                <div class="open-role-subtitle">
-                                                    Hiring For: <?php echo htmlspecialchars($hiringForLabel, ENT_QUOTES, 'UTF-8'); ?>
-                                                </div>
-                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -664,14 +678,14 @@ function build_filter_url(array $params): string
 
     <section class="open-roles-section">
         <div class="container">
-            <div class="text-center mb-5">
+            <div class="text-center d-none mb-5">
                 <h2 class="section-heading">
-                    <!-- External Opportunities -->
+                   
                     Leadership Roles With us
                 </h2>
                 <div class="section-divider"></div>
                 <p class="mt-3 text-muted">
-                 Global Talent Acquisition Opportunities
+                    Global Talent Acquisition Opportunities
                 </p>
             </div>
             <div class="jobs-filter-form-wrapper">
@@ -688,65 +702,65 @@ function build_filter_url(array $params): string
                         <div class="jobs-filter-group">
                             <span class="jobs-filter-label">Job Category</span>
                             <div class="jobs-filter-select">
-                            <select id="job-category-select" name="job_category">
-                                <option value="">All</option>
-                                <?php foreach ($categoryOptions as $category): ?>
-                                    <option value="<?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $categoryFilter === $category ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                            </svg>
+                                <select id="job-category-select" name="job_category">
+                                    <option value="">All</option>
+                                    <?php foreach ($categoryOptions as $category): ?>
+                                        <option value="<?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $categoryFilter === $category ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
+                                </svg>
                             </div>
                         </div>
                         <div class="jobs-filter-group">
                             <span class="jobs-filter-label">City</span>
                             <div class="jobs-filter-select">
-                            <select id="job-city-select" name="city">
-                                <option value="">All</option>
-                                <?php foreach ($cityOptions as $city): ?>
-                                    <option value="<?php echo htmlspecialchars($city, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $cityFilter === $city ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($city, ENT_QUOTES, 'UTF-8'); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                            </svg>
+                                <select id="job-city-select" name="city">
+                                    <option value="">All</option>
+                                    <?php foreach ($cityOptions as $city): ?>
+                                        <option value="<?php echo htmlspecialchars($city, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $cityFilter === $city ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($city, ENT_QUOTES, 'UTF-8'); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
+                                </svg>
                             </div>
                         </div>
                         <div class="jobs-filter-group">
                             <span class="jobs-filter-label">Industry</span>
                             <div class="jobs-filter-select">
-                            <select id="job-industry-select" name="job_industry">
-                                <option value="">All</option>
-                                <?php foreach ($industryOptions as $industry): ?>
-                                    <option value="<?php echo htmlspecialchars($industry, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $industryFilter === $industry ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($industry, ENT_QUOTES, 'UTF-8'); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                            </svg>
+                                <select id="job-industry-select" name="job_industry">
+                                    <option value="">All</option>
+                                    <?php foreach ($industryOptions as $industry): ?>
+                                        <option value="<?php echo htmlspecialchars($industry, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $industryFilter === $industry ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($industry, ENT_QUOTES, 'UTF-8'); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
+                                </svg>
                             </div>
                         </div>
                         <div class="jobs-filter-group">
                             <span class="jobs-filter-label">Salary Range</span>
                             <div class="jobs-filter-select">
-                            <select id="job-salary-select" name="salary_range">
-                                <option value="">All</option>
-                                <?php foreach ($salaryRanges as $key => $label): ?>
-                                    <option value="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $salaryFilter === $key ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                            </svg>
+                                <select id="job-salary-select" name="salary_range">
+                                    <option value="">All</option>
+                                    <?php foreach ($salaryRanges as $key => $label): ?>
+                                        <option value="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $salaryFilter === $key ? 'selected' : ''; ?>>
+                                            <?php echo htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                    <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -764,14 +778,7 @@ function build_filter_url(array $params): string
             <?php else: ?>
                 <div class="open-roles-grid">
                     <div id="job-list">
-                        <?php
-                        $externalRenderIndex = 0;
-                        foreach ($jobs as $job):
-                            if (!has_external_client_hiring_for_field($job)) {
-                                continue;
-                            }
-                            $index = $externalRenderIndex++;
-                        ?>
+                        <?php foreach ($jobs as $index => $job): ?>
                             <?php
                             $title = $stringify($job['name'] ?? $job['title'] ?? 'Open Position');
                             $company = $stringify($job['company'] ?? $job['client'] ?? 'James Douglas Global');
@@ -824,7 +831,7 @@ function build_filter_url(array $params): string
                                 data-apply-url="<?php echo htmlspecialchars($jobUrl, ENT_QUOTES, 'UTF-8'); ?>">
                                 <div class="open-role-header">
                                     <div class="open-role-brand">
-                                            <div class="open-role-logo rounded-circle m-0"><?php echo htmlspecialchars(substr($company ?: 'JD', 0, 1), ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="open-role-logo rounded-circle m-0"><?php echo htmlspecialchars(substr($company ?: 'JD', 0, 1), ENT_QUOTES, 'UTF-8'); ?></div>
                                         <div>
                                             <div class="open-role-title mb-0open-role-info-label"><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></div>
                                             <div class="open-role-subtitle">
@@ -858,8 +865,8 @@ function build_filter_url(array $params): string
             <?php endif; ?>
         </div>
     </section>
-   
- 
+
+
     <div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 rounded-4 p-3ad">
@@ -910,8 +917,8 @@ function build_filter_url(array $params): string
         </div>
     </div>
 
-        <!-- Work With Us start here -->
-     <section class="pb-5 bg-white mt-5" id="apply">
+    <!-- Work With Us start here -->
+    <section class="pb-5 bg-white mt-5" id="apply">
         <div class="container">
 
             <div class="row justify-content-center">
@@ -921,7 +928,7 @@ function build_filter_url(array $params): string
                             <h2 class="section-heading">Considering your next move?</h2>
                             <div class="section-divider"></div>
                             <p class="mt-4 text-muted" style="font-size: 1.1rem;">
-                               We work with professionals across management and leadership roles, often before opportunities are publicly visible. Share your details and we’ll reach out when there’s a relevant conversation to have.
+                                We work with professionals across management and leadership roles, often before opportunities are publicly visible. Share your details and we’ll reach out when there’s a relevant conversation to have.
                             </p>
                         </div>
 
@@ -1030,40 +1037,6 @@ function build_filter_url(array $params): string
     </section>
     <!-- Work With Us end here -->
 
-    <!-- job cards container (client-rendered fallback) -->
-    <section class="py-5">
-        <div class="container">
-            <div id="job-container" class="row g-4"></div>
-        </div>
-    </section>
-
-    <script>
-        // reuse helper from api-test.html in JS context
-        function renderJobCard(job) {
-            const title = job.name ?? job.title ?? 'Untitled';
-            const city = job.city ?? job.location ?? 'N/A';
-            const minSal = job.min_annual_salary ?? 0;
-            const maxSal = job.max_annual_salary ?? 0;
-            const col = document.createElement('div');
-            col.className = 'col-md-6 col-lg-4';
-            const card = document.createElement('div');
-            card.className = 'p-3 border rounded bg-white h-100';
-            card.innerHTML = `
-                <h5 class="mb-2">${title}</h5>
-                <p class="mb-1"><strong>Location:</strong> ${city}</p>
-                <p class="mb-0"><strong>Salary:</strong> ${minSal} - ${maxSal}</p>
-            `;
-            col.appendChild(card);
-            return col;
-        }
-
-        const jobsData = <?php echo json_encode($jobs, JSON_HEX_TAG|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_HEX_AMP); ?> || [];
-        const jobContainer = document.getElementById('job-container');
-        jobsData.forEach(job => {
-            jobContainer.appendChild(renderJobCard(job));
-        });
-    </script>
-
     <!-- footer starts -->
     <?php include '../inc/footer2.php'; ?>
     <!-- footer ends -->
@@ -1120,7 +1093,7 @@ function build_filter_url(array $params): string
         const carousel = document.getElementById('teamCarousel');
         const indicators = document.querySelectorAll('.carousel-indicators button');
         if (carousel && indicators.length) {
-            carousel.addEventListener('slide.bs.carousel', function (event) {
+            carousel.addEventListener('slide.bs.carousel', function(event) {
                 indicators.forEach(indicator => {
                     indicator.classList.remove('active');
                     indicator.removeAttribute('aria-current');
@@ -1223,7 +1196,10 @@ function build_filter_url(array $params): string
                             return;
                         }
                         renderPage(nextPage);
-                        list.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        list.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
                     });
                 });
             };
@@ -1334,205 +1310,19 @@ function build_filter_url(array $params): string
             });
         });
 
-        const API_URL = 'https://api.recruitcrm.io/v1/jobs';
-        const API_TOKEN = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
-        const LIMIT = 6;
-        const CLIENT_PAGE_SIZE = LIMIT;
-        let externalJobsCache = null;
-
-        /**
-         * Check if a job has field_id=7, entity_type="job",
-         * field_name="Hiring For", field_type="dropdown", value="Client (External)"
-         */
-        function isExternalClientJob(job) {
-            const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
-
-            return fields.some((field) => {
-                if (!field || typeof field !== 'object') return false;
-
-                const fieldId = Number(field.field_id ?? field.id ?? 0);
-                const entityType = String(field.entity_type ?? '').trim().toLowerCase();
-                const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
-                const fieldType = String(field.field_type ?? field.type ?? '').trim().toLowerCase();
-
-                let value = field.value ?? field.field_value ?? field.selected ?? '';
-                if (value && typeof value === 'object') {
-                    value = value.value ?? value.label ?? value.name ?? '';
-                }
-                value = String(value ?? '').trim().toLowerCase();
-
-                return (
-                    fieldId === 7 &&
-                    entityType === 'job' &&
-                    fieldName === 'hiring for' &&
-                    fieldType === 'dropdown' &&
-                    value === 'client (external)'
-                );
-            });
-        }
-
-        /**
-         * Check if a job is confidential (Do Not Post).
-         */
-        function isConfidentialJob(job) {
-            const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
-
-            return fields.some((field) => {
-                if (!field || typeof field !== 'object') return false;
-
-                const fieldId = Number(field.field_id ?? field.id ?? 0);
-                const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
-
-                if (fieldId !== 7 && fieldName !== 'hiring for') return false;
-
-                let value = field.value ?? field.field_value ?? field.selected ?? '';
-                if (value && typeof value === 'object') {
-                    value = value.value ?? value.label ?? value.name ?? '';
-                }
-
-                return String(value ?? '').trim().toLowerCase() === 'do not post (confidential)';
-            });
-        }
-
-        /**
-         * Fetch a single page of jobs from the RecruitCRM API.
-         * @param {string} url - Full URL including query params
-         * @returns {Promise<{ jobs: Array, nextPageUrl: string|null }>}
-         */
-        async function fetchPage(url) {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Authorization': API_TOKEN,
-                },
-            });
-
-            if (!response.ok) {
-                throw new Error(`API request failed with status ${response.status}`);
-            }
-
-            const data = await response.json();
-            const jobs = data.data ?? data.jobs ?? (Array.isArray(data) ? data : []);
-            const nextPageUrl = data.next_page_url ?? null;
-
-            return { jobs, nextPageUrl };
-        }
-
-        /**
-         * Fetch ALL pages and return only External Client jobs (non-confidential).
-         * @param {number} limit - Items per page (passed to API)
-         * @param {number} maxPages - Safety cap to avoid infinite loops
-         * @returns {Promise<Array>}
-         */
-        async function fetchAllExternalClientJobs(limit = LIMIT, maxPages = 100) {
-            let allJobs = [];
-            let nextUrl = `${API_URL}?limit=${limit}`;
-            let pageCount = 0;
-
-            while (nextUrl && pageCount < maxPages) {
-                pageCount++;
-                const { jobs, nextPageUrl } = await fetchPage(nextUrl);
-                allJobs = allJobs.concat(jobs);
-                nextUrl = nextPageUrl;
-            }
-
-            return allJobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job));
-        }
-
-        /**
-         * Fetch only the first page (6 jobs) and filter.
-         * @returns {Promise<Array>}
-         */
-        async function fetchExternalClientJobsFirstPage() {
-            const { jobs } = await fetchPage(`${API_URL}?limit=${LIMIT}`);
-            return jobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job));
-        }
-
-        async function getExternalJobs() {
-            if (!externalJobsCache) {
-                externalJobsCache = await fetchAllExternalClientJobs();
-            }
-            return externalJobsCache;
-        }
-
         async function fetchFilteredJobs(queryString) {
-            const params = new URLSearchParams(queryString || '');
-            const requestedPage = Math.max(1, parseInt(params.get('page') || '1', 10) || 1);
+            const url = `filter-jobs.php${queryString ? `?${queryString}` : ''}`;
             try {
-                const allExternalJobs = await getExternalJobs();
-                const jobs = applyClientFilters(allExternalJobs, params);
-                const total = jobs.length;
-                const lastPage = Math.max(1, Math.ceil(total / CLIENT_PAGE_SIZE));
-                const currentPage = Math.min(requestedPage, lastPage);
-                const offset = (currentPage - 1) * CLIENT_PAGE_SIZE;
-                const pageJobs = jobs.slice(offset, offset + CLIENT_PAGE_SIZE);
-
-                renderJobList(pageJobs);
-                renderPagination({
-                    current_page: currentPage,
-                    per_page: CLIENT_PAGE_SIZE,
-                    total,
-                    last_page: lastPage,
-                });
+                const response = await fetch(url);
+                const data = await response.json();
+                if (!response.ok || data.error) {
+                    return;
+                }
+                renderJobList(data.jobs || []);
+                renderPagination(data.pagination || null);
             } catch (error) {
-                console.error('Error fetching jobs:', error.message);
-                const list = document.getElementById('job-list');
-                if (list) {
-                    list.innerHTML = '<div class="alert alert-light shadow-sm" role="alert">Unable to load open roles right now.</div>';
-                }
+                console.error(error);
             }
-        }
-
-        function applyClientFilters(jobs, params) {
-            const q = String(params.get('q') || '').trim().toLowerCase();
-            const category = String(params.get('job_category') || '').trim().toLowerCase();
-            const city = String(params.get('city') || '').trim().toLowerCase();
-            const industry = String(params.get('job_industry') || '').trim().toLowerCase();
-            const salaryRange = String(params.get('salary_range') || '').trim();
-
-            return jobs.filter((job) => {
-                const title = String(job?.name ?? job?.title ?? '').toLowerCase();
-                const jobCategory = String(job?.job_category ?? job?.category ?? '').toLowerCase();
-                const jobCity = String(job?.city ?? '').toLowerCase();
-                const jobIndustry = String(job?.job_industry ?? '').toLowerCase();
-
-                if (q && !title.includes(q)) return false;
-                if (category && jobCategory !== category) return false;
-                if (city && jobCity !== city) return false;
-                if (industry && jobIndustry !== industry) return false;
-
-                if (salaryRange) {
-                    const min = Number(job?.min_annual_salary ?? 0);
-                    const max = Number(job?.max_annual_salary ?? 0);
-                    if (salaryRange === '20000000+') {
-                        if (!(max >= 20000000 || min >= 20000000)) return false;
-                    } else {
-                        const [rawMin, rawMax] = salaryRange.split('-');
-                        const rMin = Number(rawMin || 0);
-                        const rMax = Number(rawMax || 0);
-                        if (!(min <= rMax && max >= rMin)) return false;
-                    }
-                }
-
-                return true;
-            });
-        }
-
-        function getHiringForValue(job) {
-            const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
-            const match = fields.find((field) => {
-                if (!field || typeof field !== 'object') {
-                    return false;
-                }
-                const fieldId = Number(field.field_id ?? field.id ?? 0);
-                return fieldId === 7;
-            });
-            let value = match?.value ?? '';
-            if (value && typeof value === 'object') {
-                value = value.value ?? value.label ?? value.name ?? '';
-            }
-            return String(value ?? '').trim();
         }
 
         function renderPagination(pagination) {
@@ -1574,7 +1364,10 @@ function build_filter_url(array $params): string
                         return;
                     }
                     applyFilters(nextPage);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 });
             });
         }
@@ -1611,7 +1404,6 @@ function build_filter_url(array $params): string
                 const jobId = job.id ?? job.job_id ?? '';
                 const jobSlug = job.slug ?? job.job_slug ?? '';
                 const jobUrl = job.apply_link || job.url || '../career.php';
-                const hiringForLabel = getHiringForValue(job);
 
                 const card = document.createElement('a');
                 card.className = `open-role-list-card ${index === 0 ? 'active' : ''} mb-3`;
@@ -1632,7 +1424,6 @@ function build_filter_url(array $params): string
                             <div>
                                 <div class="open-role-title mb-0open-role-info-label">${title}</div>
                                 <div class="open-role-subtitle">${company}${location || city ? ` • ${location || city}` : ''}</div>
-                                ${hiringForLabel.toLowerCase() === 'client (external)' ? `<div class="open-role-subtitle">Hiring For: ${hiringForLabel}</div>` : ''}
                             </div>
                         </div>
                     </div>
@@ -1710,16 +1501,16 @@ function build_filter_url(array $params): string
             return params.toString();
         }
 
-       function applyFilters(page = 1) {
-  const filters = getActiveFilters();
-  const queryString = buildFilterQuery(filters, page);
+        function applyFilters(page = 1) {
+            const filters = getActiveFilters();
+            const queryString = buildFilterQuery(filters, page);
 
-  const hash = window.location.hash || ''; // ✅ keep existing hash
-  const newUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ''}${hash}`;
+            const hash = window.location.hash || ''; // ✅ keep existing hash
+            const newUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ''}${hash}`;
 
-  window.history.replaceState({}, '', newUrl);
-  fetchFilteredJobs(queryString);
-}
+            window.history.replaceState({}, '', newUrl);
+            fetchFilteredJobs(queryString);
+        }
 
 
         function setActiveFiltersFromParams(params) {
@@ -1751,22 +1542,23 @@ function build_filter_url(array $params): string
     </script>
 
     <script>
- document.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash;
-  if (!hash) return;
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash;
+            if (!hash) return;
 
-  setTimeout(() => {
-    const el = document.querySelector(hash);
-    if (!el) return;
+            setTimeout(() => {
+                const el = document.querySelector(hash);
+                if (!el) return;
 
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 200);
-});
-
-</script>
+                el.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 200);
+        });
+    </script>
 
 
 </body>
 
 </html>
- 

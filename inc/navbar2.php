@@ -24,7 +24,7 @@
         Find Opportunities
     </a>
     <ul class="dropdown-menu" aria-labelledby="findOpportunitiesDropdown">
-        <li><a class="nav-link" href="careers/open-roles.php">Open Roles</a></li>
+        <li><a class="nav-link" href="../careers">Open Roles</a></li>
         <li><a class="nav-link" href="../join-us.html">Join US</a></li>
     </ul>
 </li>

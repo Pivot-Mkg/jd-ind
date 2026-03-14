@@ -16,7 +16,6 @@ $countryFilter = isset($_GET['country']) ? trim((string)$_GET['country']) : '';
 $companyFilter = isset($_GET['company_name']) ? trim((string)$_GET['company_name']) : '';
 $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $perPage = isset($_GET['per_page']) ? max(1, (int)$_GET['per_page']) : 9;
-$fetchAll = isset($_GET['fetch_all']) && (string)$_GET['fetch_all'] === '1';
 $categoryValues = array_filter(array_map('trim', explode(',', $categoryFilter)));
 $cityValues = array_filter(array_map('trim', explode(',', $cityFilter)));
 $localityValues = array_filter(array_map('trim', explode(',', $localityFilter)));
@@ -45,30 +44,31 @@ $stringify = function ($value): string {
 
 function job_hiring_for_value(array $job): string
 {
-    $fields = $job['custom_fields'] ?? [];
-    if (!is_array($fields)) {
-        return '';
-    }
+    $candidates = [
+        $job['custom_fields'] ?? null,
+        $job['custom_field'] ?? null,
+        $job['custom_fields_values'] ?? null,
+        $job['custom_field_values'] ?? null,
+        $job['fields'] ?? null,
+    ];
 
-    foreach ($fields as $field) {
-        if (!is_array($field)) {
+    foreach ($candidates as $fields) {
+        if (!is_array($fields)) {
             continue;
         }
-        $fieldId = (int)($field['field_id'] ?? 0);
-        $entityType = trim((string)($field['entity_type'] ?? ''));
-        $fieldName = trim((string)($field['field_name'] ?? ''));
-        $fieldType = trim((string)($field['field_type'] ?? ''));
-        if (
-            $fieldId === 7 &&
-            $entityType === 'job' &&
-            $fieldName === 'Hiring For' &&
-            $fieldType === 'dropdown'
-        ) {
-            $value = $field['value'] ?? '';
-            if (is_array($value)) {
-                return '';
+        foreach ($fields as $field) {
+            if (!is_array($field)) {
+                continue;
             }
-            return trim((string)$value);
+            $fieldName = strtolower((string)($field['field_name'] ?? $field['name'] ?? ''));
+            $fieldId = (int)($field['field_id'] ?? $field['id'] ?? 0);
+            if ($fieldId === 7 || $fieldName === 'hiring for') {
+                $value = $field['value'] ?? $field['field_value'] ?? $field['selected'] ?? '';
+                if (is_array($value)) {
+                    $value = $value['value'] ?? $value['label'] ?? $value['name'] ?? '';
+                }
+                return trim((string)$value);
+            }
         }
     }
 
@@ -78,11 +78,6 @@ function job_hiring_for_value(array $job): string
 function is_confidential_job(array $job): bool
 {
     return strcasecmp(job_hiring_for_value($job), 'Do Not Post (Confidential)') === 0;
-}
-
-function has_external_client_hiring_for_field(array $job): bool
-{
-    return job_hiring_for_value($job) === 'Client (External)';
 }
 
 function job_industry_value(array $job): string
@@ -165,13 +160,18 @@ function extract_jobs(array $data): array
 }
 
 $jobs = [];
-$nextUrl = $apiUrl;
-$maxPages = 100;
-$pageCount = 0;
 
-while ($nextUrl && $pageCount < $maxPages) {
-    $pageCount++;
-    $response = recruitcrm_get($nextUrl, $apiToken);
+$searchParams = array_filter([
+    'name' => $searchQuery !== '' ? $searchQuery : '',
+    'city' => count($cityValues) === 1 ? $cityValues[0] : '',
+    'country' => $countryFilter,
+    'locality' => '',
+    'company_name' => $companyFilter,
+], fn($value) => $value !== '');
+
+if ($searchParams) {
+    $searchUrl = $apiUrl . '/search?' . http_build_query($searchParams);
+    $response = recruitcrm_get($searchUrl, $apiToken);
     if ($response['error']) {
         http_response_code(500);
         echo json_encode(['error' => true, 'message' => 'Request failed']);
@@ -179,36 +179,44 @@ while ($nextUrl && $pageCount < $maxPages) {
     }
     $data = json_decode($response['body'], true);
     if ($response['status'] >= 200 && $response['status'] < 300 && is_array($data)) {
-        $jobs = array_merge($jobs, extract_jobs($data));
-        $nextUrl = $data['next_page_url'] ?? null;
-    } else {
-        break;
+        $jobs = extract_jobs($data);
+    }
+} else {
+    $nextUrl = $apiUrl;
+    $maxPages = 20;
+    $pageCount = 0;
+
+    while ($nextUrl && $pageCount < $maxPages) {
+        $pageCount++;
+        $response = recruitcrm_get($nextUrl, $apiToken);
+        if ($response['error']) {
+            http_response_code(500);
+            echo json_encode(['error' => true, 'message' => 'Request failed']);
+            exit;
+        }
+        $data = json_decode($response['body'], true);
+        if ($response['status'] >= 200 && $response['status'] < 300 && is_array($data)) {
+            $jobs = array_merge($jobs, extract_jobs($data));
+            $nextUrl = $data['next_page_url'] ?? null;
+        } else {
+            break;
+        }
     }
 }
 
-if ($searchQuery !== '') {
+if ($searchQuery !== '' && empty($searchParams)) {
     $jobs = array_values(array_filter($jobs, function ($job) use ($searchQuery, $stringify) {
         $title = $stringify($job['name'] ?? $job['title'] ?? '');
         return stripos($title, $searchQuery) !== false;
     }));
 }
 
-if ($countryFilter !== '') {
-    $jobs = array_values(array_filter($jobs, function ($job) use ($countryFilter, $stringify) {
-        $country = $stringify($job['country'] ?? '');
-        return $country !== '' && strcasecmp($country, $countryFilter) === 0;
-    }));
-}
-
-if ($companyFilter !== '') {
-    $jobs = array_values(array_filter($jobs, function ($job) use ($companyFilter, $stringify) {
-        $company = $stringify($job['company'] ?? $job['company_name'] ?? $job['client'] ?? '');
-        return $company !== '' && stripos($company, $companyFilter) !== false;
-    }));
-}
-
 $jobs = array_values(array_filter($jobs, function ($job) {
-    return has_external_client_hiring_for_field($job);
+    if (is_confidential_job($job)) {
+        return false;
+    }
+    $hiringFor = strtolower(job_hiring_for_value($job));
+    return $hiringFor === 'client (external)';
 }));
 
 if (!empty($categoryValues)) {
@@ -276,17 +284,11 @@ if (!empty($salaryValues)) {
 
 $total = count($jobs);
 $lastPage = max(1, (int)ceil($total / $perPage));
-if (!$fetchAll) {
-    if ($page > $lastPage) {
-        $page = $lastPage;
-    }
-    $offset = ($page - 1) * $perPage;
-    $jobs = array_slice($jobs, $offset, $perPage);
-} else {
-    $page = 1;
-    $perPage = max(1, $total);
-    $lastPage = 1;
+if ($page > $lastPage) {
+    $page = $lastPage;
 }
+$offset = ($page - 1) * $perPage;
+$jobs = array_slice($jobs, $offset, $perPage);
 
 echo json_encode([
     'error' => false,

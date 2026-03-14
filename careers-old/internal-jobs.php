@@ -46,30 +46,31 @@ function extract_jobs(array $data): array
 
 function job_hiring_for_value(array $job): string
 {
-    $fields = $job['custom_fields'] ?? [];
-    if (!is_array($fields)) {
-        return '';
-    }
+    $candidates = [
+        $job['custom_fields'] ?? null,
+        $job['custom_field'] ?? null,
+        $job['custom_fields_values'] ?? null,
+        $job['custom_field_values'] ?? null,
+        $job['fields'] ?? null,
+    ];
 
-    foreach ($fields as $field) {
-        if (!is_array($field)) {
+    foreach ($candidates as $fields) {
+        if (!is_array($fields)) {
             continue;
         }
-        $fieldId = (int)($field['field_id'] ?? 0);
-        $entityType = trim((string)($field['entity_type'] ?? ''));
-        $fieldName = trim((string)($field['field_name'] ?? ''));
-        $fieldType = trim((string)($field['field_type'] ?? ''));
-        if (
-            $fieldId === 7 &&
-            $entityType === 'job' &&
-            $fieldName === 'Hiring For' &&
-            $fieldType === 'dropdown'
-        ) {
-            $value = $field['value'] ?? '';
-            if (is_array($value)) {
-                return '';
+        foreach ($fields as $field) {
+            if (!is_array($field)) {
+                continue;
             }
-            return trim((string)$value);
+            $fieldName = strtolower((string)($field['field_name'] ?? $field['name'] ?? ''));
+            $fieldId = (int)($field['field_id'] ?? $field['id'] ?? 0);
+            if ($fieldId === 7 || $fieldName === 'hiring for') {
+                $value = $field['value'] ?? $field['field_value'] ?? $field['selected'] ?? '';
+                if (is_array($value)) {
+                    $value = $value['value'] ?? $value['label'] ?? $value['name'] ?? '';
+                }
+                return trim((string)$value);
+            }
         }
     }
 
@@ -108,7 +109,8 @@ $internalJobs = array_values(array_filter($allJobs, function (array $job): bool 
     if (is_confidential_job($job)) {
         return false;
     }
-    return job_hiring_for_value($job) === 'Client (Internal)';
+    $hiringFor = strtolower(job_hiring_for_value($job));
+    return $hiringFor !== 'client (external)';
 }));
 
 $jobs = array_map(function (array $job): array {
@@ -121,7 +123,6 @@ $jobs = array_map(function (array $job): array {
         'job_type' => (string)($job['job_type'] ?? $job['type'] ?? ''),
         'min_experience' => (string)($job['minimum_experience'] ?? $job['min_experience'] ?? ''),
         'max_experience' => (string)($job['maximum_experience'] ?? $job['max_experience'] ?? ''),
-        'hiring_for' => job_hiring_for_value($job),
     ];
 }, $internalJobs);
 
