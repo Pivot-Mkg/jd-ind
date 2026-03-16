@@ -76,9 +76,27 @@ function job_hiring_for_value(array $job): string
     return '';
 }
 
+function normalize_hiring_for_value(string $value): string
+{
+    $normalized = strtolower(trim(str_replace(["\xE2\x80\x93", "\xE2\x80\x94"], '-', $value)));
+    $normalized = preg_replace('/\s+/', ' ', $normalized) ?? $normalized;
+
+    return match ($normalized) {
+        'internal - to be posted on join us',
+        'client (internal)' => 'internal',
+        'external - to be posted to "find opportunities"',
+        "external - to be posted to 'find opportunities'",
+        'external - to be posted to find opportunities',
+        'client (external)' => 'external',
+        'do not post',
+        'do not post (confidential)' => 'hidden',
+        default => '',
+    };
+}
+
 function is_confidential_job(array $job): bool
 {
-    return strcasecmp(job_hiring_for_value($job), 'Do Not Post (Confidential)') === 0;
+    return normalize_hiring_for_value(job_hiring_for_value($job)) === 'hidden';
 }
 
 $allJobs = [];
@@ -108,7 +126,7 @@ $internalJobs = array_values(array_filter($allJobs, function (array $job): bool 
     if (is_confidential_job($job)) {
         return false;
     }
-    return job_hiring_for_value($job) === 'Client (Internal)';
+    return normalize_hiring_for_value(job_hiring_for_value($job)) === 'internal';
 }));
 
 $jobs = array_map(function (array $job): array {

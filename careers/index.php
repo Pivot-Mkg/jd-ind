@@ -45,33 +45,16 @@
           <div class="jobs-filter-top">
             <div class="jobs-filter-input">
               <i class="bi bi-search"></i>
-              <input type="search" id="job-search-input" placeholder="Job title or keyword" name="q">
+              <input type="search" id="job-search-input" placeholder="Search by Job Title" name="q">
             </div>
             <button type="button" class="jobs-filter-btn jobs-filter-btn-clear" id="job-search-clear">Clear</button>
             <button type="button" class="jobs-filter-btn jobs-filter-btn-search" id="job-search-submit">Search</button>
           </div>
           <div class="jobs-filter-dropdowns">
             <div class="jobs-filter-group">
-              <span class="jobs-filter-label">Job Category</span>
+              <span class="jobs-filter-label">Location</span>
               <div class="jobs-filter-select">
-                <select id="job-category-select" name="job_category">
-                  <option value="">All</option>
-                  <option value="HR">HR</option>
-                  <option value="Human Resources">Human Resources</option>
-                  <option value="Marketing">Marketing</option>
-                  <option value="Sales">Sales</option>
-                  <option value="Technology">Technology</option>
-                </select>
-                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                  <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                </svg>
-              </div>
-            </div>
-
-            <div class="jobs-filter-group">
-              <span class="jobs-filter-label">City</span>
-              <div class="jobs-filter-select">
-                <select id="job-city-select" name="city">
+                <select id="job-location-select" name="city">
                   <option value="">All</option>
                   <option value="Agra">Agra</option>
                   <option value="Ahmedabad">Ahmedabad</option>
@@ -146,14 +129,22 @@
             </div>
 
             <div class="jobs-filter-group">
-              <span class="jobs-filter-label">Salary Range</span>
+              <span class="jobs-filter-label">Function</span>
               <div class="jobs-filter-select">
-                <select id="job-salary-select" name="salary_range">
+                <select id="job-function-select" name="job_function">
                   <option value="">All</option>
-                  <option value="0-5000000">Up to 50 LPA</option>
-                  <option value="5000000-10000000">50 LPA - 1 Cr</option>
-                  <option value="10000000-20000000">1 Cr - 2 Cr</option>
-                  <option value="20000000+">2 Cr+</option>
+                </select>
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                  <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="jobs-filter-group">
+              <span class="jobs-filter-label">Sub Function</span>
+              <div class="jobs-filter-select">
+                <select id="job-sub-function-select" name="job_category">
+                  <option value="">All</option>
                 </select>
                 <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
                   <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
@@ -185,15 +176,116 @@
     const API_TOKEN = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
     const API_FETCH_LIMIT = 50;
     const PAGE_SIZE = 9;
+    const INDUSTRY_OPTIONS = [
+      'Biotech',
+      'Clinical Research',
+      'Pharmaceutical',
+      'Medical Devices',
+      'Medical Equipments',
+      'Medical Diagnostics',
+      'CDMO',
+      'API',
+      'Consumer Healthcare',
+      'Clinics & Labs',
+      'Hospitals',
+      'Building Materials',
+      'Chemicals',
+      'Automobile',
+      'Auto Components',
+      'Defence & Aerospace',
+      'Electrical Equipment',
+      'Agrochemicals',
+      'Industrial Automation',
+      'Industrial Equipment/Machinery',
+      'Iron & Steel',
+      'Metals & Mining',
+      'Packaging',
+      'Petrochemicals',
+      'Plastics & Rubber',
+      'Aviation',
+      'Logistics',
+      'EPC',
+      'Oil & Gas',
+      'Ports & Shipping',
+      'Power',
+      'Real Estate',
+      'Construction',
+      'FMCG',
+      'FMCD',
+      'Beauty & Personal Care',
+      'Beverage',
+      'Fitness & Wellness',
+      'Furniture & Furnishing',
+      'Gems & Jewellery',
+      'Hospitality',
+      'Retail',
+      'Textile & Apparel',
+      'Travel & Tourism',
+      'Financial Services',
+      'Banking',
+      'Credit Rating',
+      'Life Insurance',
+      'General Insurance',
+      'Health Insurance',
+      'NBFC',
+      'Capital Markets/Securities/Broking',
+      'Mutual Funds & AMC',
+      'MII',
+      'Investment Banking/Management',
+      'PE/VC',
+      'Payment-Tech',
+      'Lending-Tech',
+      'Wealth-Tech',
+      'Insur-Tech',
+      'Reg-Tech',
+      'Crypto',
+      'Consumer-Tech',
+      'D2C Tech',
+      'Retail-Tech',
+      'Health-Tech',
+      'Ed-Tech',
+      'Prop-Tech',
+      'Travel-Tech',
+      'Logi-Tech',
+      'HR-Tech',
+      'Analytics Platform',
+      'B2B SaaS',
+      'ITeS',
+      'Gaming',
+      'Telecom',
+      'Advertising',
+      'PR',
+      'Media',
+      'Accounting',
+      'Business Consulting & Services',
+      'Law Firms',
+      'NGOs',
+      'Market Research',
+      'Sports/Leisure/Recreation',
+      'Education',
+      'Miscellaneous',
+    ];
+    const FUNCTION_OPTIONS = [
+      'Healthcare & Lifesciences',
+      'B2B',
+      'Property & Construction',
+      'B2C',
+      'Banking & Financial Services',
+      'FinTech',
+      'Technology',
+      'Media, Entertainment & Telecom',
+      'Professional Services',
+      'Miscellaneous',
+    ];
 
     const searchForm = document.getElementById('job-search-form');
     const searchInput = document.getElementById('job-search-input');
     const clearButton = document.getElementById('job-search-clear');
     const submitButton = document.getElementById('job-search-submit');
-    const categorySelect = document.getElementById('job-category-select');
-    const citySelect = document.getElementById('job-city-select');
+    const locationSelect = document.getElementById('job-location-select');
     const industrySelect = document.getElementById('job-industry-select');
-    const salarySelect = document.getElementById('job-salary-select');
+    const functionSelect = document.getElementById('job-function-select');
+    const subFunctionSelect = document.getElementById('job-sub-function-select');
     const jobsContainer = document.getElementById('job-list');
 
     let externalJobsCache = null;
@@ -249,15 +341,6 @@
       return getHiringForValue(job).toLowerCase() === 'do not post (confidential)';
     }
 
-    function isJobPostingStatusActive(job) {
-      const rawStatus = job?.job_posting_status;
-      if (rawStatus && typeof rawStatus === 'object') {
-        const nestedStatus = rawStatus.value ?? rawStatus.id ?? rawStatus.status ?? '';
-        return Number(nestedStatus) === 1;
-      }
-      return Number(rawStatus ?? 0) === 1;
-    }
-
     function getIndustryValue(job) {
       const candidates = [
         job?.custom_fields,
@@ -299,6 +382,27 @@
       return String(fallback ?? '').trim();
     }
 
+    function getFunctionValue(job) {
+      const fallback = job?.job_function ?? job?.function ?? '';
+      if (Array.isArray(fallback)) {
+        return fallback.map((item) => String(item)).filter((item) => item.trim() !== '').join(', ').trim();
+      }
+      return String(fallback ?? '').trim();
+    }
+
+    function getSubFunctionValue(job) {
+      const fallback = job?.job_category ?? job?.category ?? '';
+      if (Array.isArray(fallback)) {
+        return fallback.map((item) => String(item)).filter((item) => item.trim() !== '').join(', ').trim();
+      }
+      return String(fallback ?? '').trim();
+    }
+
+    function getQualificationValue(job) {
+      const directValue = job?.qualification?.label ?? job?.qualification?.name ?? job?.qualification_name ?? job?.qualification_label ?? '';
+      return String(directValue ?? '').trim();
+    }
+
     async function fetchPage(url) {
       const response = await fetch(url, {
         method: 'GET',
@@ -331,7 +435,7 @@
         nextUrl = nextPageUrl;
       }
 
-      return allJobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job) && isJobPostingStatusActive(job));
+      return allJobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job));
     }
 
     async function getExternalJobs() {
@@ -341,66 +445,72 @@
       return externalJobsCache;
     }
 
-    function populateIndustryOptions(jobs, selectedIndustry) {
-      const values = [];
-      const lookup = {};
+    function populateOptions(select, values, selectedValue) {
+      if (!select) {
+        return;
+      }
 
-      jobs.forEach((job) => {
-        const industry = getIndustryValue(job);
-        if (!industry) {
+      const lookup = {};
+      const uniqueValues = [];
+
+      values.forEach((value) => {
+        const normalized = String(value ?? '').trim();
+        if (!normalized) {
           return;
         }
-        const key = industry.toLowerCase();
+        const key = normalized.toLowerCase();
         if (!lookup[key]) {
           lookup[key] = true;
-          values.push(industry);
+          uniqueValues.push(normalized);
         }
       });
 
-      values.sort((a, b) => a.localeCompare(b));
-      industrySelect.innerHTML = '<option value="">All</option>';
-      values.forEach((industry) => {
+      uniqueValues.sort((a, b) => a.localeCompare(b));
+      select.innerHTML = '<option value="">All</option>';
+
+      uniqueValues.forEach((value) => {
         const option = document.createElement('option');
-        option.value = industry;
-        option.textContent = industry;
-        industrySelect.appendChild(option);
+        option.value = value;
+        option.textContent = value;
+        select.appendChild(option);
       });
 
-      if (selectedIndustry && lookup[selectedIndustry.toLowerCase()]) {
-        industrySelect.value = selectedIndustry;
+      if (selectedValue && lookup[selectedValue.toLowerCase()]) {
+        select.value = selectedValue;
       }
+    }
+
+    function populateIndustryOptions(jobs, selectedIndustry) {
+      populateOptions(industrySelect, INDUSTRY_OPTIONS, selectedIndustry);
+    }
+
+    function populateFunctionOptions(jobs, selectedFunction) {
+      populateOptions(functionSelect, FUNCTION_OPTIONS, selectedFunction);
+    }
+
+    function populateSubFunctionOptions(jobs, selectedSubFunction) {
+      populateOptions(subFunctionSelect, jobs.map((job) => getSubFunctionValue(job)), selectedSubFunction);
     }
 
     function applyClientFilters(jobs, params) {
       const q = String(params.get('q') || '').trim().toLowerCase();
-      const category = String(params.get('job_category') || '').trim().toLowerCase();
       const city = String(params.get('city') || '').trim().toLowerCase();
       const industry = String(params.get('job_industry') || '').trim().toLowerCase();
-      const salaryRange = String(params.get('salary_range') || '').trim();
+      const jobFunction = String(params.get('job_function') || '').trim().toLowerCase();
+      const subFunction = String(params.get('job_category') || '').trim().toLowerCase();
 
       return jobs.filter((job) => {
         const title = stringify(job?.name ?? job?.title ?? '').toLowerCase();
-        const jobCategory = stringify(job?.job_category ?? job?.category ?? '').toLowerCase();
         const jobCity = stringify(job?.city ?? '').toLowerCase();
         const jobIndustry = getIndustryValue(job).toLowerCase();
+        const currentFunction = getFunctionValue(job).toLowerCase();
+        const currentSubFunction = getSubFunctionValue(job).toLowerCase();
 
         if (q && !title.includes(q)) return false;
-        if (category && jobCategory !== category) return false;
         if (city && jobCity !== city) return false;
         if (industry && jobIndustry !== industry) return false;
-
-        if (salaryRange) {
-          const min = Number(job?.min_annual_salary ?? 0);
-          const max = Number(job?.max_annual_salary ?? 0);
-          if (salaryRange === '20000000+') {
-            if (!(max >= 20000000 || min >= 20000000)) return false;
-          } else {
-            const [rawMin, rawMax] = salaryRange.split('-');
-            const rMin = Number(rawMin || 0);
-            const rMax = Number(rawMax || 0);
-            if (!(min <= rMax && max >= rMin)) return false;
-          }
-        }
+        if (jobFunction && currentFunction !== jobFunction) return false;
+        if (subFunction && currentSubFunction !== subFunction) return false;
 
         return true;
       });
@@ -426,15 +536,13 @@
       jobs.forEach((job, index) => {
         const title = stringify(job?.name ?? job?.title ?? 'Open Position');
         const company = stringify(job?.company ?? job?.company_name ?? job?.client ?? 'James Douglas Global');
-        const location = stringify(job?.location ?? (job?.city ?? ''));
         const city = stringify(job?.city ?? '');
-        const type = stringify(job?.job_type ?? job?.type ?? 'Full time');
         const minExp = stringify(job?.minimum_experience ?? job?.min_experience ?? job?.min_exp ?? '');
-        const maxExp = stringify(job?.maximum_experience ?? job?.max_experience ?? job?.max_exp ?? '');
-        const expRange = minExp !== '' || maxExp !== '' ? `${minExp} to ${maxExp} Years` : 'Not specified';
-        const minSalary = Number(job?.min_annual_salary ?? 0);
-        const maxSalary = Number(job?.max_annual_salary ?? 0);
-        const salary = minSalary || maxSalary ? `${formatSalary(minSalary)} - ${formatSalary(maxSalary)}` : 'Not disclosed';
+        const industry = getIndustryValue(job) || 'Not specified';
+        const jobFunction = getFunctionValue(job) || 'Not specified';
+        const subFunction = getSubFunctionValue(job) || 'Not specified';
+        const qualification = getQualificationValue(job) || 'Not specified';
+        const noteForCandidates = stringify(job?.note_for_candidates ?? '').trim() || 'Not specified';
         const jobSlug = String(job?.slug ?? job?.job_slug ?? '');
 
         const card = document.createElement('a');
@@ -445,23 +553,39 @@
             <div class="open-role-brand">
               <div class="open-role-logo rounded-circle m-0">${escapeHtml((company || 'JD').charAt(0))}</div>
               <div>
-                <div class="open-role-title mb-0 open-role-info-label">${escapeHtml(title)}</div>
-                <div class="open-role-subtitle">${escapeHtml(company)}${location || city ? ` • ${escapeHtml(location || city)}` : ''}</div>
+                <div class="open-role-title">${escapeHtml(title)}</div>
+                <div class="open-role-subtitle">${escapeHtml(company)}</div>
               </div>
             </div>
           </div>
           <div class="open-role-info">
             <div>
-              <div class="open-role-info-label">Experience</div>
-              <div class="open-role-info-value">${escapeHtml(expRange)}</div>
+              <div class="open-role-info-label">Location</div>
+              <div class="open-role-info-value">${escapeHtml(city || 'Not specified')}</div>
             </div>
             <div>
-              <div class="open-role-info-label">Job Type</div>
-              <div class="open-role-info-value">${escapeHtml(type)}</div>
+              <div class="open-role-info-label">Industry</div>
+              <div class="open-role-info-value">${escapeHtml(industry)}</div>
             </div>
             <div>
-              <div class="open-role-info-label">Salary</div>
-              <div class="open-role-info-value">${escapeHtml(salary)}</div>
+              <div class="open-role-info-label">Function</div>
+              <div class="open-role-info-value">${escapeHtml(jobFunction)}</div>
+            </div>
+            <div>
+              <div class="open-role-info-label">Sub Function</div>
+              <div class="open-role-info-value">${escapeHtml(subFunction)}</div>
+            </div>
+            <div>
+              <div class="open-role-info-label">Educational Qualification</div>
+              <div class="open-role-info-value">${escapeHtml(qualification)}</div>
+            </div>
+            <div>
+              <div class="open-role-info-label">YOE</div>
+              <div class="open-role-info-value">${escapeHtml(minExp ? `${minExp} Years` : 'Not specified')}</div>
+            </div>
+            <div class="open-role-info-note">
+              <div class="open-role-info-label">Note for Candidates</div>
+              <div class="open-role-info-value">${escapeHtml(noteForCandidates)}</div>
             </div>
           </div>
         `;
@@ -521,23 +645,23 @@
     function getActiveFilters() {
       const filters = {
         q: searchInput ? searchInput.value.trim() : '',
-        job_category: [],
         city: [],
         job_industry: [],
-        salary_range: [],
+        job_function: [],
+        job_category: [],
       };
 
-      if (categorySelect && categorySelect.value) {
-        filters.job_category = [categorySelect.value];
-      }
-      if (citySelect && citySelect.value) {
-        filters.city = [citySelect.value];
+      if (locationSelect && locationSelect.value) {
+        filters.city = [locationSelect.value];
       }
       if (industrySelect && industrySelect.value) {
         filters.job_industry = [industrySelect.value];
       }
-      if (salarySelect && salarySelect.value) {
-        filters.salary_range = [salarySelect.value];
+      if (functionSelect && functionSelect.value) {
+        filters.job_function = [functionSelect.value];
+      }
+      if (subFunctionSelect && subFunctionSelect.value) {
+        filters.job_category = [subFunctionSelect.value];
       }
 
       return filters;
@@ -548,17 +672,17 @@
       if (filters.q) {
         params.set('q', filters.q);
       }
-      if (filters.job_category.length) {
-        params.set('job_category', filters.job_category.join(','));
-      }
       if (filters.city.length) {
         params.set('city', filters.city.join(','));
       }
       if (filters.job_industry.length) {
         params.set('job_industry', filters.job_industry.join(','));
       }
-      if (filters.salary_range.length) {
-        params.set('salary_range', filters.salary_range.join(','));
+      if (filters.job_function.length) {
+        params.set('job_function', filters.job_function.join(','));
+      }
+      if (filters.job_category.length) {
+        params.set('job_category', filters.job_category.join(','));
       }
       if (page > 1) {
         params.set('page', String(page));
@@ -570,17 +694,9 @@
       if (searchInput) {
         searchInput.value = params.get('q') || '';
       }
-      if (categorySelect) {
-        const value = params.get('job_category') || '';
-        categorySelect.value = value ? value.split(',')[0] : '';
-      }
-      if (citySelect) {
+      if (locationSelect) {
         const value = params.get('city') || '';
-        citySelect.value = value ? value.split(',')[0] : '';
-      }
-      if (salarySelect) {
-        const value = params.get('salary_range') || '';
-        salarySelect.value = value ? value.split(',')[0] : '';
+        locationSelect.value = value ? value.split(',')[0] : '';
       }
     }
 
@@ -591,9 +707,19 @@
       try {
         const allExternalJobs = await getExternalJobs();
         const selectedIndustry = params.get('job_industry') ? params.get('job_industry').split(',')[0] : '';
+        const selectedFunction = params.get('job_function') ? params.get('job_function').split(',')[0] : '';
+        const selectedSubFunction = params.get('job_category') ? params.get('job_category').split(',')[0] : '';
         populateIndustryOptions(allExternalJobs, selectedIndustry);
+        populateFunctionOptions(allExternalJobs, selectedFunction);
+        populateSubFunctionOptions(allExternalJobs, selectedSubFunction);
         if (selectedIndustry && industrySelect.value !== selectedIndustry) {
           industrySelect.value = '';
+        }
+        if (selectedFunction && functionSelect.value !== selectedFunction) {
+          functionSelect.value = '';
+        }
+        if (selectedSubFunction && subFunctionSelect.value !== selectedSubFunction) {
+          subFunctionSelect.value = '';
         }
 
         const filteredJobs = applyClientFilters(allExternalJobs, params);
@@ -645,18 +771,18 @@
       submitButton.addEventListener('click', () => applyFilters(1));
     }
 
-    if (clearButton) {
+      if (clearButton) {
       clearButton.addEventListener('click', () => {
         if (searchInput) searchInput.value = '';
-        if (categorySelect) categorySelect.value = '';
-        if (citySelect) citySelect.value = '';
+        if (locationSelect) locationSelect.value = '';
         if (industrySelect) industrySelect.value = '';
-        if (salarySelect) salarySelect.value = '';
+        if (functionSelect) functionSelect.value = '';
+        if (subFunctionSelect) subFunctionSelect.value = '';
         applyFilters(1);
       });
     }
 
-    [categorySelect, citySelect, industrySelect, salarySelect].forEach((select) => {
+    [locationSelect, industrySelect, functionSelect, subFunctionSelect].forEach((select) => {
       if (!select) return;
       select.addEventListener('change', () => applyFilters(1));
     });

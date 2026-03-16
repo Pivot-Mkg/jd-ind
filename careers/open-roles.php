@@ -8,11 +8,11 @@ $jobs = [];
 $allJobs = [];
 $errorMessage = '';
 $searchQuery = isset($_GET['q']) ? trim((string)$_GET['q']) : '';
-$categoryFilter = isset($_GET['job_category']) ? trim((string)$_GET['job_category']) : '';
+$subFunctionFilter = isset($_GET['job_category']) ? trim((string)$_GET['job_category']) : '';
 $cityFilter = isset($_GET['city']) ? trim((string)$_GET['city']) : '';
 $localityFilter = isset($_GET['locality']) ? trim((string)$_GET['locality']) : '';
 $industryFilter = isset($_GET['job_industry']) ? trim((string)$_GET['job_industry']) : '';
-$salaryFilter = isset($_GET['salary_range']) ? trim((string)$_GET['salary_range']) : '';
+$functionFilter = isset($_GET['job_function']) ? trim((string)$_GET['job_function']) : '';
 
 if ($cityFilter === '' && $localityFilter !== '') {
     $cityFilter = $localityFilter;
@@ -44,14 +44,11 @@ function job_hiring_for_value(array $job): string
         $entityType = trim((string)($field['entity_type'] ?? ''));
         $fieldName = trim((string)($field['field_name'] ?? ''));
         $fieldType = trim((string)($field['field_type'] ?? ''));
-        $value = trim((string)($field['value'] ?? ''));
         if (
             $fieldId === 7 &&
             $entityType === 'job' &&
             $fieldName === 'Hiring For' &&
-            $fieldType === 'dropdown' &&
-            $value === 'Client (External)'
-
+            $fieldType === 'dropdown'
         ) {
             $value = $field['value'] ?? '';
             if (is_array($value)) {
@@ -64,14 +61,37 @@ function job_hiring_for_value(array $job): string
     return '';
 }
 
+function normalize_hiring_for_value(string $value): string
+{
+    $normalized = strtolower(trim(str_replace(["\xE2\x80\x93", "\xE2\x80\x94"], '-', $value)));
+    $normalized = preg_replace('/\s+/', ' ', $normalized) ?? $normalized;
+
+    return match ($normalized) {
+        'internal - to be posted on join us',
+        'client (internal)' => 'internal',
+        'external - to be posted to "find opportunities"',
+        "external - to be posted to 'find opportunities'",
+        'external - to be posted to find opportunities',
+        'client (external)' => 'external',
+        'do not post',
+        'do not post (confidential)' => 'hidden',
+        default => '',
+    };
+}
+
 function is_confidential_job(array $job): bool
 {
-    return strcasecmp(job_hiring_for_value($job), 'Do Not Post (Confidential)') === 0;
+    return normalize_hiring_for_value(job_hiring_for_value($job)) === 'hidden';
 }
 
 function has_external_client_hiring_for_field(array $job): bool
 {
-    return job_hiring_for_value($job) === 'Client (External)';
+    return normalize_hiring_for_value(job_hiring_for_value($job)) === 'external';
+}
+
+function has_internal_hiring_for_field(array $job): bool
+{
+    return normalize_hiring_for_value(job_hiring_for_value($job)) === 'internal';
 }
 
 function job_industry_value(array $job): string
@@ -112,6 +132,36 @@ function job_industry_value(array $job): string
     if (is_array($fallback)) {
         $fallback = implode(', ', array_filter(array_map('strval', $fallback), fn($item) => trim($item) !== ''));
     }
+    return trim((string)$fallback);
+}
+
+function job_function_value(array $job): string
+{
+    $fallback = $job['job_function'] ?? $job['function'] ?? '';
+    if (is_array($fallback)) {
+        $fallback = implode(', ', array_filter(array_map('strval', $fallback), fn($item) => trim($item) !== ''));
+    }
+    return trim((string)$fallback);
+}
+
+function job_sub_function_value(array $job): string
+{
+    $fallback = $job['job_category'] ?? $job['category'] ?? '';
+    if (is_array($fallback)) {
+        $fallback = implode(', ', array_filter(array_map('strval', $fallback), fn($item) => trim($item) !== ''));
+    }
+    return trim((string)$fallback);
+}
+
+function job_qualification_value(array $job): string
+{
+    $qualification = $job['qualification'] ?? null;
+    if (is_array($qualification)) {
+        $value = $qualification['label'] ?? $qualification['name'] ?? '';
+        return trim((string)$value);
+    }
+
+    $fallback = $job['qualification_name'] ?? $job['qualification_label'] ?? '';
     return trim((string)$fallback);
 }
 
@@ -181,6 +231,110 @@ $externalJobs = array_values(array_filter($allJobs, function ($job) {
     return has_external_client_hiring_for_field($job);
 }));
 
+$industryOptions = [
+    'Biotech',
+    'Clinical Research',
+    'Pharmaceutical',
+    'Medical Devices',
+    'Medical Equipments',
+    'Medical Diagnostics',
+    'CDMO',
+    'API',
+    'Consumer Healthcare',
+    'Clinics & Labs',
+    'Hospitals',
+    'Building Materials',
+    'Chemicals',
+    'Automobile',
+    'Auto Components',
+    'Defence & Aerospace',
+    'Electrical Equipment',
+    'Agrochemicals',
+    'Industrial Automation',
+    'Industrial Equipment/Machinery',
+    'Iron & Steel',
+    'Metals & Mining',
+    'Packaging',
+    'Petrochemicals',
+    'Plastics & Rubber',
+    'Aviation',
+    'Logistics',
+    'EPC',
+    'Oil & Gas',
+    'Ports & Shipping',
+    'Power',
+    'Real Estate',
+    'Construction',
+    'FMCG',
+    'FMCD',
+    'Beauty & Personal Care',
+    'Beverage',
+    'Fitness & Wellness',
+    'Furniture & Furnishing',
+    'Gems & Jewellery',
+    'Hospitality',
+    'Retail',
+    'Textile & Apparel',
+    'Travel & Tourism',
+    'Financial Services',
+    'Banking',
+    'Credit Rating',
+    'Life Insurance',
+    'General Insurance',
+    'Health Insurance',
+    'NBFC',
+    'Capital Markets/Securities/Broking',
+    'Mutual Funds & AMC',
+    'MII',
+    'Investment Banking/Management',
+    'PE/VC',
+    'Payment-Tech',
+    'Lending-Tech',
+    'Wealth-Tech',
+    'Insur-Tech',
+    'Reg-Tech',
+    'Crypto',
+    'Consumer-Tech',
+    'D2C Tech',
+    'Retail-Tech',
+    'Health-Tech',
+    'Ed-Tech',
+    'Prop-Tech',
+    'Travel-Tech',
+    'Logi-Tech',
+    'HR-Tech',
+    'Analytics Platform',
+    'B2B SaaS',
+    'ITeS',
+    'Gaming',
+    'Telecom',
+    'Advertising',
+    'PR',
+    'Media',
+    'Accounting',
+    'Business Consulting & Services',
+    'Law Firms',
+    'NGOs',
+    'Market Research',
+    'Sports/Leisure/Recreation',
+    'Education',
+    'Miscellaneous',
+];
+$industryOptionLookup = array_fill_keys(array_map('strtolower', $industryOptions), true);
+$functionOptions = [
+    'Healthcare & Lifesciences',
+    'B2B',
+    'Property & Construction',
+    'B2C',
+    'Banking & Financial Services',
+    'FinTech',
+    'Technology',
+    'Media, Entertainment & Telecom',
+    'Professional Services',
+    'Miscellaneous',
+];
+$functionOptionLookup = array_fill_keys(array_map('strtolower', $functionOptions), true);
+
 $jobs = $externalJobs;
 
 if ($cityFilter !== '') {
@@ -197,80 +351,45 @@ if ($searchQuery !== '') {
     }));
 }
 
-if ($categoryFilter !== '') {
-    $jobs = array_values(array_filter($jobs, function ($job) use ($categoryFilter, $stringify) {
-        $category = $stringify($job['job_category'] ?? $job['category'] ?? '');
-        return strcasecmp($category, $categoryFilter) === 0;
+if ($functionFilter !== '') {
+    $jobs = array_values(array_filter($jobs, function ($job) use ($functionFilter) {
+        $jobFunction = job_function_value($job);
+        return $jobFunction !== '' && strcasecmp($jobFunction, $functionFilter) === 0;
     }));
 }
 
-if ($salaryFilter !== '') {
-    $ranges = array_filter(array_map('trim', explode(',', $salaryFilter)));
-    $jobs = array_values(array_filter($jobs, function ($job) use ($ranges) {
-        $min = is_numeric($job['min_annual_salary'] ?? null) ? (int)$job['min_annual_salary'] : 0;
-        $max = is_numeric($job['max_annual_salary'] ?? null) ? (int)$job['max_annual_salary'] : 0;
-        foreach ($ranges as $range) {
-            if ($range === '20000000+') {
-                if ($max >= 20000000 || $min >= 20000000) {
-                    return true;
-                }
-            } else {
-                [$rMin, $rMax] = array_pad(explode('-', $range), 2, null);
-                $rMin = (int)$rMin;
-                $rMax = (int)$rMax;
-                if ($max === 0 && $min === 0) {
-                    continue;
-                }
-                if ($min <= $rMax && $max >= $rMin) {
-                    return true;
-                }
-            }
-        }
-        return false;
+if ($subFunctionFilter !== '') {
+    $jobs = array_values(array_filter($jobs, function ($job) use ($subFunctionFilter) {
+        $subFunction = job_sub_function_value($job);
+        return $subFunction !== '' && strcasecmp($subFunction, $subFunctionFilter) === 0;
     }));
 }
 
-$categories = [];
 $cities = [];
 $localities = [];
 $industries = [];
-$salaryCounts = [];
-$categoryOptions = [
-    'HR',
-    'Human Resources',
-    'Marketing',
-    'Sales',
-    'Technology',
-];
-$salaryRanges = [
-    '0-5000000' => 'Up to 50 LPA',
-    '5000000-10000000' => '50 LPA - 1 Cr',
-    '10000000-20000000' => '1 Cr - 2 Cr',
-    '20000000+' => '2 Cr+',
-];
-$industryOptions = [];
-$industryOptionLookup = [];
+$subFunctionOptions = [];
+$subFunctionOptionLookup = [];
 foreach ($externalJobs as $job) {
-    $industry = trim($stringify($job['job_industry'] ?? ''));
-    if ($industry === '') {
-        continue;
-    }
-    $key = strtolower($industry);
-    if (!isset($industryOptionLookup[$key])) {
-        $industryOptionLookup[$key] = true;
-        $industryOptions[] = $industry;
+    $subFunction = job_sub_function_value($job);
+    if ($subFunction !== '') {
+        $key = strtolower($subFunction);
+        if (!isset($subFunctionOptionLookup[$key])) {
+            $subFunctionOptionLookup[$key] = true;
+            $subFunctionOptions[] = $subFunction;
+        }
     }
 }
-if ($industryOptions) {
-    natcasesort($industryOptions);
-    $industryOptions = array_values($industryOptions);
-    $industryOptionLookup = array_fill_keys(array_map('strtolower', $industryOptions), true);
+if ($subFunctionOptions) {
+    natcasesort($subFunctionOptions);
+    $subFunctionOptions = array_values($subFunctionOptions);
+    $subFunctionOptionLookup = array_fill_keys(array_map('strtolower', $subFunctionOptions), true);
 }
 
 if ($industryFilter !== '') {
     if (isset($industryOptionLookup[strtolower($industryFilter)])) {
-        $jobs = array_values(array_filter($jobs, function ($job) use ($industryFilter, $stringify) {
-            $jobIndustry = $stringify($job['job_industry'] ?? '');
+        $jobs = array_values(array_filter($jobs, function ($job) use ($industryFilter) {
+            $jobIndustry = job_industry_value($job);
             return $jobIndustry !== '' && strcasecmp($jobIndustry, $industryFilter) === 0;
         }));
     }
@@ -332,17 +451,11 @@ $cityOptions = [
     'Visakhapatnam',
 ];
 foreach ($allJobs as $job) {
-    $category = $stringify($job['job_category'] ?? $job['category'] ?? '');
     $city = $stringify($job['city'] ?? '');
     $location = $stringify($job['location'] ?? '');
     $locality = $stringify($job['locality'] ?? '');
     $state = $stringify($job['state'] ?? '');
-    $industry = $stringify($job['job_industry'] ?? '');
-    $minSalary = is_numeric($job['min_annual_salary'] ?? null) ? (int)$job['min_annual_salary'] : 0;
-    $maxSalary = is_numeric($job['max_annual_salary'] ?? null) ? (int)$job['max_annual_salary'] : 0;
-    if ($category !== '') {
-        $categories[$category] = ($categories[$category] ?? 0) + 1;
-    }
+    $industry = job_industry_value($job);
     $cityKey = $city !== '' ? $city : $location;
     if ($cityKey !== '') {
         $cities[$cityKey] = ($cities[$cityKey] ?? 0) + 1;
@@ -353,32 +466,12 @@ foreach ($allJobs as $job) {
     if ($industry !== '') {
         $industries[$industry] = ($industries[$industry] ?? 0) + 1;
     }
-    foreach ($salaryRanges as $key => $label) {
-        if ($key === '20000000+') {
-            if ($maxSalary >= 20000000 || $minSalary >= 20000000) {
-                $salaryCounts[$key] = ($salaryCounts[$key] ?? 0) + 1;
-            }
-            continue;
-        }
-        [$rMin, $rMax] = array_pad(explode('-', $key), 2, null);
-        $rMin = (int)$rMin;
-        $rMax = (int)$rMax;
-        if ($minSalary <= $rMax && $maxSalary >= $rMin) {
-            $salaryCounts[$key] = ($salaryCounts[$key] ?? 0) + 1;
-        }
-    }
-}
-foreach ($categoryOptions as $category) {
-    $categories[$category] = $categories[$category] ?? 0;
 }
 foreach ($cityOptions as $city) {
     $localities[$city] = $localities[$city] ?? 0;
 }
 foreach ($industryOptions as $industry) {
     $industries[$industry] = $industries[$industry] ?? 0;
-}
-foreach (array_keys($salaryRanges) as $key) {
-    $salaryCounts[$key] = $salaryCounts[$key] ?? 0;
 }
 
 function build_filter_url(array $params): string
@@ -573,38 +666,14 @@ function build_filter_url(array $params): string
                             $company = $stringify($job['company'] ?? $job['client'] ?? 'James Douglas Global');
                             $location = $stringify($job['location'] ?? ($job['city'] ?? ''));
                             $type = $stringify($job['job_type'] ?? ($job['type'] ?? 'Full time'));
-                            $department = $stringify($job['department'] ?? ($job['team'] ?? ''));
-                            $posted = $stringify($job['updated_at'] ?? $job['created_at'] ?? '');
                             $minExp = $stringify($job['minimum_experience'] ?? $job['min_experience'] ?? $job['min_exp'] ?? '');
-                            $maxExp = $stringify($job['maximum_experience'] ?? $job['max_experience'] ?? $job['max_exp'] ?? '');
-                            $status = $stringify($job['job_status']['label'] ?? $job['job_status'] ?? $job['status'] ?? '');
                             $city = $stringify($job['city'] ?? '');
-                            $address = $stringify($job['address'] ?? $job['address_line'] ?? $job['location_address'] ?? '');
+                            $industry = job_industry_value($job) ?: 'Not specified';
+                            $jobFunction = job_function_value($job) ?: 'Not specified';
+                            $subFunction = job_sub_function_value($job) ?: 'Not specified';
+                            $qualification = job_qualification_value($job) ?: 'Not specified';
+                            $noteForCandidates = $stringify($job['note_for_candidates'] ?? '') ?: 'Not specified';
                             $hiringForLabel = job_hiring_for_value($job);
-                            $salary = $stringify($job['salary'] ?? $job['salary_range'] ?? $job['salary_expectation'] ?? $job['compensation'] ?? '');
-                            if ($salary === '') {
-                                $minSalary = is_numeric($job['min_annual_salary'] ?? null) ? (int)$job['min_annual_salary'] : 0;
-                                $maxSalary = is_numeric($job['max_annual_salary'] ?? null) ? (int)$job['max_annual_salary'] : 0;
-                                if ($minSalary || $maxSalary) {
-                                    $formatSalary = function (int $value): string {
-                                        if ($value >= 10000000) {
-                                            return round($value / 10000000, 2) . ' Cr';
-                                        }
-                                        if ($value >= 100000) {
-                                            return round($value / 100000, 2) . ' LPA';
-                                        }
-                                        if ($value >= 1000) {
-                                            return round($value / 1000, 2) . ' K';
-                                        }
-                                        return (string)$value;
-                                    };
-                                    $salary = trim($formatSalary($minSalary) . ' - ' . $formatSalary($maxSalary));
-                                }
-                            }
-                            $expRange = '';
-                            if ($minExp !== '' || $maxExp !== '') {
-                                $expRange = trim($minExp . ' to ' . $maxExp . ' Years');
-                            }
                             $jobId = $job['id'] ?? $job['job_id'] ?? '';
                             $jobSlug = $job['slug'] ?? $job['job_slug'] ?? '';
                             $jobUrl = $job['apply_link'] ?? $job['url'] ?? '../career.php';
@@ -623,14 +692,9 @@ function build_filter_url(array $params): string
                                     <div class="open-role-brand">
                                         <div class="open-role-logo rounded-circle m-0"><?php echo htmlspecialchars(substr($company ?: 'JD', 0, 1), ENT_QUOTES, 'UTF-8'); ?></div>
                                         <div>
-                                            <div class="open-role-title mb-0open-role-info-label"><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></div>
-                                            <div class="open-role-subtitle">
-                                                <?php echo htmlspecialchars($company, ENT_QUOTES, 'UTF-8'); ?>
-                                                <?php if ($location || $city): ?>
-                                                    • <?php echo htmlspecialchars($location ?: $city, ENT_QUOTES, 'UTF-8'); ?>
-                                                <?php endif; ?>
-                                            </div>
-                                            <?php if (strcasecmp($hiringForLabel, 'Client (External)') === 0): ?>
+                                            <div class="open-role-title"><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></div>
+                                            <div class="open-role-subtitle"><?php echo htmlspecialchars($company, ENT_QUOTES, 'UTF-8'); ?></div>
+                                            <?php if (has_external_client_hiring_for_field($job)): ?>
                                                 <div class="open-role-subtitle">
                                                     Hiring For: <?php echo htmlspecialchars($hiringForLabel, ENT_QUOTES, 'UTF-8'); ?>
                                                 </div>
@@ -640,16 +704,32 @@ function build_filter_url(array $params): string
                                 </div>
                                 <div class="open-role-info">
                                     <div>
-                                        <div class="open-role-info-label">Experience</div>
-                                        <div class="open-role-info-value"><?php echo htmlspecialchars($expRange ?: 'Not specified', ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="open-role-info-label">Location</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($city ?: 'Not specified', ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                     <div>
-                                        <div class="open-role-info-label">Job Type</div>
-                                        <div class="open-role-info-value"><?php echo htmlspecialchars($type, ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="open-role-info-label">Industry</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($industry, ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                     <div>
-                                        <div class="open-role-info-label">Salary</div>
-                                        <div class="open-role-info-value"><?php echo htmlspecialchars($salary ?: 'Not disclosed', ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="open-role-info-label">Function</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($jobFunction, ENT_QUOTES, 'UTF-8'); ?></div>
+                                    </div>
+                                    <div>
+                                        <div class="open-role-info-label">Sub Function</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($subFunction, ENT_QUOTES, 'UTF-8'); ?></div>
+                                    </div>
+                                    <div>
+                                        <div class="open-role-info-label">Educational Qualification</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($qualification, ENT_QUOTES, 'UTF-8'); ?></div>
+                                    </div>
+                                    <div>
+                                        <div class="open-role-info-label">YOE</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($minExp !== '' ? $minExp . ' Years' : 'Not specified', ENT_QUOTES, 'UTF-8'); ?></div>
+                                    </div>
+                                    <div class="open-role-info-note">
+                                        <div class="open-role-info-label">Note for Candidates</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($noteForCandidates, ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                 </div>
                             </a>
@@ -679,32 +759,16 @@ function build_filter_url(array $params): string
                     <div class="jobs-filter-top">
                         <div class="jobs-filter-input">
                             <i class="bi bi-search"></i>
-                            <input type="search" id="job-search-input" placeholder="Job title or keyword" name="q" value="<?php echo htmlspecialchars($searchQuery, ENT_QUOTES, 'UTF-8'); ?>">
+                            <input type="search" id="job-search-input" placeholder="Search by Job Title" name="q" value="<?php echo htmlspecialchars($searchQuery, ENT_QUOTES, 'UTF-8'); ?>">
                         </div>
                         <button type="button" class="jobs-filter-btn jobs-filter-btn-clear" id="job-search-clear">Clear</button>
                         <button type="button" class="jobs-filter-btn jobs-filter-btn-search" id="job-search-submit">Search</button>
                     </div>
                     <div class="jobs-filter-dropdowns">
                         <div class="jobs-filter-group">
-                            <span class="jobs-filter-label">Job Category</span>
+                            <span class="jobs-filter-label">Location</span>
                             <div class="jobs-filter-select">
-                            <select id="job-category-select" name="job_category">
-                                <option value="">All</option>
-                                <?php foreach ($categoryOptions as $category): ?>
-                                    <option value="<?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $categoryFilter === $category ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                                <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                            </svg>
-                            </div>
-                        </div>
-                        <div class="jobs-filter-group">
-                            <span class="jobs-filter-label">City</span>
-                            <div class="jobs-filter-select">
-                            <select id="job-city-select" name="city">
+                            <select id="job-location-select" name="city">
                                 <option value="">All</option>
                                 <?php foreach ($cityOptions as $city): ?>
                                     <option value="<?php echo htmlspecialchars($city, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $cityFilter === $city ? 'selected' : ''; ?>>
@@ -734,13 +798,29 @@ function build_filter_url(array $params): string
                             </div>
                         </div>
                         <div class="jobs-filter-group">
-                            <span class="jobs-filter-label">Salary Range</span>
+                            <span class="jobs-filter-label">Function</span>
                             <div class="jobs-filter-select">
-                            <select id="job-salary-select" name="salary_range">
+                            <select id="job-function-select" name="job_function">
                                 <option value="">All</option>
-                                <?php foreach ($salaryRanges as $key => $label): ?>
-                                    <option value="<?php echo htmlspecialchars($key, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $salaryFilter === $key ? 'selected' : ''; ?>>
-                                        <?php echo htmlspecialchars($label, ENT_QUOTES, 'UTF-8'); ?>
+                                <?php foreach ($functionOptions as $function): ?>
+                                    <option value="<?php echo htmlspecialchars($function, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $functionFilter === $function ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars($function, ENT_QUOTES, 'UTF-8'); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                            <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                                <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
+                            </svg>
+                            </div>
+                        </div>
+                        <div class="jobs-filter-group">
+                            <span class="jobs-filter-label">Sub Function</span>
+                            <div class="jobs-filter-select">
+                            <select id="job-sub-function-select" name="job_category">
+                                <option value="">All</option>
+                                <?php foreach ($subFunctionOptions as $subFunction): ?>
+                                    <option value="<?php echo htmlspecialchars($subFunction, ENT_QUOTES, 'UTF-8'); ?>" <?php echo $subFunctionFilter === $subFunction ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars($subFunction, ENT_QUOTES, 'UTF-8'); ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
@@ -777,37 +857,13 @@ function build_filter_url(array $params): string
                             $company = $stringify($job['company'] ?? $job['client'] ?? 'James Douglas Global');
                             $location = $stringify($job['location'] ?? ($job['city'] ?? ''));
                             $type = $stringify($job['job_type'] ?? ($job['type'] ?? 'Full time'));
-                            $department = $stringify($job['department'] ?? ($job['team'] ?? ''));
-                            $posted = $stringify($job['updated_at'] ?? $job['created_at'] ?? '');
                             $minExp = $stringify($job['minimum_experience'] ?? $job['min_experience'] ?? $job['min_exp'] ?? '');
-                            $maxExp = $stringify($job['maximum_experience'] ?? $job['max_experience'] ?? $job['max_exp'] ?? '');
-                            $status = $stringify($job['job_status']['label'] ?? $job['job_status'] ?? $job['status'] ?? '');
                             $city = $stringify($job['city'] ?? '');
-                            $address = $stringify($job['address'] ?? $job['address_line'] ?? $job['location_address'] ?? '');
-                            $salary = $stringify($job['salary'] ?? $job['salary_range'] ?? $job['salary_expectation'] ?? $job['compensation'] ?? '');
-                            if ($salary === '') {
-                                $minSalary = is_numeric($job['min_annual_salary'] ?? null) ? (int)$job['min_annual_salary'] : 0;
-                                $maxSalary = is_numeric($job['max_annual_salary'] ?? null) ? (int)$job['max_annual_salary'] : 0;
-                                if ($minSalary || $maxSalary) {
-                                    $formatSalary = function (int $value): string {
-                                        if ($value >= 10000000) {
-                                            return round($value / 10000000, 2) . ' Cr';
-                                        }
-                                        if ($value >= 100000) {
-                                            return round($value / 100000, 2) . ' LPA';
-                                        }
-                                        if ($value >= 1000) {
-                                            return round($value / 1000, 2) . ' K';
-                                        }
-                                        return (string)$value;
-                                    };
-                                    $salary = trim($formatSalary($minSalary) . ' - ' . $formatSalary($maxSalary));
-                                }
-                            }
-                            $expRange = '';
-                            if ($minExp !== '' || $maxExp !== '') {
-                                $expRange = trim($minExp . ' to ' . $maxExp . ' Years');
-                            }
+                            $industry = job_industry_value($job) ?: 'Not specified';
+                            $jobFunction = job_function_value($job) ?: 'Not specified';
+                            $subFunction = job_sub_function_value($job) ?: 'Not specified';
+                            $qualification = job_qualification_value($job) ?: 'Not specified';
+                            $noteForCandidates = $stringify($job['note_for_candidates'] ?? '') ?: 'Not specified';
                             $jobId = $job['id'] ?? $job['job_id'] ?? '';
                             $jobSlug = $job['slug'] ?? $job['job_slug'] ?? '';
                             $jobUrl = $job['apply_link'] ?? $job['url'] ?? '../career.php';
@@ -826,28 +882,39 @@ function build_filter_url(array $params): string
                                     <div class="open-role-brand">
                                             <div class="open-role-logo rounded-circle m-0"><?php echo htmlspecialchars(substr($company ?: 'JD', 0, 1), ENT_QUOTES, 'UTF-8'); ?></div>
                                         <div>
-                                            <div class="open-role-title mb-0open-role-info-label"><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></div>
-                                            <div class="open-role-subtitle">
-                                                <?php echo htmlspecialchars($company, ENT_QUOTES, 'UTF-8'); ?>
-                                                <?php if ($location || $city): ?>
-                                                    • <?php echo htmlspecialchars($location ?: $city, ENT_QUOTES, 'UTF-8'); ?>
-                                                <?php endif; ?>
-                                            </div>
+                                            <div class="open-role-title"><?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?></div>
+                                            <div class="open-role-subtitle"><?php echo htmlspecialchars($company, ENT_QUOTES, 'UTF-8'); ?></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="open-role-info">
                                     <div>
-                                        <div class="open-role-info-label">Experience</div>
-                                        <div class="open-role-info-value"><?php echo htmlspecialchars($expRange ?: 'Not specified', ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="open-role-info-label">Location</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($city ?: 'Not specified', ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                     <div>
-                                        <div class="open-role-info-label">Job Type</div>
-                                        <div class="open-role-info-value"><?php echo htmlspecialchars($type, ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="open-role-info-label">Industry</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($industry, ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                     <div>
-                                        <div class="open-role-info-label">Salary</div>
-                                        <div class="open-role-info-value"><?php echo htmlspecialchars($salary ?: 'Not disclosed', ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="open-role-info-label">Function</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($jobFunction, ENT_QUOTES, 'UTF-8'); ?></div>
+                                    </div>
+                                    <div>
+                                        <div class="open-role-info-label">Sub Function</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($subFunction, ENT_QUOTES, 'UTF-8'); ?></div>
+                                    </div>
+                                    <div>
+                                        <div class="open-role-info-label">Educational Qualification</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($qualification, ENT_QUOTES, 'UTF-8'); ?></div>
+                                    </div>
+                                    <div>
+                                        <div class="open-role-info-label">YOE</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($minExp !== '' ? $minExp . ' Years' : 'Not specified', ENT_QUOTES, 'UTF-8'); ?></div>
+                                    </div>
+                                    <div class="open-role-info-note">
+                                        <div class="open-role-info-label">Note for Candidates</div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($noteForCandidates, ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                 </div>
                             </a>
@@ -1289,10 +1356,10 @@ function build_filter_url(array $params): string
         const searchInput = document.getElementById('job-search-input');
         const clearButton = document.getElementById('job-search-clear');
         const submitButton = document.getElementById('job-search-submit');
-        const categorySelect = document.getElementById('job-category-select');
-        const citySelect = document.getElementById('job-city-select');
+        const locationSelect = document.getElementById('job-location-select');
         const industrySelect = document.getElementById('job-industry-select');
-        const salarySelect = document.getElementById('job-salary-select');
+        const functionSelect = document.getElementById('job-function-select');
+        const subFunctionSelect = document.getElementById('job-sub-function-select');
 
         if (searchForm && searchInput) {
             searchForm.addEventListener('submit', (event) => {
@@ -1319,15 +1386,15 @@ function build_filter_url(array $params): string
                 if (searchInput) {
                     searchInput.value = '';
                 }
-                if (categorySelect) categorySelect.value = '';
-                if (citySelect) citySelect.value = '';
+                if (locationSelect) locationSelect.value = '';
                 if (industrySelect) industrySelect.value = '';
-                if (salarySelect) salarySelect.value = '';
+                if (functionSelect) functionSelect.value = '';
+                if (subFunctionSelect) subFunctionSelect.value = '';
                 applyFilters(1);
             });
         }
 
-        [categorySelect, citySelect, industrySelect, salarySelect].forEach((select) => {
+        [locationSelect, industrySelect, functionSelect, subFunctionSelect].forEach((select) => {
             if (!select) return;
             select.addEventListener('change', () => {
                 applyFilters(1);
@@ -1338,11 +1405,135 @@ function build_filter_url(array $params): string
         const API_TOKEN = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
         const LIMIT = 6;
         const CLIENT_PAGE_SIZE = LIMIT;
+        const INDUSTRY_OPTIONS = [
+            'Biotech',
+            'Clinical Research',
+            'Pharmaceutical',
+            'Medical Devices',
+            'Medical Equipments',
+            'Medical Diagnostics',
+            'CDMO',
+            'API',
+            'Consumer Healthcare',
+            'Clinics & Labs',
+            'Hospitals',
+            'Building Materials',
+            'Chemicals',
+            'Automobile',
+            'Auto Components',
+            'Defence & Aerospace',
+            'Electrical Equipment',
+            'Agrochemicals',
+            'Industrial Automation',
+            'Industrial Equipment/Machinery',
+            'Iron & Steel',
+            'Metals & Mining',
+            'Packaging',
+            'Petrochemicals',
+            'Plastics & Rubber',
+            'Aviation',
+            'Logistics',
+            'EPC',
+            'Oil & Gas',
+            'Ports & Shipping',
+            'Power',
+            'Real Estate',
+            'Construction',
+            'FMCG',
+            'FMCD',
+            'Beauty & Personal Care',
+            'Beverage',
+            'Fitness & Wellness',
+            'Furniture & Furnishing',
+            'Gems & Jewellery',
+            'Hospitality',
+            'Retail',
+            'Textile & Apparel',
+            'Travel & Tourism',
+            'Financial Services',
+            'Banking',
+            'Credit Rating',
+            'Life Insurance',
+            'General Insurance',
+            'Health Insurance',
+            'NBFC',
+            'Capital Markets/Securities/Broking',
+            'Mutual Funds & AMC',
+            'MII',
+            'Investment Banking/Management',
+            'PE/VC',
+            'Payment-Tech',
+            'Lending-Tech',
+            'Wealth-Tech',
+            'Insur-Tech',
+            'Reg-Tech',
+            'Crypto',
+            'Consumer-Tech',
+            'D2C Tech',
+            'Retail-Tech',
+            'Health-Tech',
+            'Ed-Tech',
+            'Prop-Tech',
+            'Travel-Tech',
+            'Logi-Tech',
+            'HR-Tech',
+            'Analytics Platform',
+            'B2B SaaS',
+            'ITeS',
+            'Gaming',
+            'Telecom',
+            'Advertising',
+            'PR',
+            'Media',
+            'Accounting',
+            'Business Consulting & Services',
+            'Law Firms',
+            'NGOs',
+            'Market Research',
+            'Sports/Leisure/Recreation',
+            'Education',
+            'Miscellaneous',
+        ];
+        const FUNCTION_OPTIONS = [
+            'Healthcare & Lifesciences',
+            'B2B',
+            'Property & Construction',
+            'B2C',
+            'Banking & Financial Services',
+            'FinTech',
+            'Technology',
+            'Media, Entertainment & Telecom',
+            'Professional Services',
+            'Miscellaneous',
+        ];
         let externalJobsCache = null;
 
+        function normalizeHiringForValue(value) {
+            const normalized = String(value ?? '')
+                .replace(/\u2013|\u2014/g, '-')
+                .trim()
+                .toLowerCase()
+                .replace(/\s+/g, ' ');
+
+            if (normalized === 'internal - to be posted on join us' || normalized === 'client (internal)') {
+                return 'internal';
+            }
+            if (
+                normalized === 'external - to be posted to "find opportunities"' ||
+                normalized === "external - to be posted to 'find opportunities'" ||
+                normalized === 'external - to be posted to find opportunities' ||
+                normalized === 'client (external)'
+            ) {
+                return 'external';
+            }
+            if (normalized === 'do not post' || normalized === 'do not post (confidential)') {
+                return 'hidden';
+            }
+            return '';
+        }
+
         /**
-         * Check if a job has field_id=7, entity_type="job",
-         * field_name="Hiring For", field_type="dropdown", value="Client (External)"
+         * Check if a job is marked for external posting.
          */
         function isExternalClientJob(job) {
             const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
@@ -1359,20 +1550,46 @@ function build_filter_url(array $params): string
                 if (value && typeof value === 'object') {
                     value = value.value ?? value.label ?? value.name ?? '';
                 }
-                value = String(value ?? '').trim().toLowerCase();
+                value = String(value ?? '').trim();
 
                 return (
                     fieldId === 7 &&
                     entityType === 'job' &&
                     fieldName === 'hiring for' &&
                     fieldType === 'dropdown' &&
-                    value === 'client (external)'
+                    normalizeHiringForValue(value) === 'external'
+                );
+            });
+        }
+
+        function isInternalClientJob(job) {
+            const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
+
+            return fields.some((field) => {
+                if (!field || typeof field !== 'object') return false;
+
+                const fieldId = Number(field.field_id ?? field.id ?? 0);
+                const entityType = String(field.entity_type ?? '').trim().toLowerCase();
+                const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+                const fieldType = String(field.field_type ?? field.type ?? '').trim().toLowerCase();
+
+                let value = field.value ?? field.field_value ?? field.selected ?? '';
+                if (value && typeof value === 'object') {
+                    value = value.value ?? value.label ?? value.name ?? '';
+                }
+
+                return (
+                    fieldId === 7 &&
+                    entityType === 'job' &&
+                    fieldName === 'hiring for' &&
+                    fieldType === 'dropdown' &&
+                    normalizeHiringForValue(value) === 'internal'
                 );
             });
         }
 
         /**
-         * Check if a job is confidential (Do Not Post).
+         * Check if a job should not be posted anywhere.
          */
         function isConfidentialJob(job) {
             const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
@@ -1390,7 +1607,7 @@ function build_filter_url(array $params): string
                     value = value.value ?? value.label ?? value.name ?? '';
                 }
 
-                return String(value ?? '').trim().toLowerCase() === 'do not post (confidential)';
+                return normalizeHiringForValue(value) === 'hidden';
             });
         }
 
@@ -1456,11 +1673,114 @@ function build_filter_url(array $params): string
             return externalJobsCache;
         }
 
+        function getIndustryValue(job) {
+            const candidates = [
+                job?.custom_fields,
+                job?.custom_field,
+                job?.custom_fields_values,
+                job?.custom_field_values,
+                job?.fields,
+            ];
+
+            for (const fields of candidates) {
+                if (!Array.isArray(fields)) {
+                    continue;
+                }
+                for (const field of fields) {
+                    if (!field || typeof field !== 'object') {
+                        continue;
+                    }
+                    const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+                    const fieldId = Number(field.field_id ?? field.id ?? 0);
+                    if (fieldId !== 3 && fieldName !== 'job - industry') {
+                        continue;
+                    }
+                    let value = field.value ?? field.field_value ?? field.selected ?? '';
+                    if (Array.isArray(value)) {
+                        const flat = value.map((item) => String(item)).filter((item) => item.trim() !== '');
+                        if (flat.length) {
+                            return flat[0].trim();
+                        }
+                        value = value.value ?? value.label ?? value.name ?? '';
+                    }
+                    return String(value ?? '').trim();
+                }
+            }
+
+            const fallback = job?.job_industry ?? '';
+            if (Array.isArray(fallback)) {
+                return fallback.map((item) => String(item)).filter((item) => item.trim() !== '').join(', ').trim();
+            }
+            return String(fallback ?? '').trim();
+        }
+
+        function getFunctionValue(job) {
+            const fallback = job?.job_function ?? job?.function ?? '';
+            if (Array.isArray(fallback)) {
+                return fallback.map((item) => String(item)).filter((item) => item.trim() !== '').join(', ').trim();
+            }
+            return String(fallback ?? '').trim();
+        }
+
+        function getSubFunctionValue(job) {
+            const fallback = job?.job_category ?? job?.category ?? '';
+            if (Array.isArray(fallback)) {
+                return fallback.map((item) => String(item)).filter((item) => item.trim() !== '').join(', ').trim();
+            }
+            return String(fallback ?? '').trim();
+        }
+
+        function getQualificationValue(job) {
+            const directValue = job?.qualification?.label ?? job?.qualification?.name ?? job?.qualification_name ?? job?.qualification_label ?? '';
+            return String(directValue ?? '').trim();
+        }
+
+        function populateOptions(select, values, selectedValue) {
+            if (!select) {
+                return;
+            }
+
+            const lookup = {};
+            const uniqueValues = [];
+
+            values.forEach((value) => {
+                const normalized = String(value ?? '').trim();
+                if (!normalized) {
+                    return;
+                }
+                const key = normalized.toLowerCase();
+                if (!lookup[key]) {
+                    lookup[key] = true;
+                    uniqueValues.push(normalized);
+                }
+            });
+
+            uniqueValues.sort((a, b) => a.localeCompare(b));
+            select.innerHTML = '<option value="">All</option>';
+
+            uniqueValues.forEach((value) => {
+                const option = document.createElement('option');
+                option.value = value;
+                option.textContent = value;
+                select.appendChild(option);
+            });
+
+            if (selectedValue && lookup[selectedValue.toLowerCase()]) {
+                select.value = selectedValue;
+            }
+        }
+
         async function fetchFilteredJobs(queryString) {
             const params = new URLSearchParams(queryString || '');
             const requestedPage = Math.max(1, parseInt(params.get('page') || '1', 10) || 1);
             try {
                 const allExternalJobs = await getExternalJobs();
+                const selectedIndustry = params.get('job_industry') ? params.get('job_industry').split(',')[0] : '';
+                const selectedFunction = params.get('job_function') ? params.get('job_function').split(',')[0] : '';
+                const selectedSubFunction = params.get('job_category') ? params.get('job_category').split(',')[0] : '';
+                populateOptions(industrySelect, INDUSTRY_OPTIONS, selectedIndustry);
+                populateOptions(functionSelect, FUNCTION_OPTIONS, selectedFunction);
+                populateOptions(subFunctionSelect, allExternalJobs.map((job) => getSubFunctionValue(job)), selectedSubFunction);
                 const jobs = applyClientFilters(allExternalJobs, params);
                 const total = jobs.length;
                 const lastPage = Math.max(1, Math.ceil(total / CLIENT_PAGE_SIZE));
@@ -1486,34 +1806,23 @@ function build_filter_url(array $params): string
 
         function applyClientFilters(jobs, params) {
             const q = String(params.get('q') || '').trim().toLowerCase();
-            const category = String(params.get('job_category') || '').trim().toLowerCase();
             const city = String(params.get('city') || '').trim().toLowerCase();
             const industry = String(params.get('job_industry') || '').trim().toLowerCase();
-            const salaryRange = String(params.get('salary_range') || '').trim();
+            const jobFunction = String(params.get('job_function') || '').trim().toLowerCase();
+            const subFunction = String(params.get('job_category') || '').trim().toLowerCase();
 
             return jobs.filter((job) => {
                 const title = String(job?.name ?? job?.title ?? '').toLowerCase();
-                const jobCategory = String(job?.job_category ?? job?.category ?? '').toLowerCase();
                 const jobCity = String(job?.city ?? '').toLowerCase();
-                const jobIndustry = String(job?.job_industry ?? '').toLowerCase();
+                const jobIndustry = getIndustryValue(job).toLowerCase();
+                const currentFunction = getFunctionValue(job).toLowerCase();
+                const currentSubFunction = getSubFunctionValue(job).toLowerCase();
 
                 if (q && !title.includes(q)) return false;
-                if (category && jobCategory !== category) return false;
                 if (city && jobCity !== city) return false;
                 if (industry && jobIndustry !== industry) return false;
-
-                if (salaryRange) {
-                    const min = Number(job?.min_annual_salary ?? 0);
-                    const max = Number(job?.max_annual_salary ?? 0);
-                    if (salaryRange === '20000000+') {
-                        if (!(max >= 20000000 || min >= 20000000)) return false;
-                    } else {
-                        const [rawMin, rawMax] = salaryRange.split('-');
-                        const rMin = Number(rawMin || 0);
-                        const rMax = Number(rawMax || 0);
-                        if (!(min <= rMax && max >= rMin)) return false;
-                    }
-                }
+                if (jobFunction && currentFunction !== jobFunction) return false;
+                if (subFunction && currentSubFunction !== subFunction) return false;
 
                 return true;
             });
@@ -1593,21 +1902,13 @@ function build_filter_url(array $params): string
             jobs.forEach((job, index) => {
                 const title = job.name || job.title || 'Open Position';
                 const company = job.company || job.client || 'James Douglas Global';
-                const location = job.location || job.city || '';
                 const city = job.city || '';
-                const minExp = job.minimum_experience ?? job.min_experience ?? '';
-                const maxExp = job.maximum_experience ?? job.max_experience ?? '';
-                const expRange = minExp !== '' || maxExp !== '' ? `${minExp} to ${maxExp} Years` : 'Not specified';
-                const minSalary = job.min_annual_salary ?? '';
-                const maxSalary = job.max_annual_salary ?? '';
-                const formatSalary = (value) => {
-                    if (!value) return '';
-                    if (value >= 10000000) return `${(value / 10000000).toFixed(2)} Cr`;
-                    if (value >= 100000) return `${(value / 100000).toFixed(2)} LPA`;
-                    if (value >= 1000) return `${(value / 1000).toFixed(2)} K`;
-                    return value.toString();
-                };
-                const salary = minSalary || maxSalary ? `${formatSalary(minSalary)} - ${formatSalary(maxSalary)}` : 'Not disclosed';
+                const minExp = String(job.minimum_experience ?? job.min_experience ?? '').trim();
+                const industry = getIndustryValue(job) || 'Not specified';
+                const jobFunction = getFunctionValue(job) || 'Not specified';
+                const subFunction = getSubFunctionValue(job) || 'Not specified';
+                const qualification = getQualificationValue(job) || 'Not specified';
+                const noteForCandidates = String(job.note_for_candidates ?? '').trim() || 'Not specified';
                 const jobId = job.id ?? job.job_id ?? '';
                 const jobSlug = job.slug ?? job.job_slug ?? '';
                 const jobUrl = job.apply_link || job.url || '../career.php';
@@ -1620,8 +1921,7 @@ function build_filter_url(array $params): string
                 card.dataset.jobSlug = jobSlug;
                 card.dataset.title = title;
                 card.dataset.company = company;
-                card.dataset.location = location;
-                card.dataset.type = job.job_type || job.type || 'Full time';
+                card.dataset.location = city;
                 card.dataset.description = (job.short_description || '').toString();
                 card.dataset.applyUrl = jobUrl;
 
@@ -1630,24 +1930,40 @@ function build_filter_url(array $params): string
                         <div class="open-role-brand">
                             <div class="open-role-logo rounded-circle m-0">${(company || 'JD').charAt(0)}</div>
                             <div>
-                                <div class="open-role-title mb-0open-role-info-label">${title}</div>
-                                <div class="open-role-subtitle">${company}${location || city ? ` • ${location || city}` : ''}</div>
-                                ${hiringForLabel.toLowerCase() === 'client (external)' ? `<div class="open-role-subtitle">Hiring For: ${hiringForLabel}</div>` : ''}
+                                <div class="open-role-title">${title}</div>
+                                <div class="open-role-subtitle">${company}</div>
+                                ${normalizeHiringForValue(hiringForLabel) === 'external' ? `<div class="open-role-subtitle">Hiring For: ${hiringForLabel}</div>` : ''}
                             </div>
                         </div>
                     </div>
                     <div class="open-role-info">
                         <div>
-                            <div class="open-role-info-label">Experience</div>
-                            <div class="open-role-info-value">${expRange}</div>
+                            <div class="open-role-info-label">Location</div>
+                            <div class="open-role-info-value">${city || 'Not specified'}</div>
                         </div>
                         <div>
-                            <div class="open-role-info-label">Job Type</div>
-                            <div class="open-role-info-value">${job.job_type || job.type || 'Full time'}</div>
+                            <div class="open-role-info-label">Industry</div>
+                            <div class="open-role-info-value">${industry}</div>
                         </div>
                         <div>
-                            <div class="open-role-info-label">Salary</div>
-                            <div class="open-role-info-value">${salary}</div>
+                            <div class="open-role-info-label">Function</div>
+                            <div class="open-role-info-value">${jobFunction}</div>
+                        </div>
+                        <div>
+                            <div class="open-role-info-label">Sub Function</div>
+                            <div class="open-role-info-value">${subFunction}</div>
+                        </div>
+                        <div>
+                            <div class="open-role-info-label">Educational Qualification</div>
+                            <div class="open-role-info-value">${qualification}</div>
+                        </div>
+                        <div>
+                            <div class="open-role-info-label">YOE</div>
+                            <div class="open-role-info-value">${minExp ? `${minExp} Years` : 'Not specified'}</div>
+                        </div>
+                        <div class="open-role-info-note">
+                            <div class="open-role-info-label">Note for Candidates</div>
+                            <div class="open-role-info-value">${noteForCandidates}</div>
                         </div>
                     </div>
                 `;
@@ -1665,23 +1981,23 @@ function build_filter_url(array $params): string
         function getActiveFilters() {
             const active = {
                 q: searchInput ? searchInput.value.trim() : '',
-                job_category: [],
                 city: [],
                 job_industry: [],
-                salary_range: [],
+                job_function: [],
+                job_category: [],
             };
 
-            if (categorySelect && categorySelect.value) {
-                active.job_category = [categorySelect.value];
-            }
-            if (citySelect && citySelect.value) {
-                active.city = [citySelect.value];
+            if (locationSelect && locationSelect.value) {
+                active.city = [locationSelect.value];
             }
             if (industrySelect && industrySelect.value) {
                 active.job_industry = [industrySelect.value];
             }
-            if (salarySelect && salarySelect.value) {
-                active.salary_range = [salarySelect.value];
+            if (functionSelect && functionSelect.value) {
+                active.job_function = [functionSelect.value];
+            }
+            if (subFunctionSelect && subFunctionSelect.value) {
+                active.job_category = [subFunctionSelect.value];
             }
 
             return active;
@@ -1692,17 +2008,17 @@ function build_filter_url(array $params): string
             if (filters.q) {
                 params.set('q', filters.q);
             }
-            if (filters.job_category.length) {
-                params.set('job_category', filters.job_category.join(','));
-            }
             if (filters.city.length) {
                 params.set('city', filters.city.join(','));
             }
             if (filters.job_industry.length) {
                 params.set('job_industry', filters.job_industry.join(','));
             }
-            if (filters.salary_range.length) {
-                params.set('salary_range', filters.salary_range.join(','));
+            if (filters.job_function.length) {
+                params.set('job_function', filters.job_function.join(','));
+            }
+            if (filters.job_category.length) {
+                params.set('job_category', filters.job_category.join(','));
             }
             if (page > 1) {
                 params.set('page', String(page));
@@ -1723,18 +2039,18 @@ function build_filter_url(array $params): string
 
 
         function setActiveFiltersFromParams(params) {
-            if (categorySelect) {
-                categorySelect.value = params.get('job_category') ? params.get('job_category').split(',')[0] : '';
-            }
-            if (citySelect) {
+            if (locationSelect) {
                 const cityValue = params.get('city') || '';
-                citySelect.value = cityValue ? cityValue.split(',')[0] : '';
+                locationSelect.value = cityValue ? cityValue.split(',')[0] : '';
             }
             if (industrySelect) {
                 industrySelect.value = params.get('job_industry') ? params.get('job_industry').split(',')[0] : '';
             }
-            if (salarySelect) {
-                salarySelect.value = params.get('salary_range') ? params.get('salary_range').split(',')[0] : '';
+            if (functionSelect) {
+                functionSelect.value = params.get('job_function') ? params.get('job_function').split(',')[0] : '';
+            }
+            if (subFunctionSelect) {
+                subFunctionSelect.value = params.get('job_category') ? params.get('job_category').split(',')[0] : '';
             }
         }
 

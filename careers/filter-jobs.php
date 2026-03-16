@@ -7,21 +7,21 @@ $apiToken = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5
 header('Content-Type: application/json');
 
 $searchQuery = isset($_GET['q']) ? trim((string)$_GET['q']) : '';
-$categoryFilter = isset($_GET['job_category']) ? trim((string)$_GET['job_category']) : '';
+$subFunctionFilter = isset($_GET['job_category']) ? trim((string)$_GET['job_category']) : '';
 $cityFilter = isset($_GET['city']) ? trim((string)$_GET['city']) : '';
 $localityFilter = isset($_GET['locality']) ? trim((string)$_GET['locality']) : '';
 $industryFilter = isset($_GET['job_industry']) ? trim((string)$_GET['job_industry']) : '';
-$salaryFilter = isset($_GET['salary_range']) ? trim((string)$_GET['salary_range']) : '';
+$functionFilter = isset($_GET['job_function']) ? trim((string)$_GET['job_function']) : '';
 $countryFilter = isset($_GET['country']) ? trim((string)$_GET['country']) : '';
 $companyFilter = isset($_GET['company_name']) ? trim((string)$_GET['company_name']) : '';
 $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $perPage = isset($_GET['per_page']) ? max(1, (int)$_GET['per_page']) : 9;
 $fetchAll = isset($_GET['fetch_all']) && (string)$_GET['fetch_all'] === '1';
-$categoryValues = array_filter(array_map('trim', explode(',', $categoryFilter)));
+$subFunctionValues = array_filter(array_map('trim', explode(',', $subFunctionFilter)));
 $cityValues = array_filter(array_map('trim', explode(',', $cityFilter)));
 $localityValues = array_filter(array_map('trim', explode(',', $localityFilter)));
 $industryValues = array_filter(array_map('trim', explode(',', $industryFilter)));
-$salaryValues = array_filter(array_map('trim', explode(',', $salaryFilter)));
+$functionValues = array_filter(array_map('trim', explode(',', $functionFilter)));
 
 if (!empty($industryValues)) {
     $industryValues = array_values(array_filter(array_map('trim', $industryValues), fn(string $value): bool => $value !== ''));
@@ -75,14 +75,32 @@ function job_hiring_for_value(array $job): string
     return '';
 }
 
+function normalize_hiring_for_value(string $value): string
+{
+    $normalized = strtolower(trim(str_replace(["\xE2\x80\x93", "\xE2\x80\x94"], '-', $value)));
+    $normalized = preg_replace('/\s+/', ' ', $normalized) ?? $normalized;
+
+    return match ($normalized) {
+        'internal - to be posted on join us',
+        'client (internal)' => 'internal',
+        'external - to be posted to "find opportunities"',
+        "external - to be posted to 'find opportunities'",
+        'external - to be posted to find opportunities',
+        'client (external)' => 'external',
+        'do not post',
+        'do not post (confidential)' => 'hidden',
+        default => '',
+    };
+}
+
 function is_confidential_job(array $job): bool
 {
-    return strcasecmp(job_hiring_for_value($job), 'Do Not Post (Confidential)') === 0;
+    return normalize_hiring_for_value(job_hiring_for_value($job)) === 'hidden';
 }
 
 function has_external_client_hiring_for_field(array $job): bool
 {
-    return job_hiring_for_value($job) === 'Client (External)';
+    return normalize_hiring_for_value(job_hiring_for_value($job)) === 'external';
 }
 
 function job_industry_value(array $job): string
@@ -120,6 +138,24 @@ function job_industry_value(array $job): string
     }
 
     $fallback = $job['job_industry'] ?? '';
+    if (is_array($fallback)) {
+        $fallback = implode(', ', array_filter(array_map('strval', $fallback), fn($item) => trim($item) !== ''));
+    }
+    return trim((string)$fallback);
+}
+
+function job_function_value(array $job): string
+{
+    $fallback = $job['job_function'] ?? $job['function'] ?? '';
+    if (is_array($fallback)) {
+        $fallback = implode(', ', array_filter(array_map('strval', $fallback), fn($item) => trim($item) !== ''));
+    }
+    return trim((string)$fallback);
+}
+
+function job_sub_function_value(array $job): string
+{
+    $fallback = $job['job_category'] ?? $job['category'] ?? '';
     if (is_array($fallback)) {
         $fallback = implode(', ', array_filter(array_map('strval', $fallback), fn($item) => trim($item) !== ''));
     }
@@ -211,11 +247,11 @@ $jobs = array_values(array_filter($jobs, function ($job) {
     return has_external_client_hiring_for_field($job);
 }));
 
-if (!empty($categoryValues)) {
-    $jobs = array_values(array_filter($jobs, function ($job) use ($categoryValues, $stringify) {
-        $category = $stringify($job['job_category'] ?? $job['category'] ?? '');
-        foreach ($categoryValues as $value) {
-            if (strcasecmp($category, $value) === 0) {
+if ($functionFilter !== '') {
+    $jobs = array_values(array_filter($jobs, function ($job) use ($functionValues) {
+        $jobFunction = job_function_value($job);
+        foreach ($functionValues as $value) {
+            if (strcasecmp($jobFunction, $value) === 0) {
                 return true;
             }
         }
@@ -238,8 +274,8 @@ if (!empty($cityValues)) {
 // Locality filtering is handled via the city filter to keep URLs consistent.
 
 if (!empty($industryValues)) {
-    $jobs = array_values(array_filter($jobs, function ($job) use ($industryValues, $stringify) {
-        $jobIndustry = $stringify($job['job_industry'] ?? '');
+    $jobs = array_values(array_filter($jobs, function ($job) use ($industryValues) {
+        $jobIndustry = job_industry_value($job);
         if ($jobIndustry === '') {
             return false;
         }
@@ -252,21 +288,11 @@ if (!empty($industryValues)) {
     }));
 }
 
-if (!empty($salaryValues)) {
-    $jobs = array_values(array_filter($jobs, function ($job) use ($salaryValues) {
-        $min = is_numeric($job['min_annual_salary'] ?? null) ? (int)$job['min_annual_salary'] : 0;
-        $max = is_numeric($job['max_annual_salary'] ?? null) ? (int)$job['max_annual_salary'] : 0;
-        foreach ($salaryValues as $range) {
-            if ($range === '20000000+') {
-                if ($max >= 20000000 || $min >= 20000000) {
-                    return true;
-                }
-                continue;
-            }
-            [$rMin, $rMax] = array_pad(explode('-', $range), 2, null);
-            $rMin = (int)$rMin;
-            $rMax = (int)$rMax;
-            if ($min <= $rMax && $max >= $rMin) {
+if ($subFunctionFilter !== '') {
+    $jobs = array_values(array_filter($jobs, function ($job) use ($subFunctionValues) {
+        $subFunction = job_sub_function_value($job);
+        foreach ($subFunctionValues as $value) {
+            if (strcasecmp($subFunction, $value) === 0) {
                 return true;
             }
         }
