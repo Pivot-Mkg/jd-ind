@@ -341,6 +341,15 @@
       return getHiringForValue(job).toLowerCase() === 'do not post (confidential)';
     }
 
+    function isJobPostingStatusActive(job) {
+      const rawStatus = job?.job_posting_status;
+      if (rawStatus && typeof rawStatus === 'object') {
+        const nestedStatus = rawStatus.value ?? rawStatus.id ?? rawStatus.status ?? '';
+        return Number(nestedStatus) === 1;
+      }
+      return Number(rawStatus ?? 0) === 1;
+    }
+
     function getIndustryValue(job) {
       const candidates = [
         job?.custom_fields,
@@ -435,7 +444,7 @@
         nextUrl = nextPageUrl;
       }
 
-      return allJobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job));
+      return allJobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job) && isJobPostingStatusActive(job));
     }
 
     async function getExternalJobs() {

@@ -99,6 +99,15 @@ function is_confidential_job(array $job): bool
     return normalize_hiring_for_value(job_hiring_for_value($job)) === 'hidden';
 }
 
+function is_job_posting_status_active(array $job): bool
+{
+    $rawStatus = $job['job_posting_status'] ?? 0;
+    if (is_array($rawStatus)) {
+        $rawStatus = $rawStatus['value'] ?? $rawStatus['id'] ?? $rawStatus['status'] ?? 0;
+    }
+    return (int)$rawStatus === 1;
+}
+
 $allJobs = [];
 $nextUrl = $apiUrl;
 $maxPages = 20;
@@ -124,6 +133,9 @@ while ($nextUrl && $pageCount < $maxPages) {
 
 $internalJobs = array_values(array_filter($allJobs, function (array $job): bool {
     if (is_confidential_job($job)) {
+        return false;
+    }
+    if (!is_job_posting_status_active($job)) {
         return false;
     }
     return normalize_hiring_for_value(job_hiring_for_value($job)) === 'internal';

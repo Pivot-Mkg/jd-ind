@@ -94,6 +94,15 @@ function has_internal_hiring_for_field(array $job): bool
     return normalize_hiring_for_value(job_hiring_for_value($job)) === 'internal';
 }
 
+function is_job_posting_status_active(array $job): bool
+{
+    $rawStatus = $job['job_posting_status'] ?? 0;
+    if (is_array($rawStatus)) {
+        $rawStatus = $rawStatus['value'] ?? $rawStatus['id'] ?? $rawStatus['status'] ?? 0;
+    }
+    return (int)$rawStatus === 1;
+}
+
 function job_industry_value(array $job): string
 {
     $candidates = [
@@ -228,7 +237,7 @@ while ($nextUrl && $pageCount < $maxPages) {
 
 $internalJobs = [];
 $externalJobs = array_values(array_filter($allJobs, function ($job) {
-    return has_external_client_hiring_for_field($job);
+    return has_external_client_hiring_for_field($job) && is_job_posting_status_active($job);
 }));
 
 $industryOptions = [
@@ -1611,6 +1620,15 @@ function build_filter_url(array $params): string
             });
         }
 
+        function isJobPostingStatusActive(job) {
+            const rawStatus = job?.job_posting_status;
+            if (rawStatus && typeof rawStatus === 'object') {
+                const nestedStatus = rawStatus.value ?? rawStatus.id ?? rawStatus.status ?? '';
+                return Number(nestedStatus) === 1;
+            }
+            return Number(rawStatus ?? 0) === 1;
+        }
+
         /**
          * Fetch a single page of jobs from the RecruitCRM API.
          * @param {string} url - Full URL including query params
@@ -1654,7 +1672,7 @@ function build_filter_url(array $params): string
                 nextUrl = nextPageUrl;
             }
 
-            return allJobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job));
+            return allJobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job) && isJobPostingStatusActive(job));
         }
 
         /**

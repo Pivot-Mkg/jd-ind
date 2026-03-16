@@ -136,6 +136,15 @@ function is_confidential_job(array $job): bool
     return false;
 }
 
+function is_job_posting_status_active(array $job): bool
+{
+    $rawStatus = $job['job_posting_status'] ?? 0;
+    if (is_array($rawStatus)) {
+        $rawStatus = $rawStatus['value'] ?? $rawStatus['id'] ?? $rawStatus['status'] ?? 0;
+    }
+    return (int) $rawStatus === 1;
+}
+
 $stringify = function ($value): string {
     if (is_array($value)) {
         $flat = array_filter(array_map('strval', $value), fn($item) => $item !== '');
@@ -187,6 +196,9 @@ if ($errorMessage) {
 $jobs = array_values(array_filter($allJobs, function (array $job): bool {
     // Must not be confidential
     if (is_confidential_job($job)) {
+        return false;
+    }
+    if (!is_job_posting_status_active($job)) {
         return false;
     }
     // Must be marked for external posting

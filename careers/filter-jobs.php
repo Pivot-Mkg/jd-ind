@@ -103,6 +103,15 @@ function has_external_client_hiring_for_field(array $job): bool
     return normalize_hiring_for_value(job_hiring_for_value($job)) === 'external';
 }
 
+function is_job_posting_status_active(array $job): bool
+{
+    $rawStatus = $job['job_posting_status'] ?? 0;
+    if (is_array($rawStatus)) {
+        $rawStatus = $rawStatus['value'] ?? $rawStatus['id'] ?? $rawStatus['status'] ?? 0;
+    }
+    return (int)$rawStatus === 1;
+}
+
 function job_industry_value(array $job): string
 {
     $candidates = [
@@ -244,7 +253,7 @@ if ($companyFilter !== '') {
 }
 
 $jobs = array_values(array_filter($jobs, function ($job) {
-    return has_external_client_hiring_for_field($job);
+    return has_external_client_hiring_for_field($job) && is_job_posting_status_active($job);
 }));
 
 if ($functionFilter !== '') {
