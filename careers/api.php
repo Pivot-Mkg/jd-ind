@@ -46,14 +46,24 @@ function extract_jobs(array $data): array
     return [];
 }
 
-/**
- * Returns true only when the job has:
- *   field_id   = 7
- *   entity_type = "job"
- *   field_name  = "hiring for"   (case-insensitive)
- *   field_type  = "dropdown"
- *   value       = "Client (External)"  (case-insensitive)
- */
+function normalize_hiring_for_value(string $value): string
+{
+    $normalized = strtolower(trim(str_replace(["\xE2\x80\x93", "\xE2\x80\x94"], '-', $value)));
+    $normalized = preg_replace('/\s+/', ' ', $normalized) ?? $normalized;
+
+    return match ($normalized) {
+        'internal - to be posted on join us',
+        'client (internal)' => 'internal',
+        'external - to be posted to "find opportunities"',
+        "external - to be posted to 'find opportunities'",
+        'external - to be posted to find opportunities',
+        'client (external)' => 'external',
+        'do not post',
+        'do not post (confidential)' => 'hidden',
+        default => '',
+    };
+}
+
 function is_external_client_job(array $job): bool
 {
     $fields = $job['custom_fields'] ?? [];
@@ -82,7 +92,7 @@ function is_external_client_job(array $job): bool
             $entityType === 'job'                &&
             $fieldName  === 'hiring for'         &&
             $fieldType  === 'dropdown'           &&
-            strcasecmp($value, 'Client (External)') === 0
+            normalize_hiring_for_value($value) === 'external'
         ) {
             return true;
         }
@@ -92,8 +102,7 @@ function is_external_client_job(array $job): bool
 }
 
 /**
- * Returns true when the job is marked "Do Not Post (Confidential)".
- * Confidential jobs must never be surfaced.
+ * Returns true when the job should not be posted anywhere.
  */
 function is_confidential_job(array $job): bool
 {
@@ -119,12 +128,21 @@ function is_confidential_job(array $job): bool
             $value = $value['value'] ?? $value['label'] ?? $value['name'] ?? '';
         }
 
-        if (strcasecmp(trim((string) $value), 'Do Not Post (Confidential)') === 0) {
+        if (normalize_hiring_for_value(trim((string) $value)) === 'hidden') {
             return true;
         }
     }
 
     return false;
+}
+
+function is_job_posting_status_active(array $job): bool
+{
+    $rawStatus = $job['job_posting_status'] ?? 0;
+    if (is_array($rawStatus)) {
+        $rawStatus = $rawStatus['value'] ?? $rawStatus['id'] ?? $rawStatus['status'] ?? 0;
+    }
+    return (int) $rawStatus === 1;
 }
 
 $stringify = function ($value): string {
@@ -180,7 +198,10 @@ $jobs = array_values(array_filter($allJobs, function (array $job): bool {
     if (is_confidential_job($job)) {
         return false;
     }
-    // Must be "Client (External)"
+    if (!is_job_posting_status_active($job)) {
+        return false;
+    }
+    // Must be marked for external posting
     return is_external_client_job($job);
 }));
 
