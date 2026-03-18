@@ -537,18 +537,19 @@
             position: relative;
             border-radius: 18px;
             overflow: hidden;
-            height: 420px;
+            height: 345px;
             background: #fff;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
         }
 
-        .team-card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
+       .team-card-img {
+    width: 100%;
+    height: stretch;
+    /* height: 100%; */
+    object-fit: fill;
+    display: block;
+    transition: transform 0.4s ease;
+}
 
         .team-card:hover .team-card-img {
             transform: scale(1.05);
@@ -605,8 +606,8 @@
             border-radius: 18px;
             /* box-shadow: 0 4px 16px rgba(34, 56, 120, 0.08); */
             padding: 28px 22px;
-            min-height: 250px;
-            aspect-ratio: 1 / 1;
+            height: 225px;
+            /* aspect-ratio: 1 / 1; */
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -674,11 +675,11 @@
         }
 
         .career-swiper-prev {
-            left: 0;
+            left: -10px;
         }
 
         .career-swiper-next {
-            right: 0;
+            right: -10px;
         }
 
         @media (max-width: 991px) {
@@ -985,7 +986,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-1.png" alt="Growth Opportunities">
+                                    <img src="assets/images/icons/What We Look For/Entrepreneurial mindset and desire to build.svg" alt="Growth Opportunities">
                                 </div>
                                 <p>Entrepreneurial mindset and desire to build</p>
                             </div>
@@ -994,7 +995,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-2.png" alt="Collaborative Culture">
+                                    <img src="assets/images/icons/What We Look For/Comfort operating in fast-moving and ambiguous environments.svg" alt="Collaborative Culture">
                                 </div>
                                 <p>Comfort operating in fast-moving and ambiguous environments</p>
                             </div>
@@ -1003,7 +1004,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-3.png" alt="Challenging Work">
+                                    <img src="assets/images/icons/What We Look For/Strong ability to drive outcomes and close mandates.svg" alt="Challenging Work">
                                 </div>
                                 <p>Strong ability to drive outcomes and close mandates</p>
                             </div>
@@ -1012,7 +1013,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-4.png" alt="People First">
+                                    <img src="assets/images/icons/What We Look For/Depth in delivery and execution.svg" alt="People First">
                                 </div>
                                 <p>Depth in delivery and execution</p>
                             </div>
@@ -1021,7 +1022,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-5.png" alt="Meaningful Impact">
+                                    <img src="assets/images/icons/What We Look For/Resilience and ownership mindset.svg" alt="Meaningful Impact">
                                 </div>
                                 <p>Resilience and ownership mindset</p>
                             </div>
@@ -1030,7 +1031,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-6.png" alt="Career Progression">
+                                    <img src="assets/images/icons/What We Look For/Structured thinking and problem-solving ability.svg" alt="Career Progression">
                                 </div>
                                 <p>Structured thinking and problem-solving ability</p>
                             </div>
@@ -1039,7 +1040,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-7.png" alt="Shared Wins">
+                                    <img src="assets/images/icons/What We Look For/Intellectual curiosity and ability to have meaningful conversations.svg" alt="Shared Wins">
                                 </div>
                                 <p>Intellectual curiosity and ability to have meaningful conversations</p>
                             </div>
@@ -1104,38 +1105,24 @@ background: linear-gradient(
                         <div class="swiper teamSwiper">
                             <div class="swiper-wrapper">
 
-                                <!-- Slide 1 -->
+                                 <!-- Slide 2 -->
                                 <div class="swiper-slide">
                                     <div class="team-card">
-                                        <img src="assets/images/Amarjeet-Dutta.jpg" alt="Team Member 1"
+                                        <img src="assets/images/team-photos/jd-india-team-2.jpeg" alt="Team Member 2"
                                             class="team-card-img">
                                         <div class="team-card-overlay">
-                                            <h5>Team Member Name</h5>
-                                            <p>Designation</p>
+                                            
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- Slide 2 -->
+                                  <!-- Slide 3 -->
                                 <div class="swiper-slide">
                                     <div class="team-card">
-                                        <img src="assets/images/diksha-about-us-img.jpeg" alt="Team Member 2"
+                                        <img src="assets/images/team-photos/jd-india-team.jpeg" alt="Team Member 3"
                                             class="team-card-img">
                                         <div class="team-card-overlay">
-                                            <h5>Team Member Name</h5>
-                                            <p>Designation</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Slide 3 -->
-                                <div class="swiper-slide">
-                                    <div class="team-card">
-                                        <img src="assets/images/nupur-about-us-img.jpeg" alt="Team Member 3"
-                                            class="team-card-img">
-                                        <div class="team-card-overlay">
-                                            <h5>Team Member Name</h5>
-                                            <p>Designation</p>
+                                          
                                         </div>
                                     </div>
                                 </div>
@@ -1143,11 +1130,27 @@ background: linear-gradient(
                                 <!-- Slide 4 -->
                                 <div class="swiper-slide">
                                     <div class="team-card">
-                                        <img src="assets/images/Rajesh-Sharma.png" alt="Team Member 4"
+                                        <img src="assets/images/team-photos/jd-india-team-3.jpeg" alt="Team Member 4"
                                             class="team-card-img">
                                         <div class="team-card-overlay">
-                                            <h5>Team Member Name</h5>
-                                            <p>Designation</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Slide 4 -->
+                                <div class="swiper-slide">
+                                    <div class="team-card">
+                                        <img src="assets/images/team-photos/jd-india-team-4.jpeg" alt="Team Member 4"
+                                            class="team-card-img">
+                                        <div class="team-card-overlay">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Slide 4 -->
+                                <div class="swiper-slide">
+                                    <div class="team-card">
+                                        <img src="assets/images/team-photos/jd-team-5.jpeg" alt="Team Member 4"
+                                            class="team-card-img">
+                                        <div class="team-card-overlay">
                                         </div>
                                     </div>
                                 </div>
@@ -1187,7 +1190,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-1.png" alt="Growth Opportunities">
+                                    <img src="assets/images/icons/What You Can Expect From Us/Exponential personal and professional growth.svg" alt="Growth Opportunities">
                                 </div>
                                 <p>Exponential personal and professional growth</p>
                             </div>
@@ -1196,7 +1199,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-2.png" alt="Collaborative Culture">
+                                    <img src="assets/images/icons/What You Can Expect From Us/A steep learning curve and expanding capabilities.svg" alt="Collaborative Culture">
                                 </div>
                                 <p>A steep learning curve and expanding capabilities</p>
                             </div>
@@ -1205,7 +1208,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-3.png" alt="Challenging Work">
+                                    <img src="assets/images/icons/What You Can Expect From Us/A collaborative, high-energy team environment.svg" alt="Challenging Work">
                                 </div>
                                 <p>A collaborative, high-energy team environment</p>
                             </div>
@@ -1214,7 +1217,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-4.png" alt="People First">
+                                    <img src="assets/images/icons/What You Can Expect From Us/Exposure to decision-makers across industries.svg" alt="People First">
                                 </div>
                                 <p>Exposure to decision-makers across industries</p>
                             </div>
@@ -1223,7 +1226,7 @@ background: linear-gradient(
                         <div class="swiper-slide">
                             <div class="career-square-card">
                                 <div class="career-card-icon">
-                                    <img src="assets/icons/icon-5.png" alt="Meaningful Impact">
+                                    <img src="assets/images/icons/What You Can Expect From Us/Opportunities to build practices and take on leadership responsibilities.svg" alt="Meaningful Impact">
                                 </div>
                                 <p>Opportunities to build practices and take on leadership responsibilities</p>
                             </div>
