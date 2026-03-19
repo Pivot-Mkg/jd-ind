@@ -94,13 +94,54 @@ function has_internal_hiring_for_field(array $job): bool
     return normalize_hiring_for_value(job_hiring_for_value($job)) === 'internal';
 }
 
-function is_job_posting_status_active(array $job): bool
+function is_job_open(array $job): bool
 {
-    $rawStatus = $job['job_posting_status'] ?? 0;
-    if (is_array($rawStatus)) {
-        $rawStatus = $rawStatus['value'] ?? $rawStatus['id'] ?? $rawStatus['status'] ?? 0;
+    $status = $job['job_status'] ?? null;
+    if (is_array($status)) {
+        $label = trim((string)($status['label'] ?? $status['name'] ?? ''));
+        if ($label !== '') {
+            return strcasecmp($label, 'Open') === 0;
+        }
+
+        return (int)($status['id'] ?? 0) === 1;
     }
-    return (int)$rawStatus === 1;
+
+    return strcasecmp(trim((string)$status), 'Open') === 0;
+}
+
+function should_post_on_website(array $job): bool
+{
+    $fields = $job['custom_fields'] ?? [];
+    if (!is_array($fields)) {
+        return false;
+    }
+
+    foreach ($fields as $field) {
+        if (!is_array($field)) {
+            continue;
+        }
+
+        $fieldId = (int)($field['field_id'] ?? $field['id'] ?? 0);
+        $entityType = strtolower(trim((string)($field['entity_type'] ?? '')));
+        $fieldName = strtolower(trim((string)($field['field_name'] ?? $field['name'] ?? '')));
+        $fieldType = strtolower(trim((string)($field['field_type'] ?? $field['type'] ?? '')));
+        $value = $field['value'] ?? $field['field_value'] ?? $field['selected'] ?? '';
+
+        if (is_array($value)) {
+            $value = $value['value'] ?? $value['label'] ?? $value['name'] ?? '';
+        }
+
+        if (
+            $fieldId === 10 &&
+            $entityType === 'job' &&
+            $fieldName === 'post on website' &&
+            $fieldType === 'dropdown'
+        ) {
+            return strcasecmp(trim((string)$value), 'Yes') === 0;
+        }
+    }
+
+    return false;
 }
 
 function job_industry_value(array $job): string
@@ -237,7 +278,9 @@ while ($nextUrl && $pageCount < $maxPages) {
 
 $internalJobs = [];
 $externalJobs = array_values(array_filter($allJobs, function ($job) {
-    return has_external_client_hiring_for_field($job) && is_job_posting_status_active($job);
+    return has_external_client_hiring_for_field($job)
+        && is_job_open($job)
+        && should_post_on_website($job);
 }));
 
 $industryOptions = [
@@ -1620,13 +1663,42 @@ function build_filter_url(array $params): string
             });
         }
 
-        function isJobPostingStatusActive(job) {
-            const rawStatus = job?.job_posting_status;
-            if (rawStatus && typeof rawStatus === 'object') {
-                const nestedStatus = rawStatus.value ?? rawStatus.id ?? rawStatus.status ?? '';
-                return Number(nestedStatus) === 1;
+        function isJobOpen(job) {
+            const status = job?.job_status;
+            if (status && typeof status === 'object') {
+                const label = String(status.label ?? status.name ?? '').trim();
+                if (label) {
+                    return label.toLowerCase() === 'open';
+                }
+                return Number(status.id ?? 0) === 1;
             }
-            return Number(rawStatus ?? 0) === 1;
+            return String(status ?? '').trim().toLowerCase() === 'open';
+        }
+
+        function shouldPostOnWebsite(job) {
+            const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
+
+            return fields.some((field) => {
+                if (!field || typeof field !== 'object') return false;
+
+                const fieldId = Number(field.field_id ?? field.id ?? 0);
+                const entityType = String(field.entity_type ?? '').trim().toLowerCase();
+                const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+                const fieldType = String(field.field_type ?? field.type ?? '').trim().toLowerCase();
+
+                let value = field.value ?? field.field_value ?? field.selected ?? '';
+                if (value && typeof value === 'object') {
+                    value = value.value ?? value.label ?? value.name ?? '';
+                }
+
+                return (
+                    fieldId === 10 &&
+                    entityType === 'job' &&
+                    fieldName === 'post on website' &&
+                    fieldType === 'dropdown' &&
+                    String(value ?? '').trim().toLowerCase() === 'yes'
+                );
+            });
         }
 
         /**
@@ -1672,7 +1744,12 @@ function build_filter_url(array $params): string
                 nextUrl = nextPageUrl;
             }
 
-            return allJobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job) && isJobPostingStatusActive(job));
+            return allJobs.filter((job) =>
+                !isConfidentialJob(job) &&
+                isExternalClientJob(job) &&
+                isJobOpen(job) &&
+                shouldPostOnWebsite(job)
+            );
         }
 
         /**
@@ -1681,7 +1758,12 @@ function build_filter_url(array $params): string
          */
         async function fetchExternalClientJobsFirstPage() {
             const { jobs } = await fetchPage(`${API_URL}?limit=${LIMIT}`);
-            return jobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job));
+            return jobs.filter((job) =>
+                !isConfidentialJob(job) &&
+                isExternalClientJob(job) &&
+                isJobOpen(job) &&
+                shouldPostOnWebsite(job)
+            );
         }
 
         async function getExternalJobs() {

@@ -136,13 +136,54 @@ function is_confidential_job(array $job): bool
     return false;
 }
 
-function is_job_posting_status_active(array $job): bool
+function is_job_open(array $job): bool
 {
-    $rawStatus = $job['job_posting_status'] ?? 0;
-    if (is_array($rawStatus)) {
-        $rawStatus = $rawStatus['value'] ?? $rawStatus['id'] ?? $rawStatus['status'] ?? 0;
+    $status = $job['job_status'] ?? null;
+    if (is_array($status)) {
+        $label = trim((string) ($status['label'] ?? $status['name'] ?? ''));
+        if ($label !== '') {
+            return strcasecmp($label, 'Open') === 0;
+        }
+
+        return (int) ($status['id'] ?? 0) === 1;
     }
-    return (int) $rawStatus === 1;
+
+    return strcasecmp(trim((string) $status), 'Open') === 0;
+}
+
+function should_post_on_website(array $job): bool
+{
+    $fields = $job['custom_fields'] ?? [];
+    if (!is_array($fields)) {
+        return false;
+    }
+
+    foreach ($fields as $field) {
+        if (!is_array($field)) {
+            continue;
+        }
+
+        $fieldId = (int) ($field['field_id'] ?? $field['id'] ?? 0);
+        $entityType = strtolower(trim((string) ($field['entity_type'] ?? '')));
+        $fieldName = strtolower(trim((string) ($field['field_name'] ?? $field['name'] ?? '')));
+        $fieldType = strtolower(trim((string) ($field['field_type'] ?? $field['type'] ?? '')));
+        $value = $field['value'] ?? $field['field_value'] ?? $field['selected'] ?? '';
+
+        if (is_array($value)) {
+            $value = $value['value'] ?? $value['label'] ?? $value['name'] ?? '';
+        }
+
+        if (
+            $fieldId === 10 &&
+            $entityType === 'job' &&
+            $fieldName === 'post on website' &&
+            $fieldType === 'dropdown'
+        ) {
+            return strcasecmp(trim((string) $value), 'Yes') === 0;
+        }
+    }
+
+    return false;
 }
 
 $stringify = function ($value): string {
@@ -198,7 +239,7 @@ $jobs = array_values(array_filter($allJobs, function (array $job): bool {
     if (is_confidential_job($job)) {
         return false;
     }
-    if (!is_job_posting_status_active($job)) {
+    if (!is_job_open($job) || !should_post_on_website($job)) {
         return false;
     }
     // Must be marked for external posting

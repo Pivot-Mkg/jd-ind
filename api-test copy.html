@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const API_URL = 'https://api.recruitcrm.io/v1/jobs';
+const API_TOKEN = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
+const LIMIT = 6;
+
+/**
+ * Check if a job has field_id=7, entity_type="job",
+ * field_name="Hiring For", field_type="dropdown", value="Client (External)"
+ */
+function isExternalClientJob(job) {
+  const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
+
+  return fields.some((field) => {
+    if (!field || typeof field !== 'object') return false;
+
+    const fieldId    = Number(field.field_id ?? field.id ?? 0);
+    const entityType = String(field.entity_type ?? '').trim().toLowerCase();
+    const fieldName  = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+    const fieldType  = String(field.field_type ?? field.type ?? '').trim().toLowerCase();
+
+    let value = field.value ?? field.field_value ?? field.selected ?? '';
+    if (value && typeof value === 'object') {
+      value = value.value ?? value.label ?? value.name ?? '';
+    }
+    value = String(value ?? '').trim().toLowerCase();
+
+    return (
+      fieldId    === 7                    &&
+      entityType === 'job'                &&
+      fieldName  === 'hiring for'         &&
+      fieldType  === 'dropdown'           &&
+      value      === 'client (external)'
+    );
+  });
+}
+
+/**
+ * Check if a job is confidential (Do Not Post).
+ */
+function isConfidentialJob(job) {
+  const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
+
+  return fields.some((field) => {
+    if (!field || typeof field !== 'object') return false;
+
+    const fieldId   = Number(field.field_id ?? field.id ?? 0);
+    const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+
+    if (fieldId !== 7 && fieldName !== 'hiring for') return false;
+
+    let value = field.value ?? field.field_value ?? field.selected ?? '';
+    if (value && typeof value === 'object') {
+      value = value.value ?? value.label ?? value.name ?? '';
+    }
+
+    return String(value ?? '').trim().toLowerCase() === 'do not post (confidential)';
+  });
+}
+
+/**
+ * Fetch a single page of jobs from the RecruitCRM API.
+ * @param {string} url - Full URL including query params
+ * @returns {Promise<{ jobs: Array, nextPageUrl: string|null }>}
+ */
+async function fetchPage(url) {
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': API_TOKEN,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`API request failed with status ${response.status}`);
+  }
+
+  const data = await response.json();
+
+  // Support different response shapes
+  const jobs = data.data ?? data.jobs ?? (Array.isArray(data) ? data : []);
+  const nextPageUrl = data.next_page_url ?? null;
+
+  return { jobs, nextPageUrl };
+}
+
+/**
+ * Fetch ALL pages and return only External Client jobs (non-confidential).
+ * @param {number} limit - Items per page (passed to API)
+ * @param {number} maxPages - Safety cap to avoid infinite loops
+ * @returns {Promise<Array>}
+ */
+async function fetchAllExternalClientJobs(limit = LIMIT, maxPages = 100) {
+  let allJobs = [];
+  let nextUrl = `${API_URL}?limit=${limit}`;
+  let pageCount = 0;
+
+  while (nextUrl && pageCount < maxPages) {
+    pageCount++;
+    const { jobs, nextPageUrl } = await fetchPage(nextUrl);
+    allJobs = allJobs.concat(jobs);
+    nextUrl = nextPageUrl;
+  }
+
+  // Filter: keep only non-confidential Client (External) jobs
+  return allJobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job));
+}
+
+/**
+ * Fetch only the first page (6 jobs) and filter.
+ * @returns {Promise<Array>}
+ */
+async function fetchExternalClientJobsFirstPage() {
+  const { jobs } = await fetchPage(`${API_URL}?limit=${LIMIT}`);
+  return jobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job));
+}
+
+// ─── Example usage ────────────────────────────────────────────────────────────
+
+// Fetch first page only (fast)
+fetchExternalClientJobsFirstPage()
+  .then((jobs) => {
+    console.log(`Found ${jobs.length} external client jobs on first page:`);
+    jobs.forEach((job) => {
+      const title   = job.name ?? job.title ?? 'Untitled';
+      const city    = job.city ?? job.location ?? 'N/A';
+      const minSal  = job.min_annual_salary ?? 0;
+      const maxSal  = job.max_annual_salary ?? 0;
+      console.log(`  • ${title} | ${city} | Salary: ${minSal} - ${maxSal}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Error fetching jobs:', err.message);
+  });
+
+// Fetch ALL pages (use when you need complete data)
+// fetchAllExternalClientJobs()
+//   .then((jobs) => {
+//     console.log(`Total external client jobs across all pages: ${jobs.length}`);
+//   })
+//   .catch((err) => {
+//     console.error('Error fetching all jobs:', err.message);
+//   });
+
+
+// ─── Export for use as a module ───────────────────────────────────────────────
+
+// Uncomment if using in Node.js / ES module environment:
+// export { fetchAllExternalClientJobs, fetchExternalClientJobsFirstPage, isExternalClientJob };
+
+// Uncomment if using in CommonJS (Node.js require):
+// module.exports = { fetchAllExternalClientJobs, fetchExternalClientJobsFirstPage, isExternalClientJob };
+    </script>
+</body>
+</html>

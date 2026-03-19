@@ -1778,6 +1778,24 @@ background: linear-gradient(
                 .replaceAll("'", '&#39;');
         }
 
+        function normalizeHiringForValue(value) {
+            const normalized = String(value || '')
+                .replaceAll('\u2013', '-')
+                .replaceAll('\u2014', '-')
+                .trim()
+                .toLowerCase()
+                .replace(/\s+/g, ' ');
+
+            switch (normalized) {
+                case 'internal':
+                case 'internal - to be posted on join us':
+                case 'client (internal)':
+                    return 'internal';
+                default:
+                    return '';
+            }
+        }
+
         function paginateInternalJobs(pageSize = 6) {
             if (!internalJobsList || !internalJobsPagination) {
                 return;
@@ -1851,7 +1869,11 @@ background: linear-gradient(
                 return;
             }
 
-            if (!Array.isArray(jobs) || jobs.length === 0) {
+            const internalClientJobs = Array.isArray(jobs)
+                ? jobs.filter((job) => normalizeHiringForValue(job?.hiring_for) === 'internal')
+                : [];
+
+            if (internalClientJobs.length === 0) {
                 internalJobsStatus.textContent = 'No internal jobs available right now.';
                 internalJobsList.innerHTML = '';
                 if (internalJobsPagination) {
@@ -1861,7 +1883,7 @@ background: linear-gradient(
             }
 
             internalJobsStatus.textContent = '';
-            internalJobsList.innerHTML = jobs.map((job, index) => {
+            internalJobsList.innerHTML = internalClientJobs.map((job, index) => {
                 const title = escapeHtml(job.title || 'Open Position');
                 const company = escapeHtml(job.company || 'James Douglas');
                 const city = escapeHtml(job.city || '');

@@ -341,13 +341,43 @@
       return getHiringForValue(job).toLowerCase() === 'do not post (confidential)';
     }
 
-    function isJobPostingStatusActive(job) {
-      const rawStatus = job?.job_posting_status;
-      if (rawStatus && typeof rawStatus === 'object') {
-        const nestedStatus = rawStatus.value ?? rawStatus.id ?? rawStatus.status ?? '';
-        return Number(nestedStatus) === 1;
+    function isJobOpen(job) {
+      const status = job?.job_status;
+      if (status && typeof status === 'object') {
+        const label = String(status.label ?? status.name ?? '').trim();
+        if (label) {
+          return label.toLowerCase() === 'open';
+        }
+        return Number(status.id ?? 0) === 1;
       }
-      return Number(rawStatus ?? 0) === 1;
+      return String(status ?? '').trim().toLowerCase() === 'open';
+    }
+
+    function shouldPostOnWebsite(job) {
+      const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
+      return fields.some((field) => {
+        if (!field || typeof field !== 'object') {
+          return false;
+        }
+
+        const fieldId = Number(field.field_id ?? field.id ?? 0);
+        const entityType = String(field.entity_type ?? '').trim().toLowerCase();
+        const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+        const fieldType = String(field.field_type ?? field.type ?? '').trim().toLowerCase();
+        let value = field.value ?? field.field_value ?? field.selected ?? '';
+
+        if (value && typeof value === 'object') {
+          value = value.value ?? value.label ?? value.name ?? '';
+        }
+
+        return (
+          fieldId === 10 &&
+          entityType === 'job' &&
+          fieldName === 'post on website' &&
+          fieldType === 'dropdown' &&
+          String(value ?? '').trim().toLowerCase() === 'yes'
+        );
+      });
     }
 
     function getIndustryValue(job) {
@@ -444,7 +474,12 @@
         nextUrl = nextPageUrl;
       }
 
-      return allJobs.filter((job) => !isConfidentialJob(job) && isExternalClientJob(job) && isJobPostingStatusActive(job));
+      return allJobs.filter((job) =>
+        !isConfidentialJob(job) &&
+        isExternalClientJob(job) &&
+        isJobOpen(job) &&
+        shouldPostOnWebsite(job)
+      );
     }
 
     async function getExternalJobs() {
