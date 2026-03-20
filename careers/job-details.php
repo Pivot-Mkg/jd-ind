@@ -165,6 +165,150 @@ $skills = $stringify($job['job_skill'] ?? $job['skills'] ?? '');
 $category = $stringify($job['job_category'] ?? $job['category'] ?? '');
 $address = $stringify($job['address'] ?? $job['address_line'] ?? $job['location_address'] ?? '');
 $applySlug = $stringify($job['slug'] ?? $job['job_slug'] ?? $jobSlug);
+$candidateIndustryOptions = [
+    'Biotech',
+    'Clinical Research',
+    'Pharmaceutical',
+    'Medical Devices',
+    'Medical Equipments',
+    'Medical Diagnostics',
+    'CDMO',
+    'API',
+    'Consumer Healthcare',
+    'Clinics & Labs',
+    'Hospitals',
+    'Building Materials',
+    'Chemicals',
+    'Automobile',
+    'Auto Components',
+    'Defence & Aerospace',
+    'Electrical Equipment',
+    'Agrochemicals',
+    'Industrial Automation',
+    'Industrial Equipment/Machinery',
+    'Iron & Steel',
+    'Metals & Mining',
+    'Packaging',
+    'Petrochemicals',
+    'Plastics & Rubber',
+    'Aviation',
+    'Logistics',
+    'EPC',
+    'Oil & Gas',
+    'Ports & Shipping',
+    'Power',
+    'Real Estate',
+    'Construction',
+    'FMCG',
+    'FMCD',
+    'Beauty & Personal Care',
+    'Beverage',
+    'Fitness & Wellness',
+    'Furniture & Furnishing',
+    'Gems & Jewellery',
+    'Hospitality',
+    'Retail',
+    'Textile & Apparel',
+    'Travel & Tourism',
+    'Financial Services',
+    'Banking',
+    'Credit Rating',
+    'Life Insurance',
+    'General Insurance',
+    'Health Insurance',
+    'NBFC',
+    'Capital Markets/Securities/Broking',
+    'Mutual Funds & AMC',
+    'MII',
+    'Investment Banking/Management',
+    'PE/VC',
+    'Payment-Tech',
+    'Lending-Tech',
+    'Wealth-Tech',
+    'Insur-Tech',
+    'Reg-Tech',
+    'Crypto',
+    'Consumer-Tech',
+    'D2C Tech',
+    'Retail-Tech',
+    'Health-Tech',
+    'Ed-Tech',
+    'Prop-Tech',
+    'Travel-Tech',
+    'Logi-Tech',
+    'HR-Tech',
+    'Analytics Platform',
+    'B2B SaaS',
+    'ITeS',
+    'Gaming',
+    'Telecom',
+    'Advertising',
+    'PR',
+    'Media',
+    'Accounting',
+    'Business Consulting & Services',
+    'Law Firms',
+    'NGOs',
+    'Market Research',
+    'Sports/Leisure/Recreation',
+    'Education',
+    'Miscellaneous',
+];
+$cityOptions = [
+    'Agra',
+    'Ahmedabad',
+    'Ajmer',
+    'Aligarh',
+    'Amritsar',
+    'Aurangabad',
+    'Bengaluru',
+    'Bhopal',
+    'Bhubaneswar',
+    'Chandigarh',
+    'Chennai',
+    'Coimbatore',
+    'Dehradun',
+    'Delhi',
+    'Dhanbad',
+    'Faridabad',
+    'Ghaziabad',
+    'Goa',
+    'Gurgaon',
+    'Guwahati',
+    'Gwalior',
+    'Hyderabad',
+    'Indore',
+    'Jaipur',
+    'Jamshedpur',
+    'Jodhpur',
+    'Kanpur',
+    'Kochi',
+    'Kolkata',
+    'Lucknow',
+    'Ludhiana',
+    'Madurai',
+    'Mangalore',
+    'Meerut',
+    'Mumbai',
+    'Mysuru',
+    'Nagpur',
+    'Nashik',
+    'Noida',
+    'Patna',
+    'Pimpri-Chinchwad',
+    'Pune',
+    'Raipur',
+    'Rajkot',
+    'Ranchi',
+    'Surat',
+    'Thane',
+    'Tiruchirappalli',
+    'Udaipur',
+    'Vadodara',
+    'Varanasi',
+    'Vijayawada',
+    'Visakhapatnam',
+];
 
 ?>
 <!doctype html>
@@ -331,7 +475,7 @@ $applySlug = $stringify($job['slug'] ?? $job['job_slug'] ?? $jobSlug);
                 </div>
                 <div class="modal-body pt-3">
                     <form id="apply-job-form" enctype="multipart/form-data">
-                        <input type="hidden" name="job_slug" id="apply-job-slug" value="<?php echo htmlspecialchars($applySlug, ENT_QUOTES, 'UTF-8'); ?>">
+                        <input type="hidden" name="source" value="Website">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label">First Name</label>
@@ -342,40 +486,74 @@ $applySlug = $stringify($job['slug'] ?? $job['job_slug'] ?? $jobSlug);
                                 <input type="text" class="form-control" name="last_name" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Email</label>
+                                <label class="form-label">Email ID</label>
                                 <input type="email" class="form-control" name="email" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" name="phone" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Function/ Department</label>
-                                <input type="text" class="form-control" name="function" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Industry</label>
-                                <input type="text" class="form-control" name="industry" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label">Job Title</label>
-                                <input type="text" class="form-control" name="job_title" required>
+                                <input type="tel" class="form-control" name="contact_number" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Current Organization</label>
                                 <input type="text" class="form-control" name="current_organization" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">Current CTC</label>
-                                <input type="text" class="form-control" name="current_ctc" required>
+                                <label class="form-label">Current Designation</label>
+                                <input type="text" class="form-control" name="position" required>
                             </div>
-                            <div class="col-12">
-                                <label class="form-label">LinkedIn Profile</label>
-                                <input type="url" class="form-control" name="linkedin_profile" placeholder="https://linkedin.com/in/yourprofile" required>
+                            <div class="col-md-6">
+                                <label class="form-label">Candidate Industry</label>
+                                <select class="form-select" name="specialization" required>
+                                    <option value="">Select Industry</option>
+                                    <?php foreach ($candidateIndustryOptions as $industryOption): ?>
+                                        <option value="<?php echo htmlspecialchars($industryOption, ENT_QUOTES, 'UTF-8'); ?>">
+                                            <?php echo htmlspecialchars($industryOption, ENT_QUOTES, 'UTF-8'); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
-                            <div class="col-12">
+                            <div class="col-md-6">
+                                <label class="form-label">Total Experience</label>
+                                <input type="number" class="form-control" name="work_ex_year" min="0" step="1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Fixed CTC</label>
+                                <input type="number" class="form-control" name="current_salary" min="0" step="1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Salary Expectation</label>
+                                <input type="number" class="form-control" name="salary_expectation" min="0" step="1">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Gender</label>
+                                <select class="form-select" name="gender_id" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="2">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Notice Period</label>
+                                <input type="number" class="form-control" name="notice_period" min="0" step="1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">City</label>
+                                <select class="form-select" name="city" required>
+                                    <option value="">Select City</option>
+                                    <?php foreach ($cityOptions as $cityOption): ?>
+                                        <option value="<?php echo htmlspecialchars($cityOption, ENT_QUOTES, 'UTF-8'); ?>">
+                                            <?php echo htmlspecialchars($cityOption, ENT_QUOTES, 'UTF-8'); ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Relevant Experience</label>
+                                <input type="number" class="form-control" name="relevant_experience" min="0" step="1">
+                            </div>
+                            <div class="col-md-6">
                                 <label class="form-label">Upload Resume</label>
-                                <input type="file" class="form-control" name="resume" required>
+                                <input type="file" class="form-control" name="resume" accept=".pdf,.doc,.docx" required>
                             </div>
                         </div>
                         <div class="mt-4 d-flex align-items-center gap-3">
@@ -443,6 +621,7 @@ $applySlug = $stringify($job['slug'] ?? $job['job_slug'] ?? $jobSlug);
         const applyButton = document.getElementById('job-detail-apply');
         const applyForm = document.getElementById('apply-job-form');
         const applyStatus = document.getElementById('apply-job-status');
+        const applySubmitButton = applyForm ? applyForm.querySelector('button[type="submit"]') : null;
 
         if (applyButton && applyModal) {
             applyButton.addEventListener('click', () => {
@@ -454,19 +633,32 @@ $applySlug = $stringify($job['slug'] ?? $job['job_slug'] ?? $jobSlug);
         if (applyForm) {
             applyForm.addEventListener('submit', async (event) => {
                 event.preventDefault();
+                if (applySubmitButton) {
+                    applySubmitButton.disabled = true;
+                }
                 applyStatus.textContent = 'Submitting...';
+                applyStatus.classList.remove('text-danger', 'text-success');
                 const formData = new FormData(applyForm);
                 try {
-                    const response = await fetch('apply-job.php', {
+                    const response = await fetch('https://api.recruitcrm.io/v1/candidates', {
                         method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            Authorization: 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==',
+                        },
                         body: formData,
                     });
                     const data = await response.json().catch(() => ({}));
                     if (response.ok && !data.error) {
-                        applyStatus.textContent = 'Application submitted successfully.';
+                        applyStatus.textContent = data.message || 'Application submitted successfully.';
                         applyStatus.classList.remove('text-danger');
                         applyStatus.classList.add('text-success');
                         applyForm.reset();
+                        window.setTimeout(() => {
+                            if (applyModal) {
+                                applyModal.hide();
+                            }
+                        }, 800);
                     } else {
                         applyStatus.textContent = data.message || 'Failed to submit application.';
                         applyStatus.classList.remove('text-success');
@@ -476,6 +668,10 @@ $applySlug = $stringify($job['slug'] ?? $job['job_slug'] ?? $jobSlug);
                     applyStatus.textContent = 'Failed to submit application.';
                     applyStatus.classList.remove('text-success');
                     applyStatus.classList.add('text-danger');
+                } finally {
+                    if (applySubmitButton) {
+                        applySubmitButton.disabled = false;
+                    }
                 }
             });
         }
