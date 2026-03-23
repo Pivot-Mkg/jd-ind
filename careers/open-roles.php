@@ -802,9 +802,9 @@ function build_filter_url(array $params): string
                     Leadership Roles With us
                 </h2>
                 <div class="section-divider"></div>
-                <p class="mt-3 text-muted">
+                <!-- <p class="mt-3 text-muted">
                  Global Talent Acquisition Opportunities
-                </p>
+                </p> -->
             </div>
             <div class="jobs-filter-form-wrapper">
                 <form id="job-search-form">

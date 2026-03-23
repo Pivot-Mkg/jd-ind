@@ -684,9 +684,9 @@ If one of them feels like the right next step, we'd love to hear from you.</p>
                     Leadership Roles With us
                 </h2>
                 <div class="section-divider"></div>
-                <p class="mt-3 text-muted">
+                <!-- <p class="mt-3 text-muted">
                     Global Talent Acquisition Opportunities
-                </p>
+                </p> -->
             </div>
             <div class="jobs-filter-form-wrapper">
                 <form id="job-search-form">

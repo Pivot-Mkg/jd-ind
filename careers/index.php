@@ -37,10 +37,10 @@
       <div class="text-center mb-5">
         <h2 class="section-heading">Leadership Roles With Us</h2>
         <div class="section-divider"></div>
-        <p class="mt-3 text-muted">Global Talent Acquisition Opportunities</p>
+        <!-- <p class="mt-3 text-muted">Global Talent Acquisition Opportunities</p> -->
       </div>
 
-      <div class="jobs-filter-form-wrapper">
+      <div class="jobs-filter-form-wrapper mt-3">
         <form id="job-search-form">
           <div class="jobs-filter-top">
             <div class="jobs-filter-input">
