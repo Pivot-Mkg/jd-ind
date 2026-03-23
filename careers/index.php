@@ -35,7 +35,7 @@
   <section class="open-roles-section">
     <div class="container">
       <div class="text-center mb-5">
-        <h2 class="section-heading">Leadership Roles With Us</h2>
+        <h2 class="section-heading">Leadership Roles</h2>
         <div class="section-divider"></div>
         <!-- <p class="mt-3 text-muted">Global Talent Acquisition Opportunities</p> -->
       </div>
