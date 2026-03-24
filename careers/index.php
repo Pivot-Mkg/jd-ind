@@ -173,6 +173,7 @@
 
   <script>
     const API_URL = 'https://api.recruitcrm.io/v1/jobs';
+    const QUALIFICATIONS_API_URL = 'https://api.recruitcrm.io/v1/qualifications';
     const API_TOKEN = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
     const API_FETCH_LIMIT = 50;
     const PAGE_SIZE = 9;
@@ -289,6 +290,7 @@
     const jobsContainer = document.getElementById('job-list');
 
     let externalJobsCache = null;
+    let qualificationsMapCache = null;
 
     function escapeHtml(value) {
       return String(value ?? '')
@@ -437,9 +439,33 @@
       return String(fallback ?? '').trim();
     }
 
+    function extractQualificationId(job) {
+      const directId = job?.qualification_id;
+      if (directId !== null && directId !== undefined && directId !== '' && !Number.isNaN(Number(directId))) {
+        return Number(directId);
+      }
+
+      const nestedId = job?.qualification?.qualification_id ?? job?.qualification?.id;
+      if (nestedId !== null && nestedId !== undefined && nestedId !== '' && !Number.isNaN(Number(nestedId))) {
+        return Number(nestedId);
+      }
+
+      return null;
+    }
+
     function getQualificationValue(job) {
       const directValue = job?.qualification?.label ?? job?.qualification?.name ?? job?.qualification_name ?? job?.qualification_label ?? '';
-      return String(directValue ?? '').trim();
+      const normalizedDirectValue = String(directValue ?? '').trim();
+      if (normalizedDirectValue) {
+        return normalizedDirectValue;
+      }
+
+      const qualificationId = extractQualificationId(job);
+      if (qualificationId !== null && qualificationsMapCache && qualificationsMapCache.has(qualificationId)) {
+        return qualificationsMapCache.get(qualificationId) || '';
+      }
+
+      return '';
     }
 
     async function fetchPage(url) {
@@ -460,6 +486,42 @@
       const nextPageUrl = data.next_page_url ?? null;
 
       return { jobs, nextPageUrl };
+    }
+
+    async function fetchQualificationsMap() {
+      if (qualificationsMapCache) {
+        return qualificationsMapCache;
+      }
+
+      const response = await fetch(QUALIFICATIONS_API_URL, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          Authorization: API_TOKEN,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to load qualifications');
+      }
+
+      const data = await response.json();
+      const items = Array.isArray(data)
+        ? data
+        : Array.isArray(data?.data)
+          ? data.data
+          : Array.isArray(data?.qualifications)
+            ? data.qualifications
+            : [];
+
+      qualificationsMapCache = new Map(
+        items
+          .filter((item) => item && typeof item === 'object')
+          .map((item) => [Number(item.qualification_id ?? item.id), String(item.label ?? item.name ?? '').trim()])
+          .filter(([id, label]) => !Number.isNaN(id) && label)
+      );
+
+      return qualificationsMapCache;
     }
 
     async function fetchAllExternalClientJobs(limit = API_FETCH_LIMIT, maxPages = 100) {
@@ -484,6 +546,7 @@
 
     async function getExternalJobs() {
       if (!externalJobsCache) {
+        await fetchQualificationsMap();
         externalJobsCache = await fetchAllExternalClientJobs();
       }
       return externalJobsCache;
@@ -569,6 +632,25 @@
       return String(numeric);
     }
 
+    function formatExperienceRange(minExp, maxExp) {
+      const min = stringify(minExp).trim();
+      const max = stringify(maxExp).trim();
+
+      if (min && max) {
+        return min === max ? `${min} Years` : `${min} to ${max} Years`;
+      }
+
+      if (min) {
+        return `${min} Years`;
+      }
+
+      if (max) {
+        return `${max} Years`;
+      }
+
+      return 'Not specified';
+    }
+
     function renderJobList(jobs) {
       jobsContainer.innerHTML = '';
 
@@ -582,9 +664,10 @@
         const company = stringify(job?.company ?? job?.company_name ?? job?.client ?? 'James Douglas Global');
         const city = stringify(job?.city ?? '');
         const minExp = stringify(job?.minimum_experience ?? job?.min_experience ?? job?.min_exp ?? '');
+        const maxExp = stringify(job?.maximum_experience ?? job?.max_experience ?? job?.max_exp ?? '');
+        const expRange = formatExperienceRange(minExp, maxExp);
         const industry = getIndustryValue(job) || 'Not specified';
         const jobFunction = getFunctionValue(job) || 'Not specified';
-        const subFunction = getSubFunctionValue(job) || 'Not specified';
         const qualification = getQualificationValue(job) || 'Not specified';
         const noteForCandidates = stringify(job?.note_for_candidates ?? '').trim() || 'Not specified';
         const jobSlug = String(job?.slug ?? job?.job_slug ?? '');
@@ -616,16 +699,12 @@
               <div class="open-role-info-value">${escapeHtml(jobFunction)}</div>
             </div>
             <div>
-              <div class="open-role-info-label">Sub Function</div>
-              <div class="open-role-info-value">${escapeHtml(subFunction)}</div>
-            </div>
-            <div>
               <div class="open-role-info-label">Educational Qualification</div>
               <div class="open-role-info-value">${escapeHtml(qualification)}</div>
             </div>
             <div>
               <div class="open-role-info-label">YOE</div>
-              <div class="open-role-info-value">${escapeHtml(minExp ? `${minExp} Years` : 'Not specified')}</div>
+              <div class="open-role-info-value">${escapeHtml(expRange)}</div>
             </div>
             <div class="open-role-info-note">
               <div class="open-role-info-label">Note for Candidates</div>

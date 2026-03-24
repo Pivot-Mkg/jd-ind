@@ -4,6 +4,7 @@ declare(strict_types=1);
 header('Content-Type: application/json');
 
 $apiUrl   = 'https://api.recruitcrm.io/v1/jobs';
+$qualificationApiUrl = 'https://api.recruitcrm.io/v1/qualifications';
 $apiToken = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
 
 /* ─────────────────────────── helpers ─────────────────────────── */
@@ -44,6 +45,84 @@ function extract_jobs(array $data): array
         return $data;
     }
     return [];
+}
+
+function extract_qualifications_map(array $data): array
+{
+    $items = [];
+
+    if (isset($data['data']) && is_array($data['data'])) {
+        $items = $data['data'];
+    } elseif (isset($data['qualifications']) && is_array($data['qualifications'])) {
+        $items = $data['qualifications'];
+    } elseif (isset($data[0])) {
+        $items = $data;
+    }
+
+    $map = [];
+    foreach ($items as $item) {
+        if (!is_array($item)) {
+            continue;
+        }
+
+        $qualificationId = $item['qualification_id'] ?? $item['id'] ?? null;
+        $label = trim((string) ($item['label'] ?? $item['name'] ?? ''));
+
+        if (is_numeric($qualificationId) && $label !== '') {
+            $map[(int) $qualificationId] = $label;
+        }
+    }
+
+    return $map;
+}
+
+function extract_qualification_id(array $job): ?int
+{
+    $qualificationId = $job['qualification_id'] ?? null;
+    if (is_numeric($qualificationId)) {
+        return (int) $qualificationId;
+    }
+
+    $qualification = $job['qualification'] ?? null;
+    if (is_array($qualification)) {
+        $nestedId = $qualification['qualification_id'] ?? $qualification['id'] ?? null;
+        if (is_numeric($nestedId)) {
+            return (int) $nestedId;
+        }
+    }
+
+    return null;
+}
+
+function apply_qualification_labels(array $jobs, array $qualificationsMap): array
+{
+    foreach ($jobs as &$job) {
+        if (!is_array($job)) {
+            continue;
+        }
+
+        $existingLabel = trim((string) (
+            $job['qualification']['label']
+            ?? $job['qualification']['name']
+            ?? $job['qualification_name']
+            ?? $job['qualification_label']
+            ?? ''
+        ));
+
+        if ($existingLabel !== '') {
+            $job['qualification_name'] = $existingLabel;
+            continue;
+        }
+
+        $qualificationId = extract_qualification_id($job);
+        if ($qualificationId !== null && array_key_exists($qualificationId, $qualificationsMap)) {
+            $job['qualification_name'] = $qualificationsMap[$qualificationId];
+            $job['qualification_label'] = $qualificationsMap[$qualificationId];
+        }
+    }
+    unset($job);
+
+    return $jobs;
 }
 
 function normalize_hiring_for_value(string $value): string
@@ -197,6 +276,15 @@ $stringify = function ($value): string {
     return $value === null ? '' : (string) $value;
 };
 
+$qualificationsMap = [];
+$qualificationResponse = recruitcrm_get($qualificationApiUrl, $apiToken);
+if (!$qualificationResponse['error'] && $qualificationResponse['status'] >= 200 && $qualificationResponse['status'] < 300) {
+    $qualificationData = json_decode($qualificationResponse['body'], true);
+    if (is_array($qualificationData)) {
+        $qualificationsMap = extract_qualifications_map($qualificationData);
+    }
+}
+
 /* ─────────────────────────── fetch all pages ─────────────────── */
 
 $allJobs      = [];
@@ -245,6 +333,8 @@ $jobs = array_values(array_filter($allJobs, function (array $job): bool {
     // Must be marked for external posting
     return is_external_client_job($job);
 }));
+
+$jobs = apply_qualification_labels($jobs, $qualificationsMap);
 
 /* ─────────────────────────── apply filters ───────────────────── */
 

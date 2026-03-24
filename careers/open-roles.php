@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 $apiUrl = 'https://api.recruitcrm.io/v1/jobs';
+$qualificationApiUrl = 'https://api.recruitcrm.io/v1/qualifications';
 $apiToken = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
 
 $jobs = [];
@@ -28,6 +29,26 @@ $stringify = function ($value): string {
     }
     return $value === null ? '' : (string)$value;
 };
+
+function format_experience_range(string $minExp, string $maxExp): string
+{
+    $minExp = trim($minExp);
+    $maxExp = trim($maxExp);
+
+    if ($minExp !== '' && $maxExp !== '') {
+        return $minExp === $maxExp ? $minExp . ' Years' : $minExp . ' to ' . $maxExp . ' Years';
+    }
+
+    if ($minExp !== '') {
+        return $minExp . ' Years';
+    }
+
+    if ($maxExp !== '') {
+        return $maxExp . ' Years';
+    }
+
+    return 'Not specified';
+}
 
 function job_hiring_for_value(array $job): string
 {
@@ -203,16 +224,76 @@ function job_sub_function_value(array $job): string
     return trim((string)$fallback);
 }
 
-function job_qualification_value(array $job): string
+function extract_qualification_id(array $job): ?int
+{
+    $qualificationId = $job['qualification_id'] ?? null;
+    if (is_numeric($qualificationId)) {
+        return (int)$qualificationId;
+    }
+
+    $qualification = $job['qualification'] ?? null;
+    if (is_array($qualification)) {
+        $nestedId = $qualification['qualification_id'] ?? $qualification['id'] ?? null;
+        if (is_numeric($nestedId)) {
+            return (int)$nestedId;
+        }
+    }
+
+    return null;
+}
+
+function extract_qualifications_map(array $data): array
+{
+    $items = [];
+
+    if (isset($data['data']) && is_array($data['data'])) {
+        $items = $data['data'];
+    } elseif (isset($data['qualifications']) && is_array($data['qualifications'])) {
+        $items = $data['qualifications'];
+    } elseif (isset($data[0])) {
+        $items = $data;
+    }
+
+    $map = [];
+    foreach ($items as $item) {
+        if (!is_array($item)) {
+            continue;
+        }
+
+        $qualificationId = $item['qualification_id'] ?? $item['id'] ?? null;
+        $label = trim((string)($item['label'] ?? $item['name'] ?? ''));
+
+        if (is_numeric($qualificationId) && $label !== '') {
+            $map[(int)$qualificationId] = $label;
+        }
+    }
+
+    return $map;
+}
+
+function job_qualification_value(array $job, array $qualificationsMap = []): string
 {
     $qualification = $job['qualification'] ?? null;
     if (is_array($qualification)) {
         $value = $qualification['label'] ?? $qualification['name'] ?? '';
-        return trim((string)$value);
+        $value = trim((string)$value);
+        if ($value !== '') {
+            return $value;
+        }
     }
 
     $fallback = $job['qualification_name'] ?? $job['qualification_label'] ?? '';
-    return trim((string)$fallback);
+    $fallback = trim((string)$fallback);
+    if ($fallback !== '') {
+        return $fallback;
+    }
+
+    $qualificationId = extract_qualification_id($job);
+    if ($qualificationId !== null && array_key_exists($qualificationId, $qualificationsMap)) {
+        return $qualificationsMap[$qualificationId];
+    }
+
+    return '';
 }
 
 function recruitcrm_get(string $url, string $token): array
@@ -254,6 +335,16 @@ function extract_jobs(array $data): array
 }
 
 $errorMessage = '';
+$qualificationsMap = [];
+
+$qualificationResponse = recruitcrm_get($qualificationApiUrl, $apiToken);
+if (!$qualificationResponse['error'] && $qualificationResponse['status'] >= 200 && $qualificationResponse['status'] < 300) {
+    $qualificationData = json_decode($qualificationResponse['body'], true);
+    if (is_array($qualificationData)) {
+        $qualificationsMap = extract_qualifications_map($qualificationData);
+    }
+}
+
 $nextUrl = $apiUrl;
 $maxPages = 100;
 $pageCount = 0;
@@ -719,11 +810,13 @@ function build_filter_url(array $params): string
                             $location = $stringify($job['location'] ?? ($job['city'] ?? ''));
                             $type = $stringify($job['job_type'] ?? ($job['type'] ?? 'Full time'));
                             $minExp = $stringify($job['minimum_experience'] ?? $job['min_experience'] ?? $job['min_exp'] ?? '');
+                            $maxExp = $stringify($job['maximum_experience'] ?? $job['max_experience'] ?? $job['max_exp'] ?? '');
+                            $expRange = format_experience_range($minExp, $maxExp);
                             $city = $stringify($job['city'] ?? '');
                             $industry = job_industry_value($job) ?: 'Not specified';
                             $jobFunction = job_function_value($job) ?: 'Not specified';
                             $subFunction = job_sub_function_value($job) ?: 'Not specified';
-                            $qualification = job_qualification_value($job) ?: 'Not specified';
+                            $qualification = job_qualification_value($job, $qualificationsMap) ?: 'Not specified';
                             $noteForCandidates = $stringify($job['note_for_candidates'] ?? '') ?: 'Not specified';
                             $hiringForLabel = job_hiring_for_value($job);
                             $jobId = $job['id'] ?? $job['job_id'] ?? '';
@@ -777,7 +870,7 @@ function build_filter_url(array $params): string
                                     </div>
                                     <div>
                                         <div class="open-role-info-label">YOE</div>
-                                        <div class="open-role-info-value"><?php echo htmlspecialchars($minExp !== '' ? $minExp . ' Years' : 'Not specified', ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($expRange, ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                     <div class="open-role-info-note">
                                         <div class="open-role-info-label">Note for Candidates</div>
@@ -910,11 +1003,13 @@ function build_filter_url(array $params): string
                             $location = $stringify($job['location'] ?? ($job['city'] ?? ''));
                             $type = $stringify($job['job_type'] ?? ($job['type'] ?? 'Full time'));
                             $minExp = $stringify($job['minimum_experience'] ?? $job['min_experience'] ?? $job['min_exp'] ?? '');
+                            $maxExp = $stringify($job['maximum_experience'] ?? $job['max_experience'] ?? $job['max_exp'] ?? '');
+                            $expRange = format_experience_range($minExp, $maxExp);
                             $city = $stringify($job['city'] ?? '');
                             $industry = job_industry_value($job) ?: 'Not specified';
                             $jobFunction = job_function_value($job) ?: 'Not specified';
                             $subFunction = job_sub_function_value($job) ?: 'Not specified';
-                            $qualification = job_qualification_value($job) ?: 'Not specified';
+                            $qualification = job_qualification_value($job, $qualificationsMap) ?: 'Not specified';
                             $noteForCandidates = $stringify($job['note_for_candidates'] ?? '') ?: 'Not specified';
                             $jobId = $job['id'] ?? $job['job_id'] ?? '';
                             $jobSlug = $job['slug'] ?? $job['job_slug'] ?? '';
@@ -962,7 +1057,7 @@ function build_filter_url(array $params): string
                                     </div>
                                     <div>
                                         <div class="open-role-info-label">YOE</div>
-                                        <div class="open-role-info-value"><?php echo htmlspecialchars($minExp !== '' ? $minExp . ' Years' : 'Not specified', ENT_QUOTES, 'UTF-8'); ?></div>
+                                        <div class="open-role-info-value"><?php echo htmlspecialchars($expRange, ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                     <div class="open-role-info-note">
                                         <div class="open-role-info-label">Note for Candidates</div>
@@ -1944,6 +2039,25 @@ function build_filter_url(array $params): string
             return String(value ?? '').trim();
         }
 
+        function formatExperienceRange(minExp, maxExp) {
+            const min = String(minExp ?? '').trim();
+            const max = String(maxExp ?? '').trim();
+
+            if (min && max) {
+                return min === max ? `${min} Years` : `${min} to ${max} Years`;
+            }
+
+            if (min) {
+                return `${min} Years`;
+            }
+
+            if (max) {
+                return `${max} Years`;
+            }
+
+            return 'Not specified';
+        }
+
         function renderPagination(pagination) {
             const container = document.getElementById('jobs-pagination');
             if (!container) {
@@ -2004,6 +2118,8 @@ function build_filter_url(array $params): string
                 const company = job.company || job.client || 'James Douglas Global';
                 const city = job.city || '';
                 const minExp = String(job.minimum_experience ?? job.min_experience ?? '').trim();
+                const maxExp = String(job.maximum_experience ?? job.max_experience ?? '').trim();
+                const expRange = formatExperienceRange(minExp, maxExp);
                 const industry = getIndustryValue(job) || 'Not specified';
                 const jobFunction = getFunctionValue(job) || 'Not specified';
                 const subFunction = getSubFunctionValue(job) || 'Not specified';
@@ -2059,7 +2175,7 @@ function build_filter_url(array $params): string
                         </div>
                         <div>
                             <div class="open-role-info-label">YOE</div>
-                            <div class="open-role-info-value">${minExp ? `${minExp} Years` : 'Not specified'}</div>
+                            <div class="open-role-info-value">${expRange}</div>
                         </div>
                         <div class="open-role-info-note">
                             <div class="open-role-info-label">Note for Candidates</div>
