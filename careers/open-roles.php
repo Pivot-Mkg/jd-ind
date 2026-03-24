@@ -208,6 +208,38 @@ function job_industry_value(array $job): string
 
 function job_function_value(array $job): string
 {
+    $candidates = [
+        $job['custom_fields'] ?? null,
+        $job['custom_field'] ?? null,
+        $job['custom_fields_values'] ?? null,
+        $job['custom_field_values'] ?? null,
+        $job['fields'] ?? null,
+    ];
+
+    foreach ($candidates as $fields) {
+        if (!is_array($fields)) {
+            continue;
+        }
+        foreach ($fields as $field) {
+            if (!is_array($field)) {
+                continue;
+            }
+            $fieldName = strtolower((string)($field['field_name'] ?? $field['name'] ?? ''));
+            $fieldId = (int)($field['field_id'] ?? $field['id'] ?? 0);
+            if ($fieldId === 8 || $fieldName === 'job - function') {
+                $value = $field['value'] ?? $field['field_value'] ?? $field['selected'] ?? '';
+                if (is_array($value)) {
+                    $flat = array_filter(array_map('strval', $value), fn($item) => trim($item) !== '');
+                    if ($flat) {
+                        return trim((string)reset($flat));
+                    }
+                    $value = $value['value'] ?? $value['label'] ?? $value['name'] ?? '';
+                }
+                return trim((string)$value);
+            }
+        }
+    }
+
     $fallback = $job['job_function'] ?? $job['function'] ?? '';
     if (is_array($fallback)) {
         $fallback = implode(', ', array_filter(array_map('strval', $fallback), fn($item) => trim($item) !== ''));

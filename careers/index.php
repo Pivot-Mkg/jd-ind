@@ -424,6 +424,39 @@
     }
 
     function getFunctionValue(job) {
+      const candidates = [
+        job?.custom_fields,
+        job?.custom_field,
+        job?.custom_fields_values,
+        job?.custom_field_values,
+        job?.fields,
+      ];
+
+      for (const fields of candidates) {
+        if (!Array.isArray(fields)) {
+          continue;
+        }
+        for (const field of fields) {
+          if (!field || typeof field !== 'object') {
+            continue;
+          }
+          const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+          const fieldId = Number(field.field_id ?? field.id ?? 0);
+          if (fieldId !== 8 && fieldName !== 'job - function') {
+            continue;
+          }
+          let value = field.value ?? field.field_value ?? field.selected ?? '';
+          if (Array.isArray(value)) {
+            const flat = value.map((item) => String(item)).filter((item) => item.trim() !== '');
+            if (flat.length) {
+              return flat[0].trim();
+            }
+            value = value.value ?? value.label ?? value.name ?? '';
+          }
+          return String(value ?? '').trim();
+        }
+      }
+
       const fallback = job?.job_function ?? job?.function ?? '';
       if (Array.isArray(fallback)) {
         return fallback.map((item) => String(item)).filter((item) => item.trim() !== '').join(', ').trim();
