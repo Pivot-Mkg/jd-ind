@@ -694,7 +694,7 @@
 
       jobs.forEach((job, index) => {
         const title = stringify(job?.name ?? job?.title ?? 'Open Position');
-        const company = stringify(job?.company ?? job?.company_name ?? job?.client ?? 'James Douglas Global');
+        const company = stringify(job?.company ?? job?.company_name ?? job?.client ?? 'James Douglas');
         const city = stringify(job?.city ?? '');
         const minExp = stringify(job?.minimum_experience ?? job?.min_experience ?? job?.min_exp ?? '');
         const maxExp = stringify(job?.maximum_experience ?? job?.max_experience ?? job?.max_exp ?? '');

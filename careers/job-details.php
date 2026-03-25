@@ -141,7 +141,7 @@ $formatSalary = function (int $value): string {
 };
 
 $title = $stringify($job['name'] ?? $job['title'] ?? 'Open Position');
-$company = $stringify($job['company'] ?? $job['client'] ?? 'James Douglas Global');
+$company = $stringify($job['company'] ?? $job['client'] ?? 'James Douglas');
 $location = $stringify($job['location'] ?? ($job['city'] ?? ''));
 $type = $stringify($job['job_type'] ?? ($job['type'] ?? 'Full time'));
 $minExp = $stringify($job['minimum_experience'] ?? $job['min_experience'] ?? $job['min_exp'] ?? '');
@@ -381,13 +381,7 @@ $cityOptions = [
                                 <button class="open-role-apply job-detail-apply" id="job-detail-apply" type="button">Apply Now</button>
                             </div>
 
-                            <div class="job-detail-tags">
-                                <span class="job-detail-tag"><?php echo htmlspecialchars($type ?: 'Full time', ENT_QUOTES, 'UTF-8'); ?></span>
-                                <span class="job-detail-tag"><?php echo htmlspecialchars($expRange, ENT_QUOTES, 'UTF-8'); ?></span>
-                                <span class="job-detail-tag"><?php echo htmlspecialchars($salary, ENT_QUOTES, 'UTF-8'); ?></span>
-                            </div>
-
-                            <div class="job-detail-section">
+                            <div class="job-detail-section pt-3">
                                 <h5>About this role</h5>
                                 <?php if ($description): ?>
                                     <p class="text-muted"><?php echo htmlspecialchars(strip_tags($description), ENT_QUOTES, 'UTF-8'); ?></p>
@@ -405,29 +399,10 @@ $cityOptions = [
                                 <?php endif; ?>
                             </div>
 
-                            <?php if ($note): ?>
-                                <div class="job-detail-section">
-                                    <h5>Note for candidates</h5>
-                                    <p class="text-muted"><?php echo htmlspecialchars($note, ENT_QUOTES, 'UTF-8'); ?></p>
-                                </div>
-                            <?php endif; ?>
-
                             <?php if ($skills): ?>
                                 <div class="job-detail-section">
                                     <h5>Skills</h5>
                                     <p class="text-muted"><?php echo htmlspecialchars($skills, ENT_QUOTES, 'UTF-8'); ?></p>
-                                </div>
-                            <?php endif; ?>
-
-                            <?php if ($category || $address): ?>
-                                <div class="job-detail-section">
-                                    <h5>Location</h5>
-                                    <p class="text-muted">
-                                        <?php echo htmlspecialchars($address ?: $location, ENT_QUOTES, 'UTF-8'); ?>
-                                    </p>
-                                    <?php if ($category): ?>
-                                        <p class="text-muted mb-0">Category: <?php echo htmlspecialchars($category, ENT_QUOTES, 'UTF-8'); ?></p>
-                                    <?php endif; ?>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -442,21 +417,13 @@ $cityOptions = [
                             <?php foreach ($similarJobs as $item): ?>
                                 <?php
                                 $sideTitle = $stringify($item['name'] ?? $item['title'] ?? 'Open Position');
-                                $sideCompany = $stringify($item['company'] ?? $item['client'] ?? 'James Douglas Global');
+                                $sideCompany = $stringify($item['company'] ?? $item['client'] ?? 'James Douglas');
                                 $sideLocation = $stringify($item['location'] ?? ($item['city'] ?? ''));
-                                $sideType = $stringify($item['job_type'] ?? ($item['type'] ?? 'Full time'));
-                                $sideMin = is_numeric($item['min_annual_salary'] ?? null) ? (int)$item['min_annual_salary'] : 0;
-                                $sideMax = is_numeric($item['max_annual_salary'] ?? null) ? (int)$item['max_annual_salary'] : 0;
-                                $sideSalary = ($sideMin || $sideMax) ? trim($formatSalary($sideMin) . ' - ' . $formatSalary($sideMax)) : 'Not disclosed';
                                 $sideSlug = $item['slug'] ?? $item['job_slug'] ?? '';
                                 ?>
                                 <a class="job-detail-sidecard" href="job-details.php?slug=<?php echo htmlspecialchars((string)$sideSlug, ENT_QUOTES, 'UTF-8'); ?>">
                                     <div class="job-detail-sidecard-title"><?php echo htmlspecialchars($sideTitle, ENT_QUOTES, 'UTF-8'); ?></div>
                                     <div class="job-detail-sidecard-meta"><?php echo htmlspecialchars($sideCompany, ENT_QUOTES, 'UTF-8'); ?><?php echo $sideLocation ? ' • ' . htmlspecialchars($sideLocation, ENT_QUOTES, 'UTF-8') : ''; ?></div>
-                                    <div class="job-detail-sidecard-tags">
-                                        <span><?php echo htmlspecialchars($sideType, ENT_QUOTES, 'UTF-8'); ?></span>
-                                        <span><?php echo htmlspecialchars($sideSalary, ENT_QUOTES, 'UTF-8'); ?></span>
-                                    </div>
                                 </a>
                             <?php endforeach; ?>
                         <?php endif; ?>

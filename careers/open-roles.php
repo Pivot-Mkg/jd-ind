@@ -838,7 +838,7 @@ function build_filter_url(array $params): string
                         <?php foreach ($internalJobs as $index => $job): ?>
                             <?php
                             $title = $stringify($job['name'] ?? $job['title'] ?? 'Open Position');
-                            $company = $stringify($job['company'] ?? $job['client'] ?? 'James Douglas Global');
+                            $company = $stringify($job['company'] ?? $job['client'] ?? 'James Douglas');
                             $location = $stringify($job['location'] ?? ($job['city'] ?? ''));
                             $type = $stringify($job['job_type'] ?? ($job['type'] ?? 'Full time'));
                             $minExp = $stringify($job['minimum_experience'] ?? $job['min_experience'] ?? $job['min_exp'] ?? '');
@@ -1031,7 +1031,7 @@ function build_filter_url(array $params): string
                         ?>
                             <?php
                             $title = $stringify($job['name'] ?? $job['title'] ?? 'Open Position');
-                            $company = $stringify($job['company'] ?? $job['client'] ?? 'James Douglas Global');
+                            $company = $stringify($job['company'] ?? $job['client'] ?? 'James Douglas');
                             $location = $stringify($job['location'] ?? ($job['city'] ?? ''));
                             $type = $stringify($job['job_type'] ?? ($job['type'] ?? 'Full time'));
                             $minExp = $stringify($job['minimum_experience'] ?? $job['min_experience'] ?? $job['min_exp'] ?? '');
@@ -2147,7 +2147,7 @@ function build_filter_url(array $params): string
 
             jobs.forEach((job, index) => {
                 const title = job.name || job.title || 'Open Position';
-                const company = job.company || job.client || 'James Douglas Global';
+                const company = job.company || job.client || 'James Douglas';
                 const city = job.city || '';
                 const minExp = String(job.minimum_experience ?? job.min_experience ?? '').trim();
                 const maxExp = String(job.maximum_experience ?? job.max_experience ?? '').trim();
