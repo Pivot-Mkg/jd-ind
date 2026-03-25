@@ -278,6 +278,7 @@
 .open-role-subtitle {
   font-size: 13px;
   color: #7b8796;
+  display: none;
 }
 
 .open-role-info {
