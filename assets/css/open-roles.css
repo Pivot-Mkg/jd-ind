@@ -266,6 +266,7 @@
   display: grid;
   place-items: center;
   font-weight: 700;
+  display: none;
 }
 
 .open-role-title {
