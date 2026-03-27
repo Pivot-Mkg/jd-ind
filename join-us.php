@@ -2163,14 +2163,10 @@ background: linear-gradient(
 
             jobs.forEach((job, index) => {
                 const title = stringify(job?.name ?? job?.title ?? 'Open Position');
-                const company = stringify(job?.company ?? job?.company_name ?? job?.client ?? 'James Douglas');
                 const city = stringify(job?.city ?? '');
                 const minExp = stringify(job?.minimum_experience ?? job?.min_experience ?? job?.min_exp ?? '');
                 const maxExp = stringify(job?.maximum_experience ?? job?.max_experience ?? job?.max_exp ?? '');
                 const expRange = formatExperienceRange(minExp, maxExp);
-                const industry = getIndustryValue(job) || 'Not specified';
-                const jobFunction = getFunctionValue(job) || 'Not specified';
-                const qualification = getQualificationValue(job) || 'Not specified';
                 const noteForCandidates = stringify(job?.note_for_candidates ?? '').trim() || 'Not specified';
                 const jobSlug = String(job?.slug ?? job?.job_slug ?? '');
 
@@ -2180,10 +2176,8 @@ background: linear-gradient(
                 card.innerHTML = `
                     <div class="open-role-header">
                         <div class="open-role-brand">
-                            <div class="open-role-logo rounded-circle m-0">${escapeHtml((company || 'JD').charAt(0))}</div>
                             <div>
                                 <div class="open-role-title">${escapeHtml(title)}</div>
-                                <div class="open-role-subtitle">${escapeHtml(company)}</div>
                             </div>
                         </div>
                     </div>
@@ -2193,19 +2187,7 @@ background: linear-gradient(
                             <div class="open-role-info-value">${escapeHtml(city || 'Not specified')}</div>
                         </div>
                         <div>
-                            <div class="open-role-info-label">Industry</div>
-                            <div class="open-role-info-value">${escapeHtml(industry)}</div>
-                        </div>
-                        <div>
-                            <div class="open-role-info-label">Function</div>
-                            <div class="open-role-info-value">${escapeHtml(jobFunction)}</div>
-                        </div>
-                        <div>
-                            <div class="open-role-info-label">Educational Qualification</div>
-                            <div class="open-role-info-value">${escapeHtml(qualification)}</div>
-                        </div>
-                        <div>
-                            <div class="open-role-info-label">YOE</div>
+                            <div class="open-role-info-label">Experience</div>
                             <div class="open-role-info-value">${escapeHtml(expRange)}</div>
                         </div>
                         <div class="open-role-info-note">

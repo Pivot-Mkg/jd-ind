@@ -140,17 +140,6 @@
               </div>
             </div>
 
-            <div class="jobs-filter-group">
-              <span class="jobs-filter-label">Sub Function</span>
-              <div class="jobs-filter-select">
-                <select id="job-sub-function-select" name="job_category">
-                  <option value="">All</option>
-                </select>
-                <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                  <path d="M10.5 1.25L6 5.75L1.5 1.25" stroke="#0B3041" stroke-width="1.4" stroke-linecap="round" />
-                </svg>
-              </div>
-            </div>
           </div>
         </form>
       </div>
@@ -267,16 +256,23 @@
       'Miscellaneous',
     ];
     const FUNCTION_OPTIONS = [
-      'Healthcare & Lifesciences',
-      'B2B',
+      'Human Resources',
+      'Sales, Marketing & Growth',
+      'Finance',
+      'Legal',
+      'Operations & Supply Chain',
+      'Information Technology',
+      'Software Engineering',
+      'Digital Technology',
+      'Data & Analytics',
+      'Product',
+      'Design',
+      'Actuarial',
+      'Strategy & Consulting',
+      'Customer Success & Experience',
+      'Administration',
+      'Corporate Communications & PR',
       'Property & Construction',
-      'B2C',
-      'Banking & Financial Services',
-      'FinTech',
-      'Technology',
-      'Media, Entertainment & Telecom',
-      'Professional Services',
-      'Miscellaneous',
     ];
 
     const searchForm = document.getElementById('job-search-form');
@@ -286,7 +282,6 @@
     const locationSelect = document.getElementById('job-location-select');
     const industrySelect = document.getElementById('job-industry-select');
     const functionSelect = document.getElementById('job-function-select');
-    const subFunctionSelect = document.getElementById('job-sub-function-select');
     const jobsContainer = document.getElementById('job-list');
 
     let externalJobsCache = null;
@@ -585,7 +580,7 @@
       return externalJobsCache;
     }
 
-    function populateOptions(select, values, selectedValue) {
+    function populateOptions(select, values, selectedValue, preserveOrder = false) {
       if (!select) {
         return;
       }
@@ -605,7 +600,9 @@
         }
       });
 
-      uniqueValues.sort((a, b) => a.localeCompare(b));
+      if (!preserveOrder) {
+        uniqueValues.sort((a, b) => a.localeCompare(b));
+      }
       select.innerHTML = '<option value="">All</option>';
 
       uniqueValues.forEach((value) => {
@@ -625,11 +622,7 @@
     }
 
     function populateFunctionOptions(jobs, selectedFunction) {
-      populateOptions(functionSelect, FUNCTION_OPTIONS, selectedFunction);
-    }
-
-    function populateSubFunctionOptions(jobs, selectedSubFunction) {
-      populateOptions(subFunctionSelect, jobs.map((job) => getSubFunctionValue(job)), selectedSubFunction);
+      populateOptions(functionSelect, FUNCTION_OPTIONS, selectedFunction, true);
     }
 
     function applyClientFilters(jobs, params) {
@@ -637,20 +630,17 @@
       const city = String(params.get('city') || '').trim().toLowerCase();
       const industry = String(params.get('job_industry') || '').trim().toLowerCase();
       const jobFunction = String(params.get('job_function') || '').trim().toLowerCase();
-      const subFunction = String(params.get('job_category') || '').trim().toLowerCase();
 
       return jobs.filter((job) => {
         const title = stringify(job?.name ?? job?.title ?? '').toLowerCase();
         const jobCity = stringify(job?.city ?? '').toLowerCase();
         const jobIndustry = getIndustryValue(job).toLowerCase();
         const currentFunction = getFunctionValue(job).toLowerCase();
-        const currentSubFunction = getSubFunctionValue(job).toLowerCase();
 
         if (q && !title.includes(q)) return false;
         if (city && jobCity !== city) return false;
         if (industry && jobIndustry !== industry) return false;
         if (jobFunction && currentFunction !== jobFunction) return false;
-        if (subFunction && currentSubFunction !== subFunction) return false;
 
         return true;
       });
@@ -736,7 +726,7 @@
               <div class="open-role-info-value">${escapeHtml(qualification)}</div>
             </div>
             <div>
-              <div class="open-role-info-label">YOE</div>
+              <div class="open-role-info-label">Experience</div>
               <div class="open-role-info-value">${escapeHtml(expRange)}</div>
             </div>
             <div class="open-role-info-note">
@@ -804,7 +794,6 @@
         city: [],
         job_industry: [],
         job_function: [],
-        job_category: [],
       };
 
       if (locationSelect && locationSelect.value) {
@@ -816,10 +805,6 @@
       if (functionSelect && functionSelect.value) {
         filters.job_function = [functionSelect.value];
       }
-      if (subFunctionSelect && subFunctionSelect.value) {
-        filters.job_category = [subFunctionSelect.value];
-      }
-
       return filters;
     }
 
@@ -836,9 +821,6 @@
       }
       if (filters.job_function.length) {
         params.set('job_function', filters.job_function.join(','));
-      }
-      if (filters.job_category.length) {
-        params.set('job_category', filters.job_category.join(','));
       }
       if (page > 1) {
         params.set('page', String(page));
@@ -864,18 +846,13 @@
         const allExternalJobs = await getExternalJobs();
         const selectedIndustry = params.get('job_industry') ? params.get('job_industry').split(',')[0] : '';
         const selectedFunction = params.get('job_function') ? params.get('job_function').split(',')[0] : '';
-        const selectedSubFunction = params.get('job_category') ? params.get('job_category').split(',')[0] : '';
         populateIndustryOptions(allExternalJobs, selectedIndustry);
         populateFunctionOptions(allExternalJobs, selectedFunction);
-        populateSubFunctionOptions(allExternalJobs, selectedSubFunction);
         if (selectedIndustry && industrySelect.value !== selectedIndustry) {
           industrySelect.value = '';
         }
         if (selectedFunction && functionSelect.value !== selectedFunction) {
           functionSelect.value = '';
-        }
-        if (selectedSubFunction && subFunctionSelect.value !== selectedSubFunction) {
-          subFunctionSelect.value = '';
         }
 
         const filteredJobs = applyClientFilters(allExternalJobs, params);
@@ -933,12 +910,11 @@
         if (locationSelect) locationSelect.value = '';
         if (industrySelect) industrySelect.value = '';
         if (functionSelect) functionSelect.value = '';
-        if (subFunctionSelect) subFunctionSelect.value = '';
         applyFilters(1);
       });
     }
 
-    [locationSelect, industrySelect, functionSelect, subFunctionSelect].forEach((select) => {
+    [locationSelect, industrySelect, functionSelect].forEach((select) => {
       if (!select) return;
       select.addEventListener('change', () => applyFilters(1));
     });
