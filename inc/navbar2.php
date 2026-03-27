@@ -25,7 +25,7 @@
     </a>
     <ul class="dropdown-menu" aria-labelledby="findOpportunitiesDropdown">
         <li><a class="nav-link" href="../careers">Open Roles</a></li>
-        <li><a class="nav-link" href="../join-us.html">Join US</a></li>
+        <li><a class="nav-link" href="../join-us.php">Join US</a></li>
     </ul>
 </li>
 
@@ -74,7 +74,7 @@
                 </li> -->
 
                 <!-- <li class="nav-item">
-                    <a class="nav-link" href="../join-us.html">Join us</a>
+                    <a class="nav-link" href="../join-us.php">Join us</a>
                 </li> -->
             </ul>
         </div>

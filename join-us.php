@@ -737,7 +737,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="findOpportunitiesDropdown">
                             <li><a class="nav-link" href="./careers/">Open Roles</a></li>
-                            <li><a class="nav-link" href="./join-us.html">Join US</a></li>
+                            <li><a class="nav-link" href="./join-us.php">Join US</a></li>
                         </ul>
                     </li>
                     <li>
@@ -751,7 +751,7 @@
                     </li>
 
                     <!-- <li class="nav-item">
-                        <a class="nav-link" href="join-us.html">Join Us</a>
+                        <a class="nav-link" href="join-us.php">Join Us</a>
                     </li> -->
 
                     <!-- <li>
@@ -1784,100 +1784,368 @@ background: linear-gradient(
         const internalJobsList = document.getElementById('internal-job-list');
         const internalJobsStatus = document.getElementById('internalJobsStatus');
         const internalJobsPagination = document.getElementById('internal-jobs-pagination');
+        const API_URL = 'https://api.recruitcrm.io/v1/jobs';
+        const QUALIFICATIONS_API_URL = 'https://api.recruitcrm.io/v1/qualifications';
+        const API_TOKEN = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
+        const API_FETCH_LIMIT = 50;
+        const PAGE_SIZE = 9;
+
+        let internalJobsCache = null;
+        let qualificationsMapCache = null;
 
         function escapeHtml(value) {
-            return String(value || '')
-                .replaceAll('&', '&amp;')
-                .replaceAll('<', '&lt;')
-                .replaceAll('>', '&gt;')
-                .replaceAll('"', '&quot;')
-                .replaceAll("'", '&#39;');
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
         }
 
-        function normalizeHiringForValue(value) {
-            const normalized = String(value || '')
-                .replaceAll('\u2013', '-')
-                .replaceAll('\u2014', '-')
-                .trim()
-                .toLowerCase()
-                .replace(/\s+/g, ' ');
-
-            switch (normalized) {
-                case 'internal':
-                case 'internal - to be posted on join us':
-                case 'client (internal)':
-                    return 'internal';
-                default:
-                    return '';
+        function stringify(value) {
+            if (Array.isArray(value)) {
+                return value.filter((item) => item !== null && item !== undefined && String(item).trim() !== '').join(', ');
             }
+            if (typeof value === 'boolean') {
+                return value ? 'Yes' : 'No';
+            }
+            return value === null || value === undefined ? '' : String(value);
         }
 
-        function paginateInternalJobs(pageSize = 6) {
-            if (!internalJobsList || !internalJobsPagination) {
+        function getHiringForValue(job) {
+            const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
+            for (const field of fields) {
+                if (!field || typeof field !== 'object') {
+                    continue;
+                }
+                const fieldId = Number(field.field_id ?? field.id ?? 0);
+                const entityType = String(field.entity_type ?? '').trim().toLowerCase();
+                const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+                const fieldType = String(field.field_type ?? field.type ?? '').trim().toLowerCase();
+                if (fieldId !== 7 || entityType !== 'job' || fieldName !== 'hiring for' || fieldType !== 'dropdown') {
+                    continue;
+                }
+
+                let value = field.value ?? '';
+                if (value && typeof value === 'object') {
+                    value = value.value ?? value.label ?? value.name ?? '';
+                }
+                return String(value ?? '').trim();
+            }
+            return '';
+        }
+
+        function isJobOpen(job) {
+            const status = job?.job_status;
+            if (status && typeof status === 'object') {
+                const label = String(status.label ?? status.name ?? '').trim();
+                if (label) {
+                    return label.toLowerCase() === 'open';
+                }
+                return Number(status.id ?? 0) === 1;
+            }
+            return String(status ?? '').trim().toLowerCase() === 'open';
+        }
+
+        function shouldPostOnWebsite(job) {
+            const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
+            return fields.some((field) => {
+                if (!field || typeof field !== 'object') {
+                    return false;
+                }
+
+                const fieldId = Number(field.field_id ?? field.id ?? 0);
+                const entityType = String(field.entity_type ?? '').trim().toLowerCase();
+                const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+                const fieldType = String(field.field_type ?? field.type ?? '').trim().toLowerCase();
+                let value = field.value ?? field.field_value ?? field.selected ?? '';
+
+                if (value && typeof value === 'object') {
+                    value = value.value ?? value.label ?? value.name ?? '';
+                }
+
+                return (
+                    fieldId === 10 &&
+                    entityType === 'job' &&
+                    fieldName === 'post on website' &&
+                    fieldType === 'dropdown' &&
+                    String(value ?? '').trim().toLowerCase() === 'yes'
+                );
+            });
+        }
+
+        function isExactJoinUsInternalJob(job) {
+            return getHiringForValue(job) === 'JD (Internal)' &&
+                shouldPostOnWebsite(job) &&
+                isJobOpen(job);
+        }
+
+        function getIndustryValue(job) {
+            const candidates = [
+                job?.custom_fields,
+                job?.custom_field,
+                job?.custom_fields_values,
+                job?.custom_field_values,
+                job?.fields,
+            ];
+
+            for (const fields of candidates) {
+                if (!Array.isArray(fields)) {
+                    continue;
+                }
+
+                for (const field of fields) {
+                    if (!field || typeof field !== 'object') {
+                        continue;
+                    }
+
+                    const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+                    const fieldId = Number(field.field_id ?? field.id ?? 0);
+                    if (fieldId !== 3 && fieldName !== 'job - industry') {
+                        continue;
+                    }
+
+                    let value = field.value ?? field.field_value ?? field.selected ?? '';
+                    if (Array.isArray(value)) {
+                        const flat = value.map((item) => String(item)).filter((item) => item.trim() !== '');
+                        if (flat.length) {
+                            return flat[0].trim();
+                        }
+                    }
+                    if (value && typeof value === 'object') {
+                        value = value.value ?? value.label ?? value.name ?? '';
+                    }
+                    return String(value ?? '').trim();
+                }
+            }
+
+            const fallback = job?.job_industry ?? '';
+            if (Array.isArray(fallback)) {
+                return fallback.map((item) => String(item)).filter((item) => item.trim() !== '').join(', ').trim();
+            }
+            return String(fallback ?? '').trim();
+        }
+
+        function getFunctionValue(job) {
+            const candidates = [
+                job?.custom_fields,
+                job?.custom_field,
+                job?.custom_fields_values,
+                job?.custom_field_values,
+                job?.fields,
+            ];
+
+            for (const fields of candidates) {
+                if (!Array.isArray(fields)) {
+                    continue;
+                }
+                for (const field of fields) {
+                    if (!field || typeof field !== 'object') {
+                        continue;
+                    }
+                    const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+                    const fieldId = Number(field.field_id ?? field.id ?? 0);
+                    if (fieldId !== 8 && fieldName !== 'job - function') {
+                        continue;
+                    }
+                    let value = field.value ?? field.field_value ?? field.selected ?? '';
+                    if (Array.isArray(value)) {
+                        const flat = value.map((item) => String(item)).filter((item) => item.trim() !== '');
+                        if (flat.length) {
+                            return flat[0].trim();
+                        }
+                        value = value.value ?? value.label ?? value.name ?? '';
+                    }
+                    return String(value ?? '').trim();
+                }
+            }
+
+            const fallback = job?.job_function ?? job?.function ?? '';
+            if (Array.isArray(fallback)) {
+                return fallback.map((item) => String(item)).filter((item) => item.trim() !== '').join(', ').trim();
+            }
+            return String(fallback ?? '').trim();
+        }
+
+        function extractQualificationId(job) {
+            const directId = job?.qualification_id;
+            if (directId !== null && directId !== undefined && directId !== '' && !Number.isNaN(Number(directId))) {
+                return Number(directId);
+            }
+
+            const nestedId = job?.qualification?.qualification_id ?? job?.qualification?.id;
+            if (nestedId !== null && nestedId !== undefined && nestedId !== '' && !Number.isNaN(Number(nestedId))) {
+                return Number(nestedId);
+            }
+
+            return null;
+        }
+
+        function getQualificationValue(job) {
+            const directValue = job?.qualification?.label ?? job?.qualification?.name ?? job?.qualification_name ?? job?.qualification_label ?? '';
+            const normalizedDirectValue = String(directValue ?? '').trim();
+            if (normalizedDirectValue) {
+                return normalizedDirectValue;
+            }
+
+            const qualificationId = extractQualificationId(job);
+            if (qualificationId !== null && qualificationsMapCache && qualificationsMapCache.has(qualificationId)) {
+                return qualificationsMapCache.get(qualificationId) || '';
+            }
+
+            return '';
+        }
+
+        function formatExperienceRange(minExp, maxExp) {
+            const min = stringify(minExp).trim();
+            const max = stringify(maxExp).trim();
+
+            if (min && max) {
+                return min === max ? `${min} Years` : `${min} to ${max} Years`;
+            }
+
+            if (min) {
+                return `${min} Years`;
+            }
+
+            if (max) {
+                return `${max} Years`;
+            }
+
+            return 'Not specified';
+        }
+
+        async function fetchPage(url) {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: API_TOKEN,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Unable to load roles');
+            }
+
+            const data = await response.json();
+            const jobs = data.data ?? data.jobs ?? (Array.isArray(data) ? data : []);
+            const nextPageUrl = data.next_page_url ?? null;
+
+            return { jobs, nextPageUrl };
+        }
+
+        async function fetchQualificationsMap() {
+            if (qualificationsMapCache) {
+                return qualificationsMapCache;
+            }
+
+            const response = await fetch(QUALIFICATIONS_API_URL, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: API_TOKEN,
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Unable to load qualifications');
+            }
+
+            const data = await response.json();
+            const items = Array.isArray(data)
+                ? data
+                : Array.isArray(data?.data)
+                    ? data.data
+                    : Array.isArray(data?.qualifications)
+                        ? data.qualifications
+                        : [];
+
+            qualificationsMapCache = new Map(
+                items
+                    .filter((item) => item && typeof item === 'object')
+                    .map((item) => [Number(item.qualification_id ?? item.id), String(item.label ?? item.name ?? '').trim()])
+                    .filter(([id, label]) => !Number.isNaN(id) && label)
+            );
+
+            return qualificationsMapCache;
+        }
+
+        async function fetchAllInternalJobs(limit = API_FETCH_LIMIT, maxPages = 100) {
+            let allJobs = [];
+            let nextUrl = `${API_URL}?limit=${limit}`;
+            let pageCount = 0;
+
+            while (nextUrl && pageCount < maxPages) {
+                pageCount += 1;
+                const { jobs, nextPageUrl } = await fetchPage(nextUrl);
+                allJobs = allJobs.concat(jobs);
+                nextUrl = nextPageUrl;
+            }
+
+            return allJobs.filter((job) => isExactJoinUsInternalJob(job));
+        }
+
+        async function getInternalJobs() {
+            if (!internalJobsCache) {
+                await fetchQualificationsMap();
+                internalJobsCache = await fetchAllInternalJobs();
+            }
+            return internalJobsCache;
+        }
+
+        function renderInternalPagination(pagination) {
+            if (!internalJobsPagination) {
                 return;
             }
-
-            const cards = Array.from(internalJobsList.querySelectorAll('.open-role-list-card'));
-            if (!cards.length) {
+            if (!pagination || pagination.last_page <= 1) {
                 internalJobsPagination.innerHTML = '';
                 return;
             }
 
-            const totalPages = Math.ceil(cards.length / pageSize);
-            let currentPage = 1;
+            const current = pagination.current_page || 1;
+            const last = pagination.last_page || 1;
+            let html = '';
 
-            const renderPage = (page) => {
-                currentPage = Math.max(1, Math.min(totalPages, page));
-                const start = (currentPage - 1) * pageSize;
-                const end = start + pageSize;
-                cards.forEach((card, index) => {
-                    card.style.display = index >= start && index < end ? '' : 'none';
-                });
-                renderPagination();
-            };
+            html += `<button class="pagination-btn" data-page="${Math.max(1, current - 1)}" ${current === 1 ? 'disabled' : ''}>Prev</button>`;
 
-            const renderPagination = () => {
-                if (totalPages <= 1) {
-                    internalJobsPagination.innerHTML = '';
-                    return;
+            const start = Math.max(1, current - 2);
+            const end = Math.min(last, current + 2);
+
+            if (start > 1) {
+                html += '<button class="pagination-btn" data-page="1">1</button>';
+                if (start > 2) {
+                    html += '<span class="pagination-ellipsis">...</span>';
                 }
-                let html = '';
-                html += `<button class="pagination-btn" data-page="${Math.max(1, currentPage - 1)}" ${currentPage === 1 ? 'disabled' : ''}>Prev</button>`;
-                const start = Math.max(1, currentPage - 2);
-                const end = Math.min(totalPages, currentPage + 2);
-                if (start > 1) {
-                    html += `<button class="pagination-btn" data-page="1">1</button>`;
-                    if (start > 2) {
-                        html += `<span class="pagination-ellipsis">...</span>`;
+            }
+
+            for (let i = start; i <= end; i += 1) {
+                html += `<button class="pagination-btn ${i === current ? 'active' : ''}" data-page="${i}">${i}</button>`;
+            }
+
+            if (end < last) {
+                if (end < last - 1) {
+                    html += '<span class="pagination-ellipsis">...</span>';
+                }
+                html += `<button class="pagination-btn" data-page="${last}">${last}</button>`;
+            }
+
+            html += `<button class="pagination-btn" data-page="${Math.min(last, current + 1)}" ${current === last ? 'disabled' : ''}>Next</button>`;
+            internalJobsPagination.innerHTML = html;
+
+            internalJobsPagination.querySelectorAll('.pagination-btn').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const nextPage = parseInt(button.dataset.page || '1', 10);
+                    if (Number.isNaN(nextPage) || nextPage === current) {
+                        return;
                     }
-                }
-                for (let i = start; i <= end; i += 1) {
-                    html += `<button class="pagination-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
-                }
-                if (end < totalPages) {
-                    if (end < totalPages - 1) {
-                        html += `<span class="pagination-ellipsis">...</span>`;
-                    }
-                    html += `<button class="pagination-btn" data-page="${totalPages}">${totalPages}</button>`;
-                }
-                html += `<button class="pagination-btn" data-page="${Math.min(totalPages, currentPage + 1)}" ${currentPage === totalPages ? 'disabled' : ''}>Next</button>`;
-                internalJobsPagination.innerHTML = html;
-                internalJobsPagination.querySelectorAll('.pagination-btn').forEach((btn) => {
-                    btn.addEventListener('click', () => {
-                        const nextPage = parseInt(btn.dataset.page || '1', 10);
-                        if (Number.isNaN(nextPage) || nextPage === currentPage) {
-                            return;
-                        }
-                        renderPage(nextPage);
-                        internalJobsList.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
+                    loadInternalJobs(nextPage);
+                    internalJobsList.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 });
-            };
-
-            renderPage(1);
+            });
         }
 
         function renderInternalJobs(jobs) {
@@ -1885,83 +2153,92 @@ background: linear-gradient(
                 return;
             }
 
-            const internalClientJobs = Array.isArray(jobs)
-                ? jobs.filter((job) => normalizeHiringForValue(job?.hiring_for) === 'internal')
-                : [];
+            internalJobsStatus.textContent = '';
+            internalJobsList.innerHTML = '';
 
-            if (internalClientJobs.length === 0) {
+            if (!jobs.length) {
                 internalJobsStatus.textContent = 'No internal jobs available right now.';
-                internalJobsList.innerHTML = '';
-                if (internalJobsPagination) {
-                    internalJobsPagination.innerHTML = '';
-                }
                 return;
             }
 
-            internalJobsStatus.textContent = '';
-            internalJobsList.innerHTML = internalClientJobs.map((job, index) => {
-                const title = escapeHtml(job.title || 'Open Position');
-                const company = escapeHtml(job.company || 'James Douglas');
-                const city = escapeHtml(job.city || '');
-                const location = escapeHtml(job.location || '');
-                const jobType = escapeHtml(job.job_type || 'Full time');
-                const minExp = escapeHtml(job.min_experience || '');
-                const maxExp = escapeHtml(job.max_experience || '');
-                const exp = minExp || maxExp ? `${minExp}${minExp && maxExp ? ' - ' : ''}${maxExp} Years` : 'Not specified';
-                const slug = encodeURIComponent(job.slug || '');
-                const locationText = city || location || 'Not specified';
-                const companyInitial = escapeHtml((company || 'JD').trim().slice(0, 1) || 'J');
-                const subtitle = `${company}${locationText ? ' &bull; ' + locationText : ''}`;
+            jobs.forEach((job, index) => {
+                const title = stringify(job?.name ?? job?.title ?? 'Open Position');
+                const company = stringify(job?.company ?? job?.company_name ?? job?.client ?? 'James Douglas');
+                const city = stringify(job?.city ?? '');
+                const minExp = stringify(job?.minimum_experience ?? job?.min_experience ?? job?.min_exp ?? '');
+                const maxExp = stringify(job?.maximum_experience ?? job?.max_experience ?? job?.max_exp ?? '');
+                const expRange = formatExperienceRange(minExp, maxExp);
+                const industry = getIndustryValue(job) || 'Not specified';
+                const jobFunction = getFunctionValue(job) || 'Not specified';
+                const qualification = getQualificationValue(job) || 'Not specified';
+                const noteForCandidates = stringify(job?.note_for_candidates ?? '').trim() || 'Not specified';
+                const jobSlug = String(job?.slug ?? job?.job_slug ?? '');
 
-                return `
-                    <a href="careers/job-details.php?slug=${slug}" class="open-role-list-card ${index === 0 ? 'active' : ''} mb-3">
-                        <div class="open-role-header">
-                            <div class="open-role-brand">
-                                <div class="open-role-logo rounded-circle m-0">${companyInitial}</div>
-                                <div>
-                                    <div class="open-role-title mb-0">${title}</div>
-                                    <div class="open-role-subtitle">${subtitle}</div>
-                                </div>
+                const card = document.createElement('a');
+                card.className = `open-role-list-card ${index === 0 ? 'active' : ''} mb-3`;
+                card.href = `careers/job-details.php?slug=${encodeURIComponent(jobSlug)}`;
+                card.innerHTML = `
+                    <div class="open-role-header">
+                        <div class="open-role-brand">
+                            <div class="open-role-logo rounded-circle m-0">${escapeHtml((company || 'JD').charAt(0))}</div>
+                            <div>
+                                <div class="open-role-title">${escapeHtml(title)}</div>
+                                <div class="open-role-subtitle">${escapeHtml(company)}</div>
                             </div>
                         </div>
-                        <div class="open-role-info">
-                            <div>
-                                <div class="open-role-info-label">Experience</div>
-                                <div class="open-role-info-value">${exp}</div>
-                            </div>
-                            <div>
-                                <div class="open-role-info-label">Job Type</div>
-                                <div class="open-role-info-value">${jobType}</div>
-                            </div>
-                            <div>
-                                <div class="open-role-info-label">Location</div>
-                                <div class="open-role-info-value">${locationText}</div>
-                            </div>
+                    </div>
+                    <div class="open-role-info">
+                        <div>
+                            <div class="open-role-info-label">Location</div>
+                            <div class="open-role-info-value">${escapeHtml(city || 'Not specified')}</div>
                         </div>
-                    </a>
+                        <div>
+                            <div class="open-role-info-label">Industry</div>
+                            <div class="open-role-info-value">${escapeHtml(industry)}</div>
+                        </div>
+                        <div>
+                            <div class="open-role-info-label">Function</div>
+                            <div class="open-role-info-value">${escapeHtml(jobFunction)}</div>
+                        </div>
+                        <div>
+                            <div class="open-role-info-label">Educational Qualification</div>
+                            <div class="open-role-info-value">${escapeHtml(qualification)}</div>
+                        </div>
+                        <div>
+                            <div class="open-role-info-label">YOE</div>
+                            <div class="open-role-info-value">${escapeHtml(expRange)}</div>
+                        </div>
+                        <div class="open-role-info-note">
+                            <div class="open-role-info-label">Note for Candidates</div>
+                            <div class="open-role-info-value">${escapeHtml(noteForCandidates)}</div>
+                        </div>
+                    </div>
                 `;
-            }).join('');
-
-            paginateInternalJobs(6);
+                internalJobsList.appendChild(card);
+            });
         }
 
-        async function loadInternalJobs() {
+        async function loadInternalJobs(page = 1) {
             if (!internalJobsList || !internalJobsStatus) {
                 return;
             }
 
             try {
-                const response = await fetch('careers/internal-jobs.php');
-                const data = await response.json().catch(() => ({}));
-                if (!response.ok || data.error) {
-                    internalJobsStatus.textContent = data.message || 'Unable to load internal jobs right now.';
-                    internalJobsList.innerHTML = '';
-                    if (internalJobsPagination) {
-                        internalJobsPagination.innerHTML = '';
-                    }
-                    return;
-                }
-                renderInternalJobs(data.jobs || []);
+                internalJobsStatus.textContent = 'Loading jobs...';
+                const allInternalJobs = await getInternalJobs();
+                const total = allInternalJobs.length;
+                const lastPage = Math.max(1, Math.ceil(total / PAGE_SIZE));
+                const currentPage = Math.min(Math.max(1, page), lastPage);
+                const offset = (currentPage - 1) * PAGE_SIZE;
+                const pageJobs = allInternalJobs.slice(offset, offset + PAGE_SIZE);
+
+                renderInternalJobs(pageJobs);
+                renderInternalPagination({
+                    current_page: currentPage,
+                    per_page: PAGE_SIZE,
+                    total,
+                    last_page: lastPage,
+                });
             } catch (error) {
                 internalJobsStatus.textContent = 'Unable to load internal jobs right now.';
                 internalJobsList.innerHTML = '';
