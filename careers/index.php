@@ -481,7 +481,55 @@
       return null;
     }
 
+    function getCustomFieldValue(job, expectedFieldId, expectedFieldName) {
+      const candidates = [
+        job?.custom_fields,
+        job?.custom_field,
+        job?.custom_fields_values,
+        job?.custom_field_values,
+        job?.fields,
+      ];
+
+      const normalizedExpectedName = String(expectedFieldName ?? '').trim().toLowerCase();
+
+      for (const fields of candidates) {
+        if (!Array.isArray(fields)) {
+          continue;
+        }
+        for (const field of fields) {
+          if (!field || typeof field !== 'object') {
+            continue;
+          }
+
+          const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+          const fieldId = Number(field.field_id ?? field.id ?? 0);
+          if (fieldId !== expectedFieldId && fieldName !== normalizedExpectedName) {
+            continue;
+          }
+
+          let value = field.value ?? field.field_value ?? field.selected ?? '';
+          if (Array.isArray(value)) {
+            const flat = value.map((item) => String(item)).filter((item) => item.trim() !== '');
+            if (flat.length) {
+              return flat.join(', ').trim();
+            }
+          } else if (value && typeof value === 'object') {
+            value = value.value ?? value.label ?? value.name ?? '';
+          }
+
+          return String(value ?? '').trim();
+        }
+      }
+
+      return '';
+    }
+
     function getQualificationValue(job) {
+      const customFieldValue = getCustomFieldValue(job, 11, 'Education Qualification');
+      if (customFieldValue) {
+        return customFieldValue;
+      }
+
       const directValue = job?.qualification?.label ?? job?.qualification?.name ?? job?.qualification_name ?? job?.qualification_label ?? '';
       const normalizedDirectValue = String(directValue ?? '').trim();
       if (normalizedDirectValue) {
@@ -722,7 +770,7 @@
               <div class="open-role-info-value">${escapeHtml(jobFunction)}</div>
             </div>
             <div>
-              <div class="open-role-info-label">Educational Qualification</div>
+              <div class="open-role-info-label">Education</div>
               <div class="open-role-info-value">${escapeHtml(qualification)}</div>
             </div>
             <div>

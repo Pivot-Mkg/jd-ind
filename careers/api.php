@@ -94,10 +94,62 @@ function extract_qualification_id(array $job): ?int
     return null;
 }
 
+function extract_job_custom_field_value(array $job, int $expectedFieldId, string $expectedFieldName): string
+{
+    $candidates = [
+        $job['custom_fields'] ?? null,
+        $job['custom_field'] ?? null,
+        $job['custom_fields_values'] ?? null,
+        $job['custom_field_values'] ?? null,
+        $job['fields'] ?? null,
+    ];
+
+    $normalizedExpectedFieldName = strtolower(trim($expectedFieldName));
+
+    foreach ($candidates as $fields) {
+        if (!is_array($fields)) {
+            continue;
+        }
+
+        foreach ($fields as $field) {
+            if (!is_array($field)) {
+                continue;
+            }
+
+            $fieldId = (int) ($field['field_id'] ?? $field['id'] ?? 0);
+            $fieldName = strtolower(trim((string) ($field['field_name'] ?? $field['name'] ?? '')));
+
+            if ($fieldId !== $expectedFieldId && $fieldName !== $normalizedExpectedFieldName) {
+                continue;
+            }
+
+            $value = $field['value'] ?? $field['field_value'] ?? $field['selected'] ?? '';
+            if (is_array($value)) {
+                $flat = array_filter(array_map('strval', $value), fn($item) => trim($item) !== '');
+                if ($flat) {
+                    return implode(', ', $flat);
+                }
+                $value = $value['value'] ?? $value['label'] ?? $value['name'] ?? '';
+            }
+
+            return trim((string) $value);
+        }
+    }
+
+    return '';
+}
+
 function apply_qualification_labels(array $jobs, array $qualificationsMap): array
 {
     foreach ($jobs as &$job) {
         if (!is_array($job)) {
+            continue;
+        }
+
+        $customFieldValue = extract_job_custom_field_value($job, 11, 'Education Qualification');
+        if ($customFieldValue !== '') {
+            $job['qualification_name'] = $customFieldValue;
+            $job['qualification_label'] = $customFieldValue;
             continue;
         }
 

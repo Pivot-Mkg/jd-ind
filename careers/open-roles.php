@@ -274,6 +274,51 @@ function extract_qualification_id(array $job): ?int
     return null;
 }
 
+function job_custom_field_value(array $job, int $expectedFieldId, string $expectedFieldName): string
+{
+    $candidates = [
+        $job['custom_fields'] ?? null,
+        $job['custom_field'] ?? null,
+        $job['custom_fields_values'] ?? null,
+        $job['custom_field_values'] ?? null,
+        $job['fields'] ?? null,
+    ];
+
+    $normalizedExpectedFieldName = strtolower(trim($expectedFieldName));
+
+    foreach ($candidates as $fields) {
+        if (!is_array($fields)) {
+            continue;
+        }
+
+        foreach ($fields as $field) {
+            if (!is_array($field)) {
+                continue;
+            }
+
+            $fieldName = strtolower(trim((string)($field['field_name'] ?? $field['name'] ?? '')));
+            $fieldId = (int)($field['field_id'] ?? $field['id'] ?? 0);
+
+            if ($fieldId !== $expectedFieldId && $fieldName !== $normalizedExpectedFieldName) {
+                continue;
+            }
+
+            $value = $field['value'] ?? $field['field_value'] ?? $field['selected'] ?? '';
+            if (is_array($value)) {
+                $flat = array_filter(array_map('strval', $value), fn($item) => trim($item) !== '');
+                if ($flat) {
+                    return implode(', ', $flat);
+                }
+                $value = $value['value'] ?? $value['label'] ?? $value['name'] ?? '';
+            }
+
+            return trim((string)$value);
+        }
+    }
+
+    return '';
+}
+
 function extract_qualifications_map(array $data): array
 {
     $items = [];
@@ -305,6 +350,11 @@ function extract_qualifications_map(array $data): array
 
 function job_qualification_value(array $job, array $qualificationsMap = []): string
 {
+    $customFieldValue = job_custom_field_value($job, 11, 'Education Qualification');
+    if ($customFieldValue !== '') {
+        return $customFieldValue;
+    }
+
     $qualification = $job['qualification'] ?? null;
     if (is_array($qualification)) {
         $value = $qualification['label'] ?? $qualification['name'] ?? '';
@@ -897,7 +947,7 @@ function build_filter_url(array $params): string
                                         <div class="open-role-info-value"><?php echo htmlspecialchars($subFunction, ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                     <div>
-                                        <div class="open-role-info-label">Educational Qualification</div>
+                                        <div class="open-role-info-label">Education</div>
                                         <div class="open-role-info-value"><?php echo htmlspecialchars($qualification, ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                     <div>
@@ -1068,7 +1118,7 @@ function build_filter_url(array $params): string
                                         <div class="open-role-info-value"><?php echo htmlspecialchars($subFunction, ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                     <div>
-                                        <div class="open-role-info-label">Educational Qualification</div>
+                                        <div class="open-role-info-label">Education</div>
                                         <div class="open-role-info-value"><?php echo htmlspecialchars($qualification, ENT_QUOTES, 'UTF-8'); ?></div>
                                     </div>
                                     <div>
@@ -1945,7 +1995,55 @@ function build_filter_url(array $params): string
             return String(fallback ?? '').trim();
         }
 
+        function getCustomFieldValue(job, expectedFieldId, expectedFieldName) {
+            const candidates = [
+                job?.custom_fields,
+                job?.custom_field,
+                job?.custom_fields_values,
+                job?.custom_field_values,
+                job?.fields,
+            ];
+
+            const normalizedExpectedName = String(expectedFieldName ?? '').trim().toLowerCase();
+
+            for (const fields of candidates) {
+                if (!Array.isArray(fields)) {
+                    continue;
+                }
+                for (const field of fields) {
+                    if (!field || typeof field !== 'object') {
+                        continue;
+                    }
+
+                    const fieldId = Number(field.field_id ?? field.id ?? 0);
+                    const fieldName = String(field.field_name ?? field.name ?? '').trim().toLowerCase();
+                    if (fieldId !== expectedFieldId && fieldName !== normalizedExpectedName) {
+                        continue;
+                    }
+
+                    let value = field.value ?? field.field_value ?? field.selected ?? '';
+                    if (Array.isArray(value)) {
+                        const flat = value.map((item) => String(item)).filter((item) => item.trim() !== '');
+                        if (flat.length) {
+                            return flat.join(', ').trim();
+                        }
+                    } else if (value && typeof value === 'object') {
+                        value = value.value ?? value.label ?? value.name ?? '';
+                    }
+
+                    return String(value ?? '').trim();
+                }
+            }
+
+            return '';
+        }
+
         function getQualificationValue(job) {
+            const customFieldValue = getCustomFieldValue(job, 11, 'Education Qualification');
+            if (customFieldValue) {
+                return customFieldValue;
+            }
+
             const directValue = job?.qualification?.label ?? job?.qualification?.name ?? job?.qualification_name ?? job?.qualification_label ?? '';
             return String(directValue ?? '').trim();
         }
@@ -2187,7 +2285,7 @@ function build_filter_url(array $params): string
                             <div class="open-role-info-value">${subFunction}</div>
                         </div>
                         <div>
-                            <div class="open-role-info-label">Educational Qualification</div>
+                            <div class="open-role-info-label">Education</div>
                             <div class="open-role-info-value">${qualification}</div>
                         </div>
                         <div>
