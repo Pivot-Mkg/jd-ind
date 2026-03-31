@@ -90,39 +90,5 @@ if ($sent) {
     send_response(200, 'success', 'Thank you for your message! We will get back to you soon.');
 }
 
-$logEntry = [
-    'timestamp' => date('c'),
-    'assist' => $assist,
-    'firstName' => $firstName,
-    'lastName' => $lastName,
-    'organization' => $organization,
-    'designation' => $designation,
-    'email' => $email,
-    'phone' => $phone,
-    'city' => $city,
-    'country' => $country,
-    'message' => $message,
-    'userAgent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
-    'remoteAddr' => $_SERVER['REMOTE_ADDR'] ?? '',
-];
-
-$logContent = json_encode($logEntry, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . PHP_EOL;
-$logTargets = [
-    __DIR__ . '/contact-submit-fallback.log',
-    sys_get_temp_dir() . '/contact-submit-fallback.log'
-];
-$logged = false;
-foreach ($logTargets as $logFile) {
-    if (@file_put_contents($logFile, $logContent, FILE_APPEND | LOCK_EX) !== false) {
-        $logged = true;
-        break;
-    }
-}
-
-if ($logged) {
-    send_response(200, 'success', 'Your message was received. Email delivery is temporarily unavailable, but the submission has been saved.');
-}
-
-error_log('Contact form failed: mail unavailable and log write failed. Remote IP: ' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
-error_log('Contact form payload: ' . $logContent);
-send_response(500, 'error', 'Unable to send or save your message at this time.');
+error_log('Contact form failed: mail() returned false. Remote IP: ' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
+send_response(500, 'error', 'Unable to send your message at this time. Please try again later.');
