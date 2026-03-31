@@ -1,13 +1,21 @@
 <?php
 // assets/mail/contact-submit.php
 header('Content-Type: application/json; charset=UTF-8');
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['status' => 'error', 'message' => 'Method not allowed']);
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+error_reporting(E_ALL);
+
+function send_response(int $statusCode, string $status, string $message): void
+{
+    http_response_code($statusCode);
+    echo json_encode(['status' => $status, 'message' => $message]);
     exit;
 }
 
-// Collect and sanitize inputs
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    send_response(405, 'error', 'Method not allowed.');
+}
+
 $assist = trim($_POST['assist'] ?? '');
 $firstName = trim($_POST['firstName'] ?? '');
 $lastName = trim($_POST['lastName'] ?? '');
@@ -20,7 +28,6 @@ $country = trim($_POST['country'] ?? '');
 $message = trim($_POST['message'] ?? '');
 
 $errors = [];
-
 if ($assist === '') {
     $errors[] = 'Please select how we can assist you.';
 }
@@ -53,15 +60,10 @@ if ($message === '') {
 }
 
 if (!empty($errors)) {
-    http_response_code(400);
-    echo json_encode([
-        'status' => 'error',
-        'message' => implode(' ', $errors)
-    ]);
-    exit;
+    send_response(400, 'error', implode(' ', $errors));
 }
 
-$to = 'aakash@pivotmkg.com, ritu.sanghavi@jamesdouglas.co.in';
+$to = 'contactus@jamesdouglas.co.in, aakash@pivotmkg.com, ritu.sanghavi@jamesdouglas.co.in';
 $subject = 'default testing website mail';
 
 $body = "New contact form submission:\n\n";
@@ -79,17 +81,34 @@ $headers = "From: no-reply@jamesdouglas.co.in\r\n";
 $headers .= "Reply-To: {$email}\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-if (mail($to, $subject, $body, $headers)) {
-    echo json_encode([
-        'status' => 'success',
-        'message' => 'Thank you for your message! We will get back to you soon.'
-    ]);
-    exit;
+$sent = false;
+if (function_exists('mail')) {
+    $sent = @mail($to, $subject, $body, $headers);
 }
 
-http_response_code(500);
-echo json_encode([
-    'status' => 'error',
-    'message' => 'Unable to send email at this time.'
-]);
-exit;
+if ($sent) {
+    send_response(200, 'success', 'Thank you for your message! We will get back to you soon.');
+}
+
+$logFile = __DIR__ . '/contact-submit-fallback.log';
+$logEntry = [
+    'timestamp' => date('c'),
+    'assist' => $assist,
+    'firstName' => $firstName,
+    'lastName' => $lastName,
+    'organization' => $organization,
+    'designation' => $designation,
+    'email' => $email,
+    'phone' => $phone,
+    'city' => $city,
+    'country' => $country,
+    'message' => $message,
+    'userAgent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+    'remoteAddr' => $_SERVER['REMOTE_ADDR'] ?? '',
+];
+
+if (@file_put_contents($logFile, json_encode($logEntry, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . PHP_EOL, FILE_APPEND | LOCK_EX) !== false) {
+    send_response(200, 'success', 'Your message was received. Email delivery is temporarily unavailable, but the submission has been saved.');
+}
+
+send_response(500, 'error', 'Unable to send or save your message at this time.');
