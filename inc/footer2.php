@@ -50,7 +50,7 @@
                         <i class="bi bi-geo-alt-fill text-white me-2 mt-1" style="opacity: 0.7;"></i>
                         <div>
                             <p class="text-white mb-0" style="opacity: 0.8;">
-                                1012, 10th Floor, B-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex Bandra (East), Mumbai- 400 051 India.
+                                1012, 10th Floor, C-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex Bandra (East), Mumbai- 400 051 India.
                             </p>
                         </div>
                     </div>

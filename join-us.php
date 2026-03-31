@@ -1653,7 +1653,7 @@ background: linear-gradient(
                             <i class="bi bi-geo-alt-fill text-white me-2 mt-1" style="opacity: 0.7;"></i>
                             <div>
                                 <p class="text-white mb-0" style="opacity: 0.8;">
-                                    1012, 10th Floor, B-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex Bandra (East),
+                                    1012, 10th Floor, C-Wing, ONE BKC, “G Block”, Bandra – Kurla Complex Bandra (East),
                                     Mumbai- 400 051 India.
                                 </p>
                                 <!-- <p class="text-white mb-0" style="opacity: 0.8;">Business District</p> -->
@@ -1768,10 +1768,17 @@ background: linear-gradient(
                 ind.addEventListener('click', () => {
                     const target = findNextSection(ind);
                     if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
                     } else {
                         const offset = parseInt(ind.dataset.offset || '300', 10);
-                        window.scrollBy({ top: offset, left: 0, behavior: 'smooth' });
+                        window.scrollBy({
+                            top: offset,
+                            left: 0,
+                            behavior: 'smooth'
+                        });
                     }
                 });
             });
@@ -2032,7 +2039,10 @@ background: linear-gradient(
             const jobs = data.data ?? data.jobs ?? (Array.isArray(data) ? data : []);
             const nextPageUrl = data.next_page_url ?? null;
 
-            return { jobs, nextPageUrl };
+            return {
+                jobs,
+                nextPageUrl
+            };
         }
 
         async function fetchQualificationsMap() {
@@ -2053,19 +2063,19 @@ background: linear-gradient(
             }
 
             const data = await response.json();
-            const items = Array.isArray(data)
-                ? data
-                : Array.isArray(data?.data)
-                    ? data.data
-                    : Array.isArray(data?.qualifications)
-                        ? data.qualifications
-                        : [];
+            const items = Array.isArray(data) ?
+                data :
+                Array.isArray(data?.data) ?
+                data.data :
+                Array.isArray(data?.qualifications) ?
+                data.qualifications :
+                [];
 
             qualificationsMapCache = new Map(
                 items
-                    .filter((item) => item && typeof item === 'object')
-                    .map((item) => [Number(item.qualification_id ?? item.id), String(item.label ?? item.name ?? '').trim()])
-                    .filter(([id, label]) => !Number.isNaN(id) && label)
+                .filter((item) => item && typeof item === 'object')
+                .map((item) => [Number(item.qualification_id ?? item.id), String(item.label ?? item.name ?? '').trim()])
+                .filter(([id, label]) => !Number.isNaN(id) && label)
             );
 
             return qualificationsMapCache;
@@ -2078,7 +2088,10 @@ background: linear-gradient(
 
             while (nextUrl && pageCount < maxPages) {
                 pageCount += 1;
-                const { jobs, nextPageUrl } = await fetchPage(nextUrl);
+                const {
+                    jobs,
+                    nextPageUrl
+                } = await fetchPage(nextUrl);
                 allJobs = allJobs.concat(jobs);
                 nextUrl = nextPageUrl;
             }
@@ -2311,14 +2324,14 @@ background: linear-gradient(
             hireTalentBackdrop.addEventListener('click', closeModal);
         }
 
-        document.addEventListener('keydown', function (e) {
+        document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && hireTalentModal.classList.contains('active')) {
                 closeModal();
             }
         });
 
         if (hireAttachment) {
-            hireAttachment.addEventListener('change', function () {
+            hireAttachment.addEventListener('change', function() {
                 if (this.files && this.files.length > 0) {
                     hireFileName.textContent = this.files[0].name;
                 } else {
@@ -2328,7 +2341,7 @@ background: linear-gradient(
         }
 
         if (hireTalentForm) {
-            hireTalentForm.addEventListener('submit', function (e) {
+            hireTalentForm.addEventListener('submit', function(e) {
                 e.preventDefault();
 
                 const firstName = document.getElementById('hireFirstName').value.trim();
