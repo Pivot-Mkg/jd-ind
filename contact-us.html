@@ -296,6 +296,34 @@
         .section-heading {
             font-size: 25px !important;
         }
+
+        .contact-sending-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1rem;
+            color: #fff;
+            font-size: 1rem;
+            text-align: center;
+            z-index: 20;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .contact-sending-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .contact-sending-overlay .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
     </style>
 </head>
 
@@ -427,11 +455,12 @@
                             To connect with one of our experts, please complete the form:
                         </p>
 
-                        <form id="contactForm" class="contact-form">
+                        <form id="contactForm" class="contact-form" action="./assets/mail/contact-submit.php"
+                            method="POST" enctype="multipart/form-data">
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label for="assist" class="form-label">How Can We Assist You</label>
-                                    <select class="form-select" id="assist" required>
+                                    <select class="form-select" id="assist" name="assist" required>
                                         <option value="" selected disabled>Select one</option>
                                         <option>Find your next career move</option>
                                         <option>Hire for you</option>
@@ -443,57 +472,58 @@
                                 <div class="col-md-6">
                                     <label for="firstName" class="form-label">First Name</label>
                                     <input type="text" class="form-control contact-input" id="firstName"
-                                        placeholder="Enter your first name" required>
+                                        name="firstName" placeholder="Enter your first name" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="lastName" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control contact-input" id="lastName"
+                                    <input type="text" class="form-control contact-input" id="lastName" name="lastName"
                                         placeholder="Enter your last name" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="organization" class="form-label">Company</label>
                                     <input type="text" class="form-control contact-input" id="organization"
-                                        placeholder="Enter your organization name" required>
+                                        name="organization" placeholder="Enter your organization name" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="designation" class="form-label">Designation</label>
                                     <input type="text" class="form-control contact-input" id="designation"
-                                        placeholder="Designation" required>
+                                        name="designation" placeholder="Designation" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control contact-input" id="email"
+                                    <input type="email" class="form-control contact-input" id="email" name="email"
                                         placeholder="Enter your email address" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="phone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control contact-input" id="phone"
+                                        <input type="tel" class="form-control contact-input" id="phone" name="phone"
                                             placeholder="Enter your phone number" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="city" class="form-label">City</label>
-                                    <input type="text" class="form-control contact-input" id="country"
+                                    <input type="text" class="form-control contact-input" id="city" name="city"
                                         placeholder="City" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="country" class="form-label">Country</label>
-                                    <input type="text" class="form-control contact-input" id="country"
+                                    <input type="text" class="form-control contact-input" id="country" name="country"
                                         placeholder="Country" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="attachment" class="form-label">Attach Relevant Documents</label>
                                     <div class="upload-btn-wrap">
-                                        <input type="file" id="attachment" hidden class="contact-input">
+                                        <input type="file" id="attachment" name="attachment" hidden
+                                            class="contact-input">
                                         <label for="attachment" class="custom-upload-btn mb-0">
                                             <i class="bi bi-upload"></i> Upload files
                                         </label>
@@ -502,8 +532,8 @@
 
                                 <div class="col-12">
                                     <label for="message" class="form-label">Message</label>
-                                    <textarea class="form-control contact-input" id="message" placeholder="Message"
-                                        required></textarea>
+                                    <textarea class="form-control contact-input" id="message" name="message"
+                                        placeholder="Message" required></textarea>
                                 </div>
 
                                 <div class="col-12">
@@ -520,6 +550,13 @@
                                 <div class="col-12 pt-2">
                                     <button type="submit" class="btn btn-warning-custom">Submit</button>
                                 </div>
+                            </div>
+                            <div id="contactStatusMessage" class="alert d-none mt-3" role="alert"></div>
+                            <div id="contactSendingOverlay" class="contact-sending-overlay" aria-hidden="true">
+                                <div class="spinner-border text-warning" role="status">
+                                    <span class="visually-hidden">Sending...</span>
+                                </div>
+                                <div>Sending your message<br>please wait...</div>
                             </div>
                         </form>
                     </div>
@@ -744,17 +781,28 @@
         document.getElementById('contactForm').addEventListener('submit', function (e) {
             e.preventDefault();
 
+            const form = this;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const overlay = document.getElementById('contactSendingOverlay');
+            const statusMessage = document.getElementById('contactStatusMessage');
+
+            statusMessage.classList.add('d-none');
+            statusMessage.textContent = '';
+
             // Get form values
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             const organization = document.getElementById('organization').value;
-            const title = document.getElementById('title').value;
+            const designation = document.getElementById('designation').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
-            const help = document.getElementById('help').value;
+            const help = document.getElementById('assist').value;
+            const city = document.getElementById('city').value;
+            const country = document.getElementById('country').value;
+            const message = document.getElementById('message').value;
 
             // Basic validation
-            if (!firstName || !lastName || !organization || !title || !email || !phone || !help) {
+            if (!firstName || !lastName || !organization || !designation || !email || !phone || !help || !city || !country || !message) {
                 alert('Please fill in all fields');
                 return;
             }
@@ -773,11 +821,40 @@
                 return;
             }
 
-            // Show success message (in a real application, you would send this to a server)
-            alert('Thank you for your message! We will get back to you soon.');
+            submitButton.disabled = true;
+            overlay.classList.add('show');
 
-            // Reset form
-            this.reset();
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    overlay.classList.remove('show');
+                    submitButton.disabled = false;
+                    statusMessage.classList.remove('d-none', 'alert-success', 'alert-danger');
+
+                    if (data.status === 'success') {
+                        statusMessage.classList.add('alert-success');
+                        statusMessage.textContent = data.message || 'Your message was sent successfully.';
+                        form.reset();
+                    } else {
+                        statusMessage.classList.add('alert-danger');
+                        statusMessage.textContent = data.message || 'An error occurred while sending your message.';
+                    }
+                })
+                .catch(() => {
+                    overlay.classList.remove('show');
+                    submitButton.disabled = false;
+                    statusMessage.classList.remove('d-none', 'alert-success');
+                    statusMessage.classList.add('alert-danger');
+                    statusMessage.textContent = 'Unable to send the message. Please try again later.';
+                });
         });
     </script>
 
