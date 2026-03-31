@@ -257,7 +257,7 @@
     ];
     const FUNCTION_OPTIONS = [
       'Human Resources',
-      'Sales, Marketing & Growth',
+      'Sales & Marketing',
       'Finance',
       'Legal',
       'Operations & Supply Chain',
@@ -561,7 +561,10 @@
       const jobs = data.data ?? data.jobs ?? (Array.isArray(data) ? data : []);
       const nextPageUrl = data.next_page_url ?? null;
 
-      return { jobs, nextPageUrl };
+      return {
+        jobs,
+        nextPageUrl
+      };
     }
 
     async function fetchQualificationsMap() {
@@ -582,19 +585,18 @@
       }
 
       const data = await response.json();
-      const items = Array.isArray(data)
-        ? data
-        : Array.isArray(data?.data)
-          ? data.data
-          : Array.isArray(data?.qualifications)
-            ? data.qualifications
-            : [];
+      const items = Array.isArray(data) ?
+        data :
+        Array.isArray(data?.data) ?
+        data.data :
+        Array.isArray(data?.qualifications) ?
+        data.qualifications : [];
 
       qualificationsMapCache = new Map(
         items
-          .filter((item) => item && typeof item === 'object')
-          .map((item) => [Number(item.qualification_id ?? item.id), String(item.label ?? item.name ?? '').trim()])
-          .filter(([id, label]) => !Number.isNaN(id) && label)
+        .filter((item) => item && typeof item === 'object')
+        .map((item) => [Number(item.qualification_id ?? item.id), String(item.label ?? item.name ?? '').trim()])
+        .filter(([id, label]) => !Number.isNaN(id) && label)
       );
 
       return qualificationsMapCache;
@@ -607,7 +609,10 @@
 
       while (nextUrl && pageCount < maxPages) {
         pageCount += 1;
-        const { jobs, nextPageUrl } = await fetchPage(nextUrl);
+        const {
+          jobs,
+          nextPageUrl
+        } = await fetchPage(nextUrl);
         allJobs = allJobs.concat(jobs);
         nextUrl = nextPageUrl;
       }
@@ -831,7 +836,10 @@
             return;
           }
           applyFilters(nextPage);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
         });
       });
     }
@@ -952,7 +960,7 @@
       submitButton.addEventListener('click', () => applyFilters(1));
     }
 
-      if (clearButton) {
+    if (clearButton) {
       clearButton.addEventListener('click', () => {
         if (searchInput) searchInput.value = '';
         if (locationSelect) locationSelect.value = '';
