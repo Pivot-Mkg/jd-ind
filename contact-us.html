@@ -833,12 +833,18 @@
                     });
 
                     const text = await response.text();
+                    console.log('Contact form response status:', response.status, response.statusText);
+                    console.log('Contact form response text:', text);
+
                     let data = null;
                     try {
                         data = text ? JSON.parse(text) : null;
                     } catch (parseError) {
+                        console.warn('Failed to parse contact form JSON response:', parseError);
                         data = null;
                     }
+
+                    console.log('Contact form parsed data:', data);
 
                     overlay.classList.remove('show');
                     submitButton.disabled = false;
@@ -853,6 +859,7 @@
                         statusMessage.textContent = (data && data.message) || 'Unable to send your message. Please try again later.';
                     }
                 } catch (error) {
+                    console.error('Contact form fetch error:', error);
                     overlay.classList.remove('show');
                     submitButton.disabled = false;
                     statusMessage.className = 'alert alert-danger mt-3';
