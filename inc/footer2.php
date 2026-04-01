@@ -64,7 +64,7 @@
                 <div class="mb-4">
                     <div class="d-flex align-items-center">
                         <i class="bi bi-envelope-fill text-white me-2" style="opacity: 0.7;"></i>
-                        <p class="text-white mb-0" style="opacity: 0.8;">info@jamesdouglas.co.in</p>
+                        <p class="text-white mb-0" style="opacity: 0.8;">contactus@jamesdouglas.co.in</p>
                     </div>
                 </div>
                 <a href="../contact-us.html" class="btn btn-warning-custom px-4 py-2 fw-semibold">
