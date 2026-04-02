@@ -1,0 +1,2165 @@
+{
+  "data": [
+    {
+      "id": 99,
+      "slug": "17748641595770127287PJQ",
+      "name": "Thermal Design Head",
+      "company_slug": "17748636724060127287TMg",
+      "contact_slug": "17748636762710127287AfW",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "Looking for thermal engineers specializing in furnace designing",
+      "number_of_openings": 1,
+      "minimum_experience": 15,
+      "maximum_experience": 21,
+      "min_annual_salary": 5000000,
+      "max_annual_salary": 6000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Diksha Uniyal\",\"updated_on\":1774864161,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Mumbai, Maharashtra, India",
+      "created_on": "2026-03-30T09:49:19.000000Z",
+      "created_by": 127287,
+      "updated_on": "2026-04-01T05:02:19.000000Z",
+      "updated_by": 128483,
+      "owner": 127287,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 4,
+      "currency_id": 53,
+      "job_description_text": "<p><strong>Brief About the Client</strong><br />\nOne of our clients, a global engineering and industrial solutions organization, is looking to hire a senior leader for a <strong>Technical Project Management role focused on thermal equipment</strong>. The role will drive engineering design, innovation, and execution of thermal systems used in heavy industrial and steel processing applications.</p>\n\n<p><strong>Responsibilities</strong><br />\n• Lead <strong>engineering design and development of thermal equipment</strong> such as furnaces and ovens for industrial processing lines.<br />\n• Drive <strong>end-to-end project execution</strong>, ensuring alignment with contract requirements, quality standards, and delivery timelines.<br />\n• Manage and mentor a <strong>team of engineers and designers</strong>, ensuring high-quality engineering deliverables.<br />\n• Oversee creation and validation of <strong>engineering specifications, 3D models, drawings, and technical documentation</strong>.<br />\n• Collaborate with <strong>manufacturing, suppliers, and cross-functional teams</strong> to ensure seamless execution and issue resolution.<br />\n• Drive <strong>innovation and value engineering initiatives</strong> to improve design efficiency, functionality, and cost optimization.<br />\n• Engage with customers for <strong>technical discussions and project alignment</strong>, ensuring successful delivery and satisfaction.</p>\n\n<p><strong>Qualifications:</strong><br />\n• <strong>BE/B.Tech in Mechanical or Production Engineering</strong>.<br />\n• <strong>20–25 years of experience</strong> in design and engineering of <strong>thermal equipment in heavy engineering or steel processing industries</strong>.<br />\n• Strong expertise in <strong>thermal and mechanical calculations, equipment design, and engineering systems</strong>.<br />\n• Experience in <strong>leading engineering teams</strong> with accountability for quality, cost, and delivery.<br />\n• Proficiency in <strong>AutoCAD/Inventor and product data management tools</strong>.<br />\n• Knowledge of <strong>metallurgy, heat treatment processes, and value engineering principles</strong>.<br />\n• Strong <strong>communication, problem-solving, and stakeholder management skills</strong>.<br />\n• Experience working in <strong>multinational environments</strong> preferred.</p>\n\n<p><strong>Location:</strong> Mumbai</p>\n\n<p>If this sounds relevant, feel free to apply for a confidential discussion.</p>",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Industrial Equipment/Machinery"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "MNC"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1000000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Design"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "Product Design"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "No"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Bachelor of Engineering / Bachelor of Technology (B.E. / B.Tech)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17748641595770127287PJQ",
+      "application_form_url": "https://recruitcrm.io/apply/17748641595770127287PJQ",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": null,
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        128483
+      ],
+      "collaborator_teams": [
+        2348
+      ],
+      "xml_feeds": []
+    },
+    {
+      "id": 101,
+      "slug": "17749380350720127058SNG",
+      "name": "Head Infrastructure",
+      "company_slug": "17676896661160127050GBH",
+      "contact_slug": "17700051608910127058zZw",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "This is a senior leadership role in IT infrastructure within a financial services setup, focused on managing and evolving enterprise-scale infrastructure across data centres, cloud, and hybrid environments. We are looking for a technology leader with strong infrastructure expertise, strong experience in Datacentre, and the ability to drive operational excellence, scalability, and transformation across platforms.",
+      "number_of_openings": 1,
+      "minimum_experience": 20,
+      "maximum_experience": 24,
+      "min_annual_salary": 6000000,
+      "max_annual_salary": 7000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Sakshi Punjabi\",\"updated_on\":1774938036,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Mumbai, Maharashtra, India",
+      "created_on": "2026-03-31T06:20:35.000000Z",
+      "created_by": 127058,
+      "updated_on": "2026-03-31T13:02:50.000000Z",
+      "updated_by": 127049,
+      "owner": 127058,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 1896219,
+      "currency_id": 53,
+      "job_description_text": "​​​​<strong>Brief About the Client</strong><br />\n<br />\nOne of our clients, a leading organization in the financial services space, is strengthening its infrastructure leadership to drive enterprise-wide technology capabilities across data centres, cloud, and hybrid environments, ensuring scalability, resilience, and compliance in a highly regulated setup.<br />\n<br />\n<strong> Responsibilities:</strong>\n<ul>\n\t<li>​​​​​​Define and execute the overall infrastructure roadmap across data centres, cloud platforms, networks, and storage systems</li>\n\t<li>Lead cloud enablement, hybrid infrastructure operations, and optimization initiatives in collaboration with the team. </li>\n\t<li>Drive capacity planning, performance optimization, and system reliability aligned with business growth</li>\n\t<li>Manage cloud infrastructure (AWS / Azure / GCP), ensuring cost optimization, security, and performance</li>\n</ul>\n<br />\n <strong>Qualifications:</strong>\n\n<ul>\n\t<li>18+ years of experience in IT infrastructure leadership roles within banking, financial services, or similar regulated environments</li>\n\t<li>Strong expertise in enterprise infrastructure including data centres, cloud, and hybrid ecosystems</li>\n\t<li>Proven track record in managing large-scale infrastructure operations, service delivery, and transformation initiatives</li>\n\t<li>Strong stakeholder management skills with the ability to align infrastructure strategy with business and regulatory requirements</li>\n</ul>\n  <strong>Location:</strong> Mumbai",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Mutual Funds & AMC"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "17"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1190000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Information Technology"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "Infra Head"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "Yes"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Bachelor of Engineering / Bachelor of Technology (B.E. / B.Tech)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17749380350720127058SNG",
+      "application_form_url": "https://recruitcrm.io/apply/17749380350720127058SNG",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": null,
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127049
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 85,
+      "slug": "17733858286890128788nye",
+      "name": "GM - New Product Development",
+      "company_slug": "17711779862540128788xpA",
+      "contact_slug": "17712144951650128788zZD",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "This role will lead new product strategy, business development, and NPD execution for regulated international markets, with a focus on Europe, UK markets in Generics. The position requires end-to-end ownership from opportunity identification and deal execution through development oversight and launch readiness.",
+      "number_of_openings": 1,
+      "minimum_experience": 15,
+      "maximum_experience": 22,
+      "min_annual_salary": 5000000,
+      "max_annual_salary": 7000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Ritu Sanghavi\",\"updated_on\":1773385830,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai, Maharashtra",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Mumbai, Maharashtra, India",
+      "created_on": "2026-03-13T07:10:28.000000Z",
+      "created_by": 128788,
+      "updated_on": "2026-03-31T10:51:48.000000Z",
+      "updated_by": 128788,
+      "owner": 128788,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 4,
+      "currency_id": 53,
+      "job_description_text": "<p><strong>About the Company</strong><br />\nA global healthcare organization with a strong presence in regulated pharmaceutical markets, focused on building differentiated product portfolios through strategic partnerships, complex generics, and specialty-led development.</p>\n\n<hr />\n<p><strong>The Opportunity</strong><br />\nThis role will lead new product strategy, business development, and NPD execution for regulated international markets, with a focus on Europe. The position requires end-to-end ownership from opportunity identification and deal execution through development oversight and launch readiness.</p>\n\n<p>The role calls for a commercially sharp and strategically strong leader with experience in regulated markets, capable of driving portfolio expansion through in-licensing, co-development, and internal development, while working closely with cross-functional global teams.</p>\n\n<p><strong>Key Responsibilities</strong></p>\n\n<hr />\n<ul>\n\t<li><strong>New Product Strategy &amp; Portfolio Selection:</strong> Own product strategy for regulated markets, including identification, evaluation, and prioritisation of new product opportunities. Drive market-backward product selection based on unmet need, competitive landscape, pricing, and regulatory feasibility. Develop business cases for pipeline investments and continuously refine portfolio strategy.</li>\n\t<li><strong>Business Development (In-licensing / Out-licensing / Partnerships):</strong> Lead in-licensing, out-licensing, co-development, and distribution opportunities across regulated markets. Originate and evaluate opportunities, structure commercial terms, lead negotiations, and manage partner relationships to ensure long-term value creation.</li>\n\t<li><strong>NPD Leadership &amp; Project Management:</strong> Provide oversight of new product development programs aligned to international market requirements. Drive cross-functional coordination with R&amp;D, Regulatory, Manufacturing, Quality, and Supply Chain teams to ensure timelines, milestones, and launch readiness are met.</li>\n\t<li><strong>Deal Structuring &amp; Commercial Evaluation:</strong> Build financial models, evaluate commercial viability, and define pricing, supply, milestone, and risk-sharing structures for new opportunities. Support investment decisions through strong analytical and strategic inputs.</li>\n\t<li><strong>Stakeholder &amp; Strategic Leadership:</strong> Act as the single-point owner for international NPD and business development initiatives. Present strategy, pipeline updates, and investment proposals to senior leadership and represent the organization in discussions with global partners, customers, and advisors.</li>\n\t<li><strong>Cross-functional Collaboration:</strong> Work closely with commercial, technical, regulatory, and manufacturing teams to ensure alignment between portfolio strategy and execution.</li>\n\t<li>• <strong>Team Leadership:</strong> Guide and mentor team members supporting NPD, portfolio, and business development activities, ensuring high-quality execution and strategic focus.</li>\n</ul>\n\n<p><strong>Candidate Profile</strong></p>\n\n<hr />\n<ul>\n\t<li>15+ years of experience in pharmaceuticals with strong exposure to regulated markets (Europe / UK)</li>\n\t<li>Proven experience in NPD, portfolio strategy, or business development within generics, or regulated market environments</li>\n\t<li>Strong track record in in-licensing, out-licensing, partnerships, or co-development deals</li>\n\t<li>Experience working closely with R&amp;D, regulatory, manufacturing, and commercial teams</li>\n\t<li>Strong analytical, financial, and negotiation skills with the ability to evaluate complex opportunities</li>\n\t<li>Demonstrated ability to operate in a global, cross-functional, and high-accountability leadership role</li>\n\t<li>Prior experience managing pipeline strategy or international product portfolio will be strongly preferred</li>\n</ul>\nLocation: Mumbai",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": "119019"
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Pharmaceutical"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1400000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Sales & Marketing"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "New Product Development"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "Yes"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": null
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17733858286890128788nye",
+      "application_form_url": "https://recruitcrm.io/apply/17733858286890128788nye",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": null,
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [
+        2348
+      ],
+      "xml_feeds": []
+    },
+    {
+      "id": 17,
+      "slug": "17691799735630127058Axl",
+      "name": "Regional Sales Head - Trade & Cash Management Services",
+      "company_slug": "17675940456870127050lcz",
+      "contact_slug": "17689999676190127058uMb",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "This is a key leadership role for Regional Head positions with a leading bank in Noida/Bangalore— Trade Sales and CMS Sales within the Wholesale Banking team. The Trade role focuses on driving Trade Finance business growth, managing P&L, and building strong corporate relationships. The CMS role involves scaling cash management solutions, leading regional sales strategy, and growing transaction banking business.",
+      "number_of_openings": 2,
+      "minimum_experience": 15,
+      "maximum_experience": 20,
+      "min_annual_salary": 6000000,
+      "max_annual_salary": 6500000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Sakshi Punjabi\",\"updated_on\":1769179974,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Noida/Bangalore",
+      "locality": "",
+      "state": "",
+      "country": "India",
+      "address": "Sector 26, Noida",
+      "created_on": "2026-01-23T14:52:53.000000Z",
+      "created_by": 127058,
+      "updated_on": "2026-03-31T10:26:03.000000Z",
+      "updated_by": 128520,
+      "owner": 127058,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 1896172,
+      "currency_id": 53,
+      "job_description_text": "<u><strong>Role 1: Regional Head – CMS Sales (Corporate Banking)</strong></u>\n<p><strong>Brief About the Client</strong><br />\nOne of our clients, a leading private sector bank, is hiring a senior leader to scale its Cash Management Services business across a key region.</p>\n\n<p><strong>Responsibilities:</strong><br />\n· Drive CMS revenue, profitability, and portfolio growth across the region<br />\n· Lead and manage the sales team to expand market penetration<br />\n· Collaborate with internal teams to deliver tailored client solutions<br />\n· Build partnerships to enhance digital transaction volumes<br />\n· Strengthen relationships with corporates and financial institutions</p>\n\n<p><strong>Qualifications:</strong><br />\n· 15+ years in wholesale banking with CMS sales experience<br />\n· Proven leadership in managing regional sales teams<br />\n· Strong understanding of cash management products<br />\n· Good stakeholder management and client engagement skills<br />\n· Analytical mindset with focus on growth and execution</p>\n\n<p><strong>Location:</strong> Noida/Bangalore</p>\n<u><strong>Role 2: Regional Head – Trade Sales (Commercial Banking)</strong></u>\n\n<p><strong>Brief About the Client</strong><br />\nOne of our clients, a leading private sector bank, is looking to hire a senior leader to drive its Trade Finance business across regional markets.</p>\n\n<p><strong>Responsibilities:</strong><br />\n· Own regional trade portfolio with revenue and balance sheet targets<br />\n· Drive trade sales across corporate and mid-market segments<br />\n· Build client relationships and expand business volumes<br />\n· Work with product and risk teams to deliver structured solutions<br />\n· Ensure compliance and maintain portfolio quality</p>\n\n<p><strong>Qualifications:</strong><br />\n· 15+ years in wholesale banking with trade finance experience<br />\n· Strong track record in managing regional portfolios<br />\n· Deep understanding of trade products and corporate banking<br />\n· Leadership experience managing sales teams<br />\n· Strong stakeholder and client management skills</p>\n\n<p><strong>Location:</strong> Noida</p>",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Banking"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "20"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1200000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Sales & Marketing"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "Sales Head"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "Yes"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Master of Business Administration (MBA)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17691799735630127058Axl",
+      "application_form_url": "https://recruitcrm.io/apply/17691799735630127058Axl",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Technology",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        128520
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 84,
+      "slug": "17733156296220128495Lkl",
+      "name": "Director Manufacturing",
+      "company_slug": "17727885769570128788lse",
+      "contact_slug": "17733152307860128495wZX",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "This role will own manufacturing readiness and sustained production performance from NPI through ramp and mass production with accountability for cost, reliability, and delivery.",
+      "number_of_openings": 1,
+      "minimum_experience": 10,
+      "maximum_experience": 10,
+      "min_annual_salary": 7000000,
+      "max_annual_salary": 9000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Kopal Pandey\",\"updated_on\":1773315630,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Bengaluru",
+      "locality": "",
+      "state": "Karnataka",
+      "country": "India",
+      "address": "Bengaluru, Karnataka, India",
+      "created_on": "2026-03-12T11:40:29.000000Z",
+      "created_by": 128495,
+      "updated_on": "2026-03-31T05:52:16.000000Z",
+      "updated_by": 128788,
+      "owner": 128495,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "<p><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><b><span style=\"font-family:Calibri, sans-serif;\">Brief About the Client</span></b></span></span></span><br />\n<span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><span style=\"font-family:Calibri, sans-serif;\">One of our clients is seeking a hands-on manufacturing leader to build and scale world-class production systems in a fast-growing, technology-led business.</span></span></span></span><br />\n<span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><b><span style=\"font-family:Calibri, sans-serif;\">Responsibilities</span></b></span></span></span></p>\n\n<ul>\n\t<li><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><span style=\"font-family:Calibri, sans-serif;\">Lead <b>end-to-end manufacturing from NPI to mass production</b>, ensuring delivery on cost, quality, and timelines.</span></span></span></span></li>\n\t<li><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><span style=\"font-family:Calibri, sans-serif;\">Drive manufacturing scale-up through <b>contract manufacturers</b>, including line setup, build readiness, and issue resolution.</span></span></span></span></li>\n\t<li><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><span style=\"font-family:Calibri, sans-serif;\">Own supplier strategy and development for critical components, ensuring quality, cost efficiency, and continuity of supply.</span></span></span></span></li>\n\t<li><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><span style=\"font-family:Calibri, sans-serif;\">Implement data-driven manufacturing operations</span></span></span></span></li>\n\t<li><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><span style=\"font-family:Calibri, sans-serif;\">Ensure compliance with quality and regulatory standards, while partnering cross-functionally with engineering and operations teams.</span></span></span></span></li>\n</ul>\n<br />\n<span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><b><span style=\"font-family:Calibri, sans-serif;\">Qualifications</span></b></span></span></span>\n\n<ul>\n\t<li><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><b><span style=\"font-family:Calibri, sans-serif;\">10+ years</span></b><span style=\"font-family:Calibri, sans-serif;\"> of experience in manufacturing, operations, or supply chain leadership roles.</span></span></span></span></li>\n\t<li><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><span style=\"font-family:Calibri, sans-serif;\">Strong experience managing contract manufacturers and supplier ecosystems at scale.</span></span></span></span></li>\n\t<li><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><span style=\"font-family:Calibri, sans-serif;\">Deep expertise in quality, process improvement, and manufacturing metrics (yield, SPC, defect analysis).</span></span></span></span></li>\n\t<li><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><b><span style=\"font-family:Calibri, sans-serif;\">Engineering degree from a reputed institution (Tier 1 only)</span></b></span></span></span></li>\n\t<li style=\"margin-bottom:11px;\"><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><span style=\"font-family:Calibri, sans-serif;\">Experience in consumer electronics, medical devices, or precision manufacturing is a plus.</span></span></span></span></li>\n</ul>\n\n<p><span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><b><span style=\"font-family:Calibri, sans-serif;\">Location: Bangalore</span></b></span></span></span><br />\n<span style=\"font-size:12pt;\"><span style=\"line-height:115%;\"><span style=\"font-family:Aptos, sans-serif;\"><span style=\"font-family:Calibri, sans-serif;\">If this sounds relevant, feel free to reach out for a confidential discussion </span></span></span></span></p>",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": "128788"
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Medical Diagnostics"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "MNC"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1440000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Operations & Supply Chain"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "Manufacturing Head"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "Yes"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Bachelor of Engineering / Bachelor of Technology (B.E. / B.Tech)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17733156296220128495Lkl",
+      "application_form_url": "https://recruitcrm.io/apply/17733156296220128495Lkl",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "Automated Test Equipment Integration, Automation And Data Analytics, Change Control, Cost Improvement, Data-Driven Operations, Factory Dashboards, Finished Goods Quality, Instrumented Operations Mindset, Manufacturing Engineering, Manufacturing Scale-Up, NPI Management, Process Capability, Process Engineering, Process Optimization, Regulatory Compliance, Risk Mitigation, Supplier Management, Supplier Quality, Traceability, Yield Improvement",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "Healthcare",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [
+        2348
+      ],
+      "xml_feeds": []
+    },
+    {
+      "id": 48,
+      "slug": "17710707993900127060Vgr",
+      "name": "Head Land Acquisition, projects & Operations",
+      "company_slug": "17688974923840127050JKY",
+      "contact_slug": "17694890375850127287fej",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "Head design, construction, and lifecycle delivery of industrial parks and logistics assets, ensuring timely execution, cost efficiency, and seamless transition into operations.",
+      "number_of_openings": 1,
+      "minimum_experience": 15,
+      "maximum_experience": 20,
+      "min_annual_salary": 7000000,
+      "max_annual_salary": 9000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Pooja Varia\",\"updated_on\":1771070800,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Chennai City",
+      "locality": "",
+      "state": "Tamil Nadu",
+      "country": "India",
+      "address": "",
+      "created_on": "2026-02-14T12:06:39.000000Z",
+      "created_by": 127060,
+      "updated_on": "2026-03-31T05:47:08.000000Z",
+      "updated_by": 128788,
+      "owner": 127060,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 2425762,
+      "currency_id": 53,
+      "job_description_text": "<p><strong>Brief About the Client</strong><br />\nOne of our clients, a multinational conglomerate with capabilities across multiple sectors including chemicals, is building a new platform focused on developing large-scale industrial and logistics infrastructure in India. As part of this growth, the organization is looking to hire a senior leader to head <strong>Projects &amp; Operations</strong>, responsible for the end-to-end delivery and operational readiness of industrial park developments and logistics infrastructure.</p>\n\n<p><strong>Responsibilities</strong><br />\n• Lead <strong>design and engineering of industrial infrastructure</strong>, including warehouses, factories, and logistics park facilities.<br />\n• Drive <strong>end-to-end project execution</strong>, ensuring projects are delivered within defined timelines, budgets, and quality standards.<br />\n• Manage <strong>procurement, EPC partners, contractors, and vendor ecosystems</strong> across project development phases.<br />\n• Oversee <strong>site execution, construction progress, and multi-stakeholder coordination</strong> across large infrastructure developments.<br />\n• Establish and manage <strong>facility operations including maintenance, utilities, safety, and security</strong> post project completion.<br />\n• Ensure <strong>full lifecycle ownership from project design through delivery and operational readiness</strong>.</p>\n\n<p><strong>Qualifications</strong><br />\n• <strong>15+ years of experience</strong> in civil construction or industrial infrastructure development.<br />\n• Proven experience delivering <strong>large-scale industrial parks, logistics parks, warehouses, or factory infrastructure projects</strong>.<br />\n• Strong expertise in <strong>project lifecycle management including design, contracting, execution, and delivery</strong>.<br />\n• Experience managing <strong>EPC contractors, vendors, and large multi-project construction ecosystems</strong>.<br />\n• Demonstrated leadership capability in managing <strong>large infrastructure projects and multidisciplinary teams</strong>.<br />\n• Exposure to <strong>facility operations and infrastructure asset management</strong> preferred.</p>\n\n<p><strong>Location:</strong> Chennai</p>\n\n<p>If this sounds relevant, feel free to apply for a confidential discussion</p>",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": ""
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Chemicals"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": null
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1260000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Property & Construction"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "Project Heads"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "Yes"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Bachelor of Engineering / Bachelor of Technology (B.E. / B.Tech)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17710707993900127060Vgr",
+      "application_form_url": "https://recruitcrm.io/apply/17710707993900127060Vgr",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Projects & Operations",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Engineering",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127287,
+        128483
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 4,
+      "slug": "17675853984430127058CrW",
+      "name": "Chief Technology Officer",
+      "company_slug": "17675846288310127058ldY",
+      "contact_slug": "17675846314730127058hSq",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "This is a senior leadership mandate within a financial services environment, with a preference for candidates from asset management/AMC or similar regulated domains. We are looking for a hands-on yet strategic technology leader who can combine infrastructure depth, security expertise, and business alignment to build a resilient and scalable technology ecosystem.",
+      "number_of_openings": 1,
+      "minimum_experience": 15,
+      "maximum_experience": 23,
+      "min_annual_salary": 9000000,
+      "max_annual_salary": 13000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Sakshi Punjabi\",\"updated_on\":1767585399,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "MH",
+      "country": "India",
+      "address": "Mumbai, Mumbai, Maharashtra, India",
+      "created_on": "2026-01-05T03:56:38.000000Z",
+      "created_by": 127058,
+      "updated_on": "2026-03-31T05:43:38.000000Z",
+      "updated_by": 128788,
+      "owner": 127058,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 2,
+      "specialization": "",
+      "qualification_id": 4,
+      "currency_id": 53,
+      "job_description_text": "<strong>Role Summary:</strong><br />\n<br />\n<strong>Role: </strong>Chief Technology Officer (CTO)<br />\n<strong>Context of the Role:</strong> Replacement; WhiteOak is hiring a CTO to lead its end-to-end technology function with a “playing captain” mindset. Looking for focus on Infrastructure and Info-sec skill sets.<br />\n<br />\nThis role is not confidential.<br />\n<br />\n<strong>Reporting:</strong> Reports to: Chief Financial Officer (CFO)<br />\n<br />\n<strong>Team:</strong> Total team of ~17 members including 3 DRs across Infra, AppDev, Cloud &amp; Data with additional team of 5 outsourced resources for infra support<br />\n<br />\n<strong>Role Requirements: </strong><br />\n<br />\nA hands-on leader who can balance execution with strategic oversight<br />\n<br />\nStrong leadership and working experience across IT Infrastructure and Information Security<br />\n<br />\nAbility to scale technology and budgets from ₹18–20 Cr up to ₹100 Cr+ over ~5 years<br />\n<br />\nDeep understanding of regulatory and compliance frameworks with a pragmatic, solution-oriented approach<br />\n<br />\nExperience designing scalable security and compliance models aligned to business growth<br />\n<br />\nCapability to represent the organization with regulators, industry bodies, and forums<br />\n<br />\nProven stakeholder management across internal leadership and global counterparts<br />\n<br />\nEducation Background: Not explicitly mandated; strong technical foundation expected<br />\n<br />\n<strong>Experience: </strong>20-25 years; Age bracket can go up to 48-50 years. Open to evaluate -1 candidates with the right skill set and potential to take on the next level<br />\n<br />\n<strong>Industry Background</strong>: Preference for candidates from relevant regulated / financial services industries. SEBI-regulated environment exposure is a strong plus<br />\n<br />\n<strong>Compensation: </strong>90 LPA - 1.3 Cr fixed + performance based variable (min of 20%)<br />\n<br />\n<strong>Location:</strong> Mumbai - Prabhadevi / Andheri<br />\n<br />\n<strong>Screening Process</strong>: 5-6 rounds with CFO, CHRO, CEO, CIO, CO-head of Investments, Founder<br />\n<br />\n<strong>Status of the Mandate:</strong> Search has previously been in circulation at a junior level which has not been the relevant target pool. Awaiting list of candidates covered",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": ""
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Mutual Funds & AMC"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "MNC"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "15"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1700000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Software Engineering"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "Software Engineering"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "No"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Bachelor of Engineering / Bachelor of Technology (B.E. / B.Tech)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17675853984430127058CrW",
+      "application_form_url": "https://recruitcrm.io/apply/17675853984430127058CrW",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "Success Driven Person, Safety Principles, Leadership, Pragmatism, Information Technology, Cyber Security, Budgeting Skills",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Technology",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Technology",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127049
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 27,
+      "slug": "17694917816370127287kES",
+      "name": "Chief Human Resources Officer- Real Estate",
+      "company_slug": "17676079842520127050PTq",
+      "contact_slug": "17694915718930127287vmq",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "CHRO opportunity with a leading real estate player \nOpportunity to lead change management",
+      "number_of_openings": 1,
+      "minimum_experience": 20,
+      "maximum_experience": 25,
+      "min_annual_salary": 15000000,
+      "max_annual_salary": 20000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Diksha Uniyal\",\"updated_on\":1769491782,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Mumbai, Mumbai, Maharashtra, India",
+      "created_on": "2026-01-27T05:29:41.000000Z",
+      "created_by": 127287,
+      "updated_on": "2026-03-31T05:42:31.000000Z",
+      "updated_by": 128788,
+      "owner": 127287,
+      "enable_job_application_form": 0,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 1896172,
+      "currency_id": 53,
+      "job_description_text": "<p><strong>Brief About the Client</strong></p>\n\n<p>One of our clients in the <strong>real estate industry</strong> is looking to hire a <strong>Chief Human Resources Officer (CHRO)</strong> based in <strong>Mumbai</strong>. This role will partner closely with the MD and leadership team to drive the people agenda, organisation effectiveness, and long-term growth.</p>\n\n<h3><strong>Responsibilities</strong></h3>\n\n<p>• Define and drive the people strategy aligned to business growth and scale.<br />\n• Lead organisation design, transformation, and operating model effectiveness.<br />\n• Build leadership pipeline and drive succession planning for critical roles.<br />\n• Strengthen performance culture, leadership development, and accountability.<br />\n• Oversee HR governance, compliance, and risk frameworks.<br />\n• Partner with leadership on capability building and change management.</p>\n\n<h3><strong>Qualifications</strong></h3>\n\n<p>• 22+ years of experience in HR leadership roles, preferably within real estate or similar asset-heavy industries.<br />\n• Experience partnering with CEOs/Boards in large, complex organisations.<br />\n• Strong background in organisation design, culture, and transformation.<br />\n• Ability to link people strategy with business outcomes.<br />\n• Strong stakeholder management and executive presence.</p>\n\n<p><strong>Location:</strong> Mumbai</p>\n\n<p> </p>",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": ""
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Real Estate"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1800000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Human Resources"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "HR Business Partner,HR Head"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "Yes"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Master of Business Administration (MBA)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17694917816370127287kES",
+      "application_form_url": "https://recruitcrm.io/apply/17694917816370127287kES",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "HR",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Human Resources",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 91,
+      "slug": "17740701292160127287IrL",
+      "name": "SVP Design Build Delivery",
+      "company_slug": "17696880909860127050Sjb",
+      "contact_slug": "17726019959630127050UnX",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 24,
+      "maximum_experience": 30,
+      "min_annual_salary": 25000000,
+      "max_annual_salary": 30000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Diksha Uniyal\",\"updated_on\":1774070130,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Mumbai, Maharashtra, India",
+      "created_on": "2026-03-21T05:15:29.000000Z",
+      "created_by": 127287,
+      "updated_on": "2026-03-31T04:25:08.000000Z",
+      "updated_by": 127287,
+      "owner": 127287,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Real Estate"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "MNC"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "17"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "20000000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Property & Construction"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "Project Heads"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": null
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Bachelor of Engineering / Bachelor of Technology (B.E. / B.Tech)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17740701292160127287IrL",
+      "application_form_url": "https://recruitcrm.io/apply/17740701292160127287IrL",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": null,
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127060
+      ],
+      "collaborator_teams": [
+        2348
+      ],
+      "xml_feeds": []
+    },
+    {
+      "id": 100,
+      "slug": "17748692883830127287FDo",
+      "name": "Head ECommerce ( B2B )",
+      "company_slug": "17676077775680127050mEu",
+      "contact_slug": "17748665911470127287lJU",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "Looking for Ecommerce Head for a B2B industrial manufacturing company",
+      "number_of_openings": 1,
+      "minimum_experience": 10,
+      "maximum_experience": 15,
+      "min_annual_salary": 10000000,
+      "max_annual_salary": 10000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Diksha Uniyal\",\"updated_on\":1774869290,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "",
+      "country": "India",
+      "address": "Mumbai, India",
+      "created_on": "2026-03-30T11:14:48.000000Z",
+      "created_by": 127287,
+      "updated_on": "2026-03-30T11:14:50.000000Z",
+      "updated_by": 127287,
+      "owner": 127287,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Iron & Steel"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1500000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Sales & Marketing"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": null
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "No"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Bachelor of Engineering / Bachelor of Technology (B.E. / B.Tech)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17748692883830127287FDo",
+      "application_form_url": "https://recruitcrm.io/apply/17748692883830127287FDo",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": null,
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [
+        2348
+      ],
+      "xml_feeds": []
+    },
+    {
+      "id": 32,
+      "slug": "17696765277210127060PRq",
+      "name": "Head  Recruitment",
+      "company_slug": "17674185790390127287vWN",
+      "contact_slug": "17674186621220127287vxr",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "Lead and scale end-to-end recruitment for a global outsourcing organization, driving hiring strategy, large-scale talent delivery, and stakeholder partnerships across multiple markets.",
+      "number_of_openings": 1,
+      "minimum_experience": 15,
+      "maximum_experience": 20,
+      "min_annual_salary": 4500000,
+      "max_annual_salary": 6500000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Pooja varia\",\"updated_on\":1769676529,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Bengaluru",
+      "locality": "",
+      "state": "KARNATAKA",
+      "country": "India",
+      "address": "Bengaluru, Bengaluru, Karnataka, India",
+      "created_on": "2026-01-29T08:48:47.000000Z",
+      "created_by": 127060,
+      "updated_on": "2026-03-30T11:09:41.000000Z",
+      "updated_by": 130860,
+      "owner": 127060,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 5,
+      "currency_id": 53,
+      "job_description_text": "<p><strong>Brief About the Client</strong><br />\nOne of our clients, a global workforce solutions and outsourcing organization with operations across multiple international markets, is looking to hire a senior leader to head <strong>Recruitment</strong>. This role will focus on driving recruitment strategy, managing large-scale hiring engagements, and leading a high-performing team to deliver end-to-end talent acquisition solutions for client organizations.</p>\n\n<p><strong>Responsibilities</strong><br />\n• Develop and implement <strong>recruitment strategies</strong> aligned with client hiring goals and market dynamics.<br />\n• Lead and mentor a <strong>team of recruiters</strong>, ensuring strong talent pipelines and successful hiring outcomes.<br />\n• Manage <strong>end-to-end recruitment processes</strong>, including sourcing, screening, interviewing, and candidate selection.<br />\n• Build and maintain <strong>strong stakeholder relationships</strong> to understand evolving talent requirements.<br />\n• Drive <strong>large-scale hiring initiatives and recruitment projects</strong> while ensuring timelines and quality standards are met.<br />\n• Monitor <strong>recruitment performance metrics</strong> and provide insights on hiring progress and market trends.</p>\n\n<p><strong>Qualifications:</strong><br />\n• <strong>Bachelor’s or Master’s degree</strong> in Human Resources, Business Administration, or a related discipline.<br />\n• <strong>15+ years of experience in recruitment and staffing</strong> with strong exposure to full-cycle recruitment.<br />\n• Experience in <strong>RPO, KPO, or BPO environments</strong>, with exposure to <strong>contractual hiring and non-IT recruitment</strong> preferred.<br />\n• Strong understanding of <strong>talent acquisition strategies and recruitment market trends</strong>.<br />\n• Proven leadership experience in <strong>managing recruitment teams and delivering complex hiring mandates</strong>.<br />\n• Excellent <strong>stakeholder management and communication skills</strong>.<br />\n• Experience using <strong>Applicant Tracking Systems (ATS) and recruitment technologies</strong>.</p>\n\n<p><strong>Location:</strong> Bangalore, India</p>\n\n<p>If this sounds relevant, feel free to apply for a confidential discussion</p>",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": ""
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Staffing & Recruiting"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": null
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1170000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Human Resources"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "TA"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "Yes"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Master of Business Administration (MBA)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17696765277210127060PRq",
+      "application_form_url": "https://recruitcrm.io/apply/17696765277210127060PRq",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": null,
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "Recruitment",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Human Resources",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127287,
+        128483
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 90,
+      "slug": "17739077086220127058IvH",
+      "name": "VP & Head - Digital Transformation",
+      "company_slug": "17696880909860127050Sjb",
+      "contact_slug": "17726019959630127050UnX",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 20,
+      "maximum_experience": 25,
+      "min_annual_salary": 12000000,
+      "max_annual_salary": 15000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Sakshi Punjabi\",\"updated_on\":1773907709,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Mumbai, Maharashtra, India",
+      "created_on": "2026-03-19T08:08:28.000000Z",
+      "created_by": 127058,
+      "updated_on": "2026-03-30T10:50:47.000000Z",
+      "updated_by": 127049,
+      "owner": 127058,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 4,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": "127287"
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "ITeS"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "MNC"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "2100000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Digital Technology"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "Digital Transformation Head"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "No"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": null
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17739077086220127058IvH",
+      "application_form_url": "https://recruitcrm.io/apply/17739077086220127058IvH",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": null,
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127049
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 93,
+      "slug": "17744965870990127287Twz",
+      "name": "HR Head Facilities Management",
+      "company_slug": "17739147047430127050Boc",
+      "contact_slug": "17739147079530127050gnH",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 18,
+      "maximum_experience": 25,
+      "min_annual_salary": 10000000,
+      "max_annual_salary": 12000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Diksha Uniyal\",\"updated_on\":1774496588,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "",
+      "country": "India",
+      "address": "Mumbai, India",
+      "created_on": "2026-03-26T03:43:07.000000Z",
+      "created_by": 127287,
+      "updated_on": "2026-03-30T10:44:34.000000Z",
+      "updated_by": 127287,
+      "owner": 127287,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": null
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Facilities"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1800000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Human Resources"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "HR Head"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "No"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Master of Business Administration (MBA)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17744965870990127287Twz",
+      "application_form_url": "https://recruitcrm.io/apply/17744965870990127287Twz",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": null,
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [
+        2348
+      ],
+      "xml_feeds": []
+    },
+    {
+      "id": 3,
+      "slug": "17674190021420127287Wsa",
+      "name": "Head - Operations",
+      "company_slug": "17674185790390127287vWN",
+      "contact_slug": "17674186621220127287vxr",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "Head - Shared Services will be responsible to Lead and scale a multi-country Shared Services / GBS function from India, driving operational excellence across global markets.\nSpearhead AI-led transformation, automation, and digital enablement to build a future-ready, scalable services ecosystem.\nPartner with leadership to deliver efficiency, governance, and cost optimization through data-driven and process excellence frameworks.",
+      "number_of_openings": 1,
+      "minimum_experience": 15,
+      "maximum_experience": 18,
+      "min_annual_salary": 10000000,
+      "max_annual_salary": 10000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Diksha Uniyal\",\"updated_on\":1767419003,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Bengaluru",
+      "locality": "",
+      "state": "KA",
+      "country": "India",
+      "address": "Bengaluru, KA, India",
+      "created_on": "2026-01-03T05:43:22.000000Z",
+      "created_by": 127287,
+      "updated_on": "2026-03-30T08:56:04.000000Z",
+      "updated_by": 130861,
+      "owner": 127287,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 2379398,
+      "currency_id": 53,
+      "job_description_text": "<p>One of our clients, a global workforce solutions and outsourcing organization with operations across multiple international markets, is looking to hire a <strong>Head of Shared Services</strong>. This role will focus on building and scaling a technology-enabled shared services ecosystem, driving AI-led transformation, automation, and operational excellence across multi-country operations.</p>\n\n<p><strong>Responsibilities</strong><br />\n• Lead <strong>multi-country shared services operations across GCC and India</strong>, ensuring scalability, governance, and regulatory compliance.<br />\n• Drive <strong>enterprise-level transformation through AI-driven workflows, automation, and digital platforms</strong> to enhance efficiency and accuracy.<br />\n• Build a <strong>digital-first shared services model</strong> leveraging RPA, AI/ML, workflow automation, and self-service platforms.<br />\n• Establish <strong>data-driven operating frameworks</strong> with KPI dashboards, SLA governance, and real-time performance visibility.<br />\n• Champion <strong>process excellence initiatives using Lean, Six Sigma, and automation-first methodologies</strong> to standardize operations and reduce manual dependency.<br />\n• Collaborate with <strong>leadership, finance, HR, and technology teams</strong> to drive alignment, cost optimization, and strategic growth.</p>\n\n<p><strong>Qualifications:</strong><br />\n• <strong>Postgraduate degree</strong> from a reputed institution; engineering or technology background preferred.<br />\n• <strong>15+ years of experience</strong> in operations, transformation, or delivery leadership roles, preferably across <strong>GCC and India</strong>.<br />\n• Demonstrated experience leading <strong>Shared Services / Global Business Services (GBS) environments</strong> or multi-country operational models.<br />\n• Proven expertise in <strong>AI-driven operational transformation, automation, and digital enablement initiatives</strong>.<br />\n• Strong <strong>business acumen</strong>, including ability to interpret financials, oversee operational budgets, and link performance to financial outcomes.<br />\n• Experience managing <strong>large cross-border teams and scalable service delivery models</strong> in BPO, outsourcing, or service-led organizations.<br />\n• Deep understanding of <strong>process excellence frameworks such as Lean, Six Sigma, and continuous improvement methodologies</strong>.<br />\n• Exceptional <strong>leadership, stakeholder management, and strategic decision-making capabilities</strong>.</p>\n\n<p><strong>Location:</strong> Bangalore, India</p>\n\n<p>If this sounds relevant, feel free to apply for a confidential discussion.</p>",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Self Originated"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": ""
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Staffing & Recruiting"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "MNC"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "18"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1800000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Human Resources"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "HR Ops"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "Yes"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Master of Business Administration (MBA)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17674190021420127287Wsa",
+      "application_form_url": "https://recruitcrm.io/apply/17674190021420127287Wsa",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "Operations",
+      "job_type": "Full Time",
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "HR",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "Human Resources",
+      "job_industry": "Information Technology",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [
+        127060,
+        130861
+      ],
+      "collaborator_teams": [],
+      "xml_feeds": []
+    },
+    {
+      "id": 92,
+      "slug": "17742772586340127287IJC",
+      "name": "Head Talent Acquisition - Pharamceutical",
+      "company_slug": "17711773690920128788bPx",
+      "contact_slug": "17711773719940128788QCK",
+      "secondary_contact_slugs": null,
+      "note_for_candidates": "",
+      "number_of_openings": 1,
+      "minimum_experience": 18,
+      "maximum_experience": 20,
+      "min_annual_salary": 8000000,
+      "max_annual_salary": 12000000,
+      "salary_type": {
+        "id": 2,
+        "label": "Annual Salary"
+      },
+      "job_status": {
+        "id": 1,
+        "label": "Open"
+      },
+      "job_status_comment": "[{\"status_id\":1,\"remark\":\"\",\"updated_by\":\"Diksha Uniyal\",\"updated_on\":1774277260,\"status_label\":\"Open\"}]",
+      "latitude": "0",
+      "longitude": "0",
+      "city": "Mumbai",
+      "locality": "",
+      "state": "Maharashtra",
+      "country": "India",
+      "address": "Mumbai, Maharashtra, India",
+      "created_on": "2026-03-23T14:47:38.000000Z",
+      "created_by": 127287,
+      "updated_on": "2026-03-30T06:45:02.000000Z",
+      "updated_by": 127287,
+      "owner": 127287,
+      "enable_job_application_form": 1,
+      "job_posting_status": 0,
+      "job_code": null,
+      "show_company_logo": 0,
+      "specialization": "",
+      "qualification_id": 0,
+      "currency_id": 53,
+      "job_description_text": "",
+      "job_description_file": "",
+      "job_questions": [],
+      "custom_fields": [
+        {
+          "field_id": 1,
+          "entity_type": "job",
+          "field_name": "Origination",
+          "field_type": "dropdown",
+          "value": "Referred"
+        },
+        {
+          "field_id": 2,
+          "entity_type": "job",
+          "field_name": "Referred By",
+          "field_type": "user",
+          "value": "128788"
+        },
+        {
+          "field_id": 3,
+          "entity_type": "job",
+          "field_name": "Job - Industry",
+          "field_type": "multiselect",
+          "value": "Pharmaceutical"
+        },
+        {
+          "field_id": 4,
+          "entity_type": "job",
+          "field_name": "Set Up",
+          "field_type": "multiselect",
+          "value": "Indian"
+        },
+        {
+          "field_id": 5,
+          "entity_type": "job",
+          "field_name": "Rates Percent",
+          "field_type": "number",
+          "value": "17"
+        },
+        {
+          "field_id": 6,
+          "entity_type": "job",
+          "field_name": "Fee Amount",
+          "field_type": "number",
+          "value": "1700000"
+        },
+        {
+          "field_id": 7,
+          "entity_type": "job",
+          "field_name": "Hiring For",
+          "field_type": "dropdown",
+          "value": "Client (External)"
+        },
+        {
+          "field_id": 8,
+          "entity_type": "job",
+          "field_name": "Job - Function",
+          "field_type": "dropdown",
+          "value": "Human Resources"
+        },
+        {
+          "field_id": 9,
+          "entity_type": "job",
+          "field_name": "Job - Category",
+          "field_type": "multiselect",
+          "value": "TA Head"
+        },
+        {
+          "field_id": 10,
+          "entity_type": "job",
+          "field_name": "Post on website",
+          "field_type": "dropdown",
+          "value": "No"
+        },
+        {
+          "field_id": 11,
+          "entity_type": "job",
+          "field_name": "Education Qualification",
+          "field_type": "dropdown",
+          "value": "Master of Business Administration (MBA)"
+        }
+      ],
+      "resource_url": "https://app.recruitcrm.io/job/17742772586340127287IJC",
+      "application_form_url": "https://recruitcrm.io/apply/17742772586340127287IJC",
+      "shared_job_image": "https://app.recruitcrm.io/assets/images/social-media-share-default.jpg",
+      "job_skill": "",
+      "job_type": null,
+      "pay_rate": 0,
+      "bill_rate": 0,
+      "job_category": "",
+      "job_location_type": "0",
+      "postal_code": "",
+      "job_function": "",
+      "job_industry": "",
+      "targetcompanies": [],
+      "hiring_pipeline_id": 0,
+      "collaborator_users": [],
+      "collaborator_teams": [
+        2348
+      ],
+      "xml_feeds": []
+    }
+  ],
+  "current_page": 1,
+  "from": 1,
+  "last_page": 7,
+  "path": "https://api.recruitcrm.io/v1/jobs",
+  "per_page": 15,
+  "to": 15,
+  "total": 98,
+  "first_page_url": "https://api.recruitcrm.io/v1/jobs?page=1",
+  "next_page_url": "https://api.recruitcrm.io/v1/jobs?page=2",
+  "last_page_url": "https://api.recruitcrm.io/v1/jobs?page=7",
+  "prev_page_url": null
+}
