@@ -462,9 +462,9 @@
                                     <label for="assist" class="form-label">How Can We Assist You</label>
                                     <select class="form-select" id="assist" name="assist" required>
                                         <option value="" selected disabled>Select one</option>
-                                        <option>Find your next career move</option>
-                                        <option>Hire for you</option>
-                                        <option>Join us</option>
+                                        <option value="Find your next career move">Find your next career move</option>
+                                        <option value="Hire for you">Hire for you</option>
+                                        <option value="Join us">Join us</option>
 
                                     </select>
                                 </div>
@@ -472,73 +472,82 @@
                                 <div class="col-md-6">
                                     <label for="firstName" class="form-label">First Name</label>
                                     <input type="text" class="form-control contact-input" id="firstName"
-                                        name="firstName" placeholder="Enter your first name" required>
+                                        name="firstName" placeholder="Enter your first name" maxlength="80"
+                                        autocomplete="given-name" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="lastName" class="form-label">Last Name</label>
                                     <input type="text" class="form-control contact-input" id="lastName" name="lastName"
-                                        placeholder="Enter your last name" required>
+                                        placeholder="Enter your last name" maxlength="80"
+                                        autocomplete="family-name" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="organization" class="form-label">Company</label>
                                     <input type="text" class="form-control contact-input" id="organization"
-                                        name="organization" placeholder="Enter your organization name" required>
+                                        name="organization" placeholder="Enter your organization name" maxlength="120"
+                                        autocomplete="organization" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="designation" class="form-label">Designation</label>
                                     <input type="text" class="form-control contact-input" id="designation"
-                                        name="designation" placeholder="Designation" required>
+                                        name="designation" placeholder="Designation" maxlength="120"
+                                        autocomplete="organization-title" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control contact-input" id="email" name="email"
-                                        placeholder="Enter your email address" required>
+                                        placeholder="Enter your email address" maxlength="254" autocomplete="email"
+                                        required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="phone" class="form-label">Phone Number</label>
                                         <input type="tel" class="form-control contact-input" id="phone" name="phone"
-                                            placeholder="Enter your phone number" required>
+                                            placeholder="Enter your phone number" maxlength="20" inputmode="tel"
+                                            autocomplete="tel" required>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="city" class="form-label">City</label>
                                     <input type="text" class="form-control contact-input" id="city" name="city"
-                                        placeholder="City" required>
+                                        placeholder="City" maxlength="80" autocomplete="address-level2" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="country" class="form-label">Country</label>
                                     <input type="text" class="form-control contact-input" id="country" name="country"
-                                        placeholder="Country" required>
+                                        placeholder="Country" maxlength="80" autocomplete="country-name" required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label for="attachment" class="form-label">Attach Relevant Documents</label>
                                     <div class="upload-btn-wrap">
                                         <input type="file" id="attachment" name="attachment" hidden
-                                            class="contact-input">
+                                            class="contact-input"
+                                            accept=".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg">
                                         <label for="attachment" class="custom-upload-btn mb-0">
                                             <i class="bi bi-upload"></i> Upload files
                                         </label>
                                     </div>
+                                    <div id="attachmentStatus" class="small text-muted mt-2" aria-live="polite">No file selected</div>
                                 </div>
 
                                 <div class="col-12">
                                     <label for="message" class="form-label">Message</label>
                                     <textarea class="form-control contact-input" id="message" name="message"
-                                        placeholder="Message" required></textarea>
+                                        placeholder="Message" minlength="10" maxlength="2000" required></textarea>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                        <input class="form-check-input" type="checkbox" id="termsCheck"
+                                            name="termsCheck" value="1" required>
                                         <label class="form-check-label" for="termsCheck">
                                             I agree to the terms &amp; conditions. I consent to be contacted by James
                                             Douglas.
@@ -771,6 +780,8 @@
             </div>
         </div>
     </footer>
+    <div id="contactToastContainer" class="toast-container position-fixed top-0 end-0 p-3"
+        style="z-index: 2000;"></div>
     <script src="./assets/js/main.js"></script>
 
     <!-- Bootstrap JS -->
@@ -778,53 +789,268 @@
 
     <!-- Contact Form JavaScript -->
     <script>
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', async function (e) {
-                e.preventDefault();
+        (function () {
+            const contactForm = document.getElementById('contactForm');
+            if (!contactForm) {
+                return;
+            }
 
-                const form = this;
-                const submitButton = form.querySelector('button[type="submit"]');
-                const overlay = document.getElementById('contactSendingOverlay');
-                const statusMessage = document.getElementById('contactStatusMessage');
+            const allowedAssistOptions = new Set([
+                'Find your next career move',
+                'Hire for you',
+                'Join us'
+            ]);
+            const allowedFileExtensions = new Set(['pdf', 'doc', 'docx', 'txt', 'rtf', 'png', 'jpg', 'jpeg']);
+            const maxAttachmentBytes = 5 * 1024 * 1024;
+            const toastContainer = document.getElementById('contactToastContainer');
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const overlay = document.getElementById('contactSendingOverlay');
+            const statusMessage = document.getElementById('contactStatusMessage');
+            const attachmentInput = document.getElementById('attachment');
+            const attachmentStatus = document.getElementById('attachmentStatus');
 
+            const escapeHtml = function (value) {
+                return String(value || '').replace(/[&<>"']/g, function (char) {
+                    const map = {
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        '"': '&quot;',
+                        "'": '&#39;'
+                    };
+                    return map[char] || char;
+                });
+            };
+
+            const showToast = function (message, type) {
+                if (!toastContainer) {
+                    return;
+                }
+
+                const toast = document.createElement('div');
+                toast.className = `toast align-items-center text-bg-${type} border-0`;
+                toast.setAttribute('role', 'alert');
+                toast.setAttribute('aria-live', 'assertive');
+                toast.setAttribute('aria-atomic', 'true');
+                toast.innerHTML = `
+                    <div class="d-flex">
+                        <div class="toast-body">${escapeHtml(message)}</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                `;
+                toastContainer.appendChild(toast);
+
+                if (window.bootstrap && typeof window.bootstrap.Toast === 'function') {
+                    const instance = new window.bootstrap.Toast(toast, { delay: 5000 });
+                    toast.addEventListener('hidden.bs.toast', function () {
+                        toast.remove();
+                    });
+                    instance.show();
+                    return;
+                }
+
+                toast.classList.add('show');
+                setTimeout(function () {
+                    toast.remove();
+                }, 5000);
+            };
+
+            const setSubmittingState = function (isSubmitting) {
+                submitButton.disabled = isSubmitting;
+                if (overlay) {
+                    overlay.classList.toggle('show', isSubmitting);
+                }
+            };
+
+            const formatFileSize = function (bytes) {
+                if (!Number.isFinite(bytes) || bytes <= 0) {
+                    return '0 B';
+                }
+                if (bytes < 1024) {
+                    return `${bytes} B`;
+                }
+                if (bytes < (1024 * 1024)) {
+                    return `${(bytes / 1024).toFixed(1)} KB`;
+                }
+                return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+            };
+
+            const updateAttachmentStatus = function () {
+                if (!attachmentStatus || !attachmentInput) {
+                    return;
+                }
+
+                if (!attachmentInput.files || attachmentInput.files.length === 0) {
+                    attachmentStatus.textContent = 'No file selected';
+                    return;
+                }
+
+                const file = attachmentInput.files[0];
+                attachmentStatus.textContent = `${file.name} (${formatFileSize(file.size)}) selected`;
+            };
+
+            if (attachmentInput) {
+                attachmentInput.addEventListener('change', updateAttachmentStatus);
+            }
+            updateAttachmentStatus();
+
+            const validateForm = function (form) {
+                const firstNameInput = document.getElementById('firstName');
+                const lastNameInput = document.getElementById('lastName');
+                const organizationInput = document.getElementById('organization');
+                const designationInput = document.getElementById('designation');
+                const emailInput = document.getElementById('email');
+                const phoneInput = document.getElementById('phone');
+                const assistInput = document.getElementById('assist');
+                const cityInput = document.getElementById('city');
+                const countryInput = document.getElementById('country');
+                const messageInput = document.getElementById('message');
+                const attachmentInput = document.getElementById('attachment');
+                const termsCheckInput = document.getElementById('termsCheck');
+
+                const firstName = firstNameInput.value.trim();
+                const lastName = lastNameInput.value.trim();
+                const organization = organizationInput.value.trim();
+                const designation = designationInput.value.trim();
+                const email = emailInput.value.trim();
+                const phone = phoneInput.value.trim();
+                const assist = assistInput.value.trim();
+                const city = cityInput.value.trim();
+                const country = countryInput.value.trim();
+                const message = messageInput.value.trim();
+
+                firstNameInput.value = firstName;
+                lastNameInput.value = lastName;
+                organizationInput.value = organization;
+                designationInput.value = designation;
+                emailInput.value = email;
+                phoneInput.value = phone;
+                cityInput.value = city;
+                countryInput.value = country;
+                messageInput.value = message;
+
+                const nameRegex = /^[A-Za-z][A-Za-z\s'.-]{1,79}$/;
+                const businessTextRegex = /^[A-Za-z0-9][A-Za-z0-9\s&().,/'-]{1,119}$/;
+                const locationRegex = /^[A-Za-z][A-Za-z\s'.-]{1,79}$/;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const phoneRegex = /^\+?[0-9()\-\s]{7,20}$/;
+                const messageMinLength = 10;
+                const messageMaxLength = 2000;
+
+                if (!firstName || !lastName || !organization || !designation || !email || !phone || !assist || !city || !country || !message) {
+                    showToast('Please fill in all required fields.', 'danger');
+                    return false;
+                }
+
+                if (!termsCheckInput.checked) {
+                    showToast('Please accept the terms and conditions to continue.', 'danger');
+                    return false;
+                }
+
+                if (!allowedAssistOptions.has(assist)) {
+                    showToast('Please select a valid option for assistance.', 'danger');
+                    return false;
+                }
+
+                if (!nameRegex.test(firstName)) {
+                    showToast('Please enter a valid first name.', 'danger');
+                    firstNameInput.focus();
+                    return false;
+                }
+
+                if (!nameRegex.test(lastName)) {
+                    showToast('Please enter a valid last name.', 'danger');
+                    lastNameInput.focus();
+                    return false;
+                }
+
+                if (!businessTextRegex.test(organization)) {
+                    showToast('Please enter a valid company name.', 'danger');
+                    organizationInput.focus();
+                    return false;
+                }
+
+                if (!businessTextRegex.test(designation)) {
+                    showToast('Please enter a valid designation.', 'danger');
+                    designationInput.focus();
+                    return false;
+                }
+
+                if (!emailRegex.test(email)) {
+                    showToast('Please enter a valid email address.', 'danger');
+                    emailInput.focus();
+                    return false;
+                }
+
+                if (!phoneRegex.test(phone)) {
+                    showToast('Please enter a valid phone number.', 'danger');
+                    phoneInput.focus();
+                    return false;
+                }
+
+                const phoneDigitsCount = phone.replace(/\D/g, '').length;
+                if (phoneDigitsCount < 7 || phoneDigitsCount > 15) {
+                    showToast('Phone number must contain 7 to 15 digits.', 'danger');
+                    phoneInput.focus();
+                    return false;
+                }
+
+                if (!locationRegex.test(city)) {
+                    showToast('Please enter a valid city name.', 'danger');
+                    cityInput.focus();
+                    return false;
+                }
+
+                if (!locationRegex.test(country)) {
+                    showToast('Please enter a valid country name.', 'danger');
+                    countryInput.focus();
+                    return false;
+                }
+
+                if (message.length < messageMinLength || message.length > messageMaxLength) {
+                    showToast('Message must be between 10 and 2000 characters.', 'danger');
+                    messageInput.focus();
+                    return false;
+                }
+
+                if (attachmentInput && attachmentInput.files && attachmentInput.files.length > 0) {
+                    const attachmentFile = attachmentInput.files[0];
+                    const fileName = attachmentFile.name || '';
+                    const fileParts = fileName.split('.');
+                    const extension = (fileParts.length > 1 ? fileParts.pop() : '').toLowerCase();
+
+                    if (!allowedFileExtensions.has(extension)) {
+                        showToast('Attachment type is not allowed. Please upload PDF, DOC, DOCX, TXT, RTF, PNG, JPG, or JPEG files.', 'danger');
+                        attachmentInput.value = '';
+                        updateAttachmentStatus();
+                        return false;
+                    }
+
+                    if (attachmentFile.size > maxAttachmentBytes) {
+                        showToast('Attachment size must be 5 MB or less.', 'danger');
+                        attachmentInput.value = '';
+                        updateAttachmentStatus();
+                        return false;
+                    }
+                }
+
+                return true;
+            };
+
+            contactForm.addEventListener('submit', async function (event) {
+                event.preventDefault();
                 statusMessage.className = 'alert d-none mt-3';
                 statusMessage.textContent = '';
 
-                const firstName = document.getElementById('firstName').value.trim();
-                const lastName = document.getElementById('lastName').value.trim();
-                const organization = document.getElementById('organization').value.trim();
-                const designation = document.getElementById('designation').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const phone = document.getElementById('phone').value.trim();
-                const help = document.getElementById('assist').value.trim();
-                const city = document.getElementById('city').value.trim();
-                const country = document.getElementById('country').value.trim();
-                const message = document.getElementById('message').value.trim();
-
-                if (!firstName || !lastName || !organization || !designation || !email || !phone || !help || !city || !country || !message) {
-                    alert('Please fill in all fields');
+                if (!validateForm(contactForm)) {
                     return;
                 }
 
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    alert('Please enter a valid email address');
-                    return;
-                }
+                setSubmittingState(true);
+                const formData = new FormData(contactForm);
 
-                const phoneRegex = /^[+]?([\d\s-()]+)$/;
-                if (!phoneRegex.test(phone)) {
-                    alert('Please enter a valid phone number');
-                    return;
-                }
-
-                submitButton.disabled = true;
-                overlay.classList.add('show');
-
-                const formData = new FormData(form);
                 try {
-                    const response = await fetch(form.action, {
+                    const response = await fetch(contactForm.action, {
                         method: 'POST',
                         body: formData,
                         headers: {
@@ -832,41 +1058,48 @@
                         }
                     });
 
-                    const text = await response.text();
-                    console.log('Contact form response status:', response.status, response.statusText);
-                    console.log('Contact form response text:', text);
-
-                    let data = null;
+                    const rawResponse = await response.text();
+                    let payload = null;
                     try {
-                        data = text ? JSON.parse(text) : null;
-                    } catch (parseError) {
-                        console.warn('Failed to parse contact form JSON response:', parseError);
-                        data = null;
+                        payload = rawResponse ? JSON.parse(rawResponse) : null;
+                    } catch (jsonError) {
+                        // console.error('Contact form JSON parse error:', jsonError);
                     }
 
-                    console.log('Contact form parsed data:', data);
+                    // console.info('Contact form response:', {
+                    //     httpStatus: response.status,
+                    //     ok: response.ok,
+                    //     payload: payload
+                    // });
 
-                    overlay.classList.remove('show');
-                    submitButton.disabled = false;
-                    statusMessage.classList.remove('d-none', 'alert-success', 'alert-danger');
-
-                    if (response.ok && data && data.status === 'success') {
-                        statusMessage.classList.add('alert-success');
-                        statusMessage.textContent = data.message || 'Your message was sent successfully.';
-                        form.reset();
-                    } else {
-                        statusMessage.classList.add('alert-danger');
-                        statusMessage.textContent = (data && data.message) || 'Unable to send your message. Please try again later.';
+                    if (!response.ok) {
+                        // console.error('Contact form send failed at backend stage:', {
+                        //     httpStatus: response.status,
+                        //     errorStage: payload && payload.error_stage ? payload.error_stage : 'unknown',
+                        //     errorDetail: payload && payload.error_detail ? payload.error_detail : rawResponse
+                        // });
+                        // console.error(
+                        //     'Contact form exact server error:',
+                        //     (payload && (payload.error_detail || payload.message)) || rawResponse || 'Unknown server error'
+                        // );
                     }
+
+                    setSubmittingState(false);
+                    if (response.status === 200 && payload && payload.status === 'success') {
+                        showToast(payload.message || 'Your message was sent successfully.', 'success');
+                        contactForm.reset();
+                        updateAttachmentStatus();
+                        return;
+                    }
+
+                    showToast((payload && payload.message) || 'Unable to send your message right now. Please try again later.', 'danger');
                 } catch (error) {
-                    console.error('Contact form fetch error:', error);
-                    overlay.classList.remove('show');
-                    submitButton.disabled = false;
-                    statusMessage.className = 'alert alert-danger mt-3';
-                    statusMessage.textContent = 'Unable to send the message. Please try again later.';
+                    // console.error('Contact form submit error:', error);
+                    setSubmittingState(false);
+                    showToast('Unable to send your message right now. Please try again later.', 'danger');
                 }
             });
-        }
+        })();
     </script>
 
 </body>
