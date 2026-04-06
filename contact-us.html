@@ -556,6 +556,10 @@
                                     </div>
                                 </div>
 
+                                <div class="col-12">
+                                    <div class="g-recaptcha" data-sitekey="6Lf4WKksAAAAACRUtkfw2rM7ayQL95Wci3Gz8Q8p"></div>
+                                </div>
+
                                 <div class="col-12 pt-2">
                                     <button type="submit" class="btn btn-warning-custom">Submit</button>
                                 </div>
@@ -786,6 +790,7 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <!-- Contact Form JavaScript -->
     <script>
@@ -859,6 +864,12 @@
                 submitButton.disabled = isSubmitting;
                 if (overlay) {
                     overlay.classList.toggle('show', isSubmitting);
+                }
+            };
+
+            const resetRecaptcha = function () {
+                if (window.grecaptcha && typeof window.grecaptcha.reset === 'function') {
+                    window.grecaptcha.reset();
                 }
             };
 
@@ -944,6 +955,14 @@
 
                 if (!termsCheckInput.checked) {
                     showToast('Please accept the terms and conditions to continue.', 'danger');
+                    return false;
+                }
+
+                const recaptchaResponse = (window.grecaptcha && typeof window.grecaptcha.getResponse === 'function')
+                    ? window.grecaptcha.getResponse()
+                    : '';
+                if (!recaptchaResponse) {
+                    showToast('Please verify that you are not a robot.', 'danger');
                     return false;
                 }
 
@@ -1063,25 +1082,25 @@
                     try {
                         payload = rawResponse ? JSON.parse(rawResponse) : null;
                     } catch (jsonError) {
-                        // console.error('Contact form JSON parse error:', jsonError);
+                        console.error('Contact form JSON parse error:', jsonError);
                     }
 
-                    // console.info('Contact form response:', {
-                    //     httpStatus: response.status,
-                    //     ok: response.ok,
-                    //     payload: payload
-                    // });
+                    console.info('Contact form response:', {
+                        httpStatus: response.status,
+                        ok: response.ok,
+                        payload: payload
+                    });
 
                     if (!response.ok) {
-                        // console.error('Contact form send failed at backend stage:', {
-                        //     httpStatus: response.status,
-                        //     errorStage: payload && payload.error_stage ? payload.error_stage : 'unknown',
-                        //     errorDetail: payload && payload.error_detail ? payload.error_detail : rawResponse
-                        // });
-                        // console.error(
-                        //     'Contact form exact server error:',
-                        //     (payload && (payload.error_detail || payload.message)) || rawResponse || 'Unknown server error'
-                        // );
+                        console.error('Contact form send failed at backend stage:', {
+                            httpStatus: response.status,
+                            errorStage: payload && payload.error_stage ? payload.error_stage : 'unknown',
+                            errorDetail: payload && payload.error_detail ? payload.error_detail : rawResponse
+                        });
+                        console.error(
+                            'Contact form exact server error:',
+                            (payload && (payload.error_detail || payload.message)) || rawResponse || 'Unknown server error'
+                        );
                     }
 
                     setSubmittingState(false);
@@ -1089,13 +1108,16 @@
                         showToast(payload.message || 'Your message was sent successfully.', 'success');
                         contactForm.reset();
                         updateAttachmentStatus();
+                        resetRecaptcha();
                         return;
                     }
 
+                    resetRecaptcha();
                     showToast((payload && payload.message) || 'Unable to send your message right now. Please try again later.', 'danger');
                 } catch (error) {
-                    // console.error('Contact form submit error:', error);
+                    console.error('Contact form submit error:', error);
                     setSubmittingState(false);
+                    resetRecaptcha();
                     showToast('Unable to send your message right now. Please try again later.', 'danger');
                 }
             });

@@ -4,6 +4,11 @@ declare(strict_types=1);
 header('Content-Type: application/json; charset=UTF-8');
 ini_set('display_errors', '0');
 ini_set('log_errors', '1');
+$projectErrorLogPath = dirname(__DIR__, 2) . DIRECTORY_SEPARATOR . 'php-server-error.log';
+$projectErrorLogDir = dirname($projectErrorLogPath);
+if (is_dir($projectErrorLogDir) && is_writable($projectErrorLogDir)) {
+    ini_set('error_log', $projectErrorLogPath);
+}
 error_reporting(E_ALL);
 
 const CONTACT_ALLOWED_ASSIST = [
@@ -36,6 +41,8 @@ const CONTACT_ALLOWED_ATTACHMENT_MIMES = [
     'image/jpeg',
     'application/octet-stream',
 ];
+const CONTACT_RECAPTCHA_VERIFY_ENDPOINT = 'https://www.google.com/recaptcha/api/siteverify';
+const CONTACT_RECAPTCHA_TIMEOUT_SECONDS = 12;
 
 function send_response(int $statusCode, string $status, string $message, array $extra = []): void
 {
@@ -216,6 +223,117 @@ function parse_bool_env(string $value, bool $default): bool
     }
 
     return $default;
+}
+
+function get_client_ip(): string
+{
+    $headerCandidates = [
+        'HTTP_CF_CONNECTING_IP',
+        'HTTP_X_FORWARDED_FOR',
+        'REMOTE_ADDR',
+    ];
+
+    foreach ($headerCandidates as $headerName) {
+        if (!isset($_SERVER[$headerName])) {
+            continue;
+        }
+
+        $rawValue = trim((string) $_SERVER[$headerName]);
+        if ($rawValue === '') {
+            continue;
+        }
+
+        foreach (explode(',', $rawValue) as $candidate) {
+            $ip = trim($candidate);
+            if (filter_var($ip, FILTER_VALIDATE_IP)) {
+                return $ip;
+            }
+        }
+    }
+
+    return '';
+}
+
+function verify_recaptcha_token(string $secretKey, string $responseToken, string $remoteIp = ''): array
+{
+    if ($secretKey === '' || $responseToken === '') {
+        throw new RuntimeException('reCAPTCHA secret key or response token is missing.');
+    }
+
+    $postFields = [
+        'secret' => $secretKey,
+        'response' => $responseToken,
+    ];
+    if ($remoteIp !== '') {
+        $postFields['remoteip'] = $remoteIp;
+    }
+
+    $payload = http_build_query($postFields, '', '&', PHP_QUERY_RFC3986);
+    if ($payload === '') {
+        throw new RuntimeException('Unable to build reCAPTCHA verification payload.');
+    }
+
+    $rawResponse = '';
+
+    if (function_exists('curl_init')) {
+        $ch = curl_init(CONTACT_RECAPTCHA_VERIFY_ENDPOINT);
+        if ($ch === false) {
+            throw new RuntimeException('Unable to initialize reCAPTCHA verification request.');
+        }
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urlencoded']);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, CONTACT_RECAPTCHA_TIMEOUT_SECONDS);
+        curl_setopt($ch, CURLOPT_TIMEOUT, CONTACT_RECAPTCHA_TIMEOUT_SECONDS);
+
+        $rawResponse = curl_exec($ch);
+        if ($rawResponse === false) {
+            $curlError = curl_error($ch);
+            unset($ch);
+            throw new RuntimeException('reCAPTCHA HTTP request failed: ' . $curlError);
+        }
+
+        $httpStatusCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        unset($ch);
+
+        if ($httpStatusCode < 200 || $httpStatusCode >= 300) {
+            throw new RuntimeException('reCAPTCHA verification endpoint returned HTTP ' . $httpStatusCode . '.');
+        }
+    } else {
+        $context = stream_context_create([
+            'http' => [
+                'method' => 'POST',
+                'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
+                'content' => $payload,
+                'timeout' => CONTACT_RECAPTCHA_TIMEOUT_SECONDS,
+            ],
+        ]);
+
+        $rawResponse = @file_get_contents(CONTACT_RECAPTCHA_VERIFY_ENDPOINT, false, $context);
+        if ($rawResponse === false) {
+            throw new RuntimeException('reCAPTCHA HTTP request failed.');
+        }
+
+        $statusCode = 0;
+        if (isset($http_response_header) && is_array($http_response_header) && isset($http_response_header[0])) {
+            if (preg_match('/\s(\d{3})\s/', (string) $http_response_header[0], $matches) === 1) {
+                $statusCode = (int) $matches[1];
+            }
+        }
+
+        if ($statusCode !== 0 && ($statusCode < 200 || $statusCode >= 300)) {
+            throw new RuntimeException('reCAPTCHA verification endpoint returned HTTP ' . $statusCode . '.');
+        }
+    }
+
+    $decoded = json_decode((string) $rawResponse, true);
+    if (!is_array($decoded)) {
+        throw new RuntimeException('reCAPTCHA verification returned an invalid JSON response.');
+    }
+
+    return $decoded;
 }
 
 function is_debug_enabled(): bool
@@ -786,6 +904,7 @@ $phone = sanitize_single_line((string) ($_POST['phone'] ?? ''), 20);
 $city = sanitize_single_line((string) ($_POST['city'] ?? ''), 80);
 $country = sanitize_single_line((string) ($_POST['country'] ?? ''), 80);
 $message = sanitize_message_text((string) ($_POST['message'] ?? ''), 2000);
+$recaptchaResponseToken = sanitize_single_line((string) ($_POST['g-recaptcha-response'] ?? ''), 4096);
 $termsAccepted = isset($_POST['termsCheck']) && in_array(
     strtolower((string) $_POST['termsCheck']),
     ['1', 'true', 'yes', 'on'],
@@ -832,6 +951,9 @@ if ($messageLength < 10 || $messageLength > 2000) {
 if (!$termsAccepted) {
     $errors[] = 'Please accept the terms and conditions.';
 }
+if ($recaptchaResponseToken === '') {
+    $errors[] = 'Please verify that you are not a robot.';
+}
 
 $attachment = validate_attachment($_FILES['attachment'] ?? null, $errors);
 if (!empty($errors)) {
@@ -844,6 +966,70 @@ if (!empty($errors)) {
     }
 
     send_response(422, 'error', $validationMessage);
+}
+
+$recaptchaSecret = get_env('CONTACT_RECAPTCHA_SECRET');
+if ($recaptchaSecret === '') {
+    error_log('Contact form reCAPTCHA configuration error. Missing CONTACT_RECAPTCHA_SECRET.');
+    if (is_debug_enabled()) {
+        send_response(500, 'error', 'Captcha service is temporarily unavailable. Please check configuration.', [
+            'error_stage' => 'captcha_config',
+            'error_detail' => 'Missing CONTACT_RECAPTCHA_SECRET.',
+        ]);
+    }
+
+    send_response(500, 'error', 'Captcha service is temporarily unavailable. Please try again later.');
+}
+
+try {
+    $recaptchaVerification = verify_recaptcha_token($recaptchaSecret, $recaptchaResponseToken, get_client_ip());
+} catch (Throwable $exception) {
+    error_log('Contact form reCAPTCHA request failure: ' . $exception->getMessage());
+    if (is_debug_enabled()) {
+        send_response(500, 'error', 'Unable to verify captcha right now. Please try again later.', [
+            'error_stage' => 'captcha_request',
+            'error_detail' => $exception->getMessage(),
+        ]);
+    }
+
+    send_response(500, 'error', 'Unable to verify captcha right now. Please try again later.');
+}
+
+$recaptchaSuccess = isset($recaptchaVerification['success']) && $recaptchaVerification['success'] === true;
+$recaptchaErrorCodes = [];
+if (isset($recaptchaVerification['error-codes']) && is_array($recaptchaVerification['error-codes'])) {
+    foreach ($recaptchaVerification['error-codes'] as $errorCode) {
+        if (is_string($errorCode) && $errorCode !== '') {
+            $recaptchaErrorCodes[] = $errorCode;
+        }
+    }
+}
+
+if (!$recaptchaSuccess) {
+    $hasSecretError = in_array('missing-input-secret', $recaptchaErrorCodes, true)
+        || in_array('invalid-input-secret', $recaptchaErrorCodes, true);
+
+    if ($hasSecretError) {
+        error_log('Contact form reCAPTCHA verification failed due to secret configuration: ' . implode(', ', $recaptchaErrorCodes));
+        if (is_debug_enabled()) {
+            send_response(500, 'error', 'Captcha service is temporarily unavailable. Please check configuration.', [
+                'error_stage' => 'captcha_config',
+                'error_detail' => 'Google verification error codes: ' . implode(', ', $recaptchaErrorCodes),
+            ]);
+        }
+
+        send_response(500, 'error', 'Captcha service is temporarily unavailable. Please try again later.');
+    }
+
+    $captchaValidationMessage = 'Captcha verification failed. Please verify that you are not a robot and try again.';
+    if (is_debug_enabled()) {
+        send_response(422, 'error', $captchaValidationMessage, [
+            'error_stage' => 'captcha_validation',
+            'error_detail' => 'Google verification error codes: ' . implode(', ', $recaptchaErrorCodes),
+        ]);
+    }
+
+    send_response(422, 'error', $captchaValidationMessage);
 }
 
 $smtpConfig = [
