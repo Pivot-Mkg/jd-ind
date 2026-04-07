@@ -6,3 +6,7 @@
 [06-Apr-2026 10:37:42 Europe/Berlin] Contact form SMTP attempt failed for email-smtp.ap-south-1.amazonaws.com:465 [ssl] SMTP message body failed: 454 Throttling failure: Daily message quota exceeded.
 [06-Apr-2026 10:37:43 Europe/Berlin] Contact form SMTP attempt failed for email-smtp.ap-south-1.amazonaws.com:2587 [tls] SMTP message body failed: 454 Throttling failure: Daily message quota exceeded.
 [06-Apr-2026 10:37:43 Europe/Berlin] Contact form SMTP send failure: SMTP message body failed: 454 Throttling failure: Daily message quota exceeded.
+[06-Apr-2026 13:09:42 Europe/Berlin] Contact form SMTP attempt failed for email-smtp.ap-south-1.amazonaws.com:587 [tls] SMTP message body failed: 454 Throttling failure: Daily message quota exceeded.
+[06-Apr-2026 13:09:42 Europe/Berlin] Contact form SMTP attempt failed for email-smtp.ap-south-1.amazonaws.com:465 [ssl] SMTP message body failed: 454 Throttling failure: Daily message quota exceeded.
+[06-Apr-2026 13:09:43 Europe/Berlin] Contact form SMTP attempt failed for email-smtp.ap-south-1.amazonaws.com:2587 [tls] SMTP message body failed: 454 Throttling failure: Daily message quota exceeded.
+[06-Apr-2026 13:09:43 Europe/Berlin] Contact form SMTP send failure: SMTP message body failed: 454 Throttling failure: Daily message quota exceeded.
