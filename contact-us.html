@@ -447,7 +447,7 @@
                 </div>
 
                 <!-- Right Form -->
-                <div class="col-lg-6">
+                <div class="col-lg-6" style="display: none;">
                     <div class="contact-form-card">
                         <h6 class="section-heading text-center">Thank you for your Interest in James Douglas</h6>
 
@@ -479,8 +479,8 @@
                                 <div class="col-md-6">
                                     <label for="lastName" class="form-label">Last Name</label>
                                     <input type="text" class="form-control contact-input" id="lastName" name="lastName"
-                                        placeholder="Enter your last name" maxlength="80"
-                                        autocomplete="family-name" required>
+                                        placeholder="Enter your last name" maxlength="80" autocomplete="family-name"
+                                        required>
                                 </div>
 
                                 <div class="col-md-6">
@@ -529,13 +529,13 @@
                                     <label for="attachment" class="form-label">Attach Relevant Documents</label>
                                     <div class="upload-btn-wrap">
                                         <input type="file" id="attachment" name="attachment" hidden
-                                            class="contact-input"
-                                            accept=".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg">
+                                            class="contact-input" accept=".pdf,.doc,.docx,.txt,.rtf,.png,.jpg,.jpeg">
                                         <label for="attachment" class="custom-upload-btn mb-0">
                                             <i class="bi bi-upload"></i> Upload files
                                         </label>
                                     </div>
-                                    <div id="attachmentStatus" class="small text-muted mt-2" aria-live="polite">No file selected</div>
+                                    <div id="attachmentStatus" class="small text-muted mt-2" aria-live="polite">No file
+                                        selected</div>
                                 </div>
 
                                 <div class="col-12">
@@ -557,7 +557,8 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <div class="g-recaptcha" data-sitekey="6Lf4WKksAAAAACRUtkfw2rM7ayQL95Wci3Gz8Q8p"></div>
+                                    <div class="g-recaptcha" data-sitekey="6Lf4WKksAAAAACRUtkfw2rM7ayQL95Wci3Gz8Q8p">
+                                    </div>
                                 </div>
 
                                 <div class="col-12 pt-2">
@@ -784,8 +785,7 @@
             </div>
         </div>
     </footer>
-    <div id="contactToastContainer" class="toast-container position-fixed top-0 end-0 p-3"
-        style="z-index: 2000;"></div>
+    <div id="contactToastContainer" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 2000;"></div>
     <script src="./assets/js/main.js"></script>
 
     <!-- Bootstrap JS -->
