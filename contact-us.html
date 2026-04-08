@@ -447,7 +447,7 @@
                 </div>
 
                 <!-- Right Form -->
-                <div class="col-lg-6">
+                <div class="col-lg-6" style="display: none;">
                     <div class="contact-form-card">
                         <h6 class="section-heading text-center">Thank you for your Interest in James Douglas</h6>
 
@@ -1088,25 +1088,25 @@
                     try {
                         payload = rawResponse ? JSON.parse(rawResponse) : null;
                     } catch (jsonError) {
-                        // console.error('Contact form JSON parse error:', jsonError);
+                        console.error('Contact form JSON parse error:', jsonError);
                     }
 
-                    // console.info('Contact form response:', {
-                    //     httpStatus: response.status,
-                    //     ok: response.ok,
-                    //     payload: payload
-                    // });
+                    console.info('Contact form response:', {
+                        httpStatus: response.status,
+                        ok: response.ok,
+                        payload: payload
+                    });
 
                     if (!response.ok) {
-                        // console.error('Contact form send failed at backend stage:', {
-                        //     httpStatus: response.status,
-                        //     errorStage: payload && payload.error_stage ? payload.error_stage : 'unknown',
-                        //     errorDetail: payload && payload.error_detail ? payload.error_detail : rawResponse
-                        // });
-                        // console.error(
-                        //     'Contact form exact server error:',
-                        //     (payload && (payload.error_detail || payload.message)) || rawResponse || 'Unknown server error'
-                        // );
+                        console.error('Contact form send failed at backend stage:', {
+                            httpStatus: response.status,
+                            errorStage: payload && payload.error_stage ? payload.error_stage : 'unknown',
+                            errorDetail: payload && payload.error_detail ? payload.error_detail : rawResponse
+                        });
+                        console.error(
+                            'Contact form exact server error:',
+                            (payload && (payload.error_detail || payload.message)) || rawResponse || 'Unknown server error'
+                        );
                     }
 
                     setSubmittingState(false);
@@ -1121,7 +1121,7 @@
                     resetRecaptcha();
                     showToast((payload && payload.message) || 'Unable to send your message right now. Please try again later.', 'danger');
                 } catch (error) {
-                    // console.error('Contact form submit error:', error);
+                    console.error('Contact form submit error:', error);
                     setSubmittingState(false);
                     resetRecaptcha();
                     showToast('Unable to send your message right now. Please try again later.', 'danger');

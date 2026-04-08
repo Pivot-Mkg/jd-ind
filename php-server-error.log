@@ -10,3 +10,6 @@
 [06-Apr-2026 13:09:42 Europe/Berlin] Contact form SMTP attempt failed for email-smtp.ap-south-1.amazonaws.com:465 [ssl] SMTP message body failed: 454 Throttling failure: Daily message quota exceeded.
 [06-Apr-2026 13:09:43 Europe/Berlin] Contact form SMTP attempt failed for email-smtp.ap-south-1.amazonaws.com:2587 [tls] SMTP message body failed: 454 Throttling failure: Daily message quota exceeded.
 [06-Apr-2026 13:09:43 Europe/Berlin] Contact form SMTP send failure: SMTP message body failed: 454 Throttling failure: Daily message quota exceeded.
+[08-Apr-2026 11:08:42 Europe/Berlin] Contact form blocked [captcha_hostname_mismatch]. received=localhost; allowed=jamesdouglas.co.in,www.jamesdouglas.co.in
+[08-Apr-2026 11:08:50 Europe/Berlin] Contact form blocked [rate_limited]. ip=::1; email=pivotmkg@gmail.com
+[08-Apr-2026 11:09:03 Europe/Berlin] Contact form blocked [rate_limited]. ip=::1; email=pivotmkg@gmail.com
