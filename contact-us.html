@@ -447,7 +447,7 @@
                 </div>
 
                 <!-- Right Form -->
-                <div class="col-lg-6" style="display: none;">
+                <div class="col-lg-6">
                     <div class="contact-form-card">
                         <h6 class="section-heading text-center">Thank you for your Interest in James Douglas</h6>
 
@@ -457,6 +457,12 @@
 
                         <form id="contactForm" class="contact-form" action="./assets/mail/contact-submit.php"
                             method="POST" enctype="multipart/form-data">
+                            <div style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;"
+                                aria-hidden="true">
+                                <label for="website_verify">Leave this field empty</label>
+                                <input type="text" id="website_verify" name="website_verify" tabindex="-1"
+                                    autocomplete="off">
+                            </div>
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label for="assist" class="form-label">How Can We Assist You</label>

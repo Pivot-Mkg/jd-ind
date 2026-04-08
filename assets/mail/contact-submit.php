@@ -18,6 +18,18 @@ const CONTACT_ALLOWED_ASSIST = [
 ];
 const CONTACT_FORCE_TO_RECIPIENT = 'contactus@jamesdouglas.co.in';
 const CONTACT_FORCE_CC_RECIPIENTS = [];
+const CONTACT_RATE_LIMIT_MAX_SUBMISSIONS = 1;
+const CONTACT_RATE_LIMIT_WINDOW_SECONDS = 60;
+const CONTACT_RATE_LIMIT_MAX_WINDOW_SECONDS = 3600;
+const CONTACT_RATE_LIMIT_STORAGE_FILENAME = 'jd-contact-rate-limit.json';
+const CONTACT_DEFAULT_BLOCK_KEYWORDS = [
+    'thuisbatterij',
+    'zonne-energie',
+];
+const CONTACT_DEFAULT_RECAPTCHA_ALLOWED_HOSTNAMES = [
+    'jamesdouglas.co.in',
+    'www.jamesdouglas.co.in',
+];
 const CONTACT_MAX_ATTACHMENT_BYTES = 5242880;
 const CONTACT_ALLOWED_ATTACHMENT_EXTENSIONS = [
     'pdf' => 'application/pdf',
@@ -225,6 +237,21 @@ function parse_bool_env(string $value, bool $default): bool
     return $default;
 }
 
+function parse_int_env(string $value, int $default, int $min, int $max): int
+{
+    $parsed = filter_var(trim($value), FILTER_VALIDATE_INT);
+    if ($parsed === false) {
+        return $default;
+    }
+
+    $intValue = (int) $parsed;
+    if ($intValue < $min || $intValue > $max) {
+        return $default;
+    }
+
+    return $intValue;
+}
+
 function get_client_ip(): string
 {
     $headerCandidates = [
@@ -252,6 +279,206 @@ function get_client_ip(): string
     }
 
     return '';
+}
+
+function is_honeypot_triggered(string $value): bool
+{
+    return trim($value) !== '';
+}
+
+function is_rate_limited_for_client(
+    string $clientIp,
+    string $email
+): bool {
+    $maxSubmissions = parse_int_env(
+        get_env('CONTACT_RATE_LIMIT_MAX', (string) CONTACT_RATE_LIMIT_MAX_SUBMISSIONS),
+        CONTACT_RATE_LIMIT_MAX_SUBMISSIONS,
+        1,
+        20
+    );
+    $windowSeconds = parse_int_env(
+        get_env('CONTACT_RATE_LIMIT_WINDOW_SECONDS', (string) CONTACT_RATE_LIMIT_WINDOW_SECONDS),
+        CONTACT_RATE_LIMIT_WINDOW_SECONDS,
+        10,
+        CONTACT_RATE_LIMIT_MAX_WINDOW_SECONDS
+    );
+
+    if ($maxSubmissions < 1 || $windowSeconds < 1) {
+        return false;
+    }
+
+    $rateLimitStoreCandidates = [];
+    $configuredStorePath = get_env('CONTACT_RATE_LIMIT_STORAGE_FILE', '');
+    if ($configuredStorePath !== '') {
+        $rateLimitStoreCandidates[] = $configuredStorePath;
+    } else {
+        $tempDir = sys_get_temp_dir();
+        if (!is_string($tempDir) || $tempDir === '') {
+            $tempDir = __DIR__;
+        }
+        $rateLimitStoreCandidates[] = rtrim($tempDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . CONTACT_RATE_LIMIT_STORAGE_FILENAME;
+    }
+
+    $fallbackStorePath = __DIR__ . DIRECTORY_SEPARATOR . CONTACT_RATE_LIMIT_STORAGE_FILENAME;
+    if (!in_array($fallbackStorePath, $rateLimitStoreCandidates, true)) {
+        $rateLimitStoreCandidates[] = $fallbackStorePath;
+    }
+
+    $handle = false;
+    $activeStorePath = '';
+    foreach ($rateLimitStoreCandidates as $candidatePath) {
+        $candidatePath = trim((string) $candidatePath);
+        if ($candidatePath === '') {
+            continue;
+        }
+
+        $candidateDir = dirname($candidatePath);
+        if (!is_dir($candidateDir) && !@mkdir($candidateDir, 0775, true) && !is_dir($candidateDir)) {
+            continue;
+        }
+
+        $candidateHandle = @fopen($candidatePath, 'c+');
+        if ($candidateHandle === false) {
+            continue;
+        }
+
+        $handle = $candidateHandle;
+        $activeStorePath = $candidatePath;
+        break;
+    }
+
+    if ($handle === false) {
+        error_log('Contact form rate limit unavailable. Unable to open any store file candidate.');
+        return false;
+    }
+
+    if (!flock($handle, LOCK_EX)) {
+        fclose($handle);
+        error_log('Contact form rate limit unavailable. Unable to lock store file: ' . $activeStorePath);
+        return false;
+    }
+
+    try {
+        rewind($handle);
+        $rawState = stream_get_contents($handle);
+        $state = [
+            'entries' => [],
+        ];
+
+        if (is_string($rawState) && trim($rawState) !== '') {
+            $decodedState = json_decode($rawState, true);
+            if (is_array($decodedState) && isset($decodedState['entries']) && is_array($decodedState['entries'])) {
+                $state['entries'] = $decodedState['entries'];
+            }
+        }
+
+        $ipPart = $clientIp !== '' ? strtolower(trim($clientIp)) : 'unknown';
+        $emailPart = filter_var($email, FILTER_VALIDATE_EMAIL) !== false ? strtolower(trim($email)) : 'invalid-email';
+        $bucketKey = $ipPart . '|' . $emailPart;
+
+        $now = time();
+        $cutoff = $now - $windowSeconds;
+        $entries = [];
+        foreach ($state['entries'] as $key => $timestamps) {
+            if (!is_string($key) || !is_array($timestamps)) {
+                continue;
+            }
+            $filtered = [];
+            foreach ($timestamps as $timestamp) {
+                $ts = (int) $timestamp;
+                if ($ts >= $cutoff && $ts <= $now + 1) {
+                    $filtered[] = $ts;
+                }
+            }
+            if (!empty($filtered)) {
+                $entries[$key] = $filtered;
+            }
+        }
+
+        $isRateLimited = isset($entries[$bucketKey]) && count($entries[$bucketKey]) >= $maxSubmissions;
+        if (!$isRateLimited) {
+            if (!isset($entries[$bucketKey])) {
+                $entries[$bucketKey] = [];
+            }
+            $entries[$bucketKey][] = $now;
+        }
+
+        $stateToPersist = json_encode(
+            [
+                'updated_at' => $now,
+                'entries' => $entries,
+            ],
+            JSON_UNESCAPED_SLASHES
+        );
+        if (is_string($stateToPersist)) {
+            rewind($handle);
+            ftruncate($handle, 0);
+            fwrite($handle, $stateToPersist);
+            fflush($handle);
+        }
+
+        return $isRateLimited;
+    } finally {
+        flock($handle, LOCK_UN);
+        fclose($handle);
+    }
+}
+
+function normalize_text_for_blocking(string $value): string
+{
+    $normalized = trim(str_replace(["\r\n", "\r", "\n", "\t"], ' ', $value));
+    $normalized = preg_replace('/\s+/u', ' ', $normalized) ?? $normalized;
+
+    if (function_exists('mb_strtolower')) {
+        return mb_strtolower($normalized, 'UTF-8');
+    }
+
+    return strtolower($normalized);
+}
+
+function get_blocked_keywords(): array
+{
+    $keywords = CONTACT_DEFAULT_BLOCK_KEYWORDS;
+    $fromEnv = get_env('CONTACT_BLOCK_KEYWORDS', '');
+    if ($fromEnv !== '') {
+        foreach (explode(',', $fromEnv) as $candidate) {
+            $keyword = normalize_text_for_blocking($candidate);
+            if ($keyword !== '') {
+                $keywords[] = $keyword;
+            }
+        }
+    }
+
+    $normalized = [];
+    foreach ($keywords as $keyword) {
+        $clean = normalize_text_for_blocking((string) $keyword);
+        if ($clean !== '') {
+            $normalized[] = $clean;
+        }
+    }
+
+    return array_values(array_unique($normalized));
+}
+
+function find_blocked_keyword(array $values): ?string
+{
+    $keywords = get_blocked_keywords();
+    if (empty($keywords)) {
+        return null;
+    }
+
+    $haystack = normalize_text_for_blocking(implode(' ', array_map(static fn($value): string => (string) $value, $values)));
+    if ($haystack === '') {
+        return null;
+    }
+
+    foreach ($keywords as $keyword) {
+        if ($keyword !== '' && strpos($haystack, $keyword) !== false) {
+            return $keyword;
+        }
+    }
+
+    return null;
 }
 
 function verify_recaptcha_token(string $secretKey, string $responseToken, string $remoteIp = ''): array
@@ -334,6 +561,73 @@ function verify_recaptcha_token(string $secretKey, string $responseToken, string
     }
 
     return $decoded;
+}
+
+function get_allowed_recaptcha_hostnames(): array
+{
+    $defaultHosts = implode(',', CONTACT_DEFAULT_RECAPTCHA_ALLOWED_HOSTNAMES);
+    $configuredHosts = get_env('CONTACT_RECAPTCHA_ALLOWED_HOSTNAMES', $defaultHosts);
+    return parse_hosts($configuredHosts);
+}
+
+function normalize_hostname(string $hostname): string
+{
+    $normalized = strtolower(trim($hostname));
+    return rtrim($normalized, '.');
+}
+
+function is_recaptcha_hostname_allowed(array $verification, array $allowedHostnames): bool
+{
+    if (empty($allowedHostnames)) {
+        return false;
+    }
+
+    if (!isset($verification['hostname']) || !is_string($verification['hostname'])) {
+        return false;
+    }
+
+    $actualHostname = normalize_hostname($verification['hostname']);
+    if ($actualHostname === '') {
+        return false;
+    }
+
+    foreach ($allowedHostnames as $allowedHostname) {
+        if ($actualHostname === normalize_hostname((string) $allowedHostname)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+function enforce_critical_smtp_env_config(): void
+{
+    $smtpHost = get_env('SMTP_HOST');
+    $smtpPassword = get_env('SMTP_PASSWORD');
+
+    if ($smtpHost !== '' && $smtpPassword !== '') {
+        return;
+    }
+
+    error_log('Contact form hard-stop: SMTP_HOST or SMTP_PASSWORD is empty.');
+
+    if (is_debug_enabled()) {
+        $missing = [];
+        if ($smtpHost === '') {
+            $missing[] = 'SMTP_HOST';
+        }
+        if ($smtpPassword === '') {
+            $missing[] = 'SMTP_PASSWORD';
+        }
+
+        send_response(500, 'error', 'Mail service is temporarily unavailable. Please check SMTP configuration.', [
+            'error_stage' => 'config',
+            'error_detail' => 'Missing critical SMTP keys: ' . implode(', ', $missing),
+            'invalid_keys' => $missing,
+        ]);
+    }
+
+    send_response(500, 'error', 'Mail service is temporarily unavailable. Please try again later.');
 }
 
 function is_debug_enabled(): bool
@@ -516,7 +810,6 @@ function build_email_message(
     array $ccRecipients,
     string $fromEmail,
     string $fromName,
-    string $replyTo,
     string $subject,
     string $plainTextBody,
     string $htmlBody,
@@ -524,16 +817,15 @@ function build_email_message(
 ): string {
     $toHeader = implode(', ', array_map(static fn(string $email): string => "<{$email}>", $toRecipients));
     $fromHeader = $fromName !== '' ? encode_header($fromName) . " <{$fromEmail}>" : "<{$fromEmail}>";
-    $replyToHeader = "<{$replyTo}>";
 
     $headers = [
         'Date: ' . date('r'),
         'From: ' . $fromHeader,
         'To: ' . $toHeader,
-        'Reply-To: ' . $replyToHeader,
         'Subject: ' . encode_header($subject),
         'MIME-Version: 1.0',
     ];
+
     if (!empty($ccRecipients)) {
         $ccHeader = implode(', ', array_map(static fn(string $email): string => "<{$email}>", $ccRecipients));
         $headers[] = 'Cc: ' . $ccHeader;
@@ -894,12 +1186,33 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     send_response(405, 'error', 'Method not allowed.');
 }
 
+enforce_critical_smtp_env_config();
+
+$clientIp = get_client_ip();
+$websiteVerify = sanitize_single_line((string) ($_POST['website_verify'] ?? ''), 255);
+if (is_honeypot_triggered($websiteVerify)) {
+    error_log(
+        'Contact form blocked [honeypot_hit]. ip='
+        . ($clientIp !== '' ? $clientIp : 'unknown')
+    );
+    send_response(200, 'success', 'Thank you for your message! We will get back to you soon.');
+}
+
+$email = sanitize_single_line((string) ($_POST['email'] ?? ''), 254);
+if (is_rate_limited_for_client($clientIp, $email)) {
+    error_log(
+        'Contact form blocked [rate_limited]. ip='
+        . ($clientIp !== '' ? $clientIp : 'unknown')
+        . '; email=' . (filter_var($email, FILTER_VALIDATE_EMAIL) !== false ? strtolower($email) : 'invalid-email')
+    );
+    send_response(429, 'error', 'Too many submissions detected. Please wait 5 minutes and try again.');
+}
+
 $assist = sanitize_single_line((string) ($_POST['assist'] ?? ''), 80);
 $firstName = sanitize_single_line((string) ($_POST['firstName'] ?? ''), 80);
 $lastName = sanitize_single_line((string) ($_POST['lastName'] ?? ''), 80);
 $organization = sanitize_single_line((string) ($_POST['organization'] ?? ''), 120);
 $designation = sanitize_single_line((string) ($_POST['designation'] ?? ''), 120);
-$email = sanitize_single_line((string) ($_POST['email'] ?? ''), 254);
 $phone = sanitize_single_line((string) ($_POST['phone'] ?? ''), 20);
 $city = sanitize_single_line((string) ($_POST['city'] ?? ''), 80);
 $country = sanitize_single_line((string) ($_POST['country'] ?? ''), 80);
@@ -910,6 +1223,16 @@ $termsAccepted = isset($_POST['termsCheck']) && in_array(
     ['1', 'true', 'yes', 'on'],
     true
 );
+
+$blockedKeyword = find_blocked_keyword([$firstName, $lastName, $organization, $designation, $message]);
+if ($blockedKeyword !== null) {
+    error_log(
+        'Contact form blocked [keyword_block]. ip='
+        . ($clientIp !== '' ? $clientIp : 'unknown')
+        . '; keyword=' . $blockedKeyword
+    );
+    send_response(200, 'success', 'Thank you for your message! We will get back to you soon.');
+}
 
 $errors = [];
 
@@ -982,7 +1305,7 @@ if ($recaptchaSecret === '') {
 }
 
 try {
-    $recaptchaVerification = verify_recaptcha_token($recaptchaSecret, $recaptchaResponseToken, get_client_ip());
+    $recaptchaVerification = verify_recaptcha_token($recaptchaSecret, $recaptchaResponseToken, $clientIp);
 } catch (Throwable $exception) {
     error_log('Contact form reCAPTCHA request failure: ' . $exception->getMessage());
     if (is_debug_enabled()) {
@@ -992,6 +1315,12 @@ try {
         ]);
     }
 
+    send_response(500, 'error', 'Unable to verify captcha right now. Please try again later.');
+}
+
+$recaptchaHasSuccessFlag = array_key_exists('success', $recaptchaVerification);
+if (!$recaptchaHasSuccessFlag) {
+    error_log('Contact form reCAPTCHA verification returned payload without success flag.');
     send_response(500, 'error', 'Unable to verify captcha right now. Please try again later.');
 }
 
@@ -1026,6 +1355,34 @@ if (!$recaptchaSuccess) {
         send_response(422, 'error', $captchaValidationMessage, [
             'error_stage' => 'captcha_validation',
             'error_detail' => 'Google verification error codes: ' . implode(', ', $recaptchaErrorCodes),
+        ]);
+    }
+
+    send_response(422, 'error', $captchaValidationMessage);
+}
+
+$allowedRecaptchaHostnames = get_allowed_recaptcha_hostnames();
+if (empty($allowedRecaptchaHostnames)) {
+    error_log('Contact form reCAPTCHA hostname allowlist is empty.');
+    send_response(500, 'error', 'Captcha service is temporarily unavailable. Please try again later.');
+}
+
+if (!is_recaptcha_hostname_allowed($recaptchaVerification, $allowedRecaptchaHostnames)) {
+    $receivedHostname = isset($recaptchaVerification['hostname']) && is_string($recaptchaVerification['hostname'])
+        ? normalize_hostname($recaptchaVerification['hostname'])
+        : 'missing';
+
+    error_log(
+        'Contact form blocked [captcha_hostname_mismatch]. received='
+        . $receivedHostname
+        . '; allowed=' . implode(',', $allowedRecaptchaHostnames)
+    );
+
+    $captchaValidationMessage = 'Captcha verification failed. Please verify that you are not a robot and try again.';
+    if (is_debug_enabled()) {
+        send_response(422, 'error', $captchaValidationMessage, [
+            'error_stage' => 'captcha_validation',
+            'error_detail' => 'Hostname mismatch. Received: ' . $receivedHostname,
         ]);
     }
 
@@ -1115,7 +1472,6 @@ try {
         $ccRecipients,
         $smtpConfig['from_email'],
         $smtpConfig['from_name'],
-        $email,
         $subject,
         $mailBodyText,
         $mailBodyHtml,
