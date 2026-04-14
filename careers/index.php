@@ -338,18 +338,6 @@
       return getHiringForValue(job).toLowerCase() === 'do not post (confidential)';
     }
 
-    function isJobOpen(job) {
-      const status = job?.job_status;
-      if (status && typeof status === 'object') {
-        const label = String(status.label ?? status.name ?? '').trim();
-        if (label) {
-          return label.toLowerCase() === 'open';
-        }
-        return Number(status.id ?? 0) === 1;
-      }
-      return String(status ?? '').trim().toLowerCase() === 'open';
-    }
-
     function shouldPostOnWebsite(job) {
       const fields = Array.isArray(job?.custom_fields) ? job.custom_fields : [];
       return fields.some((field) => {
@@ -620,7 +608,6 @@
       return allJobs.filter((job) =>
         !isConfidentialJob(job) &&
         isExternalClientJob(job) &&
-        isJobOpen(job) &&
         shouldPostOnWebsite(job)
       );
     }
