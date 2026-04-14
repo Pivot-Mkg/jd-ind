@@ -186,7 +186,7 @@ $internalJobs = array_values(array_filter($allJobs, function (array $job): bool 
     if (is_confidential_job($job)) {
         return false;
     }
-    if (!is_job_open($job) || !should_post_on_website($job)) {
+    if (!should_post_on_website($job)) {
         return false;
     }
     return is_exact_jd_internal_job($job);

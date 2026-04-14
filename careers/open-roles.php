@@ -452,7 +452,6 @@ while ($nextUrl && $pageCount < $maxPages) {
 $internalJobs = [];
 $externalJobs = array_values(array_filter($allJobs, function ($job) {
     return has_external_client_hiring_for_field($job)
-        && is_job_open($job)
         && should_post_on_website($job);
 }));
 
@@ -1912,7 +1911,6 @@ function build_filter_url(array $params): string
             return allJobs.filter((job) =>
                 !isConfidentialJob(job) &&
                 isExternalClientJob(job) &&
-                isJobOpen(job) &&
                 shouldPostOnWebsite(job)
             );
         }
@@ -1926,7 +1924,6 @@ function build_filter_url(array $params): string
             return jobs.filter((job) =>
                 !isConfidentialJob(job) &&
                 isExternalClientJob(job) &&
-                isJobOpen(job) &&
                 shouldPostOnWebsite(job)
             );
         }

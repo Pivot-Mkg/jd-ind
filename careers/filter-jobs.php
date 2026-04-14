@@ -295,7 +295,6 @@ if ($companyFilter !== '') {
 
 $jobs = array_values(array_filter($jobs, function ($job) {
     return has_external_client_hiring_for_field($job)
-        && is_job_open($job)
         && should_post_on_website($job);
 }));
 
