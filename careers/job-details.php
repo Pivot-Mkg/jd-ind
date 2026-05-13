@@ -333,6 +333,38 @@ $cityOptions = [
     <!-- Google Tag Manager -->
     <?php include '../inc/gtm-head-code.php'; ?>
     <!-- End Google Tag Manager -->
+
+    <style>
+        .consent-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.consent-check .form-check-input {
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.consent-check .form-check-label {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #2b2b2b;
+}
+
+.consent-check a {
+    color: #071f3c;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+@media (max-width: 576px) {
+    .consent-check .form-check-label {
+        font-size: 12px;
+        line-height: 1.45;
+    }
+}
+    </style>
 </head>
 
 <body>
@@ -402,7 +434,7 @@ $cityOptions = [
                             <?php if ($skills): ?>
                                 <div class="job-detail-section">
                                     <h5>Skills</h5>
-                                    <p class="text-muted"><?php echo htmlspecialchars($skills, ENT_QUOTES, 'UTF-8'); ?></p>
+                                    <p class="text-muted" style="font-size: 12pt; line-height: 1.7; font-family: Calibri, sans-serif;"><?php echo htmlspecialchars($skills, ENT_QUOTES, 'UTF-8'); ?></p>
                                 </div>
                             <?php endif; ?>
                         </div>
@@ -435,7 +467,7 @@ $cityOptions = [
 
     <div class="modal fade" id="applyModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content border-0 rounded-4 p-3ad">
+            <div class="modal-content border-0 rounded-4 p-3">
                 <div class="modal-header border-0 pb-0">
                     <h4 class="modal-title fw-bold">Apply for a Position</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -522,6 +554,22 @@ $cityOptions = [
                                 <label class="form-label">Upload Resume</label>
                                 <input type="file" class="form-control" name="resume" accept=".pdf,.doc,.docx" required>
                             </div>
+                            <div class="col-12">
+                            <div class="form-check consent-check mt-2">
+                            <input 
+                            class="form-check-input" 
+                            type="checkbox" 
+                            name="privacy_consent" 
+                            id="privacyConsent" 
+                            required
+                            >
+                            <label class="form-check-label" for="privacyConsent">
+                            By submitting your email address or any other personal information through this website, you acknowledge and consent to James Douglas India collecting, storing, processing, and using such information in accordance with our <a href="/privacy-policy.html" target="_blank">Privacy Policy</a> and Website <a href="/terms-and-conditions.html" target="_blank">Terms &amp; Conditions</a>.
+            
+                            </label>
+                            </div>
+                        </div>
+                        
                         </div>
                         <div class="mt-4 d-flex align-items-center gap-3">
                             <button type="submit" class="open-role-apply px-4">Submit Application</button>
@@ -598,11 +646,17 @@ $cityOptions = [
         }
 
         if (applyForm) {
-            applyForm.addEventListener('submit', async (event) => {
-                event.preventDefault();
-                if (applySubmitButton) {
-                    applySubmitButton.disabled = true;
-                }
+    applyForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        if (!applyForm.checkValidity()) {
+            applyForm.reportValidity();
+            return;
+        }
+
+        if (applySubmitButton) {
+            applySubmitButton.disabled = true;
+        }
                 applyStatus.textContent = 'Submitting...';
                 applyStatus.classList.remove('text-danger', 'text-success');
                 const formData = new FormData(applyForm);
