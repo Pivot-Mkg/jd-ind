@@ -161,9 +161,12 @@
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
   <script>
-    const API_URL = 'https://api.recruitcrm.io/v1/jobs';
-    const QUALIFICATIONS_API_URL = 'https://api.recruitcrm.io/v1/qualifications';
-    const API_TOKEN = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
+    // Jobs are fetched through our own server-side proxy (careers/api.php),
+    // which already talks to RecruitCRM with the API token. Calling
+    // api.recruitcrm.io directly from the browser doesn't work: RecruitCRM's
+    // API isn't set up to accept cross-origin requests from a browser (CORS),
+    // and it would also expose the API token to anyone viewing page source.
+    const API_URL = 'api.php';
     const API_FETCH_LIMIT = 50;
     const PAGE_SIZE = 9;
     const INDUSTRY_OPTIONS = [
@@ -532,12 +535,16 @@
       return '';
     }
 
-    async function fetchPage(url) {
-      const response = await fetch(url, {
+    async function fetchAllExternalClientJobs() {
+      // api.php already talks to RecruitCRM server-side, applies the
+      // "External Client" / "Post on website" / "not confidential" rules,
+      // and attaches qualification_name. fetch_all=1 returns every matching
+      // job in one call so the existing client-side search/city/industry/
+      // function filtering below keeps working exactly as before.
+      const response = await fetch(`${API_URL}?fetch_all=1`, {
         method: 'GET',
         headers: {
           Accept: 'application/json',
-          Authorization: API_TOKEN,
         },
       });
 
@@ -546,75 +553,17 @@
       }
 
       const data = await response.json();
-      const jobs = data.data ?? data.jobs ?? (Array.isArray(data) ? data : []);
-      const nextPageUrl = data.next_page_url ?? null;
-
-      return {
-        jobs,
-        nextPageUrl
-      };
-    }
-
-    async function fetchQualificationsMap() {
-      if (qualificationsMapCache) {
-        return qualificationsMapCache;
+      if (data && data.error) {
+        throw new Error(data.message || 'Unable to load roles');
       }
 
-      const response = await fetch(QUALIFICATIONS_API_URL, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          Authorization: API_TOKEN,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Unable to load qualifications');
-      }
-
-      const data = await response.json();
-      const items = Array.isArray(data) ?
-        data :
-        Array.isArray(data?.data) ?
-        data.data :
-        Array.isArray(data?.qualifications) ?
-        data.qualifications : [];
-
-      qualificationsMapCache = new Map(
-        items
-        .filter((item) => item && typeof item === 'object')
-        .map((item) => [Number(item.qualification_id ?? item.id), String(item.label ?? item.name ?? '').trim()])
-        .filter(([id, label]) => !Number.isNaN(id) && label)
-      );
-
-      return qualificationsMapCache;
-    }
-
-    async function fetchAllExternalClientJobs(limit = API_FETCH_LIMIT, maxPages = 100) {
-      let allJobs = [];
-      let nextUrl = `${API_URL}?limit=${limit}`;
-      let pageCount = 0;
-
-      while (nextUrl && pageCount < maxPages) {
-        pageCount += 1;
-        const {
-          jobs,
-          nextPageUrl
-        } = await fetchPage(nextUrl);
-        allJobs = allJobs.concat(jobs);
-        nextUrl = nextPageUrl;
-      }
-
-      return allJobs.filter((job) =>
-        !isConfidentialJob(job) &&
-        isExternalClientJob(job) &&
-        shouldPostOnWebsite(job)
-      );
+      // api.php has already filtered this down to external / postable /
+      // non-confidential jobs, so trust it as-is here.
+      return data.jobs ?? data.data ?? (Array.isArray(data) ? data : []);
     }
 
     async function getExternalJobs() {
       if (!externalJobsCache) {
-        await fetchQualificationsMap();
         externalJobsCache = await fetchAllExternalClientJobs();
       }
       return externalJobsCache;
