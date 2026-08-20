@@ -1,8 +1,14 @@
 <?php
 declare(strict_types=1);
 
+// Same reason as careers/api.php: keep PHP notices/warnings out of the
+// response body so it always stays valid JSON for the frontend to parse.
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+
 $apiBase = 'https://api.recruitcrm.io/v1/candidates';
-$apiToken = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
+$apiToken = 'Bearer BfNc8D74TMfvbPibQihWlO488RvXs6R5GCHpoYHJYbnRuPIj68jNXzq0KLLv7WcCET_EFf7FKshssOtNWcSFZV8xNzg3MTM4NzkyOnw6cHJvZHVjdGlvbg==';
 
 header('Content-Type: application/json');
 
@@ -75,7 +81,8 @@ function recruitcrm_request(string $method, string $url, $fields, string $token,
     $body = curl_exec($ch);
     $error = curl_error($ch);
     $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
+    // curl_close($ch) removed: no-op since PHP 8.0, was only producing a
+    // deprecation notice that could leak into this JSON response body.
 
     return [
         'status' => $status,

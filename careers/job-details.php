@@ -1,12 +1,17 @@
 <?php
 declare(strict_types=1);
 
+// Keep PHP notices/warnings out of the rendered page (log them instead).
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+
 $jobSlug = isset($_GET['slug']) ? trim((string)$_GET['slug']) : '';
 $errorMessage = '';
 $job = [];
 $similarJobs = [];
 
-$apiToken = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
+$apiToken = 'Bearer BfNc8D74TMfvbPibQihWlO488RvXs6R5GCHpoYHJYbnRuPIj68jNXzq0KLLv7WcCET_EFf7FKshssOtNWcSFZV8xNzg3MTM4NzkyOnw6cHJvZHVjdGlvbg==';
 
 function job_hiring_for_value(array $job): string
 {
@@ -63,7 +68,7 @@ if ($jobSlug === '') {
     $response = curl_exec($ch);
     $curlError = curl_error($ch);
     $statusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
+    // curl_close($ch) removed: no-op since PHP 8.0.
 
     if ($curlError) {
         $errorMessage = 'We could not load this job right now. Please try again later.';
@@ -91,7 +96,7 @@ if (!$errorMessage) {
     $listResponse = curl_exec($ch);
     $listError = curl_error($ch);
     $listStatus = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
+    // curl_close($ch) removed: no-op since PHP 8.0.
     if (!$listError && $listStatus >= 200 && $listStatus < 300) {
         $listData = json_decode($listResponse ?: '', true);
         $listJobs = [];
@@ -665,7 +670,7 @@ $cityOptions = [
                         method: 'POST',
                         headers: {
                             Accept: 'application/json',
-                            Authorization: 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==',
+                            Authorization: 'Bearer BfNc8D74TMfvbPibQihWlO488RvXs6R5GCHpoYHJYbnRuPIj68jNXzq0KLLv7WcCET_EFf7FKshssOtNWcSFZV8xNzg3MTM4NzkyOnw6cHJvZHVjdGlvbg==',
                         },
                         body: formData,
                     });

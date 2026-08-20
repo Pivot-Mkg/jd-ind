@@ -1793,7 +1793,7 @@ background: linear-gradient(
         const internalJobsPagination = document.getElementById('internal-jobs-pagination');
         const API_URL = 'https://api.recruitcrm.io/v1/jobs';
         const QUALIFICATIONS_API_URL = 'https://api.recruitcrm.io/v1/qualifications';
-        const API_TOKEN = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
+        const API_TOKEN = 'Bearer BfNc8D74TMfvbPibQihWlO488RvXs6R5GCHpoYHJYbnRuPIj68jNXzq0KLLv7WcCET_EFf7FKshssOtNWcSFZV8xNzg3MTM4NzkyOnw6cHJvZHVjdGlvbg==';
         const API_FETCH_LIMIT = 50;
         const PAGE_SIZE = 9;
 

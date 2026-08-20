@@ -1,11 +1,20 @@
 <?php
 declare(strict_types=1);
 
+// This endpoint must only ever output JSON. Any PHP notice/warning/deprecation
+// printed inline (display_errors) would get mixed into the response body and
+// break JSON parsing on the frontend - so we make sure nothing gets echoed
+// except our own json_encode() output below. Real errors still go to the
+// server's error log via log_errors, just not into the response.
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+
 header('Content-Type: application/json');
 
 $apiUrl   = 'https://api.recruitcrm.io/v1/jobs';
 $qualificationApiUrl = 'https://api.recruitcrm.io/v1/qualifications';
-$apiToken = 'Bearer 2k5UW8wswGNHr7zRCWuvP0F7t8wpLFPxJxLfegndOi6PAYs4cXtCfLbVbZg5v8YiGWlAY_F8m-UlRJrWOE9aCV8xNzY5MTYxNjIyOnw6cHJvZHVjdGlvbg==';
+$apiToken = 'Bearer BfNc8D74TMfvbPibQihWlO488RvXs6R5GCHpoYHJYbnRuPIj68jNXzq0KLLv7WcCET_EFf7FKshssOtNWcSFZV8xNzg3MTM4NzkyOnw6cHJvZHVjdGlvbg==';
 
 /* ─────────────────────────── helpers ─────────────────────────── */
 
@@ -24,7 +33,9 @@ function recruitcrm_get(string $url, string $token): array
     $response  = curl_exec($ch);
     $curlError = curl_error($ch);
     $status    = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
+    // curl_close($ch) removed: it's a no-op since PHP 8.0 (curl handles are
+    // freed automatically), and calling it just produced a deprecation
+    // notice that PHP printed straight into this JSON response body.
 
     return [
         'error'  => $curlError,
@@ -361,7 +372,7 @@ while ($nextUrl && $pageCount < $maxPages) {
         $allJobs  = array_merge($allJobs, $pageJobs);
         $nextUrl  = $data['next_page_url'] ?? null;
     } else {
-        $errorMessage = 'Unexpected response from the recruitment API.';
+        $errorMessage = 'Unexpected response from the recruitment API. HTTP ' . $response['status'] . ' | URL: ' . $nextUrl . ' | Body: ' . substr((string) $response['body'], 0, 800);
         break;
     }
 }
