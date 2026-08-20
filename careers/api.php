@@ -193,17 +193,33 @@ function normalize_hiring_for_value(string $value): string
     $normalized = strtolower(trim(str_replace(["\xE2\x80\x93", "\xE2\x80\x94"], '-', $value)));
     $normalized = preg_replace('/\s+/', ' ', $normalized) ?? $normalized;
 
-    return match ($normalized) {
-        'internal - to be posted on join us',
-        'client (internal)' => 'internal',
-        'external - to be posted to "find opportunities"',
-        "external - to be posted to 'find opportunities'",
-        'external - to be posted to find opportunities',
-        'client (external)' => 'external',
-        'do not post',
-        'do not post (confidential)' => 'hidden',
-        default => '',
-    };
+    // Written as if/elseif rather than match() so this file still runs on
+    // PHP 7.x servers - match() is PHP 8.0+ only and would otherwise cause
+    // a fatal parse error (blank 500 response) on an older production PHP version.
+    if (
+        $normalized === 'internal - to be posted on join us' ||
+        $normalized === 'client (internal)'
+    ) {
+        return 'internal';
+    }
+
+    if (
+        $normalized === 'external - to be posted to "find opportunities"' ||
+        $normalized === "external - to be posted to 'find opportunities'" ||
+        $normalized === 'external - to be posted to find opportunities' ||
+        $normalized === 'client (external)'
+    ) {
+        return 'external';
+    }
+
+    if (
+        $normalized === 'do not post' ||
+        $normalized === 'do not post (confidential)'
+    ) {
+        return 'hidden';
+    }
+
+    return '';
 }
 
 function is_external_client_job(array $job): bool
